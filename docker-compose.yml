@@ -2,19 +2,10 @@ version: "3"
 services:
   frontend:
     build:
-      context: ./frontend
+      context: .
       dockerfile: Dockerfile
     ports:
       - 3000:3000
     volumes:
-      - ./frontend:/app
-    tty: true
-  backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    ports:
-      - 8000:8000
-    volumes:
-      - ./backend:/app
+      - ./:/app
     tty: true
