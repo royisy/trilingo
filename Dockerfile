@@ -1,7 +1,9 @@
-FROM node:18-alpine
+FROM node:18
 
 WORKDIR /app
 
-RUN apk update
-RUN apk add --no-cache \
+RUN apt-get update
+RUN apt-get install -y \
     git
+
+RUN npm install -g @aws-amplify/cli
