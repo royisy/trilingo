@@ -8,6 +8,9 @@
     "amplify/backend/amplify-meta.json": true,
     "amplify/backend/awscloudformation": true
   },
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": false
+  },
   "[typescript]": {
     "editor.codeActionsOnSave": {
       "source.sortImports": true
