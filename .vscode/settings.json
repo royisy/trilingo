@@ -9,11 +9,7 @@
     "amplify/backend/awscloudformation": true
   },
   "editor.codeActionsOnSave": {
-    "source.organizeImports": false
-  },
-  "[typescript]": {
-    "editor.codeActionsOnSave": {
-      "source.sortImports": true
-    }
+    "source.organizeImports": false,
+    "source.sortImports": true
   }
 }
