@@ -2,9 +2,10 @@ import { Link } from "react-router-dom";
 
 export default function Menu() {
     return (
-        <div>
+        <>
             <h1>Menu</h1>
-            <Link to="/">Home</Link>
-        </div>
+            <p><Link to="/">Home</Link></p>
+            <p><Link to="add-deck">Add deck</Link></p>
+        </>
     );
 }
