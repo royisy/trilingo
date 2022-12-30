@@ -7,12 +7,14 @@ import AddDeck from './components/AddDeck';
 import ErrorPage from './components/ErrorPage';
 import Home from './components/Home';
 import Menu from './components/Menu';
+import NoMatch from './components/NoMatch';
 import './index.css';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Outlet />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,
@@ -32,13 +34,13 @@ const router = createBrowserRouter([
           },
           {
             path: "*",
-            element: <ErrorPage />
+            element: <NoMatch />
           }
         ]
       },
       {
         path: "*",
-        element: <ErrorPage />
+        element: <NoMatch />
       }
     ]
   }

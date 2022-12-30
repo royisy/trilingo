@@ -1,10 +1,10 @@
+
 import { Link } from "react-router-dom";
 
-export default function ErrorPage() {
+export default function NoMatch() {
     return (
         <>
-            <h1>Error</h1>
-            <p>Something went wrong...</p>
+            <h1>Not Found</h1>
             <p><Link to="/">Home</Link></p>
         </>
     );
