@@ -6,6 +6,7 @@ export default function Menu() {
             <h1>Menu</h1>
             <p><Link to="/">Home</Link></p>
             <p><Link to="add-deck">Add deck</Link></p>
+            <p><Link to="delete-deck">Delete deck</Link></p>
         </>
     );
 }

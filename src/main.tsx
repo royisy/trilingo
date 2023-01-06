@@ -4,6 +4,7 @@ import {
   createBrowserRouter, Outlet, RouterProvider
 } from "react-router-dom";
 import AddDeck from './components/AddDeck';
+import DeleteDeck from './components/DeleteDeck';
 import ErrorPage from './components/ErrorPage';
 import Home from './components/Home';
 import Menu from './components/Menu';
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
           {
             path: "add-deck",
             element: <AddDeck />
+          },
+          {
+            path: "delete-deck",
+            element: <DeleteDeck />
           },
           {
             path: "*",
