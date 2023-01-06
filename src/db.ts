@@ -1,16 +1,6 @@
 import Dexie, { Table } from "dexie";
-
-export interface IDeck {
-    id: number;
-    title: string;
-}
-
-export interface IWord {
-    deck_id: number;
-    word_no: number;
-    definition: string;
-    answer: string;
-}
+import { IDeck } from "./models/Deck";
+import { IWord } from "./models/Word";
 
 export class TrilingoDatabase extends Dexie {
     decks!: Table<IDeck>;

@@ -1,4 +1,11 @@
-import { db, IWord } from "../db";
+import { db } from "../db";
+
+export interface IWord {
+    deck_id: number;
+    word_no: number;
+    definition: string;
+    answer: string;
+}
 
 export class Word implements IWord {
     deck_id: number;

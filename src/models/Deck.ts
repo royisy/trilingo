@@ -1,4 +1,10 @@
-import { db, IDeck, IWord } from "../db";
+import { db } from "../db";
+import { IWord } from "./Word";
+
+export interface IDeck {
+    id: number;
+    title: string;
+}
 
 export class Deck implements IDeck {
     id: number;
