@@ -1,21 +1,15 @@
-import { parse } from "papaparse";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { db } from "../db";
 import { Deck } from "../models/Deck";
+import { Word } from "../models/Word";
+import { getCsv } from "../utils/csv-util";
 
 export default function AddDeck() {
     const [deckList, setDeckList] = useState<{ id: number, title: string }[]>([]);
     useEffect(() => {
-        fetch("/deck-list.csv")
-            .then(res => res.text())
-            .then(csv => {
-                parse(csv, {
-                    header: true,
-                    complete: (result: any) => setDeckList(result.data),
-                    skipEmptyLines: true
-                });
-            });
+        getCsv<{ id: number, title: string }>("/deck-list.csv")
+            .then(csv => setDeckList(csv));
     }, []);
 
     return (
@@ -35,8 +29,16 @@ function DeckItem({ deck }: { deck: { id: number, title: string } }) {
         if (dbDeck) {
             return;
         }
+
+        const wordsCsv = await getCsv<{
+            deck_id: number,
+            no: number,
+            definition: string,
+            answer: string
+        }>(`/decks/${deck.id}.csv`);
+        const words = wordsCsv.map(row => new Word(deck.id, row.no, row.definition, row.answer));
         const newDeck = new Deck(deck.id, deck.title);
-        newDeck.save();
+        newDeck.save(words);
     }
 
     return (

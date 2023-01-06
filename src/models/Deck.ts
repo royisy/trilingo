@@ -1,4 +1,4 @@
-import { db, IDeck } from "../db";
+import { db, IDeck, IWord } from "../db";
 
 export class Deck implements IDeck {
     id: number;
@@ -9,8 +9,11 @@ export class Deck implements IDeck {
         this.title = title;
     }
 
-    save() {
-        db.decks.add(new Deck(this.id, this.title));
+    save(words: IWord[]) {
+        db.transaction("rw", db.decks, db.words, () => {
+            db.decks.add(new Deck(this.id, this.title));
+            db.words.bulkAdd(words);
+        });
     }
 }
 
