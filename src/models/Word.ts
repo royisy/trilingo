@@ -1,5 +1,3 @@
-import { db } from "../db";
-
 export interface IWord {
     deck_id: number;
     word_no: number;

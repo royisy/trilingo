@@ -1,7 +1,7 @@
 import { useLiveQuery } from "dexie-react-hooks";
 import { Link } from "react-router-dom";
 import { db } from "../db";
-import { IDeck } from "../models/Deck";
+import { Deck, IDeck } from "../models/Deck";
 
 export default function DeleteDeck() {
     const decks = useLiveQuery(
@@ -21,7 +21,11 @@ export default function DeleteDeck() {
 
 function DeckItem({ deck }: { deck: IDeck }) {
     async function deleteDeck() {
-        console.log(deck.id);
+        const dbDeck = await db.decks.get(deck.id);
+        if (!dbDeck || !(dbDeck instanceof Deck)) {
+            return;
+        }
+        dbDeck.delete();
     }
 
     return (

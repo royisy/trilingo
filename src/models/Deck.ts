@@ -17,8 +17,15 @@ export class Deck implements IDeck {
 
     save(words: IWord[]) {
         db.transaction("rw", db.decks, db.words, () => {
-            db.decks.add(new Deck(this.id, this.title));
             db.words.bulkAdd(words);
+            db.decks.add(new Deck(this.id, this.title));
+        });
+    }
+
+    delete() {
+        db.transaction("rw", db.decks, db.words, () => {
+            db.decks.where("id").equals(this.id).delete();
+            db.words.where("deck_id").equals(this.id).delete();
         });
     }
 }
