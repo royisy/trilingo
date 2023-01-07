@@ -1,3 +1,4 @@
+import { useLiveQuery } from "dexie-react-hooks";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { db } from "../db";
@@ -11,13 +12,18 @@ export default function AddDeck() {
         getCsv<{ id: number, title: string }>("/deck-list.csv")
             .then(csv => setDeckList(csv));
     }, []);
+    const dbDecks = useLiveQuery(
+        () => db.decks.toArray()
+    );
+    const dbDeckIds = dbDecks?.map(deck => deck.id);
+    const deckListToAdd = deckList.filter(row => !dbDeckIds?.includes(row.id));
 
     return (
         <>
             <h1>Add deck</h1>
             <p><Link to="/menu">Menu</Link></p>
             <ul>
-                {deckList.map(deck => <DeckItem key={deck.id} deck={deck} />)}
+                {deckListToAdd.map(deck => <DeckItem key={deck.id} deck={deck} />)}
             </ul>
         </ >
     );
