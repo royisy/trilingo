@@ -25,7 +25,7 @@ export class Deck implements IDeck {
     delete() {
         db.transaction("rw", db.decks, db.words, () => {
             db.decks.where("id").equals(this.id).delete();
-            db.words.where("deck_id").equals(this.id).delete();
+            db.words.where("deckId").equals(this.id).delete();
         });
     }
 }

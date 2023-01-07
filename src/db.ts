@@ -10,7 +10,7 @@ export class TrilingoDatabase extends Dexie {
         super("TrilingoDatabase");
         this.version(1).stores({
             decks: "id",
-            words: "[deck_id+word_no]"
+            words: "[deckId+wordNo]"
         });
         this.decks.mapToClass(Deck);
         this.words.mapToClass(Word);
