@@ -1,6 +1,6 @@
 import Dexie, { Table } from "dexie";
-import { IDeck } from "./models/Deck";
-import { IWord } from "./models/Word";
+import { Deck, IDeck } from "./models/Deck";
+import { IWord, Word } from "./models/Word";
 
 export class TrilingoDatabase extends Dexie {
     decks!: Table<IDeck>;
@@ -12,6 +12,8 @@ export class TrilingoDatabase extends Dexie {
             decks: "id",
             words: "[deck_id+word_no]"
         });
+        this.decks.mapToClass(Deck);
+        this.words.mapToClass(Word);
     }
 }
 

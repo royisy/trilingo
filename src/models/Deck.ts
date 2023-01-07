@@ -22,5 +22,3 @@ export class Deck implements IDeck {
         });
     }
 }
-
-db.decks.mapToClass(Deck);

@@ -20,5 +20,3 @@ export class Word implements IWord {
         this.answer = answer;
     }
 }
-
-db.decks.mapToClass(Word);
