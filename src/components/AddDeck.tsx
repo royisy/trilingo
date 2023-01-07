@@ -1,6 +1,6 @@
 import { useLiveQuery } from "dexie-react-hooks";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { db } from "../db";
 import { Deck } from "../models/Deck";
 import { Word } from "../models/Word";
@@ -30,6 +30,8 @@ export default function AddDeck() {
 }
 
 function DeckItem({ deck }: { deck: { id: number, title: string } }) {
+    const navigate = useNavigate();
+
     async function addDeck() {
         const dbDeck = await db.decks.get(deck.id);
         if (dbDeck) {
@@ -45,6 +47,7 @@ function DeckItem({ deck }: { deck: { id: number, title: string } }) {
         const words = wordsCsv.map(row => new Word(deck.id, row.no, row.definition, row.answer));
         const newDeck = new Deck(deck.id, deck.title);
         newDeck.save(words);
+        navigate("/menu");
     }
 
     return (
