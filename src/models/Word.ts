@@ -1,11 +1,4 @@
-export interface IWord {
-    deckId: number;
-    wordNo: number;
-    definition: string;
-    answer: string;
-}
-
-export class Word implements IWord {
+export class Word {
     deckId: number;
     wordNo: number;
     definition: string;

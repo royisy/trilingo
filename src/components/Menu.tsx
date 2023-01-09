@@ -1,7 +1,7 @@
 import { useLiveQuery } from "dexie-react-hooks";
 import { Link } from "react-router-dom";
 import { db } from "../db";
-import { IDeck } from "../models/Deck";
+import { Deck } from "../models/Deck";
 
 export default function Menu() {
     const decks = useLiveQuery(
@@ -21,7 +21,7 @@ export default function Menu() {
     );
 }
 
-function DeckItem({ deck }: { deck: IDeck }) {
+function DeckItem({ deck }: { deck: Deck }) {
     async function selectDeck() {
         console.log(deck.id);
     }

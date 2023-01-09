@@ -1,12 +1,7 @@
 import { db } from "../db";
-import { IWord } from "./Word";
+import { Word } from "./Word";
 
-export interface IDeck {
-    id: number;
-    title: string;
-}
-
-export class Deck implements IDeck {
+export class Deck {
     id: number;
     title: string;
 
@@ -15,7 +10,7 @@ export class Deck implements IDeck {
         this.title = title;
     }
 
-    save(words: IWord[]) {
+    save(words: Word[]) {
         db.transaction("rw", db.decks, db.words, () => {
             db.words.bulkAdd(words);
             db.decks.add(new Deck(this.id, this.title));

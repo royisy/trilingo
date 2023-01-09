@@ -1,10 +1,10 @@
 import Dexie, { Table } from "dexie";
-import { Deck, IDeck } from "./models/Deck";
-import { IWord, Word } from "./models/Word";
+import { Deck } from "./models/Deck";
+import { Word } from "./models/Word";
 
 export class TrilingoDatabase extends Dexie {
-    decks!: Table<IDeck>;
-    words!: Table<IWord>;
+    decks!: Table<Deck>;
+    words!: Table<Word>;
 
     constructor() {
         super("TrilingoDatabase");
