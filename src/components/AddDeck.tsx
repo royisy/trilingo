@@ -6,7 +6,7 @@ import { Deck } from "../models/Deck";
 import { Word } from "../models/Word";
 import { getCsv } from "../utils/csv-util";
 
-export default function AddDeck() {
+export function AddDeck() {
     const [deckList, setDeckList] = useState<{ id: number, title: string }[]>([]);
     useEffect(() => {
         getCsv<{ id: number, title: string }>("/deck-list.csv")

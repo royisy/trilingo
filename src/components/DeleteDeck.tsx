@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { db } from "../db";
 import { Deck } from "../models/Deck";
 
-export default function DeleteDeck() {
+export function DeleteDeck() {
     const decks = useLiveQuery(
         () => db.decks.toArray()
     );

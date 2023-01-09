@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom/client';
 import {
   createBrowserRouter, Outlet, RouterProvider
 } from "react-router-dom";
-import AddDeck from './components/AddDeck';
-import DeleteDeck from './components/DeleteDeck';
-import ErrorPage from './components/ErrorPage';
-import Home from './components/Home';
-import Menu from './components/Menu';
-import NoMatch from './components/NoMatch';
+import { AddDeck } from './components/AddDeck';
+import { DeleteDeck } from './components/DeleteDeck';
+import { ErrorPage } from './components/ErrorPage';
+import { Home } from './components/Home';
+import { Menu } from './components/Menu';
+import { NoMatch } from './components/NoMatch';
 import './index.css';
 
 const router = createBrowserRouter([
