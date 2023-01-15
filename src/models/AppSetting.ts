@@ -4,8 +4,8 @@ export class AppSetting {
     id: number;
     selectedDeckId?: number;
 
-    constructor(id: number) {
-        this.id = id;
+    constructor() {
+        this.id = 1;
     }
 
     save() {

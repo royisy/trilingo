@@ -39,7 +39,6 @@ function DeckItem({ deck }: { deck: { id: number, title: string } }) {
         }
 
         const wordsCsv = await getCsv<{
-            deckId: number,
             no: number,
             definition: string,
             answer: string

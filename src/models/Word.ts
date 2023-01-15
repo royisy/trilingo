@@ -1,12 +1,13 @@
 export class Word {
+    id?: number;
     deckId: number;
-    wordNo: number;
+    no: number;
     definition: string;
     answer: string;
 
-    constructor(deckId: number, wordNo: number, definition: string, answer: string) {
+    constructor(deckId: number, no: number, definition: string, answer: string) {
         this.deckId = deckId;
-        this.wordNo = wordNo;
+        this.no = no;
         this.definition = definition;
         this.answer = answer;
     }

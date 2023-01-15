@@ -13,7 +13,7 @@ export class TrilingoDatabase extends Dexie {
         this.version(1).stores({
             appSettings: "id",
             decks: "id",
-            words: "[deckId+wordNo]",
+            words: "++id, deckId",
         });
         this.appSettings.mapToClass(AppSetting);
         this.decks.mapToClass(Deck);
@@ -21,4 +21,4 @@ export class TrilingoDatabase extends Dexie {
     }
 }
 
-export const db = new TrilingoDatabase(); 
+export const db = new TrilingoDatabase();

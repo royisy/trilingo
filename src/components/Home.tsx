@@ -37,7 +37,7 @@ export function Home() {
             <h1>{title}</h1>
             <p><Link to="menu">Menu</Link></p>
             <ul>
-                {words.map((word) => <li key={word.wordNo}>{word.answer}</li>)}
+                {words.map((word) => <li key={word.no}>{word.answer}</li>)}
             </ul>
         </>
     );
