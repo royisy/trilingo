@@ -1,6 +1,7 @@
 import { useLiveQuery } from "dexie-react-hooks";
 import { Link } from "react-router-dom";
 import { Deck } from "../models/Deck";
+import { AppSettingRepository } from "../repositories/AppSettingRepository";
 import { DeckRepository } from "../repositories/DeckRepository";
 
 export function DeleteDeck() {
@@ -20,12 +21,16 @@ export function DeleteDeck() {
 
 function DeckItem({ deck }: { deck: Deck }) {
     async function deleteDeck() {
-        const repo = new DeckRepository();
-        const dbDeck = await repo.getById(deck.id);
+        const deckRepo = new DeckRepository();
+        const dbDeck = await deckRepo.getById(deck.id);
         if (!dbDeck) {
             return;
         }
         dbDeck.delete();
+        const appSettingRepo = new AppSettingRepository();
+        const appSetting = await appSettingRepo.get();
+        appSetting.selectedDeckId = null;
+        appSetting.save();
     }
 
     return (
