@@ -6,6 +6,7 @@ export async function getCsv<T>(url: string) {
     return new Promise<T[]>((resolve) => {
         parse(csv, {
             header: true,
+            dynamicTyping: true,
             complete(result: any) {
                 resolve(result.data);
             },
