@@ -9,6 +9,7 @@ import { ErrorPage } from './components/ErrorPage';
 import { Home } from './components/Home';
 import { Menu } from './components/Menu';
 import { NoMatch } from './components/NoMatch';
+import { Practice } from './components/Practice';
 import './index.css';
 
 const router = createBrowserRouter([
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
             element: <NoMatch />
           }
         ]
+      },
+      {
+        path: "practice",
+        element: <Practice />
       },
       {
         path: "*",

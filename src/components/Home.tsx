@@ -36,6 +36,7 @@ export function Home() {
         <>
             <h1>{title}</h1>
             <p><Link to="menu">Menu</Link></p>
+            <p><Link to="practice">Start</Link></p>
             <ul>
                 {words.map((word) => <li key={word.no}>{word.answer}</li>)}
             </ul>
