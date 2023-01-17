@@ -1,7 +1,7 @@
 import Dexie, { Table } from "dexie";
-import type { AppSetting } from "./models/AppSetting";
-import type { Deck } from "./models/Deck";
-import type { Word } from "./models/Word";
+import { AppSetting } from "./models/AppSetting";
+import { Deck } from "./models/Deck";
+import { Word } from "./models/Word";
 
 export class TrilingoDatabase extends Dexie {
     appSettings!: Table<AppSetting>;
