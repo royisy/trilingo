@@ -1,13 +1,12 @@
 import { useLiveQuery } from "dexie-react-hooks";
 import { Link, useNavigate } from "react-router-dom";
-import { db } from "../db";
 import { Deck } from "../models/Deck";
 import { AppSettingRepository } from "../repositories/AppSettingRepository";
+import { DeckRepository } from "../repositories/DeckRepository";
 
 export function Menu() {
-    const decks = useLiveQuery(
-        () => db.decks.toArray()
-    );
+    const repo = new DeckRepository();
+    const decks = useLiveQuery(repo.getAll);
 
     return (
         <>

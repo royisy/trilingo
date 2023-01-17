@@ -10,3 +10,5 @@ export class AppSettingRepository {
         return new AppSetting();
     }
 }
+
+db.appSettings.mapToClass(AppSetting);

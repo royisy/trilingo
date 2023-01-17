@@ -1,7 +1,7 @@
 import Dexie, { Table } from "dexie";
-import { AppSetting } from "./models/AppSetting";
-import { Deck } from "./models/Deck";
-import { Word } from "./models/Word";
+import type { AppSetting } from "./models/AppSetting";
+import type { Deck } from "./models/Deck";
+import type { Word } from "./models/Word";
 
 export class TrilingoDatabase extends Dexie {
     appSettings!: Table<AppSetting>;
@@ -15,9 +15,6 @@ export class TrilingoDatabase extends Dexie {
             decks: "id",
             words: "++id, deckId",
         });
-        this.appSettings.mapToClass(AppSetting);
-        this.decks.mapToClass(Deck);
-        this.words.mapToClass(Word);
     }
 }
 

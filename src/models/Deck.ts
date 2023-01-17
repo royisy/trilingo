@@ -24,3 +24,5 @@ export class Deck {
         });
     }
 }
+
+db.decks.mapToClass(Deck);

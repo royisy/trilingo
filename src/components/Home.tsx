@@ -18,7 +18,7 @@ export function Home() {
             return;
         }
         const deckRepo = new DeckRepository();
-        const deck = await deckRepo.get(deckId);
+        const deck = await deckRepo.getById(deckId);
         if (!deck) {
             throw new Error("Incorrect deck id.");
         }

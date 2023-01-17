@@ -1,12 +1,11 @@
 import { useLiveQuery } from "dexie-react-hooks";
 import { Link } from "react-router-dom";
-import { db } from "../db";
 import { Deck } from "../models/Deck";
+import { DeckRepository } from "../repositories/DeckRepository";
 
 export function DeleteDeck() {
-    const decks = useLiveQuery(
-        () => db.decks.toArray()
-    );
+    const repo = new DeckRepository();
+    const decks = useLiveQuery(repo.getAll);
 
     return (
         <>
@@ -21,7 +20,8 @@ export function DeleteDeck() {
 
 function DeckItem({ deck }: { deck: Deck }) {
     async function deleteDeck() {
-        const dbDeck = await db.decks.get(deck.id);
+        const repo = new DeckRepository();
+        const dbDeck = await repo.getById(deck.id);
         if (!dbDeck) {
             return;
         }

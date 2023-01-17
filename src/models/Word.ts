@@ -1,3 +1,5 @@
+import { db } from "../db";
+
 export class Word {
     id?: number;
     deckId: number;
@@ -12,3 +14,5 @@ export class Word {
         this.answer = answer;
     }
 }
+
+db.words.mapToClass(Word);
