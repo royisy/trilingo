@@ -6,12 +6,16 @@ export class Word {
     no: number;
     definition: string;
     answer: string;
+    correctCnt: number;
+    incorrectCnt: number;
 
     constructor(deckId: number, no: number, definition: string, answer: string) {
         this.deckId = deckId;
         this.no = no;
         this.definition = definition;
         this.answer = answer;
+        this.correctCnt = 0;
+        this.incorrectCnt = 0;
     }
 }
 
