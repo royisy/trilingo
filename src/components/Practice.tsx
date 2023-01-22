@@ -7,8 +7,10 @@ import { WordRepository } from "../repositories/WordRepository";
 
 export function Practice() {
     const NUM_OF_WORDS = 10;
+    const TIME_TO_SHOW_CORRECT = 1000;
     const [words, setWords] = useState<Word[]>([]);
     const [index, setIndex] = useState<number>(0);
+    const [message, setMessage] = useState<string>("");
     const navigate = useNavigate();
 
     async function getWords() {
@@ -44,6 +46,8 @@ export function Practice() {
         }
         word.correctCnt++;
         word.save();
+        setMessage("Correct!");
+        setTimeout(() => setMessage(""), TIME_TO_SHOW_CORRECT);
         event.target.value = "";
         nextWord();
     }
@@ -72,6 +76,7 @@ export function Practice() {
     const elements = <>
         <p>{index + 1} / {NUM_OF_WORDS}</p>
         <p>{words[index]?.definition}</p>
+        <p>{message}</p>
         <p><input type="text" onChange={checkAnswer} /></p>
         <p><button onClick={skip}>Skip</button></p>
     </>
