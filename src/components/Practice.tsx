@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Word } from "../models/Word";
 import { AppSettingRepository } from "../repositories/AppSettingRepository";
 import { DeckRepository } from "../repositories/DeckRepository";
@@ -9,6 +9,7 @@ export function Practice() {
     const NUM_OF_WORDS = 10;
     const [words, setWords] = useState<Word[]>([]);
     const [index, setIndex] = useState<number>(0);
+    const navigate = useNavigate();
 
     async function getWords() {
         const appSettingRepo = new AppSettingRepository();
@@ -23,7 +24,7 @@ export function Practice() {
             throw new Error("Deck not found.");
         }
         const wordRepo = new WordRepository();
-        let words = await wordRepo.getByIncorrectCnt(deckId, NUM_OF_WORDS);
+        let words = await wordRepo.getBySkippedCnt(deckId, NUM_OF_WORDS);
         if (words.length < NUM_OF_WORDS) {
             const wordsByCorrectCnt = await wordRepo.getByCorrectCnt(deckId, NUM_OF_WORDS - words.length);
             words = words.concat(wordsByCorrectCnt);
@@ -35,19 +36,49 @@ export function Practice() {
         setWords(words);
     }
 
+    function checkAnswer(event: any) {
+        const word = words[index];
+        const userAnswer = event.target.value;
+        if (word.answer !== userAnswer) {
+            return;
+        }
+        word.correctCnt++;
+        word.save();
+        event.target.value = "";
+        nextWord();
+    }
+
+    function skip() {
+        const word = words[index];
+        word.skippedCnt++;
+        word.save();
+        nextWord();
+    }
+
+    function nextWord() {
+        const nextIndex = index + 1;
+        if (nextIndex >= NUM_OF_WORDS) {
+            navigate("/");
+        }
+        setIndex(nextIndex);
+    }
+
     useEffect(() => {
         if (words.length === 0) {
             getWords();
         }
     }, []);
 
+    const elements = <>
+        <p>{index + 1} / {NUM_OF_WORDS}</p>
+        <p>{words[index]?.definition}</p>
+        <p><input type="text" onChange={checkAnswer} /></p>
+        <p><button onClick={skip}>Skip</button></p>
+    </>
     return (
         <>
             <p><Link to="/">Quit</Link></p>
-            <p>{index + 1} / {NUM_OF_WORDS}</p>
-            <p>{words[index]?.definition}</p>
-            <p><input type="text" /></p>
-            <p><button>Skip</button></p>
+            {words.length > 0 && elements}
         </>
     );
 }

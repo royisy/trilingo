@@ -12,10 +12,10 @@ export class WordRepository {
             .slice(0, limit);
     }
 
-    async getByIncorrectCnt(deckId: number, limit: number) {
+    async getBySkippedCnt(deckId: number, limit: number) {
         let words = await this.getByDeckId(deckId);
         return words.filter(word => word.correctCnt === 0)
-            .sort((a, b) => a.incorrectCnt - b.incorrectCnt)
+            .sort((a, b) => a.skippedCnt - b.skippedCnt)
             .slice(0, limit);
     }
 }

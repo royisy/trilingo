@@ -7,7 +7,7 @@ export class Word {
     definition: string;
     answer: string;
     correctCnt: number;
-    incorrectCnt: number;
+    skippedCnt: number;
 
     constructor(deckId: number, no: number, definition: string, answer: string) {
         this.deckId = deckId;
@@ -15,7 +15,11 @@ export class Word {
         this.definition = definition;
         this.answer = answer;
         this.correctCnt = 0;
-        this.incorrectCnt = 0;
+        this.skippedCnt = 0;
+    }
+
+    save() {
+        db.words.put(this);
     }
 }
 
