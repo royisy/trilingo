@@ -4,6 +4,7 @@ import { Word } from "../models/Word";
 import { AppSettingRepository } from "../repositories/AppSettingRepository";
 import { DeckRepository } from "../repositories/DeckRepository";
 import { WordRepository } from "../repositories/WordRepository";
+import { normalizeString } from "../utils/string-utils";
 
 export function Practice() {
     const NUM_OF_WORDS = 10;
@@ -44,7 +45,7 @@ export function Practice() {
         const word = words[index];
         const userAnswer = event.target.value;
         setUserAnswer(userAnswer);
-        if (word.answer !== userAnswer) {
+        if (normalizeString(word.answer) !== normalizeString(userAnswer)) {
             return;
         }
         word.correctCnt++;
