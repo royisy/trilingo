@@ -10,8 +10,9 @@ export function Practice() {
     const TIME_TO_SHOW_CORRECT = 1000;
     const [words, setWords] = useState<Word[]>([]);
     const [index, setIndex] = useState<number>(0);
-    const [answer, setAnswer] = useState<string>("");
+    const [userAnswer, setUserAnswer] = useState<string>("");
     const [message, setMessage] = useState<string>("");
+    const [showAnswer, setShowAnswer] = useState<boolean>(false);
     const navigate = useNavigate();
 
     async function getWords() {
@@ -42,7 +43,7 @@ export function Practice() {
     function handleAnswerChange(event: any) {
         const word = words[index];
         const userAnswer = event.target.value;
-        setAnswer(userAnswer);
+        setUserAnswer(userAnswer);
         if (word.answer !== userAnswer) {
             return;
         }
@@ -53,10 +54,17 @@ export function Practice() {
         nextWord();
     }
 
-    function skip() {
+    function handleSkipClick() {
         const word = words[index];
         word.skippedCnt++;
         word.save();
+        setMessage(word.answer);
+        setShowAnswer(true);
+    }
+
+    function handleNextClick() {
+        setMessage("");
+        setShowAnswer(false);
         nextWord();
     }
 
@@ -66,7 +74,7 @@ export function Practice() {
             navigate("/");
         }
         setIndex(nextIndex);
-        setAnswer("");
+        setUserAnswer("");
     }
 
     useEffect(() => {
@@ -79,8 +87,9 @@ export function Practice() {
         <p>{index + 1} / {NUM_OF_WORDS}</p>
         <p>{words[index]?.definition}</p>
         <p>{message}</p>
-        <p><input type="text" value={answer} onChange={handleAnswerChange} /></p>
-        <p><button onClick={skip}>Skip</button></p>
+        <p><input type="text" value={userAnswer} onChange={handleAnswerChange} disabled={showAnswer} /></p>
+        {!showAnswer && <p><button onClick={handleSkipClick}>Skip</button></p>}
+        {showAnswer && <p><button onClick={handleNextClick}>Next</button></p>}
     </>
     return (
         <>
