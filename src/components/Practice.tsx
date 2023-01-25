@@ -10,6 +10,7 @@ export function Practice() {
     const TIME_TO_SHOW_CORRECT = 1000;
     const [words, setWords] = useState<Word[]>([]);
     const [index, setIndex] = useState<number>(0);
+    const [answer, setAnswer] = useState<string>("");
     const [message, setMessage] = useState<string>("");
     const navigate = useNavigate();
 
@@ -38,9 +39,10 @@ export function Practice() {
         setWords(words);
     }
 
-    function checkAnswer(event: any) {
+    function handleAnswerChange(event: any) {
         const word = words[index];
         const userAnswer = event.target.value;
+        setAnswer(userAnswer);
         if (word.answer !== userAnswer) {
             return;
         }
@@ -48,7 +50,6 @@ export function Practice() {
         word.save();
         setMessage("Correct!");
         setTimeout(() => setMessage(""), TIME_TO_SHOW_CORRECT);
-        event.target.value = "";
         nextWord();
     }
 
@@ -65,6 +66,7 @@ export function Practice() {
             navigate("/");
         }
         setIndex(nextIndex);
+        setAnswer("");
     }
 
     useEffect(() => {
@@ -77,7 +79,7 @@ export function Practice() {
         <p>{index + 1} / {NUM_OF_WORDS}</p>
         <p>{words[index]?.definition}</p>
         <p>{message}</p>
-        <p><input type="text" onChange={checkAnswer} /></p>
+        <p><input type="text" value={answer} onChange={handleAnswerChange} /></p>
         <p><button onClick={skip}>Skip</button></p>
     </>
     return (
