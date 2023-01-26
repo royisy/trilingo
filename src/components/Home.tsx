@@ -37,9 +37,26 @@ export function Home() {
             <h1>{title}</h1>
             <p><Link to="menu">Menu</Link></p>
             <p><Link to="practice">Start</Link></p>
-            <ul>
-                {words.map((word) => <li key={word.no}>{word.answer}</li>)}
-            </ul>
+            <table>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Definition</th>
+                        <th>Correct</th>
+                        <th>Skipped</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {words.map((word) => (
+                        <tr key={word.no}>
+                            <td>{word.no}</td>
+                            <td>{word.definition}</td>
+                            <td>{word.correctCnt}</td>
+                            <td>{word.skippedCnt}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </>
     );
 }
