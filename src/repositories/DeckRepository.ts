@@ -1,11 +1,12 @@
-import { db } from "../db";
+import { db } from '../db'
+import { type Deck } from '../models/Deck'
 
 export class DeckRepository {
-    async getAll() {
-        return await db.decks.toArray();
-    }
+  async getAll(): Promise<Deck[]> {
+    return await db.decks.toArray()
+  }
 
-    async getById(deckId: number) {
-        return await db.decks.get(deckId);
-    }
+  async getById(deckId: number): Promise<Deck | undefined> {
+    return await db.decks.get(deckId)
+  }
 }

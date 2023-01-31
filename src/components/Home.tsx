@@ -1,62 +1,66 @@
-import { useLiveQuery } from "dexie-react-hooks";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { Word } from "../models/Word";
-import { AppSettingRepository } from "../repositories/AppSettingRepository";
-import { DeckRepository } from "../repositories/DeckRepository";
-import { WordRepository } from "../repositories/WordRepository";
+import { useLiveQuery } from 'dexie-react-hooks'
+import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { type Word } from '../models/Word'
+import { AppSettingRepository } from '../repositories/AppSettingRepository'
+import { DeckRepository } from '../repositories/DeckRepository'
+import { WordRepository } from '../repositories/WordRepository'
 
-export function Home() {
-    const appSettingRepo = new AppSettingRepository();
-    const appSetting = useLiveQuery(appSettingRepo.get);
-    const deckId = appSetting?.selectedDeckId;
-    const [title, setTitle] = useState("Trilingo");
-    const [words, setWords] = useState<Word[]>([]);
+export function Home(): JSX.Element {
+  const appSettingRepo = new AppSettingRepository()
+  const appSetting = useLiveQuery(appSettingRepo.get)
+  const deckId = appSetting?.selectedDeckId
+  const [title, setTitle] = useState('Trilingo')
+  const [words, setWords] = useState<Word[]>([])
 
-    async function getDeck() {
-        if (!deckId) {
-            return;
-        }
-        const deckRepo = new DeckRepository();
-        const deck = await deckRepo.getById(deckId);
-        if (!deck) {
-            throw new Error("Incorrect deck id.");
-        }
-        const wordRepo = new WordRepository();
-        const words = await wordRepo.getByDeckId(deckId);
-        setTitle(deck.title);
-        setWords(words);
+  async function getDeck(): Promise<any> {
+    if (deckId == null) {
+      return
     }
+    const deckRepo = new DeckRepository()
+    const deck = await deckRepo.getById(deckId)
+    if (deck == null) {
+      throw new Error('Incorrect deck id.')
+    }
+    const wordRepo = new WordRepository()
+    const words = await wordRepo.getByDeckId(deckId)
+    setTitle(deck.title)
+    setWords(words)
+  }
 
-    useEffect(() => {
-        getDeck();
-    }, [deckId]);
+  useEffect(() => {
+    void getDeck()
+  }, [deckId])
 
-    return (
-        <>
-            <h1>{title}</h1>
-            <p><Link to="menu">Menu</Link></p>
-            <p><Link to="practice">Start</Link></p>
-            <table>
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Definition</th>
-                        <th>Correct</th>
-                        <th>Skipped</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {words.map((word) => (
-                        <tr key={word.no}>
-                            <td>{word.no}</td>
-                            <td>{word.definition}</td>
-                            <td>{word.correctCnt}</td>
-                            <td>{word.skippedCnt}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </>
-    );
+  return (
+    <>
+      <h1>{title}</h1>
+      <p>
+        <Link to="menu">Menu</Link>
+      </p>
+      <p>
+        <Link to="practice">Start</Link>
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Definition</th>
+            <th>Correct</th>
+            <th>Skipped</th>
+          </tr>
+        </thead>
+        <tbody>
+          {words.map((word) => (
+            <tr key={word.no}>
+              <td>{word.no}</td>
+              <td>{word.definition}</td>
+              <td>{word.correctCnt}</td>
+              <td>{word.skippedCnt}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
+  )
 }

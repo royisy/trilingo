@@ -1,11 +1,12 @@
+import { Link } from 'react-router-dom'
 
-import { Link } from "react-router-dom";
-
-export function NoMatch() {
-    return (
-        <>
-            <h1>Not Found</h1>
-            <p><Link to="/">Home</Link></p>
-        </>
-    );
+export function NoMatch(): JSX.Element {
+  return (
+    <>
+      <h1>Not Found</h1>
+      <p>
+        <Link to="/">Home</Link>
+      </p>
+    </>
+  )
 }
