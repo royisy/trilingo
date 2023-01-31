@@ -11,5 +11,7 @@
   "editor.codeActionsOnSave": {
     "source.organizeImports": false,
     "source.sortImports": true
-  }
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true
 }
