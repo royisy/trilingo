@@ -13,3 +13,5 @@ export class AppSetting {
     void db.appSettings.put(this)
   }
 }
+
+db.appSettings.mapToClass(AppSetting)
