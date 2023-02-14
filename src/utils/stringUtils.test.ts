@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { normalizeString } from './string-utils'
+import { normalizeString } from './stringUtils'
 
 describe('normalizeString', () => {
   it('should remove spaces of beginning and end', () => {

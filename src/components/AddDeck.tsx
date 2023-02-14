@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Deck } from '../models/Deck'
 import { Word } from '../models/Word'
 import { DeckRepository } from '../repositories/DeckRepository'
-import { getCsv } from '../utils/csv-utils'
+import { getCsv } from '../utils/csvUtils'
 
 export function AddDeck(): JSX.Element {
   const [deckList, setDeckList] = useState<

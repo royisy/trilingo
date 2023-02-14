@@ -4,7 +4,7 @@ import { type Word } from '../models/Word'
 import { AppSettingRepository } from '../repositories/AppSettingRepository'
 import { DeckRepository } from '../repositories/DeckRepository'
 import { WordRepository } from '../repositories/WordRepository'
-import { normalizeString } from '../utils/string-utils'
+import { normalizeString } from '../utils/stringUtils'
 
 export function Practice(): JSX.Element {
   const NUM_OF_WORDS = 10
