@@ -1,12 +1,11 @@
 import { useLiveQuery } from 'dexie-react-hooks'
 import { Link, useNavigate } from 'react-router-dom'
 import { type Deck } from '../models/Deck'
-import { AppSettingRepository } from '../repositories/appSetting'
-import { DeckRepository } from '../repositories/deck'
+import { getAppSetting } from '../repositories/appSetting'
+import { getAllDecks } from '../repositories/deck'
 
 export function Menu(): JSX.Element {
-  const repo = new DeckRepository()
-  const decks = useLiveQuery(repo.getAll)
+  const decks = useLiveQuery(getAllDecks)
 
   return (
     <>
@@ -33,8 +32,7 @@ function DeckItem({ deck }: { deck: Deck }): JSX.Element {
   const navigate = useNavigate()
 
   async function selectDeck(): Promise<void> {
-    const repo = new AppSettingRepository()
-    const appSetting = await repo.get()
+    const appSetting = await getAppSetting()
     appSetting.selectedDeckId = deck.id
     appSetting.save()
     navigate('/')

@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { type Word } from '../models/Word'
-import { AppSettingRepository } from '../repositories/appSetting'
-import { DeckRepository } from '../repositories/deck'
-import { WordRepository } from '../repositories/word'
+import { getAppSetting } from '../repositories/appSetting'
+import { getDeckById } from '../repositories/deck'
+import {
+  getWordsByCorrectCnt,
+  getWordsBySkippedCnt,
+} from '../repositories/word'
 import { normalizeString } from '../utils/stringUtils'
 
 export function Practice(): JSX.Element {
@@ -17,21 +20,18 @@ export function Practice(): JSX.Element {
   const navigate = useNavigate()
 
   async function getWords(): Promise<void> {
-    const appSettingRepo = new AppSettingRepository()
-    const appSetting = await appSettingRepo.get()
+    const appSetting = await getAppSetting()
     const deckId = appSetting.selectedDeckId
     if (deckId == null) {
       throw new Error('Incorrect transition.')
     }
-    const deckRepo = new DeckRepository()
-    const deck = await deckRepo.getById(deckId)
+    const deck = await getDeckById(deckId)
     if (deck == null) {
       throw new Error('Deck not found.')
     }
-    const wordRepo = new WordRepository()
-    let words = await wordRepo.getBySkippedCnt(deckId, NUM_OF_WORDS)
+    let words = await getWordsBySkippedCnt(deckId, NUM_OF_WORDS)
     if (words.length < NUM_OF_WORDS) {
-      const wordsByCorrectCnt = await wordRepo.getByCorrectCnt(
+      const wordsByCorrectCnt = await getWordsByCorrectCnt(
         deckId,
         NUM_OF_WORDS - words.length
       )

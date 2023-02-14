@@ -2,13 +2,12 @@ import { useLiveQuery } from 'dexie-react-hooks'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { type Word } from '../models/Word'
-import { AppSettingRepository } from '../repositories/appSetting'
-import { DeckRepository } from '../repositories/deck'
-import { WordRepository } from '../repositories/word'
+import { getAppSetting } from '../repositories/appSetting'
+import { getDeckById } from '../repositories/deck'
+import { getWordsByDeckId } from '../repositories/word'
 
 export function Home(): JSX.Element {
-  const appSettingRepo = new AppSettingRepository()
-  const appSetting = useLiveQuery(appSettingRepo.get)
+  const appSetting = useLiveQuery(getAppSetting)
   const deckId = appSetting?.selectedDeckId
   const [title, setTitle] = useState('Trilingo')
   const [words, setWords] = useState<Word[]>([])
@@ -17,13 +16,11 @@ export function Home(): JSX.Element {
     if (deckId == null) {
       return
     }
-    const deckRepo = new DeckRepository()
-    const deck = await deckRepo.getById(deckId)
+    const deck = await getDeckById(deckId)
     if (deck == null) {
       throw new Error('Incorrect deck id.')
     }
-    const wordRepo = new WordRepository()
-    const words = await wordRepo.getByDeckId(deckId)
+    const words = await getWordsByDeckId(deckId)
     setTitle(deck.title)
     setWords(words)
   }

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Deck } from '../models/Deck'
 import { Word } from '../models/Word'
-import { DeckRepository } from '../repositories/deck'
+import { getAllDecks, getDeckById } from '../repositories/deck'
 import { getCsv } from '../utils/csvUtils'
 
 export function AddDeck(): JSX.Element {
@@ -17,8 +17,7 @@ export function AddDeck(): JSX.Element {
     })
   }, [])
 
-  const repo = new DeckRepository()
-  const dbDecks = useLiveQuery(repo.getAll)
+  const dbDecks = useLiveQuery(getAllDecks)
   const dbDeckIds = dbDecks?.map((deck) => deck.id)
   const deckListToAdd = deckList.filter(
     (row) => dbDeckIds?.includes(row.id) === false
@@ -48,8 +47,7 @@ function DeckItem({
 
   async function addDeck(): Promise<void> {
     try {
-      const repo = new DeckRepository()
-      const dbDeck = await repo.getById(deck.id)
+      const dbDeck = await getDeckById(deck.id)
       if (dbDeck != null) {
         return
       }

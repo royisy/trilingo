@@ -1,12 +1,11 @@
 import { useLiveQuery } from 'dexie-react-hooks'
 import { Link } from 'react-router-dom'
 import { type Deck } from '../models/Deck'
-import { AppSettingRepository } from '../repositories/appSetting'
-import { DeckRepository } from '../repositories/deck'
+import { getAppSetting } from '../repositories/appSetting'
+import { getAllDecks, getDeckById } from '../repositories/deck'
 
 export function DeleteDeck(): JSX.Element {
-  const repo = new DeckRepository()
-  const decks = useLiveQuery(repo.getAll)
+  const decks = useLiveQuery(getAllDecks)
 
   return (
     <>
@@ -25,14 +24,12 @@ export function DeleteDeck(): JSX.Element {
 
 function DeckItem({ deck }: { deck: Deck }): JSX.Element {
   async function deleteDeck(): Promise<void> {
-    const deckRepo = new DeckRepository()
-    const dbDeck = await deckRepo.getById(deck.id)
+    const dbDeck = await getDeckById(deck.id)
     if (dbDeck == null) {
       return
     }
     dbDeck.delete()
-    const appSettingRepo = new AppSettingRepository()
-    const appSetting = await appSettingRepo.get()
+    const appSetting = await getAppSetting()
     appSetting.selectedDeckId = null
     appSetting.save()
   }
