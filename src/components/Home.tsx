@@ -2,9 +2,9 @@ import { useLiveQuery } from 'dexie-react-hooks'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { type Word } from '../models/Word'
-import { AppSettingRepository } from '../repositories/AppSettingRepository'
-import { DeckRepository } from '../repositories/DeckRepository'
-import { WordRepository } from '../repositories/WordRepository'
+import { AppSettingRepository } from '../repositories/appSetting'
+import { DeckRepository } from '../repositories/deck'
+import { WordRepository } from '../repositories/word'
 
 export function Home(): JSX.Element {
   const appSettingRepo = new AppSettingRepository()

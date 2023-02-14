@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { type Word } from '../models/Word'
-import { AppSettingRepository } from '../repositories/AppSettingRepository'
-import { DeckRepository } from '../repositories/DeckRepository'
-import { WordRepository } from '../repositories/WordRepository'
+import { AppSettingRepository } from '../repositories/appSetting'
+import { DeckRepository } from '../repositories/deck'
+import { WordRepository } from '../repositories/word'
 import { normalizeString } from '../utils/stringUtils'
 
 export function Practice(): JSX.Element {

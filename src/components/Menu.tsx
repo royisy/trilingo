@@ -1,8 +1,8 @@
 import { useLiveQuery } from 'dexie-react-hooks'
 import { Link, useNavigate } from 'react-router-dom'
 import { type Deck } from '../models/Deck'
-import { AppSettingRepository } from '../repositories/AppSettingRepository'
-import { DeckRepository } from '../repositories/DeckRepository'
+import { AppSettingRepository } from '../repositories/appSetting'
+import { DeckRepository } from '../repositories/deck'
 
 export function Menu(): JSX.Element {
   const repo = new DeckRepository()
