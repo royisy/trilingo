@@ -12,6 +12,7 @@ module.exports = {
     project: './tsconfig.json',
   },
   plugins: ['react'],
+  ignorePatterns: ['vite.config.ts'],
   rules: {
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/no-misused-promises': [
