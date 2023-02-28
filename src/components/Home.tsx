@@ -5,6 +5,7 @@ import { type Word } from '../models/Word'
 import { getAppSetting } from '../repositories/appSetting'
 import { getDeckById } from '../repositories/deck'
 import { getWordsByDeckId } from '../repositories/word'
+import { DeckProgress } from './DeckProgress'
 
 export function Home(): JSX.Element {
   const appSetting = useLiveQuery(getAppSetting)
@@ -35,29 +36,14 @@ export function Home(): JSX.Element {
       <p>
         <Link to="menu">Menu</Link>
       </p>
-      <p>
-        <Link to="practice">Start</Link>
-      </p>
-      <table>
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Definition</th>
-            <th>Correct</th>
-            <th>Skipped</th>
-          </tr>
-        </thead>
-        <tbody>
-          {words.map((word) => (
-            <tr key={word.no}>
-              <td>{word.no}</td>
-              <td>{word.definition}</td>
-              <td>{word.correctCnt}</td>
-              <td>{word.skippedCnt}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      {deckId != null && (
+        <>
+          <p>
+            <Link to="practice">Start</Link>
+          </p>
+          <DeckProgress words={words} />
+        </>
+      )}
     </>
   )
 }

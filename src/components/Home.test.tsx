@@ -38,10 +38,14 @@ describe('Home', () => {
       </MemoryRouter>
     )
     expect(screen.getByText('Trilingo')).toBeInTheDocument()
+    expect(screen.queryByText('Start')).not.toBeInTheDocument()
+    expect(screen.queryByRole('table')).not.toBeInTheDocument()
     expect(screen.queryByText('definition 1')).not.toBeInTheDocument()
     expect(screen.queryByText('definition 2')).not.toBeInTheDocument()
     await waitFor(() => {
       expect(screen.getByText('Deck title')).toBeInTheDocument()
+      expect(screen.getByText('Start')).toBeInTheDocument()
+      expect(screen.getByRole('table')).toBeInTheDocument()
       expect(screen.getByText('definition 1')).toBeInTheDocument()
       expect(screen.getByText('definition 2')).toBeInTheDocument()
     })
