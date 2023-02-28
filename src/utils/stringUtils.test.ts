@@ -5,7 +5,7 @@ describe('normalizeString', () => {
     expect(normalizeString(' abc ')).toEqual('abc')
   })
   it('should normalize german characters', () => {
-    expect(normalizeString('äöüßÄÖÜ')).toEqual('aoussaou')
+    expect(normalizeString('ä ö ü ß Ä Ö Ü')).toEqual('a o u ss a o u')
   })
   it('should lower case', () => {
     expect(normalizeString('ABC')).toEqual('abc')
