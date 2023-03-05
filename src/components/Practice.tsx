@@ -44,7 +44,7 @@ export function Practice(): JSX.Element {
     setWords(words)
   }
 
-  function handleAnswerChange(event: any): void {
+  async function handleAnswerChange(event: any): Promise<void> {
     const word = words[index]
     const userAnswer = event.target.value
     setUserAnswer(userAnswer)
@@ -52,7 +52,7 @@ export function Practice(): JSX.Element {
       return
     }
     word.correctCnt++
-    word.save()
+    await word.save()
     setMessage('Correct!')
     setTimeout(() => {
       setMessage('')
@@ -60,10 +60,10 @@ export function Practice(): JSX.Element {
     nextWord()
   }
 
-  function handleSkipClick(): void {
+  async function handleSkipClick(): Promise<void> {
     const word = words[index]
     word.skippedCnt++
-    word.save()
+    await word.save()
     setMessage(word.answer)
     setShowAnswer(true)
   }

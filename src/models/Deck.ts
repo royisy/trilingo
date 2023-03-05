@@ -10,17 +10,17 @@ export class Deck {
     this.title = title
   }
 
-  save(words: Word[]): void {
-    void db.transaction('rw', db.decks, db.words, () => {
-      void db.words.bulkAdd(words)
-      void db.decks.add(new Deck(this.id, this.title))
+  async save(words: Word[]): Promise<void> {
+    await db.transaction('rw', db.decks, db.words, async () => {
+      await db.words.bulkAdd(words)
+      await db.decks.add(new Deck(this.id, this.title))
     })
   }
 
-  delete(): void {
-    void db.transaction('rw', db.decks, db.words, () => {
-      void db.decks.where('id').equals(this.id).delete()
-      void db.words.where('deckId').equals(this.id).delete()
+  async delete(): Promise<void> {
+    await db.transaction('rw', db.decks, db.words, async () => {
+      await db.decks.where('id').equals(this.id).delete()
+      await db.words.where('deckId').equals(this.id).delete()
     })
   }
 }

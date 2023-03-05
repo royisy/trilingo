@@ -61,7 +61,7 @@ function DeckItem({
         (row) => new Word(deck.id, row.no, row.definition, row.answer)
       )
       const newDeck = new Deck(deck.id, deck.title)
-      newDeck.save(words)
+      await newDeck.save(words)
       navigate('/menu')
     } catch (error) {}
   }

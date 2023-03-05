@@ -34,7 +34,7 @@ function DeckItem({ deck }: { deck: Deck }): JSX.Element {
   async function selectDeck(): Promise<void> {
     const appSetting = await getAppSetting()
     appSetting.selectedDeckId = deck.id
-    appSetting.save()
+    await appSetting.save()
     navigate('/')
   }
 

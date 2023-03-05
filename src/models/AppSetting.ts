@@ -9,8 +9,8 @@ export class AppSetting {
     this.selectedDeckId = null
   }
 
-  save(): void {
-    void db.appSettings.put(this)
+  async save(): Promise<void> {
+    await db.appSettings.put(this)
   }
 }
 

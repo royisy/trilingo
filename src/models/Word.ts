@@ -18,8 +18,8 @@ export class Word {
     this.skippedCnt = 0
   }
 
-  save(): void {
-    void db.words.put(this)
+  async save(): Promise<void> {
+    await db.words.put(this)
   }
 }
 

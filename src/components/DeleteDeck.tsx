@@ -28,10 +28,10 @@ function DeckItem({ deck }: { deck: Deck }): JSX.Element {
     if (dbDeck == null) {
       return
     }
-    dbDeck.delete()
+    await dbDeck.delete()
     const appSetting = await getAppSetting()
     appSetting.selectedDeckId = null
-    appSetting.save()
+    await appSetting.save()
   }
 
   return <li onClick={deleteDeck}>{deck.title}</li>
