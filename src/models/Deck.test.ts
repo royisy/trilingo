@@ -1,3 +1,4 @@
+import { vi } from 'vitest'
 import { db } from '../db'
 import { Deck } from './Deck'
 import { Word } from './Word'
@@ -21,9 +22,31 @@ describe('Deck', () => {
     expect(words).toHaveLength(3)
   })
 
+  it('should rollback when saving Deck with Words', async () => {
+    const word4 = new Word(2, 3, 'definition 4', 'answer 4')
+    const deck3 = new Deck(2, 'deck 2')
+    await expect(deck3.save([word4])).rejects.toThrowError('ConstraintError')
+    const decks = await db.decks.toArray()
+    expect(decks).toHaveLength(2)
+    const words = await db.words.toArray()
+    expect(words).toHaveLength(3)
+  })
+
   it('should delete Deck with Words', async () => {
-    const deck = await db.decks.get(2)
-    await deck?.delete()
+    const deck2 = await db.decks.get(2)
+    await deck2?.delete()
+    const decks = await db.decks.toArray()
+    expect(decks).toHaveLength(1)
+    const words = await db.words.toArray()
+    expect(words).toHaveLength(1)
+  })
+
+  it('should rollback when deleting Deck with Words', async () => {
+    vi.spyOn(db.words, 'where').mockImplementation(() => {
+      throw new Error('mock error')
+    })
+    const deck1 = await db.decks.get(1)
+    await expect(deck1?.delete()).rejects.toThrowError('mock error')
     const decks = await db.decks.toArray()
     expect(decks).toHaveLength(1)
     const words = await db.words.toArray()
