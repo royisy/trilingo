@@ -9,7 +9,7 @@ import {
 } from '../repositories/word'
 import { normalizeString } from '../utils/stringUtils'
 
-export function Practice(): JSX.Element {
+export const Practice = (): JSX.Element => {
   const NUM_OF_WORDS = 10
   const TIME_TO_SHOW_CORRECT = 1000
   const [words, setWords] = useState<Word[]>([])
@@ -19,7 +19,7 @@ export function Practice(): JSX.Element {
   const [showAnswer, setShowAnswer] = useState<boolean>(false)
   const navigate = useNavigate()
 
-  async function getWords(): Promise<void> {
+  const getWords = async (): Promise<void> => {
     const appSetting = await getAppSetting()
     const deckId = appSetting.selectedDeckId
     if (deckId == null) {
@@ -44,7 +44,7 @@ export function Practice(): JSX.Element {
     setWords(words)
   }
 
-  async function handleAnswerChange(event: any): Promise<void> {
+  const handleAnswerChange = async (event: any): Promise<void> => {
     const word = words[index]
     const userAnswer = event.target.value
     setUserAnswer(userAnswer)
@@ -60,7 +60,7 @@ export function Practice(): JSX.Element {
     nextWord()
   }
 
-  async function handleSkipClick(): Promise<void> {
+  const handleSkipClick = async (): Promise<void> => {
     const word = words[index]
     word.skippedCnt++
     await word.save()
@@ -68,13 +68,13 @@ export function Practice(): JSX.Element {
     setShowAnswer(true)
   }
 
-  function handleNextClick(): void {
+  const handleNextClick = (): void => {
     setMessage('')
     setShowAnswer(false)
     nextWord()
   }
 
-  function nextWord(): void {
+  const nextWord = (): void => {
     const nextIndex = index + 1
     if (nextIndex >= NUM_OF_WORDS) {
       navigate('/')

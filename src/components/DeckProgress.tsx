@@ -1,6 +1,6 @@
 import { type Word } from '../models/Word'
 
-export function DeckProgress({ words }: { words: Word[] }): JSX.Element {
+export const DeckProgress = ({ words }: { words: Word[] }): JSX.Element => {
   return (
     <>
       <table>

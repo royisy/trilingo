@@ -7,13 +7,13 @@ import { getDeckById } from '../repositories/deck'
 import { getWordsByDeckId } from '../repositories/word'
 import { DeckProgress } from './DeckProgress'
 
-export function Home(): JSX.Element {
+export const Home = (): JSX.Element => {
   const appSetting = useLiveQuery(getAppSetting)
   const deckId = appSetting?.selectedDeckId
   const [title, setTitle] = useState('Trilingo')
   const [words, setWords] = useState<Word[]>([])
 
-  async function getDeck(): Promise<any> {
+  const getDeck = async (): Promise<any> => {
     if (deckId == null) {
       return
     }

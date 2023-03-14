@@ -4,7 +4,7 @@
  * @param str
  * @returns
  */
-export function normalizeString(str: string): string {
+export const normalizeString = (str: string): string => {
   return str
     .trim()
     .normalize('NFD')

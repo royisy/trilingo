@@ -1,14 +1,14 @@
 import { db } from '../db'
 import { type Word } from '../models/Word'
 
-export async function getWordsByDeckId(deckId: number): Promise<Word[]> {
+export const getWordsByDeckId = async (deckId: number): Promise<Word[]> => {
   return await db.words.where('deckId').equals(deckId).toArray()
 }
 
-export async function getWordsByCorrectCnt(
+export const getWordsByCorrectCnt = async (
   deckId: number,
   limit: number
-): Promise<Word[]> {
+): Promise<Word[]> => {
   const words = await getWordsByDeckId(deckId)
   return words
     .filter((word) => word.correctCnt > 0)
@@ -16,10 +16,10 @@ export async function getWordsByCorrectCnt(
     .slice(0, limit)
 }
 
-export async function getWordsBySkippedCnt(
+export const getWordsBySkippedCnt = async (
   deckId: number,
   limit: number
-): Promise<Word[]> {
+): Promise<Word[]> => {
   const words = await getWordsByDeckId(deckId)
   return words
     .filter((word) => word.correctCnt === 0)

@@ -1,10 +1,12 @@
 import { db } from '../db'
 import { type Deck } from '../models/Deck'
 
-export async function getAllDecks(): Promise<Deck[]> {
+export const getAllDecks = async (): Promise<Deck[]> => {
   return await db.decks.toArray()
 }
 
-export async function getDeckById(deckId: number): Promise<Deck | undefined> {
+export const getDeckById = async (
+  deckId: number
+): Promise<Deck | undefined> => {
   return await db.decks.get(deckId)
 }

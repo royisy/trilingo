@@ -4,7 +4,7 @@ import { type Deck } from '../models/Deck'
 import { getAppSetting } from '../repositories/appSetting'
 import { getAllDecks, getDeckById } from '../repositories/deck'
 
-export function DeleteDeck(): JSX.Element {
+export const DeleteDeck = (): JSX.Element => {
   const decks = useLiveQuery(getAllDecks)
 
   return (
@@ -22,8 +22,8 @@ export function DeleteDeck(): JSX.Element {
   )
 }
 
-function DeckItem({ deck }: { deck: Deck }): JSX.Element {
-  async function deleteDeck(): Promise<void> {
+const DeckItem = ({ deck }: { deck: Deck }): JSX.Element => {
+  const deleteDeck = async (): Promise<void> => {
     const dbDeck = await getDeckById(deck.id)
     if (dbDeck == null) {
       return

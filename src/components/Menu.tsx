@@ -4,7 +4,7 @@ import { type Deck } from '../models/Deck'
 import { getAppSetting } from '../repositories/appSetting'
 import { getAllDecks } from '../repositories/deck'
 
-export function Menu(): JSX.Element {
+export const Menu = (): JSX.Element => {
   const decks = useLiveQuery(getAllDecks)
 
   return (
@@ -28,10 +28,10 @@ export function Menu(): JSX.Element {
   )
 }
 
-function DeckItem({ deck }: { deck: Deck }): JSX.Element {
+const DeckItem = ({ deck }: { deck: Deck }): JSX.Element => {
   const navigate = useNavigate()
 
-  async function selectDeck(): Promise<void> {
+  const selectDeck = async (): Promise<void> => {
     const appSetting = await getAppSetting()
     appSetting.selectedDeckId = deck.id
     await appSetting.save()

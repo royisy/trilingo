@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-export function ErrorPage(): JSX.Element {
+export const ErrorPage = (): JSX.Element => {
   return (
     <>
       <h1>Error</h1>

@@ -6,7 +6,7 @@ import { Word } from '../models/Word'
 import { getAllDecks, getDeckById } from '../repositories/deck'
 import { getCsv } from '../utils/csvUtils'
 
-export function AddDeck(): JSX.Element {
+export const AddDeck = (): JSX.Element => {
   const [deckList, setDeckList] = useState<
     Array<{ id: number; title: string }>
   >([])
@@ -38,14 +38,14 @@ export function AddDeck(): JSX.Element {
   )
 }
 
-function DeckItem({
+const DeckItem = ({
   deck,
 }: {
   deck: { id: number; title: string }
-}): JSX.Element {
+}): JSX.Element => {
   const navigate = useNavigate()
 
-  async function addDeck(): Promise<void> {
+  const addDeck = async (): Promise<void> => {
     try {
       const dbDeck = await getDeckById(deck.id)
       if (dbDeck != null) {

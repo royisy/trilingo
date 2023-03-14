@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-export function NoMatch(): JSX.Element {
+export const NoMatch = (): JSX.Element => {
   return (
     <>
       <h1>Not Found</h1>
