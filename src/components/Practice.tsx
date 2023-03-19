@@ -23,7 +23,8 @@ export const Practice = (): JSX.Element => {
     const appSetting = await getAppSetting()
     const deckId = appSetting.selectedDeckId
     if (deckId == null) {
-      throw new Error('Incorrect transition.')
+      navigate('/')
+      return
     }
     const deck = await getDeckById(deckId)
     if (deck == null) {
