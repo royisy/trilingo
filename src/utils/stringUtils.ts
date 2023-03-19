@@ -1,5 +1,5 @@
 /**
- * Remove spaces of beginning and end, normalize special characters and lower case.
+ * Trim leading and trailing spaces, normalize special characters, and convert to lowercase.
  *
  * @param str
  * @returns
