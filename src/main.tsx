@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom'
 import { AddDeck } from './components/AddDeck'
 import { DeleteDeck } from './components/DeleteDeck'
+import { ErrorBoundary } from './components/ErrorBoundary'
 import { ErrorPage } from './components/ErrorPage'
 import { Home } from './components/Home'
 import { Menu } from './components/Menu'
@@ -13,7 +14,11 @@ import './index.css'
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Outlet />,
+    element: (
+      <ErrorBoundary>
+        <Outlet />
+      </ErrorBoundary>
+    ),
     errorElement: <ErrorPage />,
     children: [
       {

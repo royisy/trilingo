@@ -46,24 +46,22 @@ const DeckItem = ({
   const navigate = useNavigate()
 
   const addDeck = async (): Promise<void> => {
-    try {
-      const dbDeck = await getDeckById(deck.id)
-      if (dbDeck != null) {
-        return
-      }
+    const dbDeck = await getDeckById(deck.id)
+    if (dbDeck != null) {
+      return
+    }
 
-      const wordsCsv = await getCsv<{
-        no: number
-        definition: string
-        answer: string
-      }>(`/decks/${deck.id}.csv`)
-      const words = wordsCsv.map(
-        (row) => new Word(deck.id, row.no, row.definition, row.answer)
-      )
-      const newDeck = new Deck(deck.id, deck.title)
-      await newDeck.save(words)
-      navigate('/menu')
-    } catch (error) {}
+    const wordsCsv = await getCsv<{
+      no: number
+      definition: string
+      answer: string
+    }>(`/decks/${deck.id}.csv`)
+    const words = wordsCsv.map(
+      (row) => new Word(deck.id, row.no, row.definition, row.answer)
+    )
+    const newDeck = new Deck(deck.id, deck.title)
+    await newDeck.save(words)
+    navigate('/menu')
   }
 
   return <li onClick={addDeck}>{deck.title}</li>
