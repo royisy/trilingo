@@ -38,5 +38,5 @@ export const ErrorBoundary = ({
     )
   }
 
-  return children
+  return <div>{children}</div>
 }
