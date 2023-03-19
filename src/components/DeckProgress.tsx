@@ -8,6 +8,7 @@ export const DeckProgress = ({ words }: { words: Word[] }): JSX.Element => {
           <tr>
             <th>No</th>
             <th>Definition</th>
+            <th>Answer</th>
             <th>Correct</th>
             <th>Skipped</th>
           </tr>
@@ -17,6 +18,7 @@ export const DeckProgress = ({ words }: { words: Word[] }): JSX.Element => {
             <tr key={word.no}>
               <td>{word.no}</td>
               <td>{word.definition}</td>
+              <td>{word.answer}</td>
               <td>{word.correctCnt}</td>
               <td>{word.skippedCnt}</td>
             </tr>
