@@ -5,6 +5,14 @@ export const getWordsByDeckId = async (deckId: number): Promise<Word[]> => {
   return await db.words.where('deckId').equals(deckId).toArray()
 }
 
+/**
+ * Retrieves words that have been answered correctly at least once
+ * and sorts them in ascending order based on their correct count.
+ *
+ * @param deckId
+ * @param limit
+ * @returns
+ */
 export const getWordsByCorrectCnt = async (
   deckId: number,
   limit: number
@@ -16,6 +24,14 @@ export const getWordsByCorrectCnt = async (
     .slice(0, limit)
 }
 
+/**
+ * Retrieves words that have never been answered correctly
+ * and sorts them in ascending order based on their skipped count.
+ *
+ * @param deckId
+ * @param limit
+ * @returns
+ */
 export const getWordsBySkippedCnt = async (
   deckId: number,
   limit: number
