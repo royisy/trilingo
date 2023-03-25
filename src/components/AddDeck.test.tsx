@@ -47,8 +47,8 @@ describe('AddDeck', () => {
         <AddDeck />
       </MemoryRouter>
     )
-    const deck2 = await screen.findByText('deck 2')
-    fireEvent.click(deck2)
+    const deck2Element = await screen.findByText('deck 2')
+    fireEvent.click(deck2Element)
     await waitFor(async () => {
       const decks = await db.decks.toArray()
       expect(decks).toHaveLength(2)

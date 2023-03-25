@@ -44,8 +44,8 @@ describe('Menu', () => {
         <Menu />
       </MemoryRouter>
     )
-    const deck1 = await screen.findByText('deck 1')
-    fireEvent.click(deck1)
+    const deck1Element = await screen.findByText('deck 1')
+    fireEvent.click(deck1Element)
     await waitFor(async () => {
       const appSetting = await db.appSettings.get(1)
       expect(appSetting?.selectedDeckId).toBe(1)
