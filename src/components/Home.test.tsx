@@ -43,10 +43,4 @@ describe('Home', () => {
       expect(screen.queryByText('answer 2')).toBeInTheDocument()
     })
   })
-
-  afterAll(async () => {
-    await db.appSettings.clear()
-    await db.decks.clear()
-    await db.words.clear()
-  })
 })

@@ -66,8 +66,4 @@ describe('word', () => {
       expect(words[1].no).toBe(5)
     })
   })
-
-  afterAll(async () => {
-    await db.words.clear()
-  })
 })

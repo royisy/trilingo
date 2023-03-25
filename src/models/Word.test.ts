@@ -25,8 +25,4 @@ describe('Word', () => {
     const updatedWord = await db.words.get(2)
     expect(updatedWord?.definition).toBe('definition 2 updated')
   })
-
-  afterAll(async () => {
-    await db.words.clear()
-  })
 })

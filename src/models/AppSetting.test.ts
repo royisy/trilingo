@@ -24,8 +24,4 @@ describe('AppSetting', () => {
     expect(appSettings[0].id).toBe(1)
     expect(appSettings[0].selectedDeckId).toBe(1)
   })
-
-  afterAll(async () => {
-    await db.appSettings.clear()
-  })
 })

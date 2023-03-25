@@ -1,4 +1,3 @@
-import { db } from '../db'
 import { AppSetting } from '../models/AppSetting'
 import { getAppSetting } from './appSetting'
 
@@ -18,9 +17,5 @@ describe('appSetting', () => {
     expect(appSetting).toBeInstanceOf(AppSetting)
     expect(appSetting.id).toBe(1)
     expect(appSetting.selectedDeckId).toBe(1)
-  })
-
-  afterAll(async () => {
-    await db.appSettings.clear()
   })
 })

@@ -30,8 +30,4 @@ describe('deck', () => {
       expect(deck).toBeUndefined()
     })
   })
-
-  afterAll(async () => {
-    await db.decks.clear()
-  })
 })

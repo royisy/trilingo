@@ -42,9 +42,4 @@ describe('DeleteDeck', () => {
       expect(appSetting?.selectedDeckId).toBe(null)
     })
   })
-
-  afterAll(async () => {
-    await db.decks.clear()
-    await db.appSettings.clear()
-  })
 })

@@ -52,9 +52,4 @@ describe('Deck', () => {
     const words = await db.words.toArray()
     expect(words).toHaveLength(1)
   })
-
-  afterAll(async () => {
-    await db.decks.clear()
-    await db.words.clear()
-  })
 })

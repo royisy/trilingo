@@ -69,9 +69,4 @@ describe('AddDeck', () => {
       expect(navigate).toHaveBeenCalledWith('/menu')
     })
   })
-
-  afterAll(async () => {
-    await db.decks.clear()
-    await db.words.clear()
-  })
 })

@@ -52,9 +52,4 @@ describe('Menu', () => {
       expect(navigate).toHaveBeenCalledWith('/')
     })
   })
-
-  afterAll(async () => {
-    await db.decks.clear()
-    await db.appSettings.clear()
-  })
 })
