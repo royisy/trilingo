@@ -93,7 +93,7 @@ export const Practice = (): JSX.Element => {
   const elements = (
     <>
       <p>
-        {index + 1} / {NUM_OF_WORDS}
+        {index + 1} / {words.length}
       </p>
       <p>{words[index]?.definition}</p>
       <p>{message}</p>
