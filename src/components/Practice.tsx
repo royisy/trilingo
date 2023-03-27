@@ -16,7 +16,7 @@ export const Practice = (): JSX.Element => {
   const [index, setIndex] = useState<number>(0)
   const [userAnswer, setUserAnswer] = useState<string>('')
   const [message, setMessage] = useState<string>('')
-  const [showAnswer, setShowAnswer] = useState<boolean>(false)
+  const [answer, setAnswer] = useState<string>('')
   const navigate = useNavigate()
 
   const getWords = async (): Promise<void> => {
@@ -65,13 +65,11 @@ export const Practice = (): JSX.Element => {
     const word = words[index]
     word.skippedCnt++
     await word.save()
-    setMessage(word.answer)
-    setShowAnswer(true)
+    setAnswer(word.answer)
   }
 
   const handleNextClick = (): void => {
-    setMessage('')
-    setShowAnswer(false)
+    setAnswer('')
     nextWord()
   }
 
@@ -97,20 +95,21 @@ export const Practice = (): JSX.Element => {
       </p>
       <p>{words[index]?.definition}</p>
       <p>{message}</p>
+      <p>{answer}</p>
       <p>
         <input
           type="text"
           value={userAnswer}
           onChange={handleAnswerChange}
-          disabled={showAnswer}
+          disabled={answer !== ''}
         />
       </p>
-      {!showAnswer && (
+      {answer === '' && (
         <p>
           <button onClick={handleSkipClick}>Skip</button>
         </p>
       )}
-      {showAnswer && (
+      {answer !== '' && (
         <p>
           <button onClick={handleNextClick}>Next</button>
         </p>
