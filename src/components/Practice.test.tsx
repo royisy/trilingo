@@ -22,9 +22,13 @@ describe('Practice', () => {
     await db.words.add(word2)
   })
 
-  it('should move to home if no deck is selected', async () => {
-    const navigate = vi.fn()
+  let navigate: any
+  beforeEach(async () => {
+    navigate = vi.fn()
     vi.spyOn(router, 'useNavigate').mockImplementation(() => navigate)
+  })
+
+  it('should move to home if no deck is selected', async () => {
     const appSetting = new AppSetting()
     appSetting.selectedDeckId = null
     await db.appSettings.add(appSetting)
@@ -56,6 +60,8 @@ describe('Practice', () => {
     await waitFor(async () => {
       expect(screen.getByText('1 / 2')).toBeInTheDocument()
       expect(screen.getByText(/^definition/)).toBeInTheDocument()
+      expect(screen.getByText('Skip')).toBeInTheDocument()
+      expect(screen.queryByText('Next')).not.toBeInTheDocument()
     })
 
     // answer first word
@@ -69,6 +75,26 @@ describe('Practice', () => {
       expect(screen.getByText('2 / 2')).toBeInTheDocument()
       expect(screen.queryByText(definition)).not.toBeInTheDocument()
       expect(screen.getByText('Correct!')).toBeInTheDocument()
+      expect(screen.getByText('Skip')).toBeInTheDocument()
+      expect(screen.queryByText('Next')).not.toBeInTheDocument()
+    })
+
+    // skip second word
+    const skipButtonElement = screen.getByText('Skip')
+    fireEvent.click(skipButtonElement)
+    await waitFor(async () => {
+      expect(screen.getByText('2 / 2')).toBeInTheDocument()
+      expect(screen.getByText(/^answer/)).toBeInTheDocument()
+      expect(screen.getByRole('textbox')).toBeDisabled()
+      expect(screen.getByText('Next')).toBeInTheDocument()
+      expect(screen.queryByText('Skip')).not.toBeInTheDocument()
+    })
+
+    // click next button
+    const nextButtonElement = screen.getByText('Next')
+    fireEvent.click(nextButtonElement)
+    await waitFor(async () => {
+      expect(navigate).toHaveBeenCalledWith('/')
     })
   })
 })

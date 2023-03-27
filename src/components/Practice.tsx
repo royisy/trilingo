@@ -75,7 +75,7 @@ export const Practice = (): JSX.Element => {
 
   const nextWord = (): void => {
     const nextIndex = index + 1
-    if (nextIndex >= NUM_OF_WORDS) {
+    if (nextIndex >= words.length) {
       navigate('/')
     }
     setIndex(nextIndex)
