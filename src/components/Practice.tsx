@@ -3,10 +3,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import { type Word } from '../models/Word'
 import { getAppSetting } from '../repositories/appSetting'
 import { getDeckById } from '../repositories/deck'
-import {
-  getWordsByCorrectCnt,
-  getWordsBySkippedCnt,
-} from '../repositories/word'
 import { normalizeString } from '../utils/stringUtils'
 
 export const Practice = (): JSX.Element => {
@@ -30,10 +26,9 @@ export const Practice = (): JSX.Element => {
     if (deck == null) {
       throw new Error('Deck not found.')
     }
-    let words = await getWordsBySkippedCnt(deckId, NUM_OF_WORDS)
+    let words = await deck.getWordsBySkippedCnt(NUM_OF_WORDS)
     if (words.length < NUM_OF_WORDS) {
-      const wordsByCorrectCnt = await getWordsByCorrectCnt(
-        deckId,
+      const wordsByCorrectCnt = await deck.getWordsByCorrectCnt(
         NUM_OF_WORDS - words.length
       )
       words = words.concat(wordsByCorrectCnt)

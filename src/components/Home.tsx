@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import { type Word } from '../models/Word'
 import { getAppSetting } from '../repositories/appSetting'
 import { getDeckById } from '../repositories/deck'
-import { getWordsByDeckId } from '../repositories/word'
 import { DeckProgress } from './DeckProgress'
 
 export const Home = (): JSX.Element => {
@@ -21,7 +20,7 @@ export const Home = (): JSX.Element => {
     if (deck == null) {
       throw new Error('Incorrect deck id.')
     }
-    const words = await getWordsByDeckId(deckId)
+    const words = await deck.words
     setTitle(deck.title)
     setWords(words)
   }
