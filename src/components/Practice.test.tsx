@@ -77,6 +77,10 @@ describe('Practice', () => {
       expect(screen.getByText('Correct!')).toBeInTheDocument()
       expect(screen.getByText('Skip')).toBeInTheDocument()
       expect(screen.queryByText('Next')).not.toBeInTheDocument()
+      const words = await db.words.toArray()
+      const word = words.find((w) => w.definition === definition)
+      expect(word?.correctCnt).toBe(1)
+      expect(word?.skippedCnt).toBe(0)
     })
 
     // skip second word
@@ -88,6 +92,10 @@ describe('Practice', () => {
       expect(screen.getByRole('textbox')).toBeDisabled()
       expect(screen.getByText('Next')).toBeInTheDocument()
       expect(screen.queryByText('Skip')).not.toBeInTheDocument()
+      const words = await db.words.toArray()
+      const word = words.find((w) => w.definition !== definition)
+      expect(word?.correctCnt).toBe(0)
+      expect(word?.skippedCnt).toBe(1)
     })
 
     // click next button
