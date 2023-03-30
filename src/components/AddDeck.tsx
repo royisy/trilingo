@@ -1,21 +1,13 @@
 import { useLiveQuery } from 'dexie-react-hooks'
-import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useDeckList } from '../hooks/useDeckList'
 import { Deck } from '../models/Deck'
 import { Word } from '../models/Word'
 import { getAllDecks, getDeckById } from '../repositories/deck'
 import { getCsv } from '../utils/csvUtils'
 
 export const AddDeck = (): JSX.Element => {
-  const [deckList, setDeckList] = useState<
-    Array<{ id: number; title: string }>
-  >([])
-
-  useEffect(() => {
-    void getCsv<{ id: number; title: string }>('/deck-list.csv').then((csv) => {
-      setDeckList(csv)
-    })
-  }, [])
+  const deckList = useDeckList()
 
   const dbDecks = useLiveQuery(getAllDecks)
   const dbDeckIds = dbDecks?.map((deck) => deck.id)
