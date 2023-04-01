@@ -1,19 +1,12 @@
-import { useLiveQuery } from 'dexie-react-hooks'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDeckList } from '../hooks/useDeckList'
 import { Deck } from '../models/Deck'
 import { Word } from '../models/Word'
-import { getAllDecks, getDeckById } from '../repositories/deck'
+import { getDeckById } from '../repositories/deck'
 import { getCsv } from '../utils/csvUtils'
 
 export const AddDeck = (): JSX.Element => {
   const deckList = useDeckList()
-
-  const dbDecks = useLiveQuery(getAllDecks)
-  const dbDeckIds = dbDecks?.map((deck) => deck.id)
-  const deckListToAdd = deckList.filter(
-    (row) => dbDeckIds?.includes(row.id) === false
-  )
 
   return (
     <>
@@ -22,7 +15,7 @@ export const AddDeck = (): JSX.Element => {
         <Link to="/menu">Menu</Link>
       </p>
       <ul>
-        {deckListToAdd.map((deck) => (
+        {deckList.map((deck) => (
           <DeckItem key={deck.id} deck={deck} />
         ))}
       </ul>
