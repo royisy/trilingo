@@ -1,44 +1,21 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { type Word } from '../models/Word'
-import { getAppSetting } from '../repositories/appSetting'
-import { getDeckById } from '../repositories/deck'
+import { useWords } from '../hooks/useWords'
 import { normalizeString } from '../utils/stringUtils'
 
 export const Practice = (): JSX.Element => {
   const NUM_OF_WORDS = 10
   const TIME_TO_SHOW_CORRECT = 1000
-  const [words, setWords] = useState<Word[]>([])
   const [index, setIndex] = useState<number>(0)
   const [userAnswer, setUserAnswer] = useState<string>('')
   const [message, setMessage] = useState<string>('')
   const [answer, setAnswer] = useState<string>('')
   const navigate = useNavigate()
 
-  const getWords = async (): Promise<void> => {
-    const appSetting = await getAppSetting()
-    const deckId = appSetting.selectedDeckId
-    if (deckId == null) {
-      navigate('/')
-      return
-    }
-    const deck = await getDeckById(deckId)
-    if (deck == null) {
-      throw new Error('Deck not found.')
-    }
-    let words = await deck.getWordsBySkippedCnt(NUM_OF_WORDS)
-    if (words.length < NUM_OF_WORDS) {
-      const wordsByCorrectCnt = await deck.getWordsByCorrectCnt(
-        NUM_OF_WORDS - words.length
-      )
-      words = words.concat(wordsByCorrectCnt)
-    }
-    if (words.length === 0) {
-      throw new Error('No words.')
-    }
-    words = words.sort(() => Math.random() - 0.5)
-    setWords(words)
+  const handleDeckIdMissing = (): void => {
+    navigate('/')
   }
+  const words = useWords(NUM_OF_WORDS, handleDeckIdMissing)
 
   const handleAnswerChange = async (event: any): Promise<void> => {
     const word = words[index]
@@ -76,12 +53,6 @@ export const Practice = (): JSX.Element => {
     setIndex(nextIndex)
     setUserAnswer('')
   }
-
-  useEffect(() => {
-    if (words.length === 0) {
-      void getWords()
-    }
-  }, [])
 
   const elements = (
     <>
