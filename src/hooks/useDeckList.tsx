@@ -15,9 +15,13 @@ export const useDeckList = (): Array<{ id: number; title: string }> => {
   )
 
   useEffect(() => {
-    void getCsv<{ id: number; title: string }>('/deck-list.csv').then((csv) => {
-      setDeckList(csv)
-    })
+    const getDeckList = async (): Promise<void> => {
+      const deckListCsv = await getCsv<{ id: number; title: string }>(
+        '/deck-list.csv'
+      )
+      setDeckList(deckListCsv)
+    }
+    void getDeckList()
   }, [])
 
   return deckListToAdd
