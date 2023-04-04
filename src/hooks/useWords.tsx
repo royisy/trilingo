@@ -34,10 +34,7 @@ export const useWords = (
       words = words.sort(() => Math.random() - 0.5)
       setWords(words)
     }
-
-    if (words.length === 0) {
-      void getWords()
-    }
+    void getWords()
   }, [])
 
   return words
