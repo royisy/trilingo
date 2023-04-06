@@ -1,25 +1,22 @@
 import { useLiveQuery } from 'dexie-react-hooks'
 import { useEffect, useState } from 'react'
+import { type CsvDeck } from '../models/CsvDeck'
 import { getAllDecks } from '../repositories/deck'
 import { getCsv } from '../utils/csvUtils'
 
-export const useDeckList = (): Array<{ id: number; title: string }> => {
-  const [deckList, setDeckList] = useState<
-    Array<{ id: number; title: string }>
-  >([])
-  const dbDecks = useLiveQuery(getAllDecks)
+export const useDeckList = (): CsvDeck[] => {
+  const [deckList, setDeckList] = useState<CsvDeck[]>([])
+  const decks = useLiveQuery(getAllDecks)
 
-  const dbDeckIds = dbDecks?.map((deck) => deck.id)
+  const deckIds = decks?.map((deck) => deck.id)
   const deckListToAdd = deckList.filter(
-    (row) => dbDeckIds?.includes(row.id) === false
+    (csvDeck) => deckIds?.includes(csvDeck.id) === false
   )
 
   useEffect(() => {
     const getDeckList = async (): Promise<void> => {
-      const deckListCsv = await getCsv<{ id: number; title: string }>(
-        '/deck-list.csv'
-      )
-      setDeckList(deckListCsv)
+      const deckList = await getCsv<CsvDeck>('/deck-list.csv')
+      setDeckList(deckList)
     }
     void getDeckList()
   }, [])
