@@ -1,5 +1,4 @@
 import { renderHook, waitFor } from '@testing-library/react'
-import { vi } from 'vitest'
 import { db } from '../db'
 import { AppSetting } from '../models/AppSetting'
 import { Deck } from '../models/Deck'
@@ -28,23 +27,22 @@ describe('useWords', () => {
     await db.words.add(word4)
   })
 
-  it('should return empty words when selectedDeckId is null', async () => {
-    const mockCallback = vi.fn()
-    const { result } = renderHook(() => useWords(1, mockCallback))
+  it('should return empty words when deck is null', async () => {
+    const { result } = renderHook(() => useWords(null, 2))
     await waitFor(() => {
-      expect(mockCallback).toHaveBeenCalled()
       expect(result.current).toEqual([])
     })
   })
 
-  it('should return words when selectedDeckId is not null', async () => {
+  it('should return words when deck is not null', async () => {
     const appSetting = new AppSetting()
     appSetting.selectedDeckId = 2
     await db.appSettings.add(appSetting)
-    const mockCallback = vi.fn()
-    const { result } = renderHook(() => useWords(2, mockCallback))
+    const deck2 = await db.decks.get(2)
+    expect(deck2).not.toBeNull()
+    if (deck2 == null) return
+    const { result } = renderHook(() => useWords(deck2, 2))
     await waitFor(() => {
-      expect(mockCallback).not.toHaveBeenCalled()
       expect(result.current.length).toBe(2)
       expect(result.current[0].no).not.toBe(3)
       expect(result.current[1].no).not.toBe(3)

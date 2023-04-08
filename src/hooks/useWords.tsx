@@ -1,25 +1,14 @@
 import { useEffect, useState } from 'react'
+import { type Deck } from '../models/Deck'
 import { type Word } from '../models/Word'
-import { getAppSetting } from '../repositories/appSetting'
-import { getDeckById } from '../repositories/deck'
 
-export const useWords = (
-  numOfWords: number,
-  onDeckIdMissing: () => void
-): Word[] => {
+export const useWords = (deck: Deck | null, numOfWords: number): Word[] => {
   const [words, setWords] = useState<Word[]>([])
 
   useEffect(() => {
     const getWords = async (): Promise<void> => {
-      const appSetting = await getAppSetting()
-      const deckId = appSetting.selectedDeckId
-      if (deckId == null) {
-        onDeckIdMissing()
-        return
-      }
-      const deck = await getDeckById(deckId)
       if (deck == null) {
-        throw new Error('Deck not found.')
+        return
       }
       let words = await deck.getWordsBySkippedCnt(numOfWords)
       if (words.length < numOfWords) {
@@ -35,7 +24,7 @@ export const useWords = (
       setWords(words)
     }
     void getWords()
-  }, [numOfWords, onDeckIdMissing])
+  }, [deck, numOfWords])
 
   return words
 }

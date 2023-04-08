@@ -1,21 +1,24 @@
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useSelectedDeck } from '../hooks/useSelectedDeck'
 import { useWords } from '../hooks/useWords'
 import { normalizeString } from '../utils/stringUtils'
 
-export const Practice = (): JSX.Element => {
-  const NUM_OF_WORDS = 10
-  const TIME_TO_SHOW_CORRECT = 1000
+const NUM_OF_WORDS = 10
+const TIME_TO_SHOW_CORRECT = 1000
 
+export const Practice = (): JSX.Element => {
+  const { selectedDeck, noDeckSelected } = useSelectedDeck()
   const navigate = useNavigate()
-  const handleDeckIdMissing = useCallback(() => {
-    navigate('/')
-  }, [navigate])
-  const words = useWords(NUM_OF_WORDS, handleDeckIdMissing)
+  const words = useWords(selectedDeck, NUM_OF_WORDS)
   const [index, setIndex] = useState<number>(0)
   const [userAnswer, setUserAnswer] = useState<string>('')
   const [message, setMessage] = useState<string>('')
   const [answer, setAnswer] = useState<string>('')
+
+  if (noDeckSelected) {
+    navigate('/')
+  }
 
   const handleAnswerChange = async (event: any): Promise<void> => {
     const word = words[index]
