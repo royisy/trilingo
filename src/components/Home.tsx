@@ -1,9 +1,13 @@
+import { useLiveQuery } from 'dexie-react-hooks'
 import { Link } from 'react-router-dom'
 import { useDeck } from '../hooks/useDeck'
+import { getAppSetting } from '../repositories/appSetting'
 import { DeckProgress } from './DeckProgress'
 
 export const Home = (): JSX.Element => {
-  const { title, words } = useDeck()
+  const appSetting = useLiveQuery(getAppSetting)
+  const deckId = appSetting?.selectedDeckId ?? null
+  const { title, words } = useDeck(deckId)
 
   return (
     <>
