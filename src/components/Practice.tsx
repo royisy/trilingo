@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useWords } from '../hooks/useWords'
 import { normalizeString } from '../utils/stringUtils'
@@ -6,16 +6,16 @@ import { normalizeString } from '../utils/stringUtils'
 export const Practice = (): JSX.Element => {
   const NUM_OF_WORDS = 10
   const TIME_TO_SHOW_CORRECT = 1000
+
+  const navigate = useNavigate()
+  const handleDeckIdMissing = useCallback(() => {
+    navigate('/')
+  }, [navigate])
+  const words = useWords(NUM_OF_WORDS, handleDeckIdMissing)
   const [index, setIndex] = useState<number>(0)
   const [userAnswer, setUserAnswer] = useState<string>('')
   const [message, setMessage] = useState<string>('')
   const [answer, setAnswer] = useState<string>('')
-  const navigate = useNavigate()
-
-  const handleDeckIdMissing = (): void => {
-    navigate('/')
-  }
-  const words = useWords(NUM_OF_WORDS, handleDeckIdMissing)
 
   const handleAnswerChange = async (event: any): Promise<void> => {
     const word = words[index]

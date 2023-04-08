@@ -35,7 +35,7 @@ export const useWords = (
       setWords(words)
     }
     void getWords()
-  }, [])
+  }, [numOfWords, onDeckIdMissing])
 
   return words
 }
