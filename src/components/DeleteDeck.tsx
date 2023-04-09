@@ -1,8 +1,8 @@
 import { useLiveQuery } from 'dexie-react-hooks'
 import { Link } from 'react-router-dom'
+import { useDeleteDeck } from '../hooks/useDeleteDeck'
 import { type Deck } from '../models/Deck'
-import { getAppSetting } from '../repositories/appSetting'
-import { getAllDecks, getDeckById } from '../repositories/deck'
+import { getAllDecks } from '../repositories/deck'
 
 export const DeleteDeck = (): JSX.Element => {
   const decks = useLiveQuery(getAllDecks)
@@ -23,16 +23,11 @@ export const DeleteDeck = (): JSX.Element => {
 }
 
 const DeckItem = ({ deck }: { deck: Deck }): JSX.Element => {
-  const deleteDeck = async (): Promise<void> => {
-    const dbDeck = await getDeckById(deck.id)
-    if (dbDeck == null) {
-      return
-    }
-    await dbDeck.delete()
-    const appSetting = await getAppSetting()
-    appSetting.selectedDeckId = null
-    await appSetting.save()
+  const deleteDeck = useDeleteDeck()
+
+  const handleClick = async (): Promise<void> => {
+    await deleteDeck(deck)
   }
 
-  return <li onClick={deleteDeck}>{deck.title}</li>
+  return <li onClick={handleClick}>{deck.title}</li>
 }
