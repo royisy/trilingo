@@ -46,7 +46,7 @@ describe('Practice', () => {
 
   it('should show word definition and check answer', async () => {
     const appSetting = await db.appSettings.get(1)
-    expect(appSetting).not.toBeNull()
+    expect(appSetting).not.toBeUndefined()
     if (appSetting == null) return
     appSetting.selectedDeckId = 1
     await db.appSettings.put(appSetting)

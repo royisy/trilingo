@@ -16,12 +16,11 @@ describe('Word', () => {
 
   it('should update Word', async () => {
     const word = await db.words.get(2)
-    expect(word).not.toBeNull()
-    if (word != null) {
-      expect(word.definition).toBe('definition 2')
-      word.definition = 'definition 2 updated'
-      await word.save()
-    }
+    expect(word).not.toBeUndefined()
+    if (word == null) return
+    expect(word.definition).toBe('definition 2')
+    word.definition = 'definition 2 updated'
+    await word.save()
     const updatedWord = await db.words.get(2)
     expect(updatedWord?.definition).toBe('definition 2 updated')
   })

@@ -31,7 +31,7 @@ describe('useAddDeck', () => {
       await expect(result.current(csvDeck)).resolves.toBe(true)
     })
     const deck2 = await db.decks.get(2)
-    expect(deck2).not.toBeNull()
+    expect(deck2).not.toBeUndefined()
     expect(deck2?.title).toBe('deck 2')
     const words = await db.words.toArray()
     expect(words.length).toBe(2)

@@ -39,7 +39,7 @@ describe('useWords', () => {
     appSetting.selectedDeckId = 2
     await db.appSettings.add(appSetting)
     const deck2 = await db.decks.get(2)
-    expect(deck2).not.toBeNull()
+    expect(deck2).not.toBeUndefined()
     if (deck2 == null) return
     const { result } = renderHook(() => useWords(deck2, 2))
     await waitFor(() => {

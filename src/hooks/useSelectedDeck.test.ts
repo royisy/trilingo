@@ -31,7 +31,7 @@ describe('useSelectedDeck', () => {
 
   it('should return null and true when deck is not selected', async () => {
     const appSetting = await db.appSettings.get(1)
-    expect(appSetting).not.toBeNull()
+    expect(appSetting).not.toBeUndefined()
     if (appSetting == null) return
     appSetting.selectedDeckId = null
     await db.appSettings.put(appSetting)
