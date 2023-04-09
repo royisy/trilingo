@@ -1,7 +1,7 @@
 import { useLiveQuery } from 'dexie-react-hooks'
 import { Link, useNavigate } from 'react-router-dom'
+import { useSelectDeck } from '../hooks/useSelectDeck'
 import { type Deck } from '../models/Deck'
-import { getAppSetting } from '../repositories/appSetting'
 import { getAllDecks } from '../repositories/deck'
 
 export const Menu = (): JSX.Element => {
@@ -29,14 +29,13 @@ export const Menu = (): JSX.Element => {
 }
 
 const DeckItem = ({ deck }: { deck: Deck }): JSX.Element => {
+  const selectDeck = useSelectDeck()
   const navigate = useNavigate()
 
-  const selectDeck = async (): Promise<void> => {
-    const appSetting = await getAppSetting()
-    appSetting.selectedDeckId = deck.id
-    await appSetting.save()
+  const handleClick = async (): Promise<void> => {
+    await selectDeck(deck)
     navigate('/')
   }
 
-  return <li onClick={selectDeck}>{deck.title}</li>
+  return <li onClick={handleClick}>{deck.title}</li>
 }
