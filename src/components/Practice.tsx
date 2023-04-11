@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useCheckAnswer } from '../hooks/useCheckAnswer'
 import { useSelectedDeck } from '../hooks/useSelectedDeck'
 import { useWords } from '../hooks/useWords'
-import { normalizeString } from '../utils/stringUtils'
 
 const NUM_OF_WORDS = 10
 const TIME_TO_SHOW_CORRECT = 1000
@@ -15,25 +15,22 @@ export const Practice = (): JSX.Element => {
   const [userAnswer, setUserAnswer] = useState<string>('')
   const [message, setMessage] = useState<string>('')
   const [answer, setAnswer] = useState<string>('')
+  const checkAnswer = useCheckAnswer()
 
   if (noDeckSelected) {
     navigate('/')
   }
 
   const handleAnswerChange = async (event: any): Promise<void> => {
-    const word = words[index]
     const userAnswer = event.target.value
     setUserAnswer(userAnswer)
-    if (normalizeString(word.answer) !== normalizeString(userAnswer)) {
-      return
-    }
-    word.correctCnt++
-    await word.save()
+    const isCorrect = await checkAnswer(words[index], userAnswer)
+    if (!isCorrect) return
     setMessage('Correct!')
     setTimeout(() => {
       setMessage('')
     }, TIME_TO_SHOW_CORRECT)
-    nextWord()
+    showNextWord()
   }
 
   const handleSkipClick = async (): Promise<void> => {
@@ -45,10 +42,10 @@ export const Practice = (): JSX.Element => {
 
   const handleNextClick = (): void => {
     setAnswer('')
-    nextWord()
+    showNextWord()
   }
 
-  const nextWord = (): void => {
+  const showNextWord = (): void => {
     const nextIndex = index + 1
     if (nextIndex >= words.length) {
       navigate('/')
