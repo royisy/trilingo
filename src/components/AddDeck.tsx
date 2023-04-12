@@ -22,7 +22,7 @@ export const AddDeck = (): JSX.Element => {
 }
 
 const DeckItem = ({ csvDeck }: { csvDeck: CsvDeck }): JSX.Element => {
-  const addDeck = useAddDeck()
+  const { addDeck, isLoading } = useAddDeck()
   const navigate = useNavigate()
 
   const handleClick = async (): Promise<void> => {
@@ -32,5 +32,15 @@ const DeckItem = ({ csvDeck }: { csvDeck: CsvDeck }): JSX.Element => {
     }
   }
 
-  return <li onClick={handleClick}>{csvDeck.title}</li>
+  return (
+    <li
+      onClick={isLoading ? undefined : handleClick}
+      style={{
+        cursor: isLoading ? 'not-allowed' : 'pointer',
+        opacity: isLoading ? 0.5 : 1,
+      }}
+    >
+      {csvDeck.title}
+    </li>
+  )
 }

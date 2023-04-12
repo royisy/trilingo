@@ -19,17 +19,21 @@ describe('useAddDeck', () => {
     await db.decks.add(deck1)
     const csvDeck = { id: 1, title: 'deck 1' }
     const { result } = renderHook(() => useAddDeck())
+    expect(result.current.isLoading).toBe(false)
     await waitFor(async () => {
-      await expect(result.current(csvDeck)).resolves.toBe(false)
+      await expect(result.current.addDeck(csvDeck)).resolves.toBe(false)
     })
+    expect(result.current.isLoading).toBe(false)
   })
 
   it('should add a new deck if the deck does not exist', async () => {
     const csvDeck = { id: 2, title: 'deck 2' }
     const { result } = renderHook(() => useAddDeck())
+    expect(result.current.isLoading).toBe(false)
     await waitFor(async () => {
-      await expect(result.current(csvDeck)).resolves.toBe(true)
+      await expect(result.current.addDeck(csvDeck)).resolves.toBe(true)
     })
+    expect(result.current.isLoading).toBe(false)
     const deck2 = await db.decks.get(2)
     expect(deck2).not.toBeUndefined()
     expect(deck2?.title).toBe('deck 2')

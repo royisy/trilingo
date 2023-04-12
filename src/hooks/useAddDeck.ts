@@ -1,4 +1,4 @@
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
 import { type CsvDeck } from '../models/CsvDeck'
 import { type CsvWord } from '../models/CsvWord'
 import { Deck } from '../models/Deck'
@@ -6,10 +6,16 @@ import { Word } from '../models/Word'
 import { getDeckById } from '../repositories/deck'
 import { getCsv } from '../utils/csvUtils'
 
-export const useAddDeck = (): ((csvDeck: CsvDeck) => Promise<boolean>) => {
+export const useAddDeck = (): {
+  addDeck: (csvDeck: CsvDeck) => Promise<boolean>
+  isLoading: boolean
+} => {
+  const [isLoading, setIsLoading] = useState(false)
   const addDeck = useCallback(async (csvDeck: CsvDeck): Promise<boolean> => {
+    setIsLoading(true)
     const deck = await getDeckById(csvDeck.id)
     if (deck != null) {
+      setIsLoading(false)
       return false
     }
 
@@ -20,8 +26,9 @@ export const useAddDeck = (): ((csvDeck: CsvDeck) => Promise<boolean>) => {
     )
     const newDeck = new Deck(csvDeck.id, csvDeck.title)
     await newDeck.save(words)
+    setIsLoading(false)
     return true
   }, [])
 
-  return addDeck
+  return { addDeck, isLoading }
 }
