@@ -8,6 +8,7 @@ describe('getCsv', () => {
       '1,definition 1,answer 1\n' +
       '2,definition 2,answer 2\n'
     global.fetch = vi.fn(() => ({
+      ok: true,
       text: () => csvText,
     })) as Mock
 

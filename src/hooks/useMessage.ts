@@ -7,7 +7,7 @@ export const useMessage = (
   setMessage: (message: string) => void
 } => {
   const [message, setMessage] = useState('')
-  const timeoutIdRef = useRef<NodeJS.Timeout | null>(null)
+  const timeoutIdRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
     if (message === '') {
