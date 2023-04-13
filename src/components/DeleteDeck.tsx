@@ -22,7 +22,11 @@ export const DeleteDeck = (): JSX.Element => {
   )
 }
 
-const DeckItem = ({ deck }: { deck: Deck }): JSX.Element => {
+interface DeckItemProps {
+  deck: Deck
+}
+
+const DeckItem = ({ deck }: DeckItemProps): JSX.Element => {
   const deleteDeck = useDeleteDeck()
 
   const handleClick = async (): Promise<void> => {

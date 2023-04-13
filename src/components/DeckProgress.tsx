@@ -1,6 +1,10 @@
 import { type Word } from '../models/Word'
 
-export const DeckProgress = ({ words }: { words: Word[] }): JSX.Element => {
+interface DeckProgressProps {
+  words: Word[]
+}
+
+export const DeckProgress = ({ words }: DeckProgressProps): JSX.Element => {
   return (
     <>
       <table>

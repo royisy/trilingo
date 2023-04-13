@@ -21,7 +21,11 @@ export const AddDeck = (): JSX.Element => {
   )
 }
 
-const DeckItem = ({ csvDeck }: { csvDeck: CsvDeck }): JSX.Element => {
+interface DeckItemProps {
+  csvDeck: CsvDeck
+}
+
+const DeckItem = ({ csvDeck }: DeckItemProps): JSX.Element => {
   const { addDeck, isLoading } = useAddDeck()
   const navigate = useNavigate()
 

@@ -28,7 +28,11 @@ export const Menu = (): JSX.Element => {
   )
 }
 
-const DeckItem = ({ deck }: { deck: Deck }): JSX.Element => {
+interface DeckItemProps {
+  deck: Deck
+}
+
+const DeckItem = ({ deck }: DeckItemProps): JSX.Element => {
   const selectDeck = useSelectDeck()
   const navigate = useNavigate()
 

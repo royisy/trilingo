@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react'
 
+interface ErrorBoundaryProps {
+  children: JSX.Element
+}
+
 /**
  * A component that catches errors thrown by its children and displays a fallback UI.
  *
@@ -8,9 +12,7 @@ import { useEffect, useState } from 'react'
  */
 export const ErrorBoundary = ({
   children,
-}: {
-  children: JSX.Element
-}): JSX.Element => {
+}: ErrorBoundaryProps): JSX.Element => {
   const [error, setError] = useState<Error | null>(null)
 
   const handleUnhandledRejection = (event: PromiseRejectionEvent): void => {
