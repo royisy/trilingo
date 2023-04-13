@@ -54,40 +54,39 @@ export const Practice = (): JSX.Element => {
     setUserAnswer('')
   }
 
-  const elements = (
-    <>
-      <p>
-        {index + 1} / {words.length}
-      </p>
-      <p>{words[index]?.definition}</p>
-      <p>{message}</p>
-      <p>{answer}</p>
-      <p>
-        <input
-          type="text"
-          value={userAnswer}
-          onChange={handleAnswerChange}
-          disabled={answer !== ''}
-        />
-      </p>
-      {answer === '' && (
-        <p>
-          <button onClick={handleSkipClick}>Skip</button>
-        </p>
-      )}
-      {answer !== '' && (
-        <p>
-          <button onClick={handleNextClick}>Next</button>
-        </p>
-      )}
-    </>
-  )
   return (
     <>
       <p>
         <Link to="/">Quit</Link>
       </p>
-      {words.length > 0 && elements}
+      {words.length > 0 && (
+        <>
+          <p>
+            {index + 1} / {words.length}
+          </p>
+          <p>{words[index]?.definition}</p>
+          <p>{message}</p>
+          <p>{answer}</p>
+          <p>
+            <input
+              type="text"
+              value={userAnswer}
+              onChange={handleAnswerChange}
+              disabled={answer !== ''}
+            />
+          </p>
+          {answer === '' && (
+            <p>
+              <button onClick={handleSkipClick}>Skip</button>
+            </p>
+          )}
+          {answer !== '' && (
+            <p>
+              <button onClick={handleNextClick}>Next</button>
+            </p>
+          )}
+        </>
+      )}
     </>
   )
 }
