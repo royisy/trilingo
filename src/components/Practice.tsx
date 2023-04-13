@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useCheckAnswer } from '../hooks/useCheckAnswer'
+import { useMessage } from '../hooks/useMessage'
 import { useSelectedDeck } from '../hooks/useSelectedDeck'
 import { useWords } from '../hooks/useWords'
 
@@ -13,7 +14,7 @@ export const Practice = (): JSX.Element => {
   const words = useWords(selectedDeck, NUM_OF_WORDS)
   const [index, setIndex] = useState<number>(0)
   const [userAnswer, setUserAnswer] = useState<string>('')
-  const [message, setMessage] = useState<string>('')
+  const { message, setMessage } = useMessage(TIME_TO_SHOW_CORRECT)
   const [answer, setAnswer] = useState<string>('')
   const checkAnswer = useCheckAnswer()
 
@@ -21,15 +22,14 @@ export const Practice = (): JSX.Element => {
     navigate('/')
   }
 
-  const handleAnswerChange = async (event: any): Promise<void> => {
+  const handleAnswerChange = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): Promise<void> => {
     const userAnswer = event.target.value
     setUserAnswer(userAnswer)
     const isCorrect = await checkAnswer(words[index], userAnswer)
     if (!isCorrect) return
     setMessage('Correct!')
-    setTimeout(() => {
-      setMessage('')
-    }, TIME_TO_SHOW_CORRECT)
     showNextWord()
   }
 
