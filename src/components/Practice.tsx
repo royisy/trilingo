@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useCheckAnswer } from '../hooks/useCheckAnswer'
 import { useMessage } from '../hooks/useMessage'
@@ -11,12 +11,17 @@ const TIME_TO_SHOW_CORRECT = 1000
 export const Practice = (): JSX.Element => {
   const { selectedDeck, noDeckSelected } = useSelectedDeck()
   const navigate = useNavigate()
+  const inputRef = useRef<HTMLInputElement | null>(null)
+  const checkAnswer = useCheckAnswer()
   const words = useWords(selectedDeck, NUM_OF_WORDS)
   const [index, setIndex] = useState<number>(0)
   const [userAnswer, setUserAnswer] = useState<string>('')
   const { message, setMessage } = useMessage(TIME_TO_SHOW_CORRECT)
   const [answer, setAnswer] = useState<string>('')
-  const checkAnswer = useCheckAnswer()
+
+  useEffect(() => {
+    inputRef.current?.focus()
+  }, [words, index])
 
   if (noDeckSelected) {
     navigate('/')
@@ -70,6 +75,7 @@ export const Practice = (): JSX.Element => {
           <p>
             <input
               type="text"
+              ref={inputRef}
               value={userAnswer}
               onChange={handleAnswerChange}
               disabled={answer !== ''}
