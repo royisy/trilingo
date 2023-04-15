@@ -13,10 +13,10 @@ export const useMessage = (
     if (message === '') {
       return
     }
-    const id = setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       setMessage('')
     }, timeout)
-    timeoutIdRef.current = id
+    timeoutIdRef.current = timeoutId
 
     return () => {
       if (timeoutIdRef.current != null) clearTimeout(timeoutIdRef.current)

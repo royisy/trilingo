@@ -6,7 +6,7 @@ import { useSelectedDeck } from '../hooks/useSelectedDeck'
 import { useWords } from '../hooks/useWords'
 
 const NUM_OF_WORDS = 10
-const TIME_TO_SHOW_CORRECT = 1000
+const CORRECT_DISPLAY_TIME = 1000
 
 export const Practice = (): JSX.Element => {
   const { selectedDeck, noDeckSelected } = useSelectedDeck()
@@ -16,7 +16,7 @@ export const Practice = (): JSX.Element => {
   const words = useWords(selectedDeck, NUM_OF_WORDS)
   const [index, setIndex] = useState<number>(0)
   const [userAnswer, setUserAnswer] = useState<string>('')
-  const { message, setMessage } = useMessage(TIME_TO_SHOW_CORRECT)
+  const { message, setMessage } = useMessage(CORRECT_DISPLAY_TIME)
   const [answer, setAnswer] = useState<string>('')
 
   useEffect(() => {
