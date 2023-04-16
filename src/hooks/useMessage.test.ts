@@ -6,11 +6,11 @@ describe('useMessage', () => {
     const { result } = renderHook(() => useMessage(0))
     expect(result.current.message).toBe('')
     await waitFor(() => {
-      result.current.setMessage('Hello, World!')
+      result.current.showMessage('Hello, World!')
     })
     expect(result.current.message).toBe('Hello, World!')
     await waitFor(() => {
-      result.current.setMessage('')
+      result.current.showMessage('')
     })
   })
 })

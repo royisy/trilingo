@@ -4,9 +4,10 @@ export const useMessage = (
   timeout: number
 ): {
   message: string
-  setMessage: (message: string) => void
+  showMessage: (message: string) => void
 } => {
   const [message, setMessage] = useState('')
+  const [messageKey, setMessageKey] = useState(0)
   const timeoutIdRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
@@ -21,7 +22,12 @@ export const useMessage = (
     return () => {
       if (timeoutIdRef.current != null) clearTimeout(timeoutIdRef.current)
     }
-  }, [message, timeout])
+  }, [message, messageKey, timeout])
 
-  return { message, setMessage }
+  const showMessage = (newMessage: string): void => {
+    setMessage(newMessage)
+    setMessageKey((prevKey) => prevKey + 1)
+  }
+
+  return { message, showMessage }
 }
