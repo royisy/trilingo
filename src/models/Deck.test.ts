@@ -74,73 +74,44 @@ describe('Deck', () => {
     })
   })
 
-  describe('getWordsByCorrectCnt', () => {
-    it('should get Words where correctCnt > 0', async () => {
-      const deck2 = new Deck(2, 'deck 2')
-      await db.decks.add(deck2)
-      const word2 = new Word(2, 1, 'definition 2', 'answer 2')
-      word2.correctCnt = 3
-      await db.words.add(word2)
-      const word3 = new Word(2, 2, 'definition 3', 'answer 3')
-      word3.correctCnt = 2
-      await db.words.add(word3)
-      const word4 = new Word(2, 3, 'definition 4', 'answer 4')
-      word4.correctCnt = 1
-      await db.words.add(word4)
-      const word5 = new Word(2, 4, 'definition 5', 'answer 5')
-      word5.correctCnt = 0
-      await db.words.add(word5)
-      const words = await deck2.getWordsByCorrectCnt(4)
-      expect(words).toHaveLength(3)
-      expect(words[0].no).toBe(3)
-      expect(words[1].no).toBe(2)
-      expect(words[2].no).toBe(1)
-    })
-
-    it('should limit the number of Words', async () => {
-      const deck2 = await db.decks.get(2)
-      const words = await deck2?.getWordsByCorrectCnt(2)
-      expect(words).toHaveLength(2)
-      expect(words?.[0].no).toBe(3)
-      expect(words?.[1].no).toBe(2)
-      await deck2?.delete()
-    })
-  })
-
-  describe('getWordsBySkippedCnt', () => {
+  describe('getUnansweredWords', () => {
     it('should get Words where correctCnt = 0', async () => {
       const deck2 = new Deck(2, 'deck 2')
       await db.decks.add(deck2)
       const word2 = new Word(2, 1, 'definition 2', 'answer 2')
       word2.correctCnt = 0
-      word2.skippedCnt = 3
       await db.words.add(word2)
       const word3 = new Word(2, 2, 'definition 3', 'answer 3')
       word3.correctCnt = 0
-      word3.skippedCnt = 2
       await db.words.add(word3)
       const word4 = new Word(2, 3, 'definition 4', 'answer 4')
-      word4.correctCnt = 0
-      word4.skippedCnt = 1
+      word4.correctCnt = 1
       await db.words.add(word4)
-      const word5 = new Word(2, 4, 'definition 5', 'answer 5')
-      word5.correctCnt = 1
-      word5.skippedCnt = 0
-      await db.words.add(word5)
-      const words = await deck2.getWordsBySkippedCnt(4)
-      expect(words).toHaveLength(3)
-      expect(words[0].no).toBe(3)
-      expect(words[1].no).toBe(2)
-      expect(words[2].no).toBe(1)
-    })
-
-    it('should limit the number of Words', async () => {
-      const deck2 = await db.decks.get(2)
-      const words = await deck2?.getWordsBySkippedCnt(2)
+      const words = await deck2.getUnansweredWords()
       expect(words).toHaveLength(2)
-      expect(words?.[0].no).toBe(3)
-      expect(words?.[1].no).toBe(2)
+      expect(words[0].no).toBe(1)
+      expect(words[1].no).toBe(2)
       await deck2?.delete()
+    })
+  })
+
+  describe('getAnsweredWords', () => {
+    it('should get Words where correctCnt > 0', async () => {
+      const deck2 = new Deck(2, 'deck 2')
+      await db.decks.add(deck2)
+      const word2 = new Word(2, 1, 'definition 2', 'answer 2')
+      word2.correctCnt = 0
+      await db.words.add(word2)
+      const word3 = new Word(2, 2, 'definition 3', 'answer 3')
+      word3.correctCnt = 1
+      await db.words.add(word3)
+      const word4 = new Word(2, 3, 'definition 4', 'answer 4')
+      word4.correctCnt = 2
+      await db.words.add(word4)
+      const words = await deck2.getAnsweredWords()
+      expect(words).toHaveLength(2)
+      expect(words[0].no).toBe(2)
+      expect(words[1].no).toBe(3)
     })
   })
 })

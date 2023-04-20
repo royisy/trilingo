@@ -33,33 +33,29 @@ export class Deck {
   }
 
   /**
-   * Retrieves words that have been answered correctly at least once
-   * and sorts them in ascending order based on their correct count.
+   * Retrieves all unanswered words for the current deck.
    *
-   * @param limit
    * @returns
    */
-  async getWordsByCorrectCnt(limit: number): Promise<Word[]> {
-    const words = await this.words
-    return words
-      .filter((word) => word.correctCnt > 0)
-      .sort((a, b) => a.correctCnt - b.correctCnt)
-      .slice(0, limit)
+  async getUnansweredWords(): Promise<Word[]> {
+    return await db.words
+      .where('deckId')
+      .equals(this.id)
+      .and((word) => word.correctCnt === 0)
+      .toArray()
   }
 
   /**
-   * Retrieves words that have never been answered correctly
-   * and sorts them in ascending order based on their skipped count.
+   * Retrieves all answered words for the current deck.
    *
-   * @param limit
    * @returns
    */
-  async getWordsBySkippedCnt(limit: number): Promise<Word[]> {
-    const words = await this.words
-    return words
-      .filter((word) => word.correctCnt === 0)
-      .sort((a, b) => a.skippedCnt - b.skippedCnt)
-      .slice(0, limit)
+  async getAnsweredWords(): Promise<Word[]> {
+    return await db.words
+      .where('deckId')
+      .equals(this.id)
+      .and((word) => word.correctCnt > 0)
+      .toArray()
   }
 }
 
