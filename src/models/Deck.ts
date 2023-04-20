@@ -35,7 +35,7 @@ export class Deck {
   /**
    * Retrieves all unanswered words for the current deck.
    *
-   * @returns
+   * @returns An array of words.
    */
   async getUnansweredWords(): Promise<Word[]> {
     return await db.words
@@ -48,7 +48,7 @@ export class Deck {
   /**
    * Retrieves all answered words for the current deck.
    *
-   * @returns
+   * @returns An array of words.
    */
   async getAnsweredWords(): Promise<Word[]> {
     return await db.words

@@ -5,10 +5,12 @@ interface ErrorBoundaryProps {
 }
 
 /**
- * A component that catches errors thrown by its children and displays a fallback UI.
+ * An ErrorBoundary component that catches unhandled promise rejections
+ * and displays an error message.
  *
- * @param children
- * @returns
+ * @param props The properties for the ErrorBoundary component.
+ * @param props.children The children components to be wrapped by the ErrorBoundary.
+ * @returns The rendered ErrorBoundary component.
  */
 export const ErrorBoundary = ({
   children,

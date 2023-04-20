@@ -10,9 +10,9 @@ export type WordGroupKey = 'correctCnt' | 'skippedCnt'
  * If there are more words in the last group than needed to reach the limit,
  * the last group is shuffled, and only the required number of words is taken.
  *
- * @param words - An array of Word objects to limit.
- * @param limit - The maximum number of words to return.
- * @param groupKey - The grouping key to use ('correctCnt' or 'skippedCnt').
+ * @param words An array of Word objects to limit.
+ * @param limit The maximum number of words to return.
+ * @param groupKey The grouping key to use ('correctCnt' or 'skippedCnt').
  * @returns A limited array of Word objects based on the specified limit.
  */
 export const limitWords = (
@@ -64,7 +64,7 @@ const getLimitedWords = (
 /**
  * Shuffles an array of Word objects using the Fisher-Yates (Knuth) algorithm.
  *
- * @param array - The array of Word objects to shuffle.
+ * @param array The array of Word objects to shuffle.
  * @returns A new shuffled array of Word objects.
  */
 export const shuffleArray = (array: Word[]): Word[] => {
