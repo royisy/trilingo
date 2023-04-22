@@ -24,7 +24,7 @@ describe('useDeckList', () => {
     mockedGetCsv.mockResolvedValue(mockCsvData)
     const { result } = renderHook(() => useDeckList())
     await waitFor(() => {
-      expect(getCsv).toHaveBeenCalledWith('/deck-list.csv')
+      expect(getCsv).toHaveBeenCalledWith('deck-list.csv')
       expect(result.current).toEqual(expectedResult)
     })
   })

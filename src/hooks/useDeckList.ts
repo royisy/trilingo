@@ -10,7 +10,7 @@ export const useDeckList = (): CsvDeck[] => {
 
   useEffect(() => {
     const getDeckList = async (): Promise<void> => {
-      const deckList = await getCsv<CsvDeck>('/deck-list.csv')
+      const deckList = await getCsv<CsvDeck>('deck-list.csv')
       setDeckList(deckList)
     }
     void getDeckList()

@@ -16,7 +16,8 @@ describe('getCsv', () => {
       no: number
       definition: string
       answer: string
-    }>('https://example.com/deck.csv')
+    }>('deck.csv')
+    expect(fetch).toHaveBeenCalledWith('/deck.csv')
     expect(csvObjects).toHaveLength(2)
     expect(csvObjects[0]).toHaveProperty('no', 1)
     expect(csvObjects[0]).toHaveProperty('definition', 'definition 1')

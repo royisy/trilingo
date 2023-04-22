@@ -19,7 +19,7 @@ export const useAddDeck = (): {
       return false
     }
 
-    const csvWords = await getCsv<CsvWord>(`/decks/${csvDeck.id}.csv`)
+    const csvWords = await getCsv<CsvWord>(`decks/${csvDeck.id}.csv`)
     const words = csvWords.map(
       (csvWord) =>
         new Word(csvDeck.id, csvWord.no, csvWord.definition, csvWord.answer)

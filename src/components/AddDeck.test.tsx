@@ -8,13 +8,13 @@ import { AddDeck } from './AddDeck'
 
 vi.mock('../utils/csvUtils', () => ({
   getCsv: async (filename: string) => {
-    if (filename === '/deck-list.csv') {
+    if (filename === 'deck-list.csv') {
       return [
         { id: 1, title: 'deck 1' },
         { id: 2, title: 'deck 2' },
         { id: 3, title: 'deck 3' },
       ]
-    } else if (filename === '/decks/2.csv') {
+    } else if (filename === 'decks/2.csv') {
       return [
         { no: 1, definition: 'definition 1', answer: 'answer 1' },
         { no: 2, definition: 'definition 2', answer: 'answer 2' },
