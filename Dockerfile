@@ -7,6 +7,5 @@ RUN apt-get install -y \
     git
 
 RUN npm install -g npm
-RUN npm install -g @aws-amplify/cli
 
 USER node
