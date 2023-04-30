@@ -3,24 +3,14 @@ import { useNavigate } from 'react-router-dom'
 import { useAddDeck } from '../hooks/useAddDeck'
 import { useDeckList } from '../hooks/useDeckList'
 import { type CsvDeck } from '../models/CsvDeck'
+import { Header } from './Header'
 
 export const AddDeck = (): JSX.Element => {
-  const navigate = useNavigate()
   const deckList = useDeckList()
 
   return (
     <>
-      <h1>Add deck</h1>
-      <div>
-        <button
-          className="btn-square btn"
-          onClick={() => {
-            navigate('/menu')
-          }}
-        >
-          <XMarkIcon />
-        </button>
-      </div>
+      <Header navigatePath="/menu" icon={<XMarkIcon />} title="Add deck" />
       <ul>
         {deckList.map((csvDeck) => (
           <DeckItem key={csvDeck.id} csvDeck={csvDeck} />

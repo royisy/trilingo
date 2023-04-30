@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useDeck } from '../hooks/useDeck'
 import { getAppSetting } from '../repositories/appSetting'
 import { DeckProgress } from './DeckProgress'
+import { Header } from './Header'
 
 export const Home = (): JSX.Element => {
   const appSetting = useLiveQuery(getAppSetting)
@@ -13,17 +14,11 @@ export const Home = (): JSX.Element => {
 
   return (
     <>
-      <h1>{title == null ? 'Trilingo' : title}</h1>
-      <div>
-        <button
-          className="btn-square btn"
-          onClick={() => {
-            navigate('/menu')
-          }}
-        >
-          <Bars3Icon />
-        </button>
-      </div>
+      <Header
+        navigatePath="/menu"
+        icon={<Bars3Icon />}
+        title={title == null ? 'Trilingo' : title}
+      />
       {title != null && (
         <>
           <div>

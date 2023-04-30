@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useSelectDeck } from '../hooks/useSelectDeck'
 import { type Deck } from '../models/Deck'
 import { getAllDecks } from '../repositories/deck'
+import { Header } from './Header'
 
 export const Menu = (): JSX.Element => {
   const navigate = useNavigate()
@@ -11,17 +12,7 @@ export const Menu = (): JSX.Element => {
 
   return (
     <>
-      <h1>Menu</h1>
-      <div>
-        <button
-          className="btn-square btn"
-          onClick={() => {
-            navigate('/')
-          }}
-        >
-          <XMarkIcon />
-        </button>
-      </div>
+      <Header navigatePath="/" icon={<XMarkIcon />} title="Menu" />
       <ul className="menu w-56 bg-base-100">
         {decks?.map((deck) => (
           <DeckItem key={deck.id} deck={deck} />
