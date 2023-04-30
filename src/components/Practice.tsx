@@ -1,5 +1,6 @@
+import { XMarkIcon } from '@heroicons/react/24/solid'
 import { useEffect, useRef, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useCheckAnswer } from '../hooks/useCheckAnswer'
 import { useMessage } from '../hooks/useMessage'
 import { useSelectedDeck } from '../hooks/useSelectedDeck'
@@ -61,35 +62,51 @@ export const Practice = (): JSX.Element => {
 
   return (
     <>
-      <p>
-        <Link to="/">Quit</Link>
-      </p>
+      <div>
+        <button
+          className="btn-square btn"
+          onClick={() => {
+            navigate('/')
+          }}
+        >
+          <XMarkIcon />
+        </button>
+      </div>
       {words.length > 0 && (
         <>
-          <p>
-            {index + 1} / {words.length}
-          </p>
+          <div>
+            <progress
+              className="progress progress-primary w-56"
+              value={index + 1}
+              max={words.length}
+            ></progress>
+          </div>
           <p>{words[index]?.definition}</p>
           <p>{message}</p>
           <p>{answer}</p>
-          <p>
+          <div>
             <input
               type="text"
+              className="input-bordered input-primary input"
               ref={inputRef}
               value={userAnswer}
               onChange={handleAnswerChange}
               disabled={answer !== ''}
             />
-          </p>
+          </div>
           {answer === '' && (
-            <p>
-              <button onClick={handleSkipClick}>Skip</button>
-            </p>
+            <div>
+              <button className="btn-secondary btn" onClick={handleSkipClick}>
+                Skip
+              </button>
+            </div>
           )}
           {answer !== '' && (
-            <p>
-              <button onClick={handleNextClick}>Next</button>
-            </p>
+            <div>
+              <button className="btn-primary btn" onClick={handleNextClick}>
+                Next
+              </button>
+            </div>
           )}
         </>
       )}

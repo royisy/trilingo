@@ -1,18 +1,27 @@
+import { XCircleIcon, XMarkIcon } from '@heroicons/react/24/solid'
 import { useLiveQuery } from 'dexie-react-hooks'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useDeleteDeck } from '../hooks/useDeleteDeck'
 import { type Deck } from '../models/Deck'
 import { getAllDecks } from '../repositories/deck'
 
 export const DeleteDeck = (): JSX.Element => {
+  const navigate = useNavigate()
   const decks = useLiveQuery(getAllDecks)
 
   return (
     <>
       <h1>Delete deck</h1>
-      <p>
-        <Link to="/menu">Menu</Link>
-      </p>
+      <div>
+        <button
+          className="btn-square btn"
+          onClick={() => {
+            navigate('/menu')
+          }}
+        >
+          <XMarkIcon />
+        </button>
+      </div>
       <ul>
         {decks?.map((deck) => (
           <DeckItem key={deck.id} deck={deck} />
@@ -33,5 +42,10 @@ const DeckItem = ({ deck }: DeckItemProps): JSX.Element => {
     await deleteDeck(deck)
   }
 
-  return <li onClick={handleClick}>{deck.title}</li>
+  return (
+    <li>
+      {deck.title}
+      <XCircleIcon className="h-6 w-6" onClick={handleClick} />
+    </li>
+  )
 }

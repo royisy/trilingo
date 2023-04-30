@@ -1,5 +1,6 @@
+import { Bars3Icon } from '@heroicons/react/24/solid'
 import { useLiveQuery } from 'dexie-react-hooks'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useDeck } from '../hooks/useDeck'
 import { getAppSetting } from '../repositories/appSetting'
 import { DeckProgress } from './DeckProgress'
@@ -8,18 +9,33 @@ export const Home = (): JSX.Element => {
   const appSetting = useLiveQuery(getAppSetting)
   const deckId = appSetting?.selectedDeckId ?? null
   const { title, words } = useDeck(deckId)
+  const navigate = useNavigate()
 
   return (
     <>
       <h1>{title == null ? 'Trilingo' : title}</h1>
-      <p>
-        <Link to="menu">Menu</Link>
-      </p>
+      <div>
+        <button
+          className="btn-square btn"
+          onClick={() => {
+            navigate('/menu')
+          }}
+        >
+          <Bars3Icon />
+        </button>
+      </div>
       {title != null && (
         <>
-          <p>
-            <Link to="practice">Start</Link>
-          </p>
+          <div>
+            <button
+              className="btn-primary btn"
+              onClick={() => {
+                navigate('/practice')
+              }}
+            >
+              Start
+            </button>
+          </div>
           <DeckProgress words={words} />
         </>
       )}
