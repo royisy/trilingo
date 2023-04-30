@@ -11,7 +11,7 @@ export const DeleteDeck = (): JSX.Element => {
   return (
     <>
       <Header navigatePath="/menu" icon={<XMarkIcon />} title="Delete deck" />
-      <ul>
+      <ul className="menu w-56 bg-base-100">
         {decks?.map((deck) => (
           <DeckItem key={deck.id} deck={deck} />
         ))}
@@ -33,8 +33,10 @@ const DeckItem = ({ deck }: DeckItemProps): JSX.Element => {
 
   return (
     <li className="flex">
-      {deck.title}
-      <XCircleIcon className="h-6 w-6" onClick={handleClick} />
+      <button className="text-left">
+        {deck.title}
+        <XCircleIcon className="h-6 w-6" onClick={handleClick} />
+      </button>
     </li>
   )
 }

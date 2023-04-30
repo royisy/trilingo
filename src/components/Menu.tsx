@@ -2,20 +2,26 @@ import { PlusIcon, XMarkIcon } from '@heroicons/react/20/solid'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { useNavigate } from 'react-router-dom'
 import { useSelectDeck } from '../hooks/useSelectDeck'
+import { useSelectedDeck } from '../hooks/useSelectedDeck'
 import { type Deck } from '../models/Deck'
 import { getAllDecks } from '../repositories/deck'
 import { Header } from './Header'
 
 export const Menu = (): JSX.Element => {
-  const navigate = useNavigate()
   const decks = useLiveQuery(getAllDecks)
+  const { selectedDeck } = useSelectedDeck()
+  const navigate = useNavigate()
 
   return (
     <>
       <Header navigatePath="/" icon={<XMarkIcon />} title="Menu" />
       <ul className="menu w-56 bg-base-100">
         {decks?.map((deck) => (
-          <DeckItem key={deck.id} deck={deck} />
+          <DeckItem
+            key={deck.id}
+            deck={deck}
+            isSelected={deck.id === selectedDeck?.id}
+          />
         ))}
       </ul>
       <div>
@@ -44,9 +50,10 @@ export const Menu = (): JSX.Element => {
 
 interface DeckItemProps {
   deck: Deck
+  isSelected: boolean
 }
 
-const DeckItem = ({ deck }: DeckItemProps): JSX.Element => {
+const DeckItem = ({ deck, isSelected }: DeckItemProps): JSX.Element => {
   const selectDeck = useSelectDeck()
   const navigate = useNavigate()
 
@@ -55,5 +62,9 @@ const DeckItem = ({ deck }: DeckItemProps): JSX.Element => {
     navigate('/')
   }
 
-  return <li onClick={handleClick}>{deck.title}</li>
+  return (
+    <li className={isSelected ? 'bordered' : ''}>
+      <button onClick={handleClick}>{deck.title}</button>
+    </li>
+  )
 }
