@@ -58,7 +58,9 @@ describe('Practice', () => {
     )
 
     await waitFor(async () => {
-      expect(screen.getByText('1 / 2')).toBeInTheDocument()
+      const progress = screen.getByRole('progressbar')
+      expect(progress).toHaveAttribute('value', '1')
+      expect(progress).toHaveAttribute('max', '2')
       expect(screen.getByText(/^definition/)).toBeInTheDocument()
       expect(screen.getByText('Skip')).toBeInTheDocument()
       expect(screen.queryByText('Next')).not.toBeInTheDocument()
@@ -67,12 +69,15 @@ describe('Practice', () => {
     // answer first word
     const definitionElement = screen.getByText(/^definition/)
     const definition = definitionElement.textContent
+    expect(definition).not.toBeNull()
     if (definition == null) return
     const answer = definition.replace('definition', 'answer')
     const inputElement = screen.getByRole('textbox')
     fireEvent.change(inputElement, { target: { value: answer } })
     await waitFor(async () => {
-      expect(screen.getByText('2 / 2')).toBeInTheDocument()
+      const progress = screen.getByRole('progressbar')
+      expect(progress).toHaveAttribute('value', '2')
+      expect(progress).toHaveAttribute('max', '2')
       expect(screen.queryByText(definition)).not.toBeInTheDocument()
       expect(screen.getByText('Correct!')).toBeInTheDocument()
       expect(screen.getByText('Skip')).toBeInTheDocument()
@@ -87,7 +92,9 @@ describe('Practice', () => {
     const skipButtonElement = screen.getByText('Skip')
     fireEvent.click(skipButtonElement)
     await waitFor(async () => {
-      expect(screen.getByText('2 / 2')).toBeInTheDocument()
+      const progress = screen.getByRole('progressbar')
+      expect(progress).toHaveAttribute('value', '2')
+      expect(progress).toHaveAttribute('max', '2')
       expect(screen.getByText(/^answer/)).toBeInTheDocument()
       expect(screen.getByRole('textbox')).toBeDisabled()
       expect(screen.getByText('Next')).toBeInTheDocument()

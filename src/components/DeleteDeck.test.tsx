@@ -32,7 +32,11 @@ describe('DeleteDeck', () => {
       </MemoryRouter>
     )
     const deck1Element = await screen.findByText('deck 1')
-    fireEvent.click(deck1Element)
+    const parentLiElement = deck1Element.parentElement
+    const svgElement = parentLiElement?.querySelector('svg')
+    expect(svgElement).not.toBeNull()
+    if (svgElement == null) return
+    fireEvent.click(svgElement)
     await waitFor(async () => {
       const decks = await db.decks.toArray()
       expect(decks).toHaveLength(1)
