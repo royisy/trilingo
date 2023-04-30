@@ -22,7 +22,7 @@ describe('DeleteDeck', () => {
     })
   })
 
-  it('should delete deck when the deck is clicked', async () => {
+  it('should set selectedDeckId null when a deck is deleted', async () => {
     const appSetting = new AppSetting()
     appSetting.selectedDeckId = 1
     await appSetting.save()
@@ -44,6 +44,35 @@ describe('DeleteDeck', () => {
       expect(decks[0].title).toBe('deck 2')
       const appSetting = await db.appSettings.get(1)
       expect(appSetting?.selectedDeckId).toBe(null)
+    })
+  })
+
+  it('should not set selectedDeckId null when a deck is deleted', async () => {
+    const deck1 = new Deck(1, 'deck 1')
+    await db.decks.add(deck1)
+    const appSetting = await db.appSettings.get(1)
+    expect(appSetting).not.toBeUndefined()
+    if (appSetting == null) return
+    appSetting.selectedDeckId = 2
+    await appSetting.save()
+    render(
+      <MemoryRouter>
+        <DeleteDeck />
+      </MemoryRouter>
+    )
+    const deck1Element = await screen.findByText('deck 1')
+    const parentLiElement = deck1Element.parentElement
+    const svgElement = parentLiElement?.querySelector('svg')
+    expect(svgElement).not.toBeNull()
+    if (svgElement == null) return
+    fireEvent.click(svgElement)
+    await waitFor(async () => {
+      const decks = await db.decks.toArray()
+      expect(decks).toHaveLength(1)
+      expect(decks[0].id).toBe(2)
+      expect(decks[0].title).toBe('deck 2')
+      const appSetting = await db.appSettings.get(1)
+      expect(appSetting?.selectedDeckId).toBe(2)
     })
   })
 })
