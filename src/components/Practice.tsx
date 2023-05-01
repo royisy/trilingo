@@ -77,7 +77,7 @@ export const Practice = (): JSX.Element => {
           <div>
             <progress
               className="progress progress-primary w-56"
-              value={index + 1}
+              value={index}
               max={words.length}
             ></progress>
           </div>

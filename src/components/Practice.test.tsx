@@ -59,7 +59,7 @@ describe('Practice', () => {
 
     await waitFor(async () => {
       const progress = screen.getByRole('progressbar')
-      expect(progress).toHaveAttribute('value', '1')
+      expect(progress).toHaveAttribute('value', '0')
       expect(progress).toHaveAttribute('max', '2')
       expect(screen.getByText(/^definition/)).toBeInTheDocument()
       expect(screen.getByText('Skip')).toBeInTheDocument()
@@ -76,7 +76,7 @@ describe('Practice', () => {
     fireEvent.change(inputElement, { target: { value: answer } })
     await waitFor(async () => {
       const progress = screen.getByRole('progressbar')
-      expect(progress).toHaveAttribute('value', '2')
+      expect(progress).toHaveAttribute('value', '1')
       expect(progress).toHaveAttribute('max', '2')
       expect(screen.queryByText(definition)).not.toBeInTheDocument()
       const svgElement = container.querySelector('svg.text-green-500')
@@ -94,7 +94,7 @@ describe('Practice', () => {
     fireEvent.click(skipButtonElement)
     await waitFor(async () => {
       const progress = screen.getByRole('progressbar')
-      expect(progress).toHaveAttribute('value', '2')
+      expect(progress).toHaveAttribute('value', '1')
       expect(progress).toHaveAttribute('max', '2')
       expect(screen.getByText(/^answer/)).toBeInTheDocument()
       expect(screen.getByRole('textbox')).toBeDisabled()
