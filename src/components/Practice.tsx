@@ -1,8 +1,8 @@
-import { XMarkIcon } from '@heroicons/react/24/solid'
+import { CheckIcon, XMarkIcon } from '@heroicons/react/24/solid'
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useCheckAnswer } from '../hooks/useCheckAnswer'
-import { useMessage } from '../hooks/useMessage'
+import { useCorrectMark } from '../hooks/useCorrectMark'
 import { useSelectedDeck } from '../hooks/useSelectedDeck'
 import { useWords } from '../hooks/useWords'
 
@@ -17,7 +17,7 @@ export const Practice = (): JSX.Element => {
   const words = useWords(selectedDeck, NUM_OF_WORDS)
   const [index, setIndex] = useState<number>(0)
   const [userAnswer, setUserAnswer] = useState<string>('')
-  const { message, showMessage } = useMessage(CORRECT_DISPLAY_TIME)
+  const { isCorrect, showCorrect } = useCorrectMark(CORRECT_DISPLAY_TIME)
   const [answer, setAnswer] = useState<string>('')
 
   useEffect(() => {
@@ -33,9 +33,9 @@ export const Practice = (): JSX.Element => {
   ): Promise<void> => {
     const userAnswer = event.target.value
     setUserAnswer(userAnswer)
-    const isCorrect = await checkAnswer(words[index], userAnswer)
-    if (!isCorrect) return
-    showMessage('Correct!')
+    const isCorrectAnswer = await checkAnswer(words[index], userAnswer)
+    if (!isCorrectAnswer) return
+    showCorrect()
     showNextWord()
   }
 
@@ -82,7 +82,13 @@ export const Practice = (): JSX.Element => {
             ></progress>
           </div>
           <p>{words[index]?.definition}</p>
-          <p>{message}</p>
+          <div>
+            {isCorrect && (
+              <>
+                <CheckIcon className="h-20 w-20 text-green-500" />
+              </>
+            )}
+          </div>
           <p>{answer}</p>
           <div>
             <input

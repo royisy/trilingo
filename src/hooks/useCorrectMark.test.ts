@@ -1,16 +1,16 @@
 import { renderHook, waitFor } from '@testing-library/react'
-import { useMessage } from './useMessage'
+import { useCorrectMark } from './useCorrectMark'
 
-describe('useMessage', () => {
-  it('should set a message and reset it after timeout', async () => {
-    const { result } = renderHook(() => useMessage(0))
-    expect(result.current.message).toBe('')
+describe('useCorrectMark', () => {
+  it('should set isCorrect true after showCorrect is executed', async () => {
+    const { result } = renderHook(() => useCorrectMark(0))
+    expect(result.current.isCorrect).toBe(false)
     await waitFor(() => {
-      result.current.showMessage('Hello, World!')
+      result.current.showCorrect()
     })
-    expect(result.current.message).toBe('Hello, World!')
+    expect(result.current.isCorrect).toBe(true)
     await waitFor(() => {
-      result.current.showMessage('')
+      expect(result.current.isCorrect).toBe(false)
     })
   })
 })

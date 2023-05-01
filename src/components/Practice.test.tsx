@@ -51,7 +51,7 @@ describe('Practice', () => {
     appSetting.selectedDeckId = 1
     await db.appSettings.put(appSetting)
 
-    render(
+    const { container } = render(
       <MemoryRouter>
         <Practice />
       </MemoryRouter>
@@ -79,7 +79,8 @@ describe('Practice', () => {
       expect(progress).toHaveAttribute('value', '2')
       expect(progress).toHaveAttribute('max', '2')
       expect(screen.queryByText(definition)).not.toBeInTheDocument()
-      expect(screen.getByText('Correct!')).toBeInTheDocument()
+      const svgElement = container.querySelector('svg.text-green-500')
+      expect(svgElement).toBeInTheDocument()
       expect(screen.getByText('Skip')).toBeInTheDocument()
       expect(screen.queryByText('Next')).not.toBeInTheDocument()
       const words = await db.words.toArray()

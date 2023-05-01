@@ -1,33 +1,30 @@
 import { useEffect, useRef, useState } from 'react'
 
-export const useMessage = (
+export const useCorrectMark = (
   timeout: number
 ): {
-  message: string
-  showMessage: (message: string) => void
+  isCorrect: boolean
+  showCorrect: () => void
 } => {
-  const [message, setMessage] = useState('')
-  const [messageKey, setMessageKey] = useState(0)
+  const [isCorrect, setIsCorrect] = useState(false)
+  const [key, setKey] = useState(0)
   const timeoutIdRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
-    if (message === '') {
-      return
-    }
     const timeoutId = setTimeout(() => {
-      setMessage('')
+      setIsCorrect(false)
     }, timeout)
     timeoutIdRef.current = timeoutId
 
     return () => {
       if (timeoutIdRef.current != null) clearTimeout(timeoutIdRef.current)
     }
-  }, [message, messageKey, timeout])
+  }, [isCorrect, key, timeout])
 
-  const showMessage = (newMessage: string): void => {
-    setMessage(newMessage)
-    setMessageKey((prevKey) => prevKey + 1)
+  const showCorrect = (): void => {
+    setIsCorrect(true)
+    setKey((prevKey) => prevKey + 1)
   }
 
-  return { message, showMessage }
+  return { isCorrect, showCorrect }
 }
