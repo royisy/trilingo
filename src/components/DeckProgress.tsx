@@ -1,4 +1,5 @@
 import { type Word } from '../models/Word'
+import { getColor } from '../utils/wordUtils'
 
 interface DeckProgressProps {
   words: Word[]
@@ -7,28 +8,16 @@ interface DeckProgressProps {
 export const DeckProgress = ({ words }: DeckProgressProps): JSX.Element => {
   return (
     <>
-      <table>
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Definition</th>
-            <th>Answer</th>
-            <th>Correct</th>
-            <th>Skipped</th>
-          </tr>
-        </thead>
-        <tbody>
-          {words.map((word) => (
-            <tr key={word.no}>
-              <td>{word.no}</td>
-              <td>{word.definition}</td>
-              <td>{word.answer}</td>
-              <td>{word.correctCnt}</td>
-              <td>{word.skippedCnt}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <ul className="grid w-fit list-none grid-cols-20 gap-2">
+        {words.map((word) => {
+          const dataTip = `${word.definition} / ${word.answer}`
+          const color = getColor(word.correctCnt, word.skippedCnt)
+          const className = `tooltip h-5 w-5 rounded-md bg-${color}-500`
+          return (
+            <li className={className} key={word.no} data-tip={dataTip}></li>
+          )
+        })}
+      </ul>
     </>
   )
 }

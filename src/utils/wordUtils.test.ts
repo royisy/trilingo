@@ -1,5 +1,17 @@
 import { Word } from '../models/Word'
-import { limitWords } from './wordUtils'
+import { getColor, limitWords } from './wordUtils'
+
+describe('getColor', () => {
+  it('should return green if correctCnt > 0', () => {
+    expect(getColor(1, 0)).toBe('green')
+  })
+  it('should return red if skippedCnt > 0', () => {
+    expect(getColor(0, 1)).toBe('red')
+  })
+  it('should return gray if correctCnt = 0 and skippedCnt = 0', () => {
+    expect(getColor(0, 0)).toBe('gray')
+  })
+})
 
 describe('limitWords', () => {
   const word1 = new Word(1, 1, 'definition 1', 'answer 1')

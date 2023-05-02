@@ -21,26 +21,24 @@ describe('Home', () => {
     word2.correctCnt = 0
     word2.skippedCnt = 0
     await db.words.add(word2)
-    render(
+    const { container } = render(
       <MemoryRouter>
         <Home />
       </MemoryRouter>
     )
     expect(screen.getByText('Trilingo')).toBeInTheDocument()
     expect(screen.queryByText('Start')).not.toBeInTheDocument()
-    expect(screen.queryByRole('table')).not.toBeInTheDocument()
-    expect(screen.queryByText('definition 1')).not.toBeInTheDocument()
-    expect(screen.queryByText('answer 1')).not.toBeInTheDocument()
-    expect(screen.queryByText('definition 2')).not.toBeInTheDocument()
-    expect(screen.queryByText('answer 2')).not.toBeInTheDocument()
     await waitFor(() => {
       expect(screen.getByText('deck 1')).toBeInTheDocument()
       expect(screen.getByText('Start')).toBeInTheDocument()
-      expect(screen.getByRole('table')).toBeInTheDocument()
-      expect(screen.getByText('definition 1')).toBeInTheDocument()
-      expect(screen.queryByText('answer 1')).toBeInTheDocument()
-      expect(screen.getByText('definition 2')).toBeInTheDocument()
-      expect(screen.queryByText('answer 2')).toBeInTheDocument()
+      const liElement1 = container.querySelector(
+        '[data-tip="definition 1 / answer 1"]'
+      )
+      expect(liElement1).toBeInTheDocument()
+      const liElement2 = container.querySelector(
+        '[data-tip="definition 2 / answer 2"]'
+      )
+      expect(liElement2).toBeInTheDocument()
     })
   })
 })

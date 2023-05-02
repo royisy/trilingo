@@ -2,6 +2,16 @@ import { type Word } from '../models/Word'
 
 export type WordGroupKey = 'correctCnt' | 'skippedCnt'
 
+export const getColor = (correctCnt: number, skippedCnt: number): string => {
+  if (correctCnt > 0) {
+    return 'green'
+  } else if (skippedCnt > 0) {
+    return 'red'
+  } else {
+    return 'gray'
+  }
+}
+
 /**
  * Returns a limited number of words from the input array,
  * taking into account the specified grouping key.
