@@ -12,6 +12,34 @@ export const getColor = (correctCnt: number, skippedCnt: number): string => {
   }
 }
 
+export const getOpacity = (
+  correctCnt: number,
+  skippedCnt: number,
+  minCorrectCnt: number,
+  minSkippedCnt: number,
+  maxCorrectCnt: number,
+  maxSkippedCnt: number
+): string => {
+  if (correctCnt === 0 && skippedCnt === 0) {
+    return '50'
+  }
+
+  const MIN_OPACITY = 30
+  const MAX_OPACITY = 100
+  const OPACITY_RANGE = MAX_OPACITY - MIN_OPACITY
+  const ROUND_TO = 10
+
+  const value = correctCnt > 0 ? correctCnt : skippedCnt
+  const minValue = correctCnt > 0 ? minCorrectCnt : minSkippedCnt
+  const maxValue = correctCnt > 0 ? maxCorrectCnt : maxSkippedCnt
+  const valueRange = maxValue - minValue
+  const valueRatio = (value - minValue) / valueRange
+  const opacity = Math.round(valueRatio * OPACITY_RANGE) + MIN_OPACITY
+  const roundedOpacity = Math.round(opacity / ROUND_TO) * ROUND_TO
+
+  return roundedOpacity.toString()
+}
+
 /**
  * Returns a limited number of words from the input array,
  * taking into account the specified grouping key.

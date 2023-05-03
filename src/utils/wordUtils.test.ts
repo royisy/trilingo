@@ -1,15 +1,76 @@
 import { Word } from '../models/Word'
-import { getColor, limitWords } from './wordUtils'
+import { getColor, getOpacity, limitWords } from './wordUtils'
 
 describe('getColor', () => {
   it('should return green if correctCnt > 0', () => {
     expect(getColor(1, 0)).toBe('green')
   })
+
   it('should return red if skippedCnt > 0', () => {
     expect(getColor(0, 1)).toBe('red')
   })
+
   it('should return gray if correctCnt = 0 and skippedCnt = 0', () => {
     expect(getColor(0, 0)).toBe('gray')
+  })
+})
+
+describe('getOpacity', () => {
+  it('should return 50 if correctCnt = 0 and skippedCnt = 0', () => {
+    const correctCnt = 0
+    const skippedCnt = 0
+    const minCorrectCnt = 1
+    const minSkippedCnt = 1
+    const maxCorrectCnt = 2
+    const maxSkippedCnt = 2
+    expect(
+      getOpacity(
+        correctCnt,
+        skippedCnt,
+        minCorrectCnt,
+        minSkippedCnt,
+        maxCorrectCnt,
+        maxSkippedCnt
+      )
+    ).toBe('50')
+  })
+
+  it('should return opacity based on correctCnt if correctCnt > 0', () => {
+    const correctCnt = 8
+    const skippedCnt = 1
+    const minCorrectCnt = 6
+    const minSkippedCnt = 1
+    const maxCorrectCnt = 10
+    const maxSkippedCnt = 5
+    expect(
+      getOpacity(
+        correctCnt,
+        skippedCnt,
+        minCorrectCnt,
+        minSkippedCnt,
+        maxCorrectCnt,
+        maxSkippedCnt
+      )
+    ).toBe('70')
+  })
+
+  it('should return opacity based on skippedCnt if correctCnt = 0', () => {
+    const correctCnt = 8
+    const skippedCnt = 1
+    const minCorrectCnt = 5
+    const minSkippedCnt = 1
+    const maxCorrectCnt = 10
+    const maxSkippedCnt = 5
+    expect(
+      getOpacity(
+        correctCnt,
+        skippedCnt,
+        minCorrectCnt,
+        minSkippedCnt,
+        maxCorrectCnt,
+        maxSkippedCnt
+      )
+    ).toBe('70')
   })
 })
 
