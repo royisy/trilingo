@@ -51,13 +51,13 @@ describe('getOpacity', () => {
         maxCorrectCnt,
         maxSkippedCnt
       )
-    ).toBe('70')
+    ).toBe('80')
   })
 
   it('should return opacity based on skippedCnt if correctCnt = 0', () => {
     const correctCnt = 8
     const skippedCnt = 1
-    const minCorrectCnt = 5
+    const minCorrectCnt = 4
     const minSkippedCnt = 1
     const maxCorrectCnt = 10
     const maxSkippedCnt = 5
@@ -70,7 +70,7 @@ describe('getOpacity', () => {
         maxCorrectCnt,
         maxSkippedCnt
       )
-    ).toBe('70')
+    ).toBe('80')
   })
 })
 

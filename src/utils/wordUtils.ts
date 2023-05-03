@@ -20,14 +20,14 @@ export const getOpacity = (
   maxCorrectCnt: number,
   maxSkippedCnt: number
 ): string => {
-  if (correctCnt === 0 && skippedCnt === 0) {
-    return '50'
-  }
-
-  const MIN_OPACITY = 30
+  const MIN_OPACITY = 50
   const MAX_OPACITY = 100
   const OPACITY_RANGE = MAX_OPACITY - MIN_OPACITY
   const ROUND_TO = 10
+
+  if (correctCnt === 0 && skippedCnt === 0) {
+    return MIN_OPACITY.toString()
+  }
 
   const value = correctCnt > 0 ? correctCnt : skippedCnt
   const minValue = correctCnt > 0 ? minCorrectCnt : minSkippedCnt
