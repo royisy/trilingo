@@ -5,6 +5,7 @@ import { useSelectDeck } from '../hooks/useSelectDeck'
 import { useSelectedDeck } from '../hooks/useSelectedDeck'
 import { type Deck } from '../models/Deck'
 import { getAllDecks } from '../repositories/deck'
+import { DeckList } from './DeckList'
 import { Header } from './Header'
 
 export const Menu = (): JSX.Element => {
@@ -15,15 +16,17 @@ export const Menu = (): JSX.Element => {
   return (
     <>
       <Header navigatePath="/" icon={<XMarkIcon />} title="Menu" />
-      <ul className="menu w-56 bg-base-100">
-        {decks?.map((deck) => (
-          <DeckItem
-            key={deck.id}
-            deck={deck}
-            isSelected={deck.id === selectedDeck?.id}
-          />
-        ))}
-      </ul>
+      <DeckList>
+        <>
+          {decks?.map((deck) => (
+            <DeckItem
+              key={deck.id}
+              deck={deck}
+              isSelected={deck.id === selectedDeck?.id}
+            />
+          ))}
+        </>
+      </DeckList>
       <div>
         <button
           className="btn-square btn"

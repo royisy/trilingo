@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAddDeck } from '../hooks/useAddDeck'
 import { useDeckList } from '../hooks/useDeckList'
 import { type CsvDeck } from '../models/CsvDeck'
+import { DeckList } from './DeckList'
 import { Header } from './Header'
 
 export const AddDeck = (): JSX.Element => {
@@ -11,11 +12,13 @@ export const AddDeck = (): JSX.Element => {
   return (
     <>
       <Header navigatePath="/menu" icon={<XMarkIcon />} title="Add deck" />
-      <ul className="menu w-56 bg-base-100">
-        {deckList.map((csvDeck) => (
-          <DeckItem key={csvDeck.id} csvDeck={csvDeck} />
-        ))}
-      </ul>
+      <DeckList>
+        <>
+          {deckList.map((csvDeck) => (
+            <DeckItem key={csvDeck.id} csvDeck={csvDeck} />
+          ))}
+        </>
+      </DeckList>
     </>
   )
 }
