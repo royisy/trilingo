@@ -23,7 +23,7 @@ export const Header = ({
       >
         {icon}
       </button>
-      <h1 className="pl-5 text-3xl font-bold">{title}</h1>
+      <h1 className="ml-5 text-3xl font-bold">{title}</h1>
     </div>
   )
 }

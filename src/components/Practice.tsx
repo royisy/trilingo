@@ -72,30 +72,28 @@ export const Practice = (): JSX.Element => {
           <XMarkIcon />
         </button>
         <progress
-          className="progress progress-primary w-56"
+          className="progress progress-primary ml-5 h-5 w-full"
           value={index}
           max={words.length}
         ></progress>
       </div>
       {words.length > 0 && (
         <>
-          <div className="flex flex-col items-center">
-            <p>{words[index]?.definition}</p>
+          <div className="flex h-80 flex-col items-center">
+            <p className="mt-40 text-3xl">{words[index]?.definition}</p>
             <div>
               {isCorrect && (
-                <>
-                  <CheckIcon className="h-20 w-20 text-green-500" />
-                </>
+                <CheckIcon className="mt-6 h-16 w-16 text-green-500" />
               )}
             </div>
-            <p>{answer}</p>
+            <p className="mt-10 text-3xl">{answer}</p>
           </div>
           <div className="flex flex-col items-center">
             <div>
               <div>
                 <input
                   type="text"
-                  className="input-bordered input-primary input"
+                  className="input-bordered input-primary input w-96 text-2xl"
                   ref={inputRef}
                   value={userAnswer}
                   onChange={handleAnswerChange}
@@ -106,7 +104,7 @@ export const Practice = (): JSX.Element => {
                 {answer === '' && (
                   <div>
                     <button
-                      className="btn-secondary btn"
+                      className="btn-secondary btn mt-5"
                       onClick={handleSkipClick}
                     >
                       Skip
@@ -116,7 +114,7 @@ export const Practice = (): JSX.Element => {
                 {answer !== '' && (
                   <div>
                     <button
-                      className="btn-primary btn"
+                      className="btn-primary btn mt-5"
                       onClick={handleNextClick}
                     >
                       Next
