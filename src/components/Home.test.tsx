@@ -27,10 +27,10 @@ describe('Home', () => {
       </MemoryRouter>
     )
     expect(screen.getByText('Trilingo')).toBeInTheDocument()
-    expect(screen.queryByText('Start')).not.toBeInTheDocument()
+    expect(screen.queryByText('Practice')).not.toBeInTheDocument()
     await waitFor(() => {
       expect(screen.getByText('deck 1')).toBeInTheDocument()
-      expect(screen.getByText('Start')).toBeInTheDocument()
+      expect(screen.getByText('Practice')).toBeInTheDocument()
       const liElement1 = container.querySelector(
         '[data-tip="definition 1 / answer 1"]'
       )

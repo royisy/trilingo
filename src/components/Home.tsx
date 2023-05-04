@@ -20,21 +20,19 @@ export const Home = (): JSX.Element => {
         title={title == null ? 'Trilingo' : title}
       />
       {title != null && (
-        <>
-          <div className="flex flex-col items-center">
-            <div className="my-10">
-              <button
-                className="btn-primary btn"
-                onClick={() => {
-                  navigate('/practice')
-                }}
-              >
-                Start
-              </button>
-            </div>
-            <DeckProgress words={words} />
+        <div className="flex flex-col items-center">
+          <div className="my-10">
+            <button
+              className="btn-primary btn"
+              onClick={() => {
+                navigate('/practice')
+              }}
+            >
+              Practice
+            </button>
           </div>
-        </>
+          <DeckProgress words={words} />
+        </div>
       )}
     </>
   )
