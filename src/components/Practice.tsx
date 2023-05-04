@@ -64,7 +64,7 @@ export const Practice = (): JSX.Element => {
     <>
       <div className="flex items-center">
         <button
-          className="btn-square btn"
+          className="btn-ghost btn-square btn"
           onClick={() => {
             navigate('/')
           }}
@@ -104,7 +104,7 @@ export const Practice = (): JSX.Element => {
                 {answer === '' && (
                   <div>
                     <button
-                      className="btn-secondary btn mt-5"
+                      className="btn-outline btn mt-5"
                       onClick={handleSkipClick}
                     >
                       Skip

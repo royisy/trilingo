@@ -16,7 +16,7 @@ export const Header = ({
   return (
     <div className="flex items-center">
       <button
-        className="btn-square btn"
+        className="btn-ghost btn-square btn"
         onClick={() => {
           navigate(navigatePath)
         }}

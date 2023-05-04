@@ -29,7 +29,7 @@ export const Menu = (): JSX.Element => {
       </DeckList>
       <div>
         <button
-          className="btn-square btn"
+          className="btn-outline btn-square btn-sm btn"
           onClick={() => {
             navigate('add-deck')
           }}
