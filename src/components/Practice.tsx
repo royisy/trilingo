@@ -62,7 +62,7 @@ export const Practice = (): JSX.Element => {
 
   return (
     <>
-      <div>
+      <div className="flex items-center">
         <button
           className="btn-square btn"
           onClick={() => {
@@ -71,49 +71,61 @@ export const Practice = (): JSX.Element => {
         >
           <XMarkIcon />
         </button>
+        <progress
+          className="progress progress-primary w-56"
+          value={index}
+          max={words.length}
+        ></progress>
       </div>
       {words.length > 0 && (
         <>
-          <div>
-            <progress
-              className="progress progress-primary w-56"
-              value={index}
-              max={words.length}
-            ></progress>
-          </div>
-          <p>{words[index]?.definition}</p>
-          <div>
-            {isCorrect && (
-              <>
-                <CheckIcon className="h-20 w-20 text-green-500" />
-              </>
-            )}
-          </div>
-          <p>{answer}</p>
-          <div>
-            <input
-              type="text"
-              className="input-bordered input-primary input"
-              ref={inputRef}
-              value={userAnswer}
-              onChange={handleAnswerChange}
-              disabled={answer !== ''}
-            />
-          </div>
-          {answer === '' && (
+          <div className="flex flex-col items-center">
+            <p>{words[index]?.definition}</p>
             <div>
-              <button className="btn-secondary btn" onClick={handleSkipClick}>
-                Skip
-              </button>
+              {isCorrect && (
+                <>
+                  <CheckIcon className="h-20 w-20 text-green-500" />
+                </>
+              )}
             </div>
-          )}
-          {answer !== '' && (
+            <p>{answer}</p>
+          </div>
+          <div className="flex flex-col items-center">
             <div>
-              <button className="btn-primary btn" onClick={handleNextClick}>
-                Next
-              </button>
+              <div>
+                <input
+                  type="text"
+                  className="input-bordered input-primary input"
+                  ref={inputRef}
+                  value={userAnswer}
+                  onChange={handleAnswerChange}
+                  disabled={answer !== ''}
+                />
+              </div>
+              <div className="flex justify-end">
+                {answer === '' && (
+                  <div>
+                    <button
+                      className="btn-secondary btn"
+                      onClick={handleSkipClick}
+                    >
+                      Skip
+                    </button>
+                  </div>
+                )}
+                {answer !== '' && (
+                  <div>
+                    <button
+                      className="btn-primary btn"
+                      onClick={handleNextClick}
+                    >
+                      Next
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
-          )}
+          </div>
         </>
       )}
     </>

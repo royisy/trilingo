@@ -6,6 +6,7 @@ import { DeleteDeck } from './components/DeleteDeck'
 import { ErrorBoundary } from './components/ErrorBoundary'
 import { ErrorPage } from './components/ErrorPage'
 import { Home } from './components/Home'
+import { Layout } from './components/Layout'
 import { Menu } from './components/Menu'
 import { NoMatch } from './components/NoMatch'
 import { Practice } from './components/Practice'
@@ -18,7 +19,9 @@ const router = createBrowserRouter(
       path: '/',
       element: (
         <ErrorBoundary>
-          <Outlet />
+          <Layout>
+            <Outlet />
+          </Layout>
         </ErrorBoundary>
       ),
       errorElement: <ErrorPage />,

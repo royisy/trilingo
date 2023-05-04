@@ -21,7 +21,7 @@ export const Home = (): JSX.Element => {
       />
       {title != null && (
         <>
-          <div>
+          <div className="flex flex-col items-center">
             <button
               className="btn-primary btn"
               onClick={() => {
@@ -30,8 +30,8 @@ export const Home = (): JSX.Element => {
             >
               Start
             </button>
+            <DeckProgress words={words} />
           </div>
-          <DeckProgress words={words} />
         </>
       )}
     </>
