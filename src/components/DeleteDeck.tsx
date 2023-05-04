@@ -3,7 +3,6 @@ import { useLiveQuery } from 'dexie-react-hooks'
 import { useDeleteDeck } from '../hooks/useDeleteDeck'
 import { type Deck } from '../models/Deck'
 import { getAllDecks } from '../repositories/deck'
-import { DeckList } from './DeckList'
 import { Header } from './Header'
 
 export const DeleteDeck = (): JSX.Element => {
@@ -11,14 +10,12 @@ export const DeleteDeck = (): JSX.Element => {
 
   return (
     <>
-      <Header navigatePath="/menu" icon={<XMarkIcon />} title="Delete deck" />
-      <DeckList>
-        <>
-          {decks?.map((deck) => (
-            <DeckItem key={deck.id} deck={deck} />
-          ))}
-        </>
-      </DeckList>
+      <Header navigatePath="/menu" icon={<XMarkIcon />} title="Delete decks" />
+      <ul className="mt-5 w-96 bg-base-100">
+        {decks?.map((deck) => (
+          <DeckItem key={deck.id} deck={deck} />
+        ))}
+      </ul>
     </>
   )
 }
@@ -35,11 +32,11 @@ const DeckItem = ({ deck }: DeckItemProps): JSX.Element => {
   }
 
   return (
-    <li className="flex">
-      <button className="text-left">
-        {deck.title}
+    <li className="flex p-3 text-xl">
+      <button className="mr-3">
         <XCircleIcon className="h-6 w-6" onClick={handleClick} />
       </button>
+      {deck.title}
     </li>
   )
 }

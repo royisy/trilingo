@@ -1,4 +1,4 @@
-import { PlusIcon, XMarkIcon } from '@heroicons/react/20/solid'
+import { MinusIcon, PlusIcon, XMarkIcon } from '@heroicons/react/20/solid'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { useNavigate } from 'react-router-dom'
 import { useSelectDeck } from '../hooks/useSelectDeck'
@@ -27,24 +27,22 @@ export const Menu = (): JSX.Element => {
           ))}
         </>
       </DeckList>
-      <div>
+      <div className="mt-6">
         <button
-          className="btn-outline btn-square btn-sm btn"
+          className="btn-outline btn-square btn-sm btn ml-3"
           onClick={() => {
             navigate('add-deck')
           }}
         >
           <PlusIcon />
         </button>
-      </div>
-      <div>
         <button
-          className="btn-link btn"
+          className="btn-outline btn-square btn-sm btn ml-4"
           onClick={() => {
             navigate('delete-deck')
           }}
         >
-          Delete deck
+          <MinusIcon />
         </button>
       </div>
     </>
@@ -67,7 +65,9 @@ const DeckItem = ({ deck, isSelected }: DeckItemProps): JSX.Element => {
 
   return (
     <li className={isSelected ? 'bordered' : ''}>
-      <button onClick={handleClick}>{deck.title}</button>
+      <button className="text-xl" onClick={handleClick}>
+        {deck.title}
+      </button>
     </li>
   )
 }

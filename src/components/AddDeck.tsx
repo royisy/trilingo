@@ -11,7 +11,11 @@ export const AddDeck = (): JSX.Element => {
 
   return (
     <>
-      <Header navigatePath="/menu" icon={<XMarkIcon />} title="Add deck" />
+      <Header
+        navigatePath="/menu"
+        icon={<XMarkIcon />}
+        title="Add a new deck"
+      />
       <DeckList>
         <>
           {deckList.map((csvDeck) => (
@@ -46,7 +50,7 @@ const DeckItem = ({ csvDeck }: DeckItemProps): JSX.Element => {
         opacity: isLoading ? 0.5 : 1,
       }}
     >
-      <button>{csvDeck.title}</button>
+      <button className="text-xl">{csvDeck.title}</button>
     </li>
   )
 }

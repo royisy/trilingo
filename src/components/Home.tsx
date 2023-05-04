@@ -22,7 +22,7 @@ export const Home = (): JSX.Element => {
       {title != null && (
         <>
           <div className="flex flex-col items-center">
-            <div className="py-10">
+            <div className="my-10">
               <button
                 className="btn-primary btn"
                 onClick={() => {
