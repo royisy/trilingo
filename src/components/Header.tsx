@@ -14,7 +14,7 @@ export const Header = ({
   const navigate = useNavigate()
 
   return (
-    <div className="flex">
+    <div className="flex items-center">
       <button
         className="btn-square btn"
         onClick={() => {
@@ -23,7 +23,7 @@ export const Header = ({
       >
         {icon}
       </button>
-      <h1 className="text-3xl font-bold">{title}</h1>
+      <h1 className="pl-5 text-3xl font-bold">{title}</h1>
     </div>
   )
 }

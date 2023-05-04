@@ -22,14 +22,16 @@ export const Home = (): JSX.Element => {
       {title != null && (
         <>
           <div className="flex flex-col items-center">
-            <button
-              className="btn-primary btn"
-              onClick={() => {
-                navigate('/practice')
-              }}
-            >
-              Start
-            </button>
+            <div className="py-10">
+              <button
+                className="btn-primary btn"
+                onClick={() => {
+                  navigate('/practice')
+                }}
+              >
+                Start
+              </button>
+            </div>
             <DeckProgress words={words} />
           </div>
         </>
