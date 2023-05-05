@@ -6,9 +6,6 @@ export default {
       gridTemplateColumns: {
         20: 'repeat(20, minmax(0, 1fr))',
       },
-      width: {
-        128: '32rem',
-      },
     },
   },
   safelist: [
