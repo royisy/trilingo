@@ -69,7 +69,7 @@ export const Practice = (): JSX.Element => {
             navigate('/')
           }}
         >
-          <XMarkIcon />
+          <XMarkIcon className="w-10 sm:w-12" />
         </button>
         <progress
           className="progress progress-primary ml-4 h-4 w-full sm:ml-5 sm:h-5"

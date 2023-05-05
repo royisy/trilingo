@@ -16,7 +16,7 @@ export const Home = (): JSX.Element => {
     <>
       <Header
         navigatePath="/menu"
-        icon={<Bars3Icon />}
+        icon={<Bars3Icon className="w-10 sm:w-12" />}
         title={title == null ? 'Trilingo' : title}
       />
       {title != null && (

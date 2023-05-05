@@ -10,7 +10,11 @@ export const DeleteDeck = (): JSX.Element => {
 
   return (
     <>
-      <Header navigatePath="/menu" icon={<XMarkIcon />} title="Delete decks" />
+      <Header
+        navigatePath="/menu"
+        icon={<XMarkIcon className="w-10 sm:w-12" />}
+        title="Delete decks"
+      />
       <ul className="mt-5 w-80 sm:w-96">
         {decks?.map((deck) => (
           <DeckItem key={deck.id} deck={deck} />

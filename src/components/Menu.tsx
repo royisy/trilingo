@@ -15,7 +15,11 @@ export const Menu = (): JSX.Element => {
 
   return (
     <>
-      <Header navigatePath="/" icon={<XMarkIcon />} title="Menu" />
+      <Header
+        navigatePath="/"
+        icon={<XMarkIcon className="w-10 sm:w-12" />}
+        title="Menu"
+      />
       <DeckList>
         <>
           {decks?.map((deck) => (
@@ -34,7 +38,7 @@ export const Menu = (): JSX.Element => {
             navigate('add-deck')
           }}
         >
-          <PlusIcon />
+          <PlusIcon className="w-8" />
         </button>
         <button
           className="btn-outline btn-square btn-sm btn ml-4"
@@ -42,7 +46,7 @@ export const Menu = (): JSX.Element => {
             navigate('delete-deck')
           }}
         >
-          <MinusIcon />
+          <MinusIcon className="w-8" />
         </button>
       </div>
     </>

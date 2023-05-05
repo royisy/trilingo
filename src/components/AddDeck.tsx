@@ -13,7 +13,7 @@ export const AddDeck = (): JSX.Element => {
     <>
       <Header
         navigatePath="/menu"
-        icon={<XMarkIcon />}
+        icon={<XMarkIcon className="w-10 sm:w-12" />}
         title="Add a new deck"
       />
       <DeckList>
