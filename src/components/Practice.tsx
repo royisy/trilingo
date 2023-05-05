@@ -64,7 +64,7 @@ export const Practice = (): JSX.Element => {
     <>
       <div className="flex items-center">
         <button
-          className="btn-ghost btn-square btn"
+          className="btn-ghost btn-square btn w-10 sm:w-12"
           onClick={() => {
             navigate('/')
           }}
@@ -72,28 +72,30 @@ export const Practice = (): JSX.Element => {
           <XMarkIcon />
         </button>
         <progress
-          className="progress progress-primary ml-5 h-5 w-full"
+          className="progress progress-primary ml-4 h-4 w-full sm:ml-5 sm:h-5"
           value={index}
           max={words.length}
         ></progress>
       </div>
       {words.length > 0 && (
         <>
-          <div className="flex h-80 flex-col items-center">
-            <p className="mt-40 text-3xl">{words[index]?.definition}</p>
+          <div className="flex h-60 flex-col items-center sm:h-80">
+            <p className="mt-24 text-3xl sm:mt-40">
+              {words[index]?.definition}
+            </p>
             <div>
               {isCorrect && (
-                <CheckIcon className="mt-6 h-16 w-16 text-green-500" />
+                <CheckIcon className="mt-6 h-12 w-12 text-green-500 sm:h-16 sm:w-16" />
               )}
             </div>
-            <p className="mt-10 text-3xl">{answer}</p>
+            <p className="mt-8 text-3xl sm:mt-10">{answer}</p>
           </div>
           <div className="flex flex-col items-center">
             <div>
               <div>
                 <input
                   type="text"
-                  className="input-bordered input-primary input w-96 text-2xl"
+                  className="input-bordered input-primary input w-72 text-2xl sm:w-96"
                   ref={inputRef}
                   value={userAnswer}
                   onChange={handleAnswerChange}
