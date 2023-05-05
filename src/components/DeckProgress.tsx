@@ -20,7 +20,7 @@ export const DeckProgress = ({ words }: DeckProgressProps): JSX.Element => {
   }, maxSkippedCnt)
 
   return (
-    <ul className="grid w-fit list-none grid-cols-20 gap-2">
+    <ul className="grid w-fit list-none grid-cols-20 gap-2 sm:gap-2">
       {words.map((word) => {
         const dataTip = `${word.definition} / ${word.answer}`
         const color = getColor(word.correctCnt, word.skippedCnt)
@@ -34,7 +34,8 @@ export const DeckProgress = ({ words }: DeckProgressProps): JSX.Element => {
         )
         return (
           <li
-            className={`tooltip h-5 w-5 rounded-md bg-${color}-500 bg-opacity-${opacity}`}
+            className={`tooltip h-3 w-3 rounded-sm sm:h-5 sm:w-5 sm:rounded-md
+              bg-${color}-500 bg-opacity-${opacity}`}
             key={word.no}
             data-tip={dataTip}
           ></li>
