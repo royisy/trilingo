@@ -79,16 +79,14 @@ export const Practice = (): JSX.Element => {
       </div>
       {words.length > 0 && (
         <>
-          <div className="flex h-60 flex-col items-center sm:h-80">
-            <p className="mt-24 text-3xl sm:mt-40">
-              {words[index]?.definition}
-            </p>
+          <div className="flex h-28 flex-col items-center sm:h-60">
+            <p className="mt-7 text-3xl sm:mt-24">{words[index]?.definition}</p>
             <div>
               {isCorrect && (
-                <CheckIcon className="mt-6 h-12 w-12 text-green-500 sm:h-16 sm:w-16" />
+                <CheckIcon className="mt-1 h-8 w-8 text-green-500 sm:mt-5 sm:h-16 sm:w-16" />
               )}
             </div>
-            <p className="mt-8 text-3xl sm:mt-10">{answer}</p>
+            <p className="mt-1 text-2xl sm:mt-8 sm:text-3xl">{answer}</p>
           </div>
           <div className="flex flex-col items-center">
             <div>
