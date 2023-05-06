@@ -1,3 +1,4 @@
+import { Tooltip } from 'react-tooltip'
 import { type Word } from '../models/Word'
 import { getColor, getOpacity } from '../utils/wordUtils'
 
@@ -20,27 +21,45 @@ export const DeckProgress = ({ words }: DeckProgressProps): JSX.Element => {
   }, maxSkippedCnt)
 
   return (
-    <ul className="grid w-fit list-none grid-cols-20 gap-2 sm:gap-2">
-      {words.map((word) => {
-        const dataTip = `${word.definition} / ${word.answer}`
-        const color = getColor(word.correctCnt, word.skippedCnt)
-        const opacity = getOpacity(
-          word.correctCnt,
-          word.skippedCnt,
-          minCorrectCnt,
-          minSkippedCnt,
-          maxCorrectCnt,
-          maxSkippedCnt
-        )
-        return (
-          <li
-            className={`tooltip h-3 w-3 rounded-sm sm:h-5 sm:w-5 sm:rounded-md
+    <>
+      <ul className="grid w-fit list-none grid-cols-20 gap-2 sm:gap-2">
+        {words.map((word) => {
+          const color = getColor(word.correctCnt, word.skippedCnt)
+          const opacity = getOpacity(
+            word.correctCnt,
+            word.skippedCnt,
+            minCorrectCnt,
+            minSkippedCnt,
+            maxCorrectCnt,
+            maxSkippedCnt
+          )
+          return (
+            <li
+              key={word.no}
+              className={`tooltip h-3 w-3 rounded-sm sm:h-5 sm:w-5 sm:rounded-md
               bg-${color}-500 bg-opacity-${opacity}`}
-            key={word.no}
-            data-tip={dataTip}
-          ></li>
-        )
-      })}
-    </ul>
+              data-tooltip-id={`deck-progress-tooltip-${word.no}`}
+            ></li>
+          )
+        })}
+      </ul>
+      {words.map((word) => (
+        <Tooltip
+          key={word.no}
+          id={`deck-progress-tooltip-${word.no}`}
+          className="flex flex-col items-center"
+        >
+          <p>
+            {word.definition} / {word.answer}
+          </p>
+          <dl className="mt-2 grid grid-cols-[auto_auto] gap-1 text-right">
+            <dt>Correct:</dt>
+            <dd>{word.correctCnt}</dd>
+            <dt>Skipped:</dt>
+            <dd>{word.skippedCnt}</dd>
+          </dl>
+        </Tooltip>
+      ))}
+    </>
   )
 }

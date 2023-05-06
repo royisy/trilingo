@@ -32,11 +32,11 @@ describe('Home', () => {
       expect(screen.getByText('deck 1')).toBeInTheDocument()
       expect(screen.getByText('Practice')).toBeInTheDocument()
       const liElement1 = container.querySelector(
-        '[data-tip="definition 1 / answer 1"]'
+        '[data-tooltip-id="deck-progress-tooltip-1"]'
       )
       expect(liElement1).toBeInTheDocument()
       const liElement2 = container.querySelector(
-        '[data-tip="definition 2 / answer 2"]'
+        '[data-tooltip-id="deck-progress-tooltip-2"]'
       )
       expect(liElement2).toBeInTheDocument()
     })

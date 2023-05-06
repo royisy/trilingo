@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom'
+import 'react-tooltip/dist/react-tooltip.css'
 import { AddDeck } from './components/AddDeck'
 import { DeleteDeck } from './components/DeleteDeck'
 import { ErrorBoundary } from './components/ErrorBoundary'
