@@ -1,10 +1,11 @@
-import { CheckIcon, XMarkIcon } from '@heroicons/react/24/solid'
+import { XMarkIcon } from '@heroicons/react/24/solid'
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useCheckAnswer } from '../hooks/useCheckAnswer'
 import { useCorrectMark } from '../hooks/useCorrectMark'
 import { useSelectedDeck } from '../hooks/useSelectedDeck'
 import { useWords } from '../hooks/useWords'
+import { CheckIcon } from './CheckIcon'
 
 const NUM_OF_WORDS = 10
 const CORRECT_DISPLAY_TIME = 1000
@@ -83,7 +84,7 @@ export const Practice = (): JSX.Element => {
             <p className="mt-7 text-3xl sm:mt-24">{words[index]?.definition}</p>
             <div>
               {isCorrect && (
-                <CheckIcon className="mt-1 h-8 w-8 text-green-500 sm:mt-5 sm:h-16 sm:w-16" />
+                <CheckIcon className="h-12 w-12 text-green-500 sm:mt-5 sm:h-16 sm:w-16" />
               )}
             </div>
             <p className="mt-1 text-2xl sm:mt-8 sm:text-3xl">{answer}</p>
