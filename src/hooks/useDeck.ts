@@ -14,6 +14,8 @@ export const useDeck = (
   useEffect(() => {
     const getDeck = async (): Promise<void> => {
       if (deckId == null) {
+        setTitle(null)
+        setWords([])
         return
       }
       const deck = await getDeckById(deckId)

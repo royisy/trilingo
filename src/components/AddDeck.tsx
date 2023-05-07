@@ -1,25 +1,33 @@
 import { XMarkIcon } from '@heroicons/react/24/solid'
-import { useNavigate } from 'react-router-dom'
 import { useAddDeck } from '../hooks/useAddDeck'
 import { useDeckList } from '../hooks/useDeckList'
 import { type CsvDeck } from '../models/CsvDeck'
 import { DeckList } from './DeckList'
 import { Header } from './Header'
+import { type MenuComponentKey } from './Menu'
 
-export const AddDeck = (): JSX.Element => {
+interface AddDeckProps {
+  setMenuComponent: (key: MenuComponentKey) => void
+}
+
+export const AddDeck = ({ setMenuComponent }: AddDeckProps): JSX.Element => {
   const deckList = useDeckList()
 
   return (
     <>
       <Header
-        navigatePath="/menu"
+        setMenuComponent={setMenuComponent}
         icon={<XMarkIcon className="w-10 sm:w-12" />}
         title="Add a new deck"
       />
       <DeckList>
         <>
           {deckList.map((csvDeck) => (
-            <DeckItem key={csvDeck.id} csvDeck={csvDeck} />
+            <DeckItem
+              key={csvDeck.id}
+              csvDeck={csvDeck}
+              setMenuComponent={setMenuComponent}
+            />
           ))}
         </>
       </DeckList>
@@ -29,16 +37,19 @@ export const AddDeck = (): JSX.Element => {
 
 interface DeckItemProps {
   csvDeck: CsvDeck
+  setMenuComponent: (key: MenuComponentKey) => void
 }
 
-const DeckItem = ({ csvDeck }: DeckItemProps): JSX.Element => {
+const DeckItem = ({
+  csvDeck,
+  setMenuComponent,
+}: DeckItemProps): JSX.Element => {
   const { addDeck, isLoading } = useAddDeck()
-  const navigate = useNavigate()
 
   const handleClick = async (): Promise<void> => {
     const success = await addDeck(csvDeck)
     if (success) {
-      navigate('/menu')
+      setMenuComponent('select-deck')
     }
   }
 

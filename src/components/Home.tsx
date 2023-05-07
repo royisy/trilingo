@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useDeck } from '../hooks/useDeck'
 import { getAppSetting } from '../repositories/appSetting'
 import { DeckProgress } from './DeckProgress'
-import { Header } from './Header'
+import { Menu } from './Menu'
 
 export const Home = (): JSX.Element => {
   const appSetting = useLiveQuery(getAppSetting)
@@ -13,27 +13,44 @@ export const Home = (): JSX.Element => {
   const navigate = useNavigate()
 
   return (
-    <>
-      <Header
-        navigatePath="/menu"
-        icon={<Bars3Icon className="w-10 sm:w-12" />}
-        title={title == null ? 'Trilingo' : title}
-      />
-      {title != null && (
-        <div className="flex flex-col items-center">
-          <div className="my-10">
-            <button
-              className="btn-primary btn"
-              onClick={() => {
-                navigate('/practice')
-              }}
+    <div className="drawer-mobile drawer">
+      <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+      <div className="drawer-content p-5">
+        <div className="flex flex-col">
+          <div className="flex items-center">
+            <label
+              htmlFor="my-drawer"
+              className="btn-ghost drawer-button btn-square btn w-10 sm:w-12 lg:hidden"
             >
-              Practice
-            </button>
+              <Bars3Icon className="w-10 sm:w-12" />
+            </label>
+            <h1 className="ml-5 text-2xl font-bold sm:text-3xl lg:ml-0">
+              {title}
+            </h1>
           </div>
-          <DeckProgress words={words} />
+          {title != null && (
+            <>
+              <div className="my-10">
+                <button
+                  className="btn-primary btn"
+                  onClick={() => {
+                    navigate('/practice')
+                  }}
+                >
+                  Practice
+                </button>
+              </div>
+              <DeckProgress words={words} />
+            </>
+          )}
         </div>
-      )}
-    </>
+      </div>
+      <div className="drawer-side">
+        <label htmlFor="my-drawer" className="drawer-overlay"></label>
+        <div className="w-80 bg-base-200">
+          <Menu />
+        </div>
+      </div>
+    </div>
   )
 }
