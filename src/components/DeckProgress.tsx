@@ -22,7 +22,7 @@ export const DeckProgress = ({ words }: DeckProgressProps): JSX.Element => {
 
   return (
     <>
-      <ul className="grid w-fit list-none grid-cols-20 gap-2 sm:gap-2">
+      <ul className="grid w-fit list-none grid-cols-20 gap-2">
         {words.map((word) => {
           const color = getColor(word.correctCnt, word.skippedCnt)
           const opacity = getOpacity(
@@ -36,7 +36,7 @@ export const DeckProgress = ({ words }: DeckProgressProps): JSX.Element => {
           return (
             <li
               key={word.no}
-              className={`tooltip h-3 w-3 rounded-sm sm:h-5 sm:w-5 sm:rounded-md
+              className={`tooltip h-3 w-3 rounded-sm sm:h-4 sm:w-4 sm:rounded
               bg-${color}-500 bg-opacity-${opacity}`}
               data-tooltip-id={`deck-progress-tooltip-${word.no}`}
             ></li>
