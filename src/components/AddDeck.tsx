@@ -43,13 +43,7 @@ const DeckItem = ({ csvDeck }: DeckItemProps): JSX.Element => {
   }
 
   return (
-    <li
-      onClick={isLoading ? undefined : handleClick}
-      style={{
-        cursor: isLoading ? 'not-allowed' : 'pointer',
-        opacity: isLoading ? 0.5 : 1,
-      }}
-    >
+    <li onClick={isLoading ? undefined : handleClick}>
       <button className="text-xl">{csvDeck.title}</button>
     </li>
   )
