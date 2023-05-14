@@ -1,8 +1,8 @@
 import { MinusIcon, PlusIcon } from '@heroicons/react/24/solid'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { useSelectDeck } from '../hooks/useSelectDeck'
-import { useSelectedDeck } from '../hooks/useSelectedDeck'
 import { type Deck } from '../models/Deck'
+import { getAppSetting } from '../repositories/appSetting'
 import { getAllDecks } from '../repositories/deck'
 import { DeckList } from './DeckList'
 import { type MenuComponentKey } from './Menu'
@@ -15,7 +15,8 @@ export const SelectDeck = ({
   setMenuComponent,
 }: SelectDeckProps): JSX.Element => {
   const decks = useLiveQuery(getAllDecks)
-  const { selectedDeck } = useSelectedDeck()
+  const appSetting = useLiveQuery(getAppSetting)
+  const selectedDeckId = appSetting?.selectedDeckId ?? null
 
   return (
     <>
@@ -26,7 +27,7 @@ export const SelectDeck = ({
             <DeckItem
               key={deck.id}
               deck={deck}
-              isSelected={deck.id === selectedDeck?.id}
+              isSelected={deck.id === selectedDeckId}
             />
           ))}
         </>
