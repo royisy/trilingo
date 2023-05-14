@@ -38,28 +38,29 @@ export const DeckProgress = ({ words }: DeckProgressProps): JSX.Element => {
               key={word.no}
               className={`tooltip h-3 w-3 rounded-sm sm:h-4 sm:w-4 sm:rounded
               bg-${color}-500 bg-opacity-${opacity}`}
-              data-tooltip-id={`deck-progress-tooltip-${word.no}`}
+              data-tooltip-id="deck-progress-tooltip"
+              data-definition={`${word.definition} / ${word.answer}`}
+              data-correct-cnt={word.correctCnt}
+              data-skipped-cnt={word.skippedCnt}
             ></li>
           )
         })}
       </ul>
-      {words.map((word) => (
-        <Tooltip
-          key={word.no}
-          id={`deck-progress-tooltip-${word.no}`}
-          className="flex flex-col items-center"
-        >
-          <p>
-            {word.definition} / {word.answer}
-          </p>
-          <dl className="mt-2 grid grid-cols-[auto_auto] gap-1 text-right">
-            <dt>Correct:</dt>
-            <dd>{word.correctCnt}</dd>
-            <dt>Skipped:</dt>
-            <dd>{word.skippedCnt}</dd>
-          </dl>
-        </Tooltip>
-      ))}
+      <Tooltip
+        id="deck-progress-tooltip"
+        className="flex flex-col items-center"
+        render={({ activeAnchor }) => (
+          <div className="flex flex-col items-center">
+            <p>{activeAnchor?.getAttribute('data-definition')}</p>
+            <dl className="mt-2 grid grid-cols-[auto_auto] gap-1 text-right">
+              <dt>Correct:</dt>
+              <dd>{activeAnchor?.getAttribute('data-correct-cnt')}</dd>
+              <dt>Skipped:</dt>
+              <dd>{activeAnchor?.getAttribute('data-skipped-cnt')}</dd>
+            </dl>
+          </div>
+        )}
+      />
     </>
   )
 }
