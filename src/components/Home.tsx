@@ -24,13 +24,13 @@ export const Home = (): JSX.Element => {
             >
               <Bars3Icon className="w-10 sm:w-12" />
             </label>
-            <h1 className="ml-5 text-2xl font-bold sm:text-3xl lg:ml-0">
+            <h1 className="ml-5 text-2xl font-bold sm:text-3xl lg:ml-0 lg:hidden">
               {title}
             </h1>
           </div>
           {title != null && (
             <>
-              <div className="my-10">
+              <div className="my-10 lg:mt-0">
                 <button
                   className="btn-primary btn"
                   onClick={() => {

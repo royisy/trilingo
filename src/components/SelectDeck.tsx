@@ -19,6 +19,7 @@ export const SelectDeck = ({
 
   return (
     <>
+      <h1 className="m-5 text-3xl font-bold">Trilingo</h1>
       <DeckList>
         <>
           {decks?.map((deck) => (
