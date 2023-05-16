@@ -1,16 +1,14 @@
-import { type MenuComponentKey } from './Menu'
+import { useContext } from 'react'
+import { MenuComponentContext } from './Menu'
 
 interface HeaderProps {
-  setMenuComponent: (key: MenuComponentKey) => void
   icon: React.ReactNode
   title: string
 }
 
-export const Header = ({
-  setMenuComponent,
-  icon,
-  title,
-}: HeaderProps): JSX.Element => {
+export const Header = ({ icon, title }: HeaderProps): JSX.Element => {
+  const setMenuComponent = useContext(MenuComponentContext)
+
   return (
     <div className="flex items-center">
       <button

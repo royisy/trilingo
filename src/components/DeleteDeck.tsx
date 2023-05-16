@@ -4,21 +4,13 @@ import { useDeleteDeck } from '../hooks/useDeleteDeck'
 import { type Deck } from '../models/Deck'
 import { getAllDecks } from '../repositories/deck'
 import { Header } from './Header'
-import { type MenuComponentKey } from './Menu'
 
-interface DeleteDeckProps {
-  setMenuComponent: (key: MenuComponentKey) => void
-}
-
-export const DeleteDeck = ({
-  setMenuComponent,
-}: DeleteDeckProps): JSX.Element => {
+export const DeleteDeck = (): JSX.Element => {
   const decks = useLiveQuery(getAllDecks)
 
   return (
     <>
       <Header
-        setMenuComponent={setMenuComponent}
         icon={<XMarkIcon className="w-10 sm:w-12" />}
         title="Delete decks"
       />
