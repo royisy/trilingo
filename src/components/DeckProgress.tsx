@@ -20,7 +20,7 @@ export const DeckProgress = ({ words }: DeckProgressProps): JSX.Element => {
   }, maxSkippedCnt)
 
   return (
-    <ul className="grid w-fit list-none grid-cols-20 gap-2">
+    <ul className="grid w-fit list-none grid-cols-[repeat(20,minmax(0,1fr))] gap-2">
       {words.map((word) => {
         const color = getColor(word.correctCnt, word.skippedCnt)
         const opacity = getOpacity(

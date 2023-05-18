@@ -1,16 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  mode: 'jit',
+  purge: ['./*.{html}', './src/*.{ts,tsx}', './src/**/*.{ts,tsx}'],
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
-  theme: {
-    extend: {
-      fontFamily: {
-        Pacifico: ['Pacifico', 'cursive'],
-      },
-      gridTemplateColumns: {
-        20: 'repeat(20, minmax(0, 1fr))',
-      },
-    },
-  },
   safelist: [
     'bg-green-500',
     'bg-red-500',
