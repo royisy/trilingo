@@ -1,6 +1,7 @@
 import { Bars3Icon } from '@heroicons/react/24/solid'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { useNavigate } from 'react-router-dom'
+import { Tooltip } from 'react-tooltip'
 import { useDeck } from '../hooks/useDeck'
 import { getAppSetting } from '../repositories/appSetting'
 import { DeckProgress } from './DeckProgress'
@@ -51,6 +52,21 @@ export const Home = (): JSX.Element => {
           <Menu />
         </div>
       </div>
+      <Tooltip
+        id="deck-progress-tooltip"
+        className="z-10 flex flex-col items-center"
+        render={({ activeAnchor }) => (
+          <div className="flex flex-col items-center">
+            <p>{activeAnchor?.getAttribute('data-definition')}</p>
+            <dl className="mt-2 grid grid-cols-[auto_auto] gap-1 text-right">
+              <dt>Correct:</dt>
+              <dd>{activeAnchor?.getAttribute('data-correct-cnt')}</dd>
+              <dt>Skipped:</dt>
+              <dd>{activeAnchor?.getAttribute('data-skipped-cnt')}</dd>
+            </dl>
+          </div>
+        )}
+      />
     </div>
   )
 }
