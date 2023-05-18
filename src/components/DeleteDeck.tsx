@@ -3,14 +3,14 @@ import { useLiveQuery } from 'dexie-react-hooks'
 import { useDeleteDeck } from '../hooks/useDeleteDeck'
 import { type Deck } from '../models/Deck'
 import { getAllDecks } from '../repositories/deck'
-import { Header } from './Header'
+import { MenuHeader } from './MenuHeader'
 
 export const DeleteDeck = (): JSX.Element => {
   const decks = useLiveQuery(getAllDecks)
 
   return (
     <>
-      <Header title="Delete decks" />
+      <MenuHeader title="Delete decks" />
       <ul>
         {decks?.map((deck) => (
           <DeckItem key={deck.id} deck={deck} />

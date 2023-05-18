@@ -3,15 +3,15 @@ import { useAddDeck } from '../hooks/useAddDeck'
 import { useDeckList } from '../hooks/useDeckList'
 import { type CsvDeck } from '../models/CsvDeck'
 import { DeckList } from './DeckList'
-import { Header } from './Header'
 import { MenuComponentContext } from './Menu'
+import { MenuHeader } from './MenuHeader'
 
 export const AddDeck = (): JSX.Element => {
   const deckList = useDeckList()
 
   return (
     <>
-      <Header title="Add a new deck" />
+      <MenuHeader title="Add a new deck" />
       <DeckList>
         <>
           {deckList.map((csvDeck) => (

@@ -6,7 +6,7 @@ interface HeaderProps {
   title: string
 }
 
-export const Header = ({ title }: HeaderProps): JSX.Element => {
+export const MenuHeader = ({ title }: HeaderProps): JSX.Element => {
   const setMenuComponent = useContext(MenuComponentContext)
 
   return (
