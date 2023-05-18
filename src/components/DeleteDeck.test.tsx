@@ -1,5 +1,4 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
-import { MemoryRouter } from 'react-router-dom'
 import { db } from '../db'
 import { AppSetting } from '../models/AppSetting'
 import { Deck } from '../models/Deck'
@@ -11,11 +10,7 @@ describe('DeleteDeck', () => {
     await db.decks.add(deck1)
     const deck2 = new Deck(2, 'deck 2')
     await db.decks.add(deck2)
-    render(
-      <MemoryRouter>
-        <DeleteDeck />
-      </MemoryRouter>
-    )
+    render(<DeleteDeck />)
     await waitFor(() => {
       expect(screen.getByText('deck 1')).toBeInTheDocument()
       expect(screen.getByText('deck 2')).toBeInTheDocument()
@@ -26,11 +21,7 @@ describe('DeleteDeck', () => {
     const appSetting = new AppSetting()
     appSetting.selectedDeckId = 1
     await appSetting.save()
-    render(
-      <MemoryRouter>
-        <DeleteDeck />
-      </MemoryRouter>
-    )
+    render(<DeleteDeck />)
     const deck1Element = await screen.findByText('deck 1')
     const parentLiElement = deck1Element.parentElement
     const svgElement = parentLiElement?.querySelector('svg')
@@ -55,11 +46,7 @@ describe('DeleteDeck', () => {
     if (appSetting == null) return
     appSetting.selectedDeckId = 2
     await appSetting.save()
-    render(
-      <MemoryRouter>
-        <DeleteDeck />
-      </MemoryRouter>
-    )
+    render(<DeleteDeck />)
     const deck1Element = await screen.findByText('deck 1')
     const parentLiElement = deck1Element.parentElement
     const svgElement = parentLiElement?.querySelector('svg')

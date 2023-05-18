@@ -1,6 +1,4 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
-import * as router from 'react-router'
-import { MemoryRouter } from 'react-router-dom'
 import { vi } from 'vitest'
 import { db } from '../db'
 import { Deck } from '../models/Deck'
@@ -27,11 +25,7 @@ describe('AddDeck', () => {
   it('should list decks that are not in database', async () => {
     const deck1 = new Deck(1, 'deck 1')
     await db.decks.add(deck1)
-    render(
-      <MemoryRouter>
-        <AddDeck />
-      </MemoryRouter>
-    )
+    render(<AddDeck />)
     await waitFor(() => {
       expect(screen.queryByText('deck 1')).not.toBeInTheDocument()
       expect(screen.getByText('deck 2')).toBeInTheDocument()
@@ -40,13 +34,7 @@ describe('AddDeck', () => {
   })
 
   it('should add deck and words to database when the deck is clicked', async () => {
-    const navigate = vi.fn()
-    vi.spyOn(router, 'useNavigate').mockImplementation(() => navigate)
-    render(
-      <MemoryRouter>
-        <AddDeck />
-      </MemoryRouter>
-    )
+    render(<AddDeck />)
     const deck2Element = await screen.findByText('deck 2')
     fireEvent.click(deck2Element)
     await waitFor(async () => {
@@ -66,7 +54,6 @@ describe('AddDeck', () => {
       expect(words[1].no).toBe(2)
       expect(words[1].definition).toBe('definition 2')
       expect(words[1].answer).toBe('answer 2')
-      expect(navigate).toHaveBeenCalledWith('/menu')
     })
   })
 })
