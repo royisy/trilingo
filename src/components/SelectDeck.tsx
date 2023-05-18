@@ -16,7 +16,7 @@ export const SelectDeck = (): JSX.Element => {
 
   return (
     <>
-      <h1 className="m-5 text-3xl font-bold">Trilingo</h1>
+      <h1 className="m-5 font-Pacifico text-4xl font-bold">Trilingo</h1>
       <DeckList>
         <>
           {decks?.map((deck) => (
