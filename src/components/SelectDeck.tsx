@@ -28,14 +28,14 @@ export const SelectDeck = (): JSX.Element => {
           ))}
         </>
       </DeckList>
-      <div className="mt-6">
+      <div className="mt-5">
         <button
-          className="btn-outline btn-square btn-sm btn ml-3"
+          className="btn-outline btn-square btn-sm btn ml-4"
           onClick={() => {
             setMenuComponent('add-deck')
           }}
         >
-          <PlusIcon className="w-8" />
+          <PlusIcon />
         </button>
         <button
           className="btn-outline btn-square btn-sm btn ml-4"
@@ -43,7 +43,7 @@ export const SelectDeck = (): JSX.Element => {
             setMenuComponent('delete-deck')
           }}
         >
-          <MinusIcon className="w-8" />
+          <MinusIcon />
         </button>
       </div>
     </>

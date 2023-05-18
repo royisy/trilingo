@@ -1,25 +1,25 @@
+import { XMarkIcon } from '@heroicons/react/24/solid'
 import { useContext } from 'react'
 import { MenuComponentContext } from './Menu'
 
 interface HeaderProps {
-  icon: React.ReactNode
   title: string
 }
 
-export const Header = ({ icon, title }: HeaderProps): JSX.Element => {
+export const Header = ({ title }: HeaderProps): JSX.Element => {
   const setMenuComponent = useContext(MenuComponentContext)
 
   return (
-    <div className="flex items-center">
+    <div className="m-4 flex items-center">
       <button
-        className="btn-ghost btn-square btn w-10 sm:w-12"
+        className="btn-ghost btn-square btn h-10 min-h-0 w-10"
         onClick={() => {
           setMenuComponent('select-deck')
         }}
       >
-        {icon}
+        <XMarkIcon />
       </button>
-      <h1 className="ml-5 text-2xl font-bold sm:text-3xl">{title}</h1>
+      <h1 className="ml-4 text-2xl font-bold">{title}</h1>
     </div>
   )
 }

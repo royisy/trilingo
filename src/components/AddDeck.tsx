@@ -1,4 +1,3 @@
-import { XMarkIcon } from '@heroicons/react/24/solid'
 import { useContext } from 'react'
 import { useAddDeck } from '../hooks/useAddDeck'
 import { useDeckList } from '../hooks/useDeckList'
@@ -12,10 +11,7 @@ export const AddDeck = (): JSX.Element => {
 
   return (
     <>
-      <Header
-        icon={<XMarkIcon className="w-10 sm:w-12" />}
-        title="Add a new deck"
-      />
+      <Header title="Add a new deck" />
       <DeckList>
         <>
           {deckList.map((csvDeck) => (

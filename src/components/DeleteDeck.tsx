@@ -1,4 +1,4 @@
-import { XCircleIcon, XMarkIcon } from '@heroicons/react/24/solid'
+import { XCircleIcon } from '@heroicons/react/24/solid'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { useDeleteDeck } from '../hooks/useDeleteDeck'
 import { type Deck } from '../models/Deck'
@@ -10,11 +10,8 @@ export const DeleteDeck = (): JSX.Element => {
 
   return (
     <>
-      <Header
-        icon={<XMarkIcon className="w-10 sm:w-12" />}
-        title="Delete decks"
-      />
-      <ul className="mt-5 w-80 sm:w-96">
+      <Header title="Delete decks" />
+      <ul>
         {decks?.map((deck) => (
           <DeckItem key={deck.id} deck={deck} />
         ))}
@@ -35,9 +32,9 @@ const DeckItem = ({ deck }: DeckItemProps): JSX.Element => {
   }
 
   return (
-    <li className="flex p-3 text-xl">
-      <button className="mr-3">
-        <XCircleIcon className="h-6 w-6" onClick={handleClick} />
+    <li className="flex items-center p-3 text-xl">
+      <button className="mr-3 h-6 w-6" onClick={handleClick}>
+        <XCircleIcon />
       </button>
       {deck.title}
     </li>
