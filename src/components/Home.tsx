@@ -16,14 +16,15 @@ export const Home = (): JSX.Element => {
   return (
     <div className="drawer-mobile drawer">
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
-      <div className="drawer-content p-5">
-        <div className="flex flex-col">
+      <div className="drawer-content flex justify-center p-5 lg:justify-start">
+        <div className="flex w-fit flex-col lg:items-center">
           <div className="flex items-center">
             <label
               htmlFor="my-drawer"
-              className="btn-ghost drawer-button btn-square btn w-10 sm:w-12 lg:hidden"
+              className="btn-ghost drawer-button btn-square btn h-10 min-h-0 w-10
+                sm:h-12 sm:w-12 lg:hidden"
             >
-              <Bars3Icon className="w-10 sm:w-12" />
+              <Bars3Icon />
             </label>
             <h1 className="ml-5 text-2xl font-bold sm:text-3xl lg:ml-0 lg:hidden">
               {title}
@@ -31,7 +32,7 @@ export const Home = (): JSX.Element => {
           </div>
           {title != null && (
             <>
-              <div className="my-10 lg:mt-0">
+              <div className="my-10 self-center lg:mt-5">
                 <button
                   className="btn-primary btn"
                   onClick={() => {
