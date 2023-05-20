@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useCheckAnswer } from '../hooks/useCheckAnswer'
 import { useCorrectMark } from '../hooks/useCorrectMark'
-import { useSelectedDeck } from '../hooks/useSelectedDeck'
 import { useWords } from '../hooks/useWords'
 import { CheckIcon } from './CheckIcon'
 
@@ -11,11 +10,10 @@ const NUM_OF_WORDS = 10
 const CORRECT_DISPLAY_TIME = 1000
 
 export const Practice = (): JSX.Element => {
-  const { selectedDeck, noDeckSelected } = useSelectedDeck()
-  const navigate = useNavigate()
   const inputRef = useRef<HTMLInputElement | null>(null)
+  const { noDeckSelected, words } = useWords(NUM_OF_WORDS)
+  const navigate = useNavigate()
   const checkAnswer = useCheckAnswer()
-  const words = useWords(selectedDeck, NUM_OF_WORDS)
   const [index, setIndex] = useState<number>(0)
   const [userAnswer, setUserAnswer] = useState<string>('')
   const { isCorrect, showCorrect } = useCorrectMark(CORRECT_DISPLAY_TIME)
