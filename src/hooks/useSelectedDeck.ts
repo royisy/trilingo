@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { type Word } from '../models/Word'
 import { getDeckById } from '../repositories/deck'
 
-export const useDeck = (
+export const useSelectedDeck = (
   deckId: number | null
 ): {
   title: string | null

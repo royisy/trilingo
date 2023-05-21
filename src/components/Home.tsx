@@ -2,7 +2,7 @@ import { Bars3Icon } from '@heroicons/react/24/solid'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { useNavigate } from 'react-router-dom'
 import { Tooltip } from 'react-tooltip'
-import { useDeck } from '../hooks/useDeck'
+import { useSelectedDeck } from '../hooks/useSelectedDeck'
 import { getAppSetting } from '../repositories/appSetting'
 import { DeckProgress } from './DeckProgress'
 import { Menu } from './Menu'
@@ -10,7 +10,7 @@ import { Menu } from './Menu'
 export const Home = (): JSX.Element => {
   const appSetting = useLiveQuery(getAppSetting)
   const deckId = appSetting?.selectedDeckId ?? null
-  const { title, words } = useDeck(deckId)
+  const { title, words } = useSelectedDeck(deckId)
   const navigate = useNavigate()
 
   return (

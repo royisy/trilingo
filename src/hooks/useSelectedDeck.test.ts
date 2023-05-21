@@ -2,7 +2,7 @@ import { renderHook, waitFor } from '@testing-library/react'
 import { db } from '../db'
 import { Deck } from '../models/Deck'
 import { Word } from '../models/Word'
-import { useDeck } from './useDeck'
+import { useSelectedDeck } from './useSelectedDeck'
 
 describe('useDeck', () => {
   beforeAll(async () => {
@@ -20,7 +20,7 @@ describe('useDeck', () => {
 
   it('should return null title and empty words when deckId is null', async () => {
     const deckId = null
-    const { result } = renderHook(() => useDeck(deckId))
+    const { result } = renderHook(() => useSelectedDeck(deckId))
     await waitFor(() => {
       expect(result.current.title).toBeNull()
       expect(result.current.words).toEqual([])
@@ -29,7 +29,7 @@ describe('useDeck', () => {
 
   it('should return deck title and words when deckId is not null', async () => {
     const deckId = 2
-    const { result } = renderHook(() => useDeck(deckId))
+    const { result } = renderHook(() => useSelectedDeck(deckId))
     await waitFor(() => {
       expect(result.current.title).toBe('deck 2')
       expect(result.current.words.length).toBe(2)
