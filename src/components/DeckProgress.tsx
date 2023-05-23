@@ -22,7 +22,7 @@ export const DeckProgress = ({ words }: DeckProgressProps): JSX.Element => {
   return (
     <ul
       className="grid w-fit list-none grid-cols-[repeat(20,minmax(0,1fr))]
-        gap-2 pb-5"
+        gap-1.5 pb-5 sm:gap-2"
     >
       {words.map((word) => {
         const color = getColor(word.correctCnt, word.skippedCnt)

@@ -5,19 +5,20 @@ import { Tooltip } from 'react-tooltip'
 import { useSelectedDeck } from '../hooks/useSelectedDeck'
 import { getAppSetting } from '../repositories/appSetting'
 import { DeckProgress } from './DeckProgress'
+import { Logo } from './Logo'
 import { Menu } from './Menu'
 
 export const Home = (): JSX.Element => {
   const appSetting = useLiveQuery(getAppSetting)
-  const deckId = appSetting?.selectedDeckId ?? null
-  const { title, words } = useSelectedDeck(deckId)
+  const noDeckSelected = appSetting != null && appSetting.selectedDeckId == null
+  const { title, words } = useSelectedDeck()
   const navigate = useNavigate()
 
   return (
     <div className="drawer-mobile drawer">
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex justify-center p-5 lg:justify-start">
-        <div className="flex w-fit flex-col lg:items-center">
+        <div className="flex w-[360px] flex-col sm:w-[480px] lg:items-center">
           <div className="flex items-center">
             <label
               htmlFor="my-drawer"
@@ -26,6 +27,11 @@ export const Home = (): JSX.Element => {
             >
               <Bars3Icon />
             </label>
+            {noDeckSelected && (
+              <div className="ml-24 sm:ml-32 lg:hidden">
+                <Logo />
+              </div>
+            )}
             <h1 className="ml-5 text-2xl font-bold sm:text-3xl lg:ml-0 lg:hidden">
               {title}
             </h1>
@@ -42,7 +48,9 @@ export const Home = (): JSX.Element => {
                   Practice
                 </button>
               </div>
-              <DeckProgress words={words} />
+              <div className="flex justify-center">
+                <DeckProgress words={words} />
+              </div>
             </>
           )}
         </div>

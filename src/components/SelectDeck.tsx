@@ -6,6 +6,7 @@ import { type Deck } from '../models/Deck'
 import { getAppSetting } from '../repositories/appSetting'
 import { getAllDecks } from '../repositories/deck'
 import { DeckList } from './DeckList'
+import { Logo } from './Logo'
 import { MenuComponentContext } from './Menu'
 
 export const SelectDeck = (): JSX.Element => {
@@ -16,9 +17,9 @@ export const SelectDeck = (): JSX.Element => {
 
   return (
     <>
-      <h1 className="m-5 font-['Pacifico','cursive'] text-4xl font-bold">
-        Trilingo
-      </h1>
+      <div className="m-5">
+        <Logo />
+      </div>
       <DeckList>
         <>
           {decks?.map((deck) => (

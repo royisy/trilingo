@@ -1,5 +1,6 @@
 import { renderHook, waitFor } from '@testing-library/react'
 import { db } from '../db'
+import { AppSetting } from '../models/AppSetting'
 import { Deck } from '../models/Deck'
 import { Word } from '../models/Word'
 import { useSelectedDeck } from './useSelectedDeck'
@@ -18,18 +19,19 @@ describe('useDeck', () => {
     await db.words.add(word3)
   })
 
-  it('should return null title and empty words when deckId is null', async () => {
-    const deckId = null
-    const { result } = renderHook(() => useSelectedDeck(deckId))
+  it('should return null title and empty words when deck is not selected', async () => {
+    const { result } = renderHook(() => useSelectedDeck())
     await waitFor(() => {
       expect(result.current.title).toBeNull()
       expect(result.current.words).toEqual([])
     })
   })
 
-  it('should return deck title and words when deckId is not null', async () => {
-    const deckId = 2
-    const { result } = renderHook(() => useSelectedDeck(deckId))
+  it('should return deck title and words when deck is selected', async () => {
+    const appSetting = new AppSetting()
+    appSetting.selectedDeckId = 2
+    await db.appSettings.add(appSetting)
+    const { result } = renderHook(() => useSelectedDeck())
     await waitFor(() => {
       expect(result.current.title).toBe('deck 2')
       expect(result.current.words.length).toBe(2)

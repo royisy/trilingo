@@ -1,15 +1,18 @@
+import { useLiveQuery } from 'dexie-react-hooks'
 import { useEffect, useState } from 'react'
 import { type Word } from '../models/Word'
+import { getAppSetting } from '../repositories/appSetting'
 import { getDeckById } from '../repositories/deck'
 
-export const useSelectedDeck = (
-  deckId: number | null
-): {
+export const useSelectedDeck = (): {
   title: string | null
   words: Word[]
 } => {
   const [title, setTitle] = useState<string | null>(null)
   const [words, setWords] = useState<Word[]>([])
+
+  const appSetting = useLiveQuery(getAppSetting)
+  const deckId = appSetting?.selectedDeckId ?? null
 
   useEffect(() => {
     const getDeck = async (): Promise<void> => {
