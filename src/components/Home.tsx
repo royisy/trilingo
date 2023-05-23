@@ -1,20 +1,20 @@
 import { Bars3Icon } from '@heroicons/react/24/solid'
 import { useLiveQuery } from 'dexie-react-hooks'
-import { createContext, useState } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Tooltip } from 'react-tooltip'
+import { MenuContext, type MenuComponentKey } from '../contexts/MenuContext'
 import { useSelectedDeck } from '../hooks/useSelectedDeck'
 import { getAppSetting } from '../repositories/appSetting'
+import { AddDeck } from './AddDeck'
 import { DeckProgress } from './DeckProgress'
+import { DeleteDeck } from './DeleteDeck'
 import { Logo } from './Logo'
 import { Menu } from './Menu'
 
-export const DrawerContext = createContext<
-  React.Dispatch<React.SetStateAction<boolean>>
->(() => {})
-
 export const Home = (): JSX.Element => {
   const [drawerOpen, setDrawerOpen] = useState(false)
+  const [menuComponent, setMenuComponent] = useState<MenuComponentKey>('menu')
 
   const appSetting = useLiveQuery(getAppSetting)
   const noDeckSelected = appSetting != null && appSetting.selectedDeckId == null
@@ -23,6 +23,7 @@ export const Home = (): JSX.Element => {
 
   const toggleDrawerOpen = async (): Promise<void> => {
     drawerOpen ? setDrawerOpen(false) : setDrawerOpen(true)
+    setMenuComponent('menu')
   }
 
   return (
@@ -31,7 +32,7 @@ export const Home = (): JSX.Element => {
         id="home-drawer"
         type="checkbox"
         className="drawer-toggle"
-        checked={drawerOpen}
+        defaultChecked={drawerOpen}
       />
       <div className="drawer-content flex justify-center p-5 lg:justify-start">
         <div className="flex w-[360px] flex-col sm:w-[480px] lg:items-center">
@@ -78,9 +79,11 @@ export const Home = (): JSX.Element => {
           onClick={toggleDrawerOpen}
         ></label>
         <div className="w-80 bg-base-200">
-          <DrawerContext.Provider value={setDrawerOpen}>
-            <Menu />
-          </DrawerContext.Provider>
+          <MenuContext.Provider value={{ setDrawerOpen, setMenuComponent }}>
+            {menuComponent === 'menu' && <Menu />}
+            {menuComponent === 'add-deck' && <AddDeck />}
+            {menuComponent === 'delete-deck' && <DeleteDeck />}
+          </MenuContext.Provider>
         </div>
       </div>
       <Tooltip

@@ -1,9 +1,9 @@
 import { useContext } from 'react'
+import { MenuContext } from '../contexts/MenuContext'
 import { useAddDeck } from '../hooks/useAddDeck'
 import { useDeckList } from '../hooks/useDeckList'
 import { type CsvDeck } from '../models/CsvDeck'
 import { DeckList } from './DeckList'
-import { MenuComponentContext } from './Menu'
 import { MenuHeader } from './MenuHeader'
 
 export const AddDeck = (): JSX.Element => {
@@ -29,12 +29,12 @@ interface DeckItemProps {
 
 const DeckItem = ({ csvDeck }: DeckItemProps): JSX.Element => {
   const { addDeck, isLoading } = useAddDeck()
-  const setMenuComponent = useContext(MenuComponentContext)
+  const { setMenuComponent } = useContext(MenuContext)
 
   const handleClick = async (): Promise<void> => {
     const success = await addDeck(csvDeck)
     if (success) {
-      setMenuComponent('select-deck')
+      setMenuComponent('menu')
     }
   }
 

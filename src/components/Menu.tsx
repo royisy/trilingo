@@ -1,23 +1,77 @@
-import { createContext, useState } from 'react'
-import { AddDeck } from './AddDeck'
-import { DeleteDeck } from './DeleteDeck'
-import { SelectDeck } from './SelectDeck'
-
-export type MenuComponentKey = 'select-deck' | 'add-deck' | 'delete-deck'
-
-export const MenuComponentContext = createContext<
-  React.Dispatch<React.SetStateAction<MenuComponentKey>>
->(() => {})
+import { MinusIcon, PlusIcon } from '@heroicons/react/24/solid'
+import { useLiveQuery } from 'dexie-react-hooks'
+import { useContext } from 'react'
+import { MenuContext } from '../contexts/MenuContext'
+import { useSelectDeck } from '../hooks/useSelectDeck'
+import { type Deck } from '../models/Deck'
+import { getAppSetting } from '../repositories/appSetting'
+import { getAllDecks } from '../repositories/deck'
+import { DeckList } from './DeckList'
+import { Logo } from './Logo'
 
 export const Menu = (): JSX.Element => {
-  const [menuComponent, setMenuComponent] =
-    useState<MenuComponentKey>('select-deck')
+  const decks = useLiveQuery(getAllDecks)
+  const appSetting = useLiveQuery(getAppSetting)
+  const selectedDeckId = appSetting?.selectedDeckId ?? null
+  const { setMenuComponent } = useContext(MenuContext)
 
   return (
-    <MenuComponentContext.Provider value={setMenuComponent}>
-      {menuComponent === 'select-deck' && <SelectDeck />}
-      {menuComponent === 'add-deck' && <AddDeck />}
-      {menuComponent === 'delete-deck' && <DeleteDeck />}
-    </MenuComponentContext.Provider>
+    <>
+      <div className="m-5">
+        <Logo />
+      </div>
+      <DeckList>
+        <>
+          {decks?.map((deck) => (
+            <DeckItem
+              key={deck.id}
+              deck={deck}
+              isSelected={deck.id === selectedDeckId}
+            />
+          ))}
+        </>
+      </DeckList>
+      <div className="mt-5">
+        <button
+          className="btn-outline btn-square btn-sm btn ml-4"
+          onClick={() => {
+            setMenuComponent('add-deck')
+          }}
+        >
+          <PlusIcon className="w-8" />
+        </button>
+        <button
+          className="btn-outline btn-square btn-sm btn ml-4"
+          onClick={() => {
+            setMenuComponent('delete-deck')
+          }}
+        >
+          <MinusIcon className="w-8" />
+        </button>
+      </div>
+    </>
+  )
+}
+
+interface DeckItemProps {
+  deck: Deck
+  isSelected: boolean
+}
+
+const DeckItem = ({ deck, isSelected }: DeckItemProps): JSX.Element => {
+  const selectDeck = useSelectDeck()
+  const { setDrawerOpen } = useContext(MenuContext)
+
+  const handleClick = async (): Promise<void> => {
+    await selectDeck(deck)
+    setDrawerOpen(false)
+  }
+
+  return (
+    <li className={isSelected ? 'bordered' : ''}>
+      <button className="text-xl" onClick={handleClick}>
+        {deck.title}
+      </button>
+    </li>
   )
 }

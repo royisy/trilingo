@@ -1,10 +1,53 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { useContext } from 'react'
 import { MemoryRouter } from 'react-router-dom'
+import { vi } from 'vitest'
+import { MenuContext } from '../contexts/MenuContext'
 import { db } from '../db'
 import { AppSetting } from '../models/AppSetting'
 import { Deck } from '../models/Deck'
 import { Word } from '../models/Word'
 import { Home } from './Home'
+
+vi.mock('./Menu', () => {
+  const Menu = (): JSX.Element => {
+    const { setMenuComponent } = useContext(MenuContext)
+
+    return (
+      <>
+        <h1> Menu component </h1>
+        <button
+          onClick={() => {
+            setMenuComponent('add-deck')
+          }}
+        >
+          Add deck
+        </button>
+        <button
+          onClick={() => {
+            setMenuComponent('delete-deck')
+          }}
+        >
+          Delete deck
+        </button>
+      </>
+    )
+  }
+
+  return { Menu }
+})
+
+vi.mock('./AddDeck', () => {
+  const AddDeck = (): JSX.Element => <h1>AddDeck component</h1>
+  AddDeck.displayName = 'AddDeck'
+  return { AddDeck }
+})
+
+vi.mock('./DeleteDeck', () => {
+  const DeleteDeck = (): JSX.Element => <h1>DeleteDeck component</h1>
+  DeleteDeck.displayName = 'DeleteDeck'
+  return { DeleteDeck }
+})
 
 describe('Home', () => {
   it('should render deck title and words list', async () => {
@@ -26,7 +69,6 @@ describe('Home', () => {
         <Home />
       </MemoryRouter>
     )
-    expect(screen.getByText('Trilingo')).toBeInTheDocument()
     expect(screen.queryByText('Practice')).not.toBeInTheDocument()
     await waitFor(() => {
       const elements = screen.getAllByText('deck 1')
@@ -41,5 +83,27 @@ describe('Home', () => {
       )
       expect(liElement2).toBeInTheDocument()
     })
+  })
+
+  it('should render Menu by default and can switch to AddDeck', () => {
+    render(
+      <MemoryRouter>
+        <Home />
+      </MemoryRouter>
+    )
+    expect(screen.getByText('Menu component')).toBeInTheDocument()
+    fireEvent.click(screen.getByText('Add deck'))
+    expect(screen.getByText('AddDeck component')).toBeInTheDocument()
+  })
+
+  it('should render Menu by default and can switch to DeleteDeck', () => {
+    render(
+      <MemoryRouter>
+        <Home />
+      </MemoryRouter>
+    )
+    expect(screen.getByText('Menu component')).toBeInTheDocument()
+    fireEvent.click(screen.getByText('Delete deck'))
+    expect(screen.getByText('DeleteDeck component')).toBeInTheDocument()
   })
 })
