@@ -1,5 +1,6 @@
 import { Bars3Icon } from '@heroicons/react/24/solid'
 import { useLiveQuery } from 'dexie-react-hooks'
+import { createContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Tooltip } from 'react-tooltip'
 import { useSelectedDeck } from '../hooks/useSelectedDeck'
@@ -8,21 +9,37 @@ import { DeckProgress } from './DeckProgress'
 import { Logo } from './Logo'
 import { Menu } from './Menu'
 
+export const DrawerContext = createContext<
+  React.Dispatch<React.SetStateAction<boolean>>
+>(() => {})
+
 export const Home = (): JSX.Element => {
+  const [drawerOpen, setDrawerOpen] = useState(false)
+
   const appSetting = useLiveQuery(getAppSetting)
   const noDeckSelected = appSetting != null && appSetting.selectedDeckId == null
   const { title, words } = useSelectedDeck()
   const navigate = useNavigate()
 
+  const toggleDrawerOpen = async (): Promise<void> => {
+    drawerOpen ? setDrawerOpen(false) : setDrawerOpen(true)
+  }
+
   return (
     <div className="drawer-mobile drawer">
-      <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+      <input
+        id="home-drawer"
+        type="checkbox"
+        className="drawer-toggle"
+        checked={drawerOpen}
+      />
       <div className="drawer-content flex justify-center p-5 lg:justify-start">
         <div className="flex w-[360px] flex-col sm:w-[480px] lg:items-center">
           <div className="flex items-center">
             <label
-              htmlFor="my-drawer"
-              className="btn-ghost drawer-button btn-square btn lg:hidden"
+              htmlFor="home-drawer"
+              className="btn-ghost btn-square btn lg:hidden"
+              onClick={toggleDrawerOpen}
             >
               <Bars3Icon className="min-h-0 w-10 sm:w-12" />
             </label>
@@ -55,9 +72,15 @@ export const Home = (): JSX.Element => {
         </div>
       </div>
       <div className="drawer-side">
-        <label htmlFor="my-drawer" className="drawer-overlay"></label>
+        <label
+          htmlFor="home-drawer"
+          className="drawer-overlay"
+          onClick={toggleDrawerOpen}
+        ></label>
         <div className="w-80 bg-base-200">
-          <Menu />
+          <DrawerContext.Provider value={setDrawerOpen}>
+            <Menu />
+          </DrawerContext.Provider>
         </div>
       </div>
       <Tooltip

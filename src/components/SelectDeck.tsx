@@ -6,6 +6,7 @@ import { type Deck } from '../models/Deck'
 import { getAppSetting } from '../repositories/appSetting'
 import { getAllDecks } from '../repositories/deck'
 import { DeckList } from './DeckList'
+import { DrawerContext } from './Home'
 import { Logo } from './Logo'
 import { MenuComponentContext } from './Menu'
 
@@ -60,9 +61,11 @@ interface DeckItemProps {
 
 const DeckItem = ({ deck, isSelected }: DeckItemProps): JSX.Element => {
   const selectDeck = useSelectDeck()
+  const setDrawerOpen = useContext(DrawerContext)
 
   const handleClick = async (): Promise<void> => {
     await selectDeck(deck)
+    setDrawerOpen(false)
   }
 
   return (
