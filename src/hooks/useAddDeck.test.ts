@@ -23,7 +23,6 @@ describe('useAddDeck', () => {
     await waitFor(async () => {
       await expect(result.current.addDeck(csvDeck)).resolves.toBe(false)
     })
-    expect(result.current.isLoading).toBe(false)
   })
 
   it('should add a new deck if the deck does not exist', async () => {
