@@ -38,7 +38,7 @@ export const SelectDeck = (): JSX.Element => {
             setMenuComponent('add-deck')
           }}
         >
-          <PlusIcon />
+          <PlusIcon className="w-8" />
         </button>
         <button
           className="btn-outline btn-square btn-sm btn ml-4"
@@ -46,7 +46,7 @@ export const SelectDeck = (): JSX.Element => {
             setMenuComponent('delete-deck')
           }}
         >
-          <MinusIcon />
+          <MinusIcon className="w-8" />
         </button>
       </div>
     </>

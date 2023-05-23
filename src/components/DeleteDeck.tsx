@@ -33,8 +33,8 @@ const DeckItem = ({ deck }: DeckItemProps): JSX.Element => {
 
   return (
     <li className="flex items-center p-3 text-xl">
-      <button className="mr-3 h-6 w-6" onClick={handleClick}>
-        <XCircleIcon />
+      <button className="mr-3" onClick={handleClick}>
+        <XCircleIcon className="w-6" />
       </button>
       {deck.title}
     </li>

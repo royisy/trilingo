@@ -22,10 +22,9 @@ export const Home = (): JSX.Element => {
           <div className="flex items-center">
             <label
               htmlFor="my-drawer"
-              className="btn-ghost drawer-button btn-square btn h-10 min-h-0 w-10
-                sm:h-12 sm:w-12 lg:hidden"
+              className="btn-ghost drawer-button btn-square btn lg:hidden"
             >
-              <Bars3Icon />
+              <Bars3Icon className="min-h-0 w-10 sm:w-12" />
             </label>
             {noDeckSelected && (
               <div className="ml-24 sm:ml-32 lg:hidden">

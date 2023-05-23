@@ -64,7 +64,7 @@ export const Practice = (): JSX.Element => {
       <div className="w-full max-w-screen-sm p-5">
         <div className="flex items-center">
           <button
-            className="btn-ghost btn-square btn w-10 sm:w-12"
+            className="btn-ghost btn-square btn"
             onClick={() => {
               navigate('/')
             }}
@@ -85,7 +85,7 @@ export const Practice = (): JSX.Element => {
               </p>
               <div>
                 {isCorrect && (
-                  <CheckIcon className="h-12 w-12 text-green-500 sm:mt-5 sm:h-16 sm:w-16" />
+                  <CheckIcon className="w-12 text-green-500 sm:mt-5 sm:w-16" />
                 )}
               </div>
               <p className="mt-1 text-2xl sm:mt-8 sm:text-3xl">{answer}</p>
