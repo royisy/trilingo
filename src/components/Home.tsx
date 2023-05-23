@@ -27,7 +27,7 @@ export const Home = (): JSX.Element => {
               <Bars3Icon className="min-h-0 w-10 sm:w-12" />
             </label>
             {noDeckSelected && (
-              <div className="ml-24 sm:ml-32 lg:hidden">
+              <div className="ml-20 sm:ml-32 lg:hidden">
                 <Logo />
               </div>
             )}
