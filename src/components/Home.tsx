@@ -22,8 +22,12 @@ export const Home = (): JSX.Element => {
   const navigate = useNavigate()
 
   const toggleDrawerOpen = async (): Promise<void> => {
-    drawerOpen ? setDrawerOpen(false) : setDrawerOpen(true)
-    setMenuComponent('menu')
+    if (drawerOpen) {
+      setDrawerOpen(false)
+    } else {
+      setMenuComponent('menu')
+      setDrawerOpen(true)
+    }
   }
 
   return (
@@ -32,7 +36,8 @@ export const Home = (): JSX.Element => {
         id="home-drawer"
         type="checkbox"
         className="drawer-toggle"
-        defaultChecked={drawerOpen}
+        checked={drawerOpen}
+        onChange={() => {}}
       />
       <div className="drawer-content flex justify-center p-5 lg:justify-start">
         <div className="flex w-[360px] flex-col sm:w-[480px] lg:items-center">
