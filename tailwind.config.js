@@ -1,7 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  mode: 'jit',
-  purge: ['./*.{html}', './src/*.{ts,tsx}', './src/**/*.{ts,tsx}'],
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   safelist: [
     'bg-green-500',
