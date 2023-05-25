@@ -11,7 +11,7 @@ export const AddDeck = (): JSX.Element => {
 
   return (
     <>
-      <MenuHeader title="Add a new deck" />
+      <MenuHeader title="Add Deck" />
       <DeckList>
         <>
           {deckList.map((csvDeck) => (

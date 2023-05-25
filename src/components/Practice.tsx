@@ -68,6 +68,7 @@ export const Practice = (): JSX.Element => {
             onClick={() => {
               navigate('/')
             }}
+            title="Quit"
           >
             <XMarkIcon className="w-10 sm:w-12" />
           </button>

@@ -51,6 +51,7 @@ export const Home = (): JSX.Element => {
               htmlFor="home-drawer"
               className="btn-ghost btn-square btn lg:hidden"
               onClick={toggleDrawerOpen}
+              title="Menu"
             >
               <Bars3Icon className="min-h-0 w-10 sm:w-12" />
             </label>

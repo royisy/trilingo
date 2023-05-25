@@ -37,6 +37,7 @@ export const Menu = (): JSX.Element => {
           onClick={() => {
             setMenuComponent('add-deck')
           }}
+          title="Add Deck"
         >
           <PlusIcon className="w-8" />
         </button>
@@ -45,6 +46,7 @@ export const Menu = (): JSX.Element => {
           onClick={() => {
             setMenuComponent('delete-deck')
           }}
+          title="Delete Deck"
         >
           <MinusIcon className="w-8" />
         </button>

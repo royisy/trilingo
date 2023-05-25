@@ -16,6 +16,7 @@ export const MenuHeader = ({ title }: HeaderProps): JSX.Element => {
         onClick={() => {
           setMenuComponent('menu')
         }}
+        title="Close"
       >
         <XMarkIcon className="min-h-0 w-10" />
       </button>
