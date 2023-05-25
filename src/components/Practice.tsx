@@ -72,7 +72,7 @@ export const Practice = (): JSX.Element => {
             <XMarkIcon className="w-10 sm:w-12" />
           </button>
           <progress
-            className="progress progress-primary ml-4 h-4 w-full sm:ml-5 sm:h-5"
+            className="progress progress-primary ml-2 mr-3 h-4 w-full sm:ml-5 sm:h-5"
             value={index}
             max={words.length}
           ></progress>
@@ -80,15 +80,13 @@ export const Practice = (): JSX.Element => {
         {words.length > 0 && (
           <>
             <div className="flex h-28 flex-col items-center sm:h-60">
-              <p className="mt-7 text-3xl sm:mt-24">
+              <p className="mt-8 text-3xl sm:mt-24">
                 {words[index]?.definition}
               </p>
-              <div>
-                {isCorrect && (
-                  <CheckIcon className="w-12 text-green-500 sm:mt-5 sm:w-16" />
-                )}
-              </div>
-              <p className="mt-1 text-2xl sm:mt-8 sm:text-3xl">{answer}</p>
+              {isCorrect && (
+                <CheckIcon className="-mt-2 w-12 text-green-500 sm:mt-5 sm:w-16" />
+              )}
+              <p className="mt-0.5 text-2xl sm:mt-8 sm:text-3xl">{answer}</p>
             </div>
             <div className="flex flex-col items-center">
               <div>

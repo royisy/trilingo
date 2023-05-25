@@ -41,7 +41,13 @@ export const Home = (): JSX.Element => {
       />
       <div className="drawer-content flex justify-center p-5 lg:justify-start">
         <div className="flex w-[360px] flex-col sm:w-[480px] lg:items-center">
-          <div className="flex items-center">
+          <div
+            className={
+              noDeckSelected
+                ? 'grid grid-cols-3 items-center'
+                : 'flex items-center'
+            }
+          >
             <label
               htmlFor="home-drawer"
               className="btn-ghost btn-square btn lg:hidden"
@@ -50,13 +56,15 @@ export const Home = (): JSX.Element => {
               <Bars3Icon className="min-h-0 w-10 sm:w-12" />
             </label>
             {noDeckSelected && (
-              <div className="ml-20 sm:ml-32 lg:hidden">
+              <div className="flex justify-center lg:hidden">
                 <Logo />
               </div>
             )}
-            <h1 className="ml-5 text-2xl font-bold sm:text-3xl lg:ml-0 lg:hidden">
-              {title}
-            </h1>
+            {!noDeckSelected && (
+              <h1 className="ml-5 text-2xl font-bold sm:text-3xl lg:ml-0 lg:hidden">
+                {title}
+              </h1>
+            )}
           </div>
           {title != null && (
             <>
