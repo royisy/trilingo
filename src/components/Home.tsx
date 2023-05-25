@@ -15,7 +15,6 @@ import { Menu } from './Menu'
 export const Home = (): JSX.Element => {
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [menuComponent, setMenuComponent] = useState<MenuComponentKey>('menu')
-
   const appSetting = useLiveQuery(getAppSetting)
   const noDeckSelected = appSetting != null && appSetting.selectedDeckId == null
   const { title, words } = useSelectedDeck()

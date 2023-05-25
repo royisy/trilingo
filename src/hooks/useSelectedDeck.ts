@@ -8,11 +8,10 @@ export const useSelectedDeck = (): {
   title: string | null
   words: Word[]
 } => {
-  const [title, setTitle] = useState<string | null>(null)
-  const [words, setWords] = useState<Word[]>([])
-
   const appSetting = useLiveQuery(getAppSetting)
   const deckId = appSetting?.selectedDeckId ?? null
+  const [title, setTitle] = useState<string | null>(null)
+  const [words, setWords] = useState<Word[]>([])
 
   useEffect(() => {
     const getDeck = async (): Promise<void> => {

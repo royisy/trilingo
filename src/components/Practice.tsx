@@ -12,9 +12,9 @@ const CORRECT_DISPLAY_TIME = 1000
 export const Practice = (): JSX.Element => {
   const inputRef = useRef<HTMLInputElement | null>(null)
   const { noDeckSelected, words } = useWords(NUM_OF_WORDS)
+  const [index, setIndex] = useState<number>(0)
   const navigate = useNavigate()
   const checkAnswer = useCheckAnswer()
-  const [index, setIndex] = useState<number>(0)
   const [userAnswer, setUserAnswer] = useState<string>('')
   const { isCorrect, showCorrect } = useCorrectMark(CORRECT_DISPLAY_TIME)
   const [answer, setAnswer] = useState<string>('')
