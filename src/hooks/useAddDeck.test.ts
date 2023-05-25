@@ -46,5 +46,7 @@ describe('useAddDeck', () => {
     expect(words[1].no).toBe(2)
     expect(words[1].definition).toBe('definition 2')
     expect(words[1].answer).toBe('answer 2')
+    const appSettings = await db.appSettings.get(1)
+    expect(appSettings?.selectedDeckId).toBe(2)
   })
 })

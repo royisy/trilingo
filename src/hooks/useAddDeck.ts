@@ -3,6 +3,7 @@ import { type CsvDeck } from '../models/CsvDeck'
 import { type CsvWord } from '../models/CsvWord'
 import { Deck } from '../models/Deck'
 import { Word } from '../models/Word'
+import { getAppSetting } from '../repositories/appSetting'
 import { getDeckById } from '../repositories/deck'
 import { getCsv } from '../utils/csvUtils'
 
@@ -26,6 +27,9 @@ export const useAddDeck = (): {
     )
     const newDeck = new Deck(csvDeck.id, csvDeck.title)
     await newDeck.save(words)
+    const appSetting = await getAppSetting()
+    appSetting.selectedDeckId = newDeck.id
+    await appSetting.save()
     setIsLoading(false)
     return true
   }, [])
