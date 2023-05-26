@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
+import { ErrorPage } from './ErrorPage'
 
 interface ErrorBoundaryProps {
   children: JSX.Element
@@ -6,7 +8,7 @@ interface ErrorBoundaryProps {
 
 /**
  * An ErrorBoundary component that catches unhandled promise rejections
- * and displays an error message.
+ * and displays an error page.
  *
  * @param props The properties for the ErrorBoundary component.
  * @param props.children The children components to be wrapped by the ErrorBoundary.
@@ -16,6 +18,7 @@ export const ErrorBoundary = ({
   children,
 }: ErrorBoundaryProps): JSX.Element => {
   const [error, setError] = useState<Error | null>(null)
+  const location = useLocation()
 
   const handleUnhandledRejection = (event: PromiseRejectionEvent): void => {
     setError(event.reason)
@@ -29,18 +32,13 @@ export const ErrorBoundary = ({
     }
   }, [])
 
+  useEffect(() => {
+    setError(null)
+  }, [location])
+
   if (error !== null) {
-    return (
-      <div
-        onClick={() => {
-          setError(null)
-        }}
-      >
-        <p>Error: Something went wrong...</p>
-        {children}
-      </div>
-    )
+    return <ErrorPage />
   }
 
-  return <div>{children}</div>
+  return <>{children}</>
 }
