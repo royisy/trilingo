@@ -20,7 +20,7 @@ export const MenuHeader = ({ title }: HeaderProps): JSX.Element => {
       >
         <XMarkIcon className="min-h-0 w-10" />
       </button>
-      <h1 className="ml-4 text-2xl font-bold">{title}</h1>
+      <h1 className="ml-2 text-2xl font-bold">{title}</h1>
     </div>
   )
 }
