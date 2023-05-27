@@ -164,12 +164,12 @@ const DeleteDeckModal = ({
         <label className="modal-box text-xl">
           <p>Delete &quot;{deckToDelete?.title}&quot;?</p>
           <div className="modal-action">
-            <label htmlFor="delete-deck-modal" className="btn">
+            <label htmlFor="delete-deck-modal" className="btn-outline btn">
               Cancel
             </label>
             <label
               htmlFor="delete-deck-modal"
-              className="btn"
+              className="btn-primary btn"
               onClick={handleDeleteDeck}
             >
               OK

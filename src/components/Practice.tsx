@@ -86,7 +86,7 @@ export const Practice = (): JSX.Element => {
                 <div>
                   <input
                     type="text"
-                    className="input-bordered input-primary input w-72 text-2xl sm:w-96"
+                    className="input-primary input w-72 text-2xl sm:w-96"
                     ref={inputRef}
                     value={userAnswer}
                     onChange={handleAnswerChange}
@@ -145,12 +145,12 @@ const QuitButton = (): JSX.Element => {
         <label className="modal-box text-xl">
           <p>Quit practice?</p>
           <div className="modal-action">
-            <label htmlFor="quit-practice-modal" className="btn">
+            <label htmlFor="quit-practice-modal" className="btn-outline btn">
               Cancel
             </label>
             <label
               htmlFor="quit-practice-modal"
-              className="btn"
+              className="btn-primary btn"
               onClick={() => {
                 navigate('/')
               }}
