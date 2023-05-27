@@ -1,6 +1,7 @@
 import { XCircleIcon } from '@heroicons/react/24/solid'
 import { useLiveQuery } from 'dexie-react-hooks'
-import { useDeleteDeck } from '../hooks/useDeleteDeck'
+import { useContext } from 'react'
+import { MenuContext } from '../contexts/MenuContext'
 import { type Deck } from '../models/Deck'
 import { getAllDecks } from '../repositories/deck'
 import { MenuHeader } from './MenuHeader'
@@ -25,17 +26,24 @@ interface DeckItemProps {
 }
 
 const DeckItem = ({ deck }: DeckItemProps): JSX.Element => {
-  const deleteDeck = useDeleteDeck()
+  const { setDeckToDelete } = useContext(MenuContext)
 
-  const handleClick = async (): Promise<void> => {
-    await deleteDeck(deck)
+  const handleDeckSelect = (deck: Deck): void => {
+    setDeckToDelete(deck)
   }
 
   return (
     <li className="flex items-center p-3 text-xl">
-      <button className="mr-3" onClick={handleClick} title="Delete">
+      <label
+        htmlFor="delete-deck-modal"
+        className="mr-3"
+        onClick={() => {
+          handleDeckSelect(deck)
+        }}
+        title="Delete"
+      >
         <XCircleIcon className="w-6" />
-      </button>
+      </label>
       {deck.title}
     </li>
   )

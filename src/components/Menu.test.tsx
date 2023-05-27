@@ -6,6 +6,10 @@ import { Deck } from '../models/Deck'
 import { Menu } from './Menu'
 
 describe('Menu', () => {
+  const mockSetDrawerOpen = vi.fn()
+  const mockSetMenuComponent = vi.fn()
+  const mockSetDeckToDelete = vi.fn()
+
   beforeAll(async () => {
     const deck1 = new Deck(1, 'deck 1')
     await db.decks.add(deck1)
@@ -34,13 +38,12 @@ describe('Menu', () => {
   })
 
   it('should set menu component to add-deck', () => {
-    const mockSetDrawerOpen = vi.fn()
-    const mockSetMenuComponent = vi.fn()
     render(
       <MenuContext.Provider
         value={{
           setDrawerOpen: mockSetDrawerOpen,
           setMenuComponent: mockSetMenuComponent,
+          setDeckToDelete: mockSetDeckToDelete,
         }}
       >
         <Menu />
@@ -53,13 +56,12 @@ describe('Menu', () => {
   })
 
   it('should set menu component to delete-deck', () => {
-    const mockSetDrawerOpen = vi.fn()
-    const mockSetMenuComponent = vi.fn()
     render(
       <MenuContext.Provider
         value={{
           setDrawerOpen: mockSetDrawerOpen,
           setMenuComponent: mockSetMenuComponent,
+          setDeckToDelete: mockSetDeckToDelete,
         }}
       >
         <Menu />

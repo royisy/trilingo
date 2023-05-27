@@ -63,15 +63,7 @@ export const Practice = (): JSX.Element => {
     <div className="flex justify-center">
       <div className="w-full max-w-screen-sm p-5">
         <div className="flex items-center">
-          <button
-            className="btn-ghost btn-square btn"
-            onClick={() => {
-              navigate('/')
-            }}
-            title="Quit"
-          >
-            <XMarkIcon className="w-10 sm:w-12" />
-          </button>
+          <QuitButton />
           <progress
             className="progress progress-primary ml-2 mr-3 h-4 w-full sm:ml-5 sm:h-5"
             value={index}
@@ -129,5 +121,45 @@ export const Practice = (): JSX.Element => {
         )}
       </div>
     </div>
+  )
+}
+
+const QuitButton = (): JSX.Element => {
+  const navigate = useNavigate()
+
+  return (
+    <>
+      <label
+        htmlFor="quit-practice-modal"
+        className="btn-ghost btn-square btn"
+        title="Quit"
+      >
+        <XMarkIcon className="w-10 sm:w-12" />
+      </label>
+      <input
+        type="checkbox"
+        id="quit-practice-modal"
+        className="modal-toggle"
+      />
+      <label htmlFor="quit-practice-modal" className="modal cursor-pointer">
+        <label className="modal-box text-xl">
+          <p>Quit practice?</p>
+          <div className="modal-action">
+            <label htmlFor="quit-practice-modal" className="btn">
+              Cancel
+            </label>
+            <label
+              htmlFor="quit-practice-modal"
+              className="btn"
+              onClick={() => {
+                navigate('/')
+              }}
+            >
+              OK
+            </label>
+          </div>
+        </label>
+      </label>
+    </>
   )
 }

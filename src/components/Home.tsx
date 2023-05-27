@@ -4,7 +4,9 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Tooltip } from 'react-tooltip'
 import { MenuContext, type MenuComponentKey } from '../contexts/MenuContext'
+import { useDeleteDeck } from '../hooks/useDeleteDeck'
 import { useSelectedDeck } from '../hooks/useSelectedDeck'
+import { type Deck } from '../models/Deck'
 import { getAppSetting } from '../repositories/appSetting'
 import { AddDeck } from './AddDeck'
 import { DeckProgress } from './DeckProgress'
@@ -19,6 +21,7 @@ export const Home = (): JSX.Element => {
   const noDeckSelected = appSetting != null && appSetting.selectedDeckId == null
   const { title, words } = useSelectedDeck()
   const navigate = useNavigate()
+  const [deckToDelete, setDeckToDelete] = useState<Deck | null>(null)
 
   const toggleDrawerOpen = async (): Promise<void> => {
     if (drawerOpen) {
@@ -92,13 +95,31 @@ export const Home = (): JSX.Element => {
           onClick={toggleDrawerOpen}
         ></label>
         <div className="w-80 bg-base-200">
-          <MenuContext.Provider value={{ setDrawerOpen, setMenuComponent }}>
+          <MenuContext.Provider
+            value={{
+              setDrawerOpen,
+              setMenuComponent,
+              setDeckToDelete,
+            }}
+          >
             {menuComponent === 'menu' && <Menu />}
             {menuComponent === 'add-deck' && <AddDeck />}
             {menuComponent === 'delete-deck' && <DeleteDeck />}
           </MenuContext.Provider>
         </div>
       </div>
+      <WordTooltip />
+      <DeleteDeckModal
+        deckToDelete={deckToDelete}
+        setDeckToDelete={setDeckToDelete}
+      />
+    </div>
+  )
+}
+
+const WordTooltip = (): JSX.Element => {
+  return (
+    <>
       <Tooltip
         id="deck-progress-tooltip"
         className="z-10 flex flex-col items-center"
@@ -114,6 +135,48 @@ export const Home = (): JSX.Element => {
           </div>
         )}
       />
-    </div>
+    </>
+  )
+}
+
+interface DeleteDeckModalProps {
+  deckToDelete: Deck | null
+  setDeckToDelete: (deck: Deck | null) => void
+}
+
+const DeleteDeckModal = ({
+  deckToDelete,
+  setDeckToDelete,
+}: DeleteDeckModalProps): JSX.Element => {
+  const deleteDeck = useDeleteDeck()
+
+  const handleDeleteDeck = async (): Promise<void> => {
+    if (deckToDelete != null) {
+      await deleteDeck(deckToDelete)
+    }
+    setDeckToDelete(null)
+  }
+
+  return (
+    <>
+      <input type="checkbox" id="delete-deck-modal" className="modal-toggle" />
+      <label htmlFor="delete-deck-modal" className="modal cursor-pointer">
+        <label className="modal-box text-xl">
+          <p>Delete &quot;{deckToDelete?.title}&quot;?</p>
+          <div className="modal-action">
+            <label htmlFor="delete-deck-modal" className="btn">
+              Cancel
+            </label>
+            <label
+              htmlFor="delete-deck-modal"
+              className="btn"
+              onClick={handleDeleteDeck}
+            >
+              OK
+            </label>
+          </div>
+        </label>
+      </label>
+    </>
   )
 }
