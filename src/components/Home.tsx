@@ -64,7 +64,7 @@ export const Home = (): JSX.Element => {
               </div>
             )}
             {!noDeckSelected && (
-              <h1 className="ml-5 text-2xl font-bold sm:text-3xl lg:ml-0 lg:hidden">
+              <h1 className="ml-4 text-2xl font-bold sm:ml-5 sm:text-3xl lg:ml-0 lg:hidden">
                 {title}
               </h1>
             )}
