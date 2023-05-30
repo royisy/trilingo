@@ -1,4 +1,4 @@
-import { XCircleIcon } from '@heroicons/react/24/solid'
+import { TrashIcon } from '@heroicons/react/24/solid'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { useContext } from 'react'
 import { MenuContext } from '../contexts/MenuContext'
@@ -36,13 +36,13 @@ const DeckItem = ({ deck }: DeckItemProps): JSX.Element => {
     <li className="flex items-center p-3 text-xl">
       <label
         htmlFor="delete-deck-modal"
-        className="mr-3"
+        className="btn-ghost btn-square btn mr-3 h-7 min-h-0 w-7"
         onClick={() => {
           handleDeckSelect(deck)
         }}
         title="Delete"
       >
-        <XCircleIcon className="w-6" />
+        <TrashIcon className="w-5" />
       </label>
       {deck.title}
     </li>
