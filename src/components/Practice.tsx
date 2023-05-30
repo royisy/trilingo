@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useCheckAnswer } from '../hooks/useCheckAnswer'
 import { useCorrectMark } from '../hooks/useCorrectMark'
 import { useWords } from '../hooks/useWords'
+import { type Word } from '../models/Word'
 import { CheckIcon } from './CheckIcon'
 
 const NUM_OF_WORDS = 10
@@ -17,7 +18,12 @@ export const Practice = (): JSX.Element => {
   const checkAnswer = useCheckAnswer()
   const [userAnswer, setUserAnswer] = useState<string>('')
   const { isCorrect, showCorrect } = useCorrectMark(CORRECT_DISPLAY_TIME)
+  const [progress, setProgress] = useState<number>(0)
+  const [isReview, setIsReview] = useState<boolean>(false)
+  const [skippedWords, setSkippedWords] = useState<Word[]>([])
   const [answer, setAnswer] = useState<string>('')
+  const word = isReview ? skippedWords[0] : words[index]
+  const showAnswer = answer !== ''
 
   useEffect(() => {
     inputRef.current?.focus()
@@ -32,30 +38,45 @@ export const Practice = (): JSX.Element => {
   ): Promise<void> => {
     const userAnswer = event.target.value
     setUserAnswer(userAnswer)
-    const isCorrectAnswer = await checkAnswer(words[index], userAnswer)
+    const isCorrectAnswer = await checkAnswer(word, userAnswer)
     if (!isCorrectAnswer) return
     showCorrect()
-    showNextWord()
+    if (progress + 1 === words.length) {
+      navigate('/')
+    }
+    setProgress(progress + 1)
+    if (isReview) {
+      setSkippedWords(skippedWords.slice(1))
+      setUserAnswer('')
+    } else {
+      showNextWord()
+    }
   }
 
   const handleSkipClick = async (): Promise<void> => {
-    const word = words[index]
     word.skippedCnt++
     await word.save()
     setAnswer(word.answer)
   }
 
   const handleNextClick = (): void => {
+    if (isReview) {
+      const [first, ...rest] = skippedWords
+      setSkippedWords([...rest, first])
+    } else {
+      setSkippedWords([...skippedWords, word])
+    }
     setAnswer('')
     showNextWord()
   }
 
   const showNextWord = (): void => {
     const nextIndex = index + 1
-    if (nextIndex >= words.length) {
-      navigate('/')
+    if (nextIndex === words.length) {
+      setIsReview(true)
+    } else {
+      setIndex(nextIndex)
     }
-    setIndex(nextIndex)
     setUserAnswer('')
   }
 
@@ -66,20 +87,21 @@ export const Practice = (): JSX.Element => {
           <QuitButton />
           <progress
             className="progress progress-primary ml-2 mr-3 h-4 w-full sm:ml-5 sm:h-5"
-            value={index}
+            value={progress}
             max={words.length}
           ></progress>
         </div>
+        <div className="flex h-8 justify-end pr-3 sm:pt-1">
+          {isReview && <p className="badge-primary badge p-3">Review</p>}
+        </div>
         {words.length > 0 && (
           <>
-            <div className="flex h-28 flex-col items-center sm:h-60">
-              <p className="mt-8 text-3xl sm:mt-24">
-                {words[index]?.definition}
-              </p>
+            <div className="flex h-20 flex-col items-center sm:h-52">
+              <p className="-mt-1 text-3xl sm:mt-16">{word?.definition}</p>
               {isCorrect && (
-                <CheckIcon className="-mt-2 w-12 text-green-500 sm:mt-5 sm:w-16" />
+                <CheckIcon className="-mt-1 w-12 text-green-500 sm:mt-5 sm:w-16" />
               )}
-              <p className="mt-0.5 text-2xl sm:mt-8 sm:text-3xl">{answer}</p>
+              <p className="mt-1 text-2xl sm:mt-8 sm:text-3xl">{answer}</p>
             </div>
             <div className="flex flex-col items-center">
               <div>
@@ -90,11 +112,11 @@ export const Practice = (): JSX.Element => {
                     ref={inputRef}
                     value={userAnswer}
                     onChange={handleAnswerChange}
-                    disabled={answer !== ''}
+                    disabled={showAnswer}
                   />
                 </div>
                 <div className="flex justify-end">
-                  {answer === '' && (
+                  {!showAnswer && (
                     <div>
                       <button
                         className="btn-outline btn mt-5"
@@ -104,7 +126,7 @@ export const Practice = (): JSX.Element => {
                       </button>
                     </div>
                   )}
-                  {answer !== '' && (
+                  {showAnswer && (
                     <div>
                       <button
                         className="btn-primary btn mt-5"
