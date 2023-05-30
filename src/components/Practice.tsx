@@ -38,7 +38,7 @@ export const Practice = (): JSX.Element => {
   ): Promise<void> => {
     const userAnswer = event.target.value
     setUserAnswer(userAnswer)
-    const isCorrectAnswer = await checkAnswer(word, userAnswer)
+    const isCorrectAnswer = await checkAnswer(word, userAnswer, isReview)
     if (!isCorrectAnswer) return
     showCorrect()
     if (progress + 1 === words.length) {

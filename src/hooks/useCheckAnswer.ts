@@ -4,15 +4,22 @@ import { normalizeString } from '../utils/stringUtils'
 
 export const useCheckAnswer = (): ((
   word: Word,
-  input: string
+  input: string,
+  isReview: boolean
 ) => Promise<boolean>) => {
   const checkAnswer = useCallback(
-    async (word: Word, userAnswer: string): Promise<boolean> => {
+    async (
+      word: Word,
+      userAnswer: string,
+      isReview: boolean
+    ): Promise<boolean> => {
       if (normalizeString(userAnswer) !== normalizeString(word.answer)) {
         return false
       }
-      word.correctCnt++
-      await word.save()
+      if (!isReview) {
+        word.correctCnt++
+        await word.save()
+      }
       return true
     },
     []

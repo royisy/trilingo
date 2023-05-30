@@ -115,7 +115,7 @@ describe('Practice', () => {
     fireEvent.change(inputElement, { target: { value: 'answer 1' } })
     await waitFor(async () => {
       expect(navigate).toHaveBeenCalledWith('/')
-      expect(word1.correctCnt).toBe(1)
+      expect(word1.correctCnt).toBe(0)
       expect(word1.skippedCnt).toBe(1)
     })
   })
