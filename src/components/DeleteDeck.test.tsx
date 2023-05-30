@@ -19,14 +19,14 @@ describe('DeleteDeck', () => {
   })
 
   it('should call setDeckToDelete with selected deck', async () => {
-    const mockSetDrawerOpen = vi.fn()
     const mockSetMenuComponent = vi.fn()
+    const mockToggleDrawerOpen = vi.fn()
     const mockSetDeckToDelete = vi.fn()
     render(
       <MenuContext.Provider
         value={{
-          setDrawerOpen: mockSetDrawerOpen,
           setMenuComponent: mockSetMenuComponent,
+          toggleDrawerOpen: mockToggleDrawerOpen,
           setDeckToDelete: mockSetDeckToDelete,
         }}
       >

@@ -29,13 +29,12 @@ interface DeckItemProps {
 
 const DeckItem = ({ csvDeck }: DeckItemProps): JSX.Element => {
   const { addDeck, isLoading } = useAddDeck()
-  const { setDrawerOpen, setMenuComponent } = useContext(MenuContext)
+  const { toggleDrawerOpen } = useContext(MenuContext)
 
   const handleClick = async (): Promise<void> => {
     const success = await addDeck(csvDeck)
     if (success) {
-      setDrawerOpen(false)
-      setMenuComponent('menu')
+      toggleDrawerOpen()
     }
   }
 

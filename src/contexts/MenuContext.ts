@@ -4,13 +4,13 @@ import { type Deck } from '../models/Deck'
 export type MenuComponentKey = 'menu' | 'add-deck' | 'delete-deck'
 
 interface IMenuContext {
-  setDrawerOpen: Dispatch<SetStateAction<boolean>>
   setMenuComponent: Dispatch<SetStateAction<MenuComponentKey>>
+  toggleDrawerOpen: () => void
   setDeckToDelete: Dispatch<SetStateAction<Deck | null>>
 }
 
 export const MenuContext = createContext<IMenuContext>({
-  setDrawerOpen: () => {},
   setMenuComponent: () => {},
+  toggleDrawerOpen: () => {},
   setDeckToDelete: () => {},
 })

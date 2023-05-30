@@ -6,8 +6,8 @@ import { Deck } from '../models/Deck'
 import { Menu } from './Menu'
 
 describe('Menu', () => {
-  const mockSetDrawerOpen = vi.fn()
   const mockSetMenuComponent = vi.fn()
+  const mockToggleDrawerOpen = vi.fn()
   const mockSetDeckToDelete = vi.fn()
 
   beforeAll(async () => {
@@ -41,8 +41,8 @@ describe('Menu', () => {
     render(
       <MenuContext.Provider
         value={{
-          setDrawerOpen: mockSetDrawerOpen,
           setMenuComponent: mockSetMenuComponent,
+          toggleDrawerOpen: mockToggleDrawerOpen,
           setDeckToDelete: mockSetDeckToDelete,
         }}
       >
@@ -59,8 +59,8 @@ describe('Menu', () => {
     render(
       <MenuContext.Provider
         value={{
-          setDrawerOpen: mockSetDrawerOpen,
           setMenuComponent: mockSetMenuComponent,
+          toggleDrawerOpen: mockToggleDrawerOpen,
           setDeckToDelete: mockSetDeckToDelete,
         }}
       >

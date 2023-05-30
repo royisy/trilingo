@@ -3,8 +3,9 @@ import { useLiveQuery } from 'dexie-react-hooks'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Tooltip } from 'react-tooltip'
-import { MenuContext, type MenuComponentKey } from '../contexts/MenuContext'
+import { MenuContext } from '../contexts/MenuContext'
 import { useDeleteDeck } from '../hooks/useDeleteDeck'
+import { useMenu } from '../hooks/useMenu'
 import { useSelectedDeck } from '../hooks/useSelectedDeck'
 import { type Deck } from '../models/Deck'
 import { getAppSetting } from '../repositories/appSetting'
@@ -15,22 +16,13 @@ import { Logo } from './Logo'
 import { Menu } from './Menu'
 
 export const Home = (): JSX.Element => {
-  const [drawerOpen, setDrawerOpen] = useState(false)
-  const [menuComponent, setMenuComponent] = useState<MenuComponentKey>('menu')
+  const { menuComponent, setMenuComponent, drawerOpen, toggleDrawerOpen } =
+    useMenu()
   const appSetting = useLiveQuery(getAppSetting)
   const noDeckSelected = appSetting != null && appSetting.selectedDeckId == null
   const { title, words } = useSelectedDeck()
   const navigate = useNavigate()
   const [deckToDelete, setDeckToDelete] = useState<Deck | null>(null)
-
-  const toggleDrawerOpen = async (): Promise<void> => {
-    if (drawerOpen) {
-      setDrawerOpen(false)
-    } else {
-      setMenuComponent('menu')
-      setDrawerOpen(true)
-    }
-  }
 
   return (
     <div className="drawer-mobile drawer">
@@ -97,8 +89,8 @@ export const Home = (): JSX.Element => {
         <div className="w-80 bg-base-200">
           <MenuContext.Provider
             value={{
-              setDrawerOpen,
               setMenuComponent,
+              toggleDrawerOpen,
               setDeckToDelete,
             }}
           >

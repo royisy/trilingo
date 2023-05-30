@@ -62,11 +62,11 @@ interface DeckItemProps {
 
 const DeckItem = ({ deck, isSelected }: DeckItemProps): JSX.Element => {
   const selectDeck = useSelectDeck()
-  const { setDrawerOpen } = useContext(MenuContext)
+  const { toggleDrawerOpen } = useContext(MenuContext)
 
   const handleClick = async (): Promise<void> => {
     await selectDeck(deck)
-    setDrawerOpen(false)
+    toggleDrawerOpen()
   }
 
   return (
