@@ -100,7 +100,7 @@ export const Practice = (): JSX.Element => {
         </div>
         <div className="flex h-20 flex-col items-center sm:h-52">
           <p className="-mt-1 text-3xl sm:mt-16">{word?.definition}</p>
-          {isCorrect && (
+          {isCorrect && !showAnswer && (
             <CheckIcon className="-mt-1 w-12 text-green-500 sm:mt-5 sm:w-16" />
           )}
           <p className="mt-1 text-2xl sm:mt-8 sm:text-3xl">{answer}</p>
