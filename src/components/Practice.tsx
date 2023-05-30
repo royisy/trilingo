@@ -27,7 +27,7 @@ export const Practice = (): JSX.Element => {
 
   useEffect(() => {
     inputRef.current?.focus()
-  }, [words, index])
+  }, [words, index, skippedWords])
 
   if (noDeckSelected) {
     navigate('/')
