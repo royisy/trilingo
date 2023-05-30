@@ -80,6 +80,10 @@ export const Practice = (): JSX.Element => {
     setUserAnswer('')
   }
 
+  if (words.length === 0) {
+    return <></>
+  }
+
   return (
     <div className="flex justify-center">
       <div className="w-full max-w-screen-sm p-5">
@@ -92,55 +96,51 @@ export const Practice = (): JSX.Element => {
           ></progress>
         </div>
         <div className="flex h-8 justify-end pr-3 sm:pt-1">
-          {isReview && <p className="badge-primary badge p-3">Review</p>}
+          {isReview && <p className="badge badge-primary p-3">Review</p>}
         </div>
-        {words.length > 0 && (
-          <>
-            <div className="flex h-20 flex-col items-center sm:h-52">
-              <p className="-mt-1 text-3xl sm:mt-16">{word?.definition}</p>
-              {isCorrect && (
-                <CheckIcon className="-mt-1 w-12 text-green-500 sm:mt-5 sm:w-16" />
-              )}
-              <p className="mt-1 text-2xl sm:mt-8 sm:text-3xl">{answer}</p>
+        <div className="flex h-20 flex-col items-center sm:h-52">
+          <p className="-mt-1 text-3xl sm:mt-16">{word?.definition}</p>
+          {isCorrect && (
+            <CheckIcon className="-mt-1 w-12 text-green-500 sm:mt-5 sm:w-16" />
+          )}
+          <p className="mt-1 text-2xl sm:mt-8 sm:text-3xl">{answer}</p>
+        </div>
+        <div className="flex flex-col items-center">
+          <div>
+            <div>
+              <input
+                type="text"
+                className="input-primary input w-72 text-2xl sm:w-96"
+                ref={inputRef}
+                value={userAnswer}
+                onChange={handleAnswerChange}
+                disabled={showAnswer}
+              />
             </div>
-            <div className="flex flex-col items-center">
-              <div>
+            <div className="flex justify-end">
+              {!showAnswer && (
                 <div>
-                  <input
-                    type="text"
-                    className="input-primary input w-72 text-2xl sm:w-96"
-                    ref={inputRef}
-                    value={userAnswer}
-                    onChange={handleAnswerChange}
-                    disabled={showAnswer}
-                  />
+                  <button
+                    className="btn-outline btn mt-5"
+                    onClick={handleSkipClick}
+                  >
+                    Skip
+                  </button>
                 </div>
-                <div className="flex justify-end">
-                  {!showAnswer && (
-                    <div>
-                      <button
-                        className="btn-outline btn mt-5"
-                        onClick={handleSkipClick}
-                      >
-                        Skip
-                      </button>
-                    </div>
-                  )}
-                  {showAnswer && (
-                    <div>
-                      <button
-                        className="btn-primary btn mt-5"
-                        onClick={handleNextClick}
-                      >
-                        Next
-                      </button>
-                    </div>
-                  )}
+              )}
+              {showAnswer && (
+                <div>
+                  <button
+                    className="btn-primary btn mt-5"
+                    onClick={handleNextClick}
+                  >
+                    Next
+                  </button>
                 </div>
-              </div>
+              )}
             </div>
-          </>
-        )}
+          </div>
+        </div>
       </div>
     </div>
   )
