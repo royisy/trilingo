@@ -12,7 +12,7 @@ export const DeleteDeck = (): JSX.Element => {
   return (
     <>
       <MenuHeader title="Delete Deck" />
-      <ul>
+      <ul className="p-2">
         {decks?.map((deck) => (
           <DeckItem key={deck.id} deck={deck} />
         ))}

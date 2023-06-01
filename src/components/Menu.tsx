@@ -33,7 +33,7 @@ export const Menu = (): JSX.Element => {
       </DeckList>
       <div className="mt-5">
         <button
-          className="btn-outline btn-square btn-sm btn ml-4"
+          className="btn-outline btn-sm btn-square btn ml-4"
           onClick={() => {
             setMenuComponent('add-deck')
           }}
@@ -42,7 +42,7 @@ export const Menu = (): JSX.Element => {
           <PlusIcon className="w-8" />
         </button>
         <button
-          className="btn-outline btn-square btn-sm btn ml-4"
+          className="btn-outline btn-sm btn-square btn ml-4"
           onClick={() => {
             setMenuComponent('delete-deck')
           }}
@@ -70,7 +70,7 @@ const DeckItem = ({ deck, isSelected }: DeckItemProps): JSX.Element => {
   }
 
   return (
-    <li>
+    <li className="py-1">
       <button
         className={`text-xl ${isSelected ? 'active' : ''}`}
         onClick={handleClick}
