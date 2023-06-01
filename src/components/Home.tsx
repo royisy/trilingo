@@ -33,7 +33,7 @@ export const Home = (): JSX.Element => {
         checked={drawerOpen}
         onChange={() => {}}
       />
-      <div className="drawer-content flex justify-center p-5 lg:justify-start">
+      <div className="drawer-content flex justify-center py-5 lg:justify-start lg:p-5">
         <div className="flex w-[360px] flex-col sm:w-[480px] lg:items-center">
           <div
             className={
