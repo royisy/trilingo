@@ -10,6 +10,12 @@ import { CheckIcon } from './CheckIcon'
 const NUM_OF_WORDS = 10
 const CORRECT_DISPLAY_TIME = 1000
 
+interface WordResult {
+  word: Word
+  correct: boolean
+  skippedCnt: number
+}
+
 export const Practice = (): JSX.Element => {
   const inputRef = useRef<HTMLInputElement | null>(null)
   const { noDeckSelected, words } = useWords(NUM_OF_WORDS)
@@ -19,6 +25,8 @@ export const Practice = (): JSX.Element => {
   const [userAnswer, setUserAnswer] = useState<string>('')
   const { isCorrect, showCorrect } = useCorrectMark(CORRECT_DISPLAY_TIME)
   const [progress, setProgress] = useState<number>(0)
+  const [showResult, setShowResult] = useState<boolean>(false)
+  const [result, setResult] = useState<WordResult[]>([])
   const [isReview, setIsReview] = useState<boolean>(false)
   const [skippedWords, setSkippedWords] = useState<Word[]>([])
   const [answer, setAnswer] = useState<string>('')
@@ -42,13 +50,14 @@ export const Practice = (): JSX.Element => {
     if (!isCorrectAnswer) return
     showCorrect()
     if (progress + 1 === words.length) {
-      navigate('/')
+      setShowResult(true)
     }
     setProgress(progress + 1)
     if (isReview) {
       setSkippedWords(skippedWords.slice(1))
       setUserAnswer('')
     } else {
+      setResult([...result, { word, correct: true, skippedCnt: 0 }])
       showNextWord()
     }
   }
@@ -56,6 +65,12 @@ export const Practice = (): JSX.Element => {
   const handleSkipClick = async (): Promise<void> => {
     word.skippedCnt++
     await word.save()
+    const wordResult = result.find((r) => r.word.id === word.id)
+    if (wordResult != null) {
+      wordResult.skippedCnt++
+    } else {
+      setResult([...result, { word, correct: false, skippedCnt: 1 }])
+    }
     setAnswer(word.answer)
   }
 
@@ -82,6 +97,10 @@ export const Practice = (): JSX.Element => {
 
   if (words.length === 0) {
     return <></>
+  }
+
+  if (showResult) {
+    return <Result result={result} />
   }
 
   return (
@@ -183,5 +202,53 @@ const QuitButton = (): JSX.Element => {
         </label>
       </label>
     </>
+  )
+}
+
+interface ResultProps {
+  result: WordResult[]
+}
+
+const Result = ({ result }: ResultProps): JSX.Element => {
+  const navigate = useNavigate()
+
+  return (
+    <div className="flex flex-col items-center p-5">
+      <div>
+        <button
+          className="btn-primary btn"
+          onClick={() => {
+            navigate('/')
+          }}
+        >
+          Finish
+        </button>
+      </div>
+      <table className="table-zebra mt-5 table">
+        <thead>
+          <tr>
+            <th></th>
+            <th className="sm:text-sm">Definition</th>
+            <th className="sm:text-sm">Answer</th>
+            <th className="sm:text-sm">Result</th>
+          </tr>
+        </thead>
+        <tbody className="sm:text-lg">
+          {result.map((wordResult, index) => (
+            <tr key={wordResult.word.id}>
+              <td className="text-right">{index + 1}</td>
+              <td>{wordResult.word.definition}</td>
+              <td>{wordResult.word.answer}</td>
+              <td className="flex justify-center text-red-500">
+                {wordResult.correct && (
+                  <CheckIcon className="w-9 text-green-500" />
+                )}
+                {!wordResult.correct && `+${wordResult.skippedCnt}`}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   )
 }

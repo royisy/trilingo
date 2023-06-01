@@ -114,9 +114,22 @@ describe('Practice', () => {
     // answer word 1 (review)
     fireEvent.change(inputElement, { target: { value: 'answer 1' } })
     await waitFor(async () => {
-      expect(navigate).toHaveBeenCalledWith('/')
       expect(word1.correctCnt).toBe(0)
       expect(word1.skippedCnt).toBe(1)
+      expect(screen.getByText('Finish')).toBeInTheDocument()
+      const row1 = screen.getByText('definition 1').closest('tr')
+      const result1 = row1?.lastElementChild
+      expect(result1?.textContent).toBe('+1')
+      const row2 = screen.getByText('definition 2').closest('tr')
+      const result2 = row2?.lastElementChild
+      expect(result2).toContainHTML('svg')
+    })
+
+    // close result
+    const finishButtonElement = screen.getByText('Finish')
+    fireEvent.click(finishButtonElement)
+    await waitFor(async () => {
+      expect(navigate).toHaveBeenCalledWith('/')
     })
   })
 })
