@@ -17,7 +17,7 @@ export const Menu = (): JSX.Element => {
 
   return (
     <>
-      <div className="m-5">
+      <div className="p-5">
         <Logo />
       </div>
       <DeckList>
@@ -70,8 +70,11 @@ const DeckItem = ({ deck, isSelected }: DeckItemProps): JSX.Element => {
   }
 
   return (
-    <li className={isSelected ? 'bordered' : ''}>
-      <button className="text-xl" onClick={handleClick}>
+    <li>
+      <button
+        className={`text-xl ${isSelected ? 'active' : ''}`}
+        onClick={handleClick}
+      >
         {deck.title}
       </button>
     </li>

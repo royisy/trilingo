@@ -25,7 +25,7 @@ export const Home = (): JSX.Element => {
   const [deckToDelete, setDeckToDelete] = useState<Deck | null>(null)
 
   return (
-    <div className="drawer-mobile drawer">
+    <div className="lg:drawer-open drawer">
       <input
         id="home-drawer"
         type="checkbox"
@@ -86,7 +86,7 @@ export const Home = (): JSX.Element => {
           className="drawer-overlay"
           onClick={toggleDrawerOpen}
         ></label>
-        <div className="w-80 bg-base-200">
+        <div className="h-full w-80 bg-base-200">
           <MenuContext.Provider
             value={{
               setMenuComponent,

@@ -224,16 +224,8 @@ const Result = ({ result }: ResultProps): JSX.Element => {
           Finish
         </button>
       </div>
-      <table className="table-zebra mt-5 table">
-        <thead>
-          <tr>
-            <th></th>
-            <th className="sm:text-sm">Definition</th>
-            <th className="sm:text-sm">Answer</th>
-            <th className="sm:text-sm">Result</th>
-          </tr>
-        </thead>
-        <tbody className="sm:text-lg">
+      <table className="table-zebra mt-5 table w-96">
+        <tbody className="text-lg">
           {result.map((wordResult, index) => (
             <tr key={wordResult.word.id}>
               <td className="text-right">{index + 1}</td>

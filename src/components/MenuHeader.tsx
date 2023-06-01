@@ -10,7 +10,7 @@ export const MenuHeader = ({ title }: HeaderProps): JSX.Element => {
   const { setMenuComponent } = useContext(MenuContext)
 
   return (
-    <div className="m-4 flex items-center">
+    <div className="flex items-center p-4">
       <button
         className="btn-ghost btn-square btn"
         onClick={() => {
