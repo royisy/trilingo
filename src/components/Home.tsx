@@ -101,10 +101,7 @@ export const Home = (): JSX.Element => {
         </div>
       </div>
       <WordTooltip />
-      <DeleteDeckModal
-        deckToDelete={deckToDelete}
-        setDeckToDelete={setDeckToDelete}
-      />
+      <DeleteDeckModal deckToDelete={deckToDelete} />
     </div>
   )
 }
@@ -133,12 +130,10 @@ const WordTooltip = (): JSX.Element => {
 
 interface DeleteDeckModalProps {
   deckToDelete: Deck | null
-  setDeckToDelete: (deck: Deck | null) => void
 }
 
 const DeleteDeckModal = ({
   deckToDelete,
-  setDeckToDelete,
 }: DeleteDeckModalProps): JSX.Element => {
   const deleteDeck = useDeleteDeck()
 
@@ -146,7 +141,6 @@ const DeleteDeckModal = ({
     if (deckToDelete != null) {
       await deleteDeck(deckToDelete)
     }
-    setDeckToDelete(null)
   }
 
   return (
