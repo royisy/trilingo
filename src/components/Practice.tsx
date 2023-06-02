@@ -20,22 +20,23 @@ export const Practice = (): JSX.Element => {
   const inputRef = useRef<HTMLInputElement | null>(null)
   const { noDeckSelected, words } = useWords(NUM_OF_WORDS)
   const [index, setIndex] = useState<number>(0)
+  const [isRevealed, setIsRevealed] = useState<boolean>(false)
   const navigate = useNavigate()
-  const checkAnswer = useCheckAnswer()
   const [userAnswer, setUserAnswer] = useState<string>('')
+  const [isReview, setIsReview] = useState<boolean>(false)
+  const checkAnswer = useCheckAnswer()
   const { isCorrect, showCorrect } = useCorrectMark(CORRECT_DISPLAY_TIME)
   const [progress, setProgress] = useState<number>(0)
   const [showResult, setShowResult] = useState<boolean>(false)
-  const [result, setResult] = useState<WordResult[]>([])
-  const [isReview, setIsReview] = useState<boolean>(false)
   const [skippedWords, setSkippedWords] = useState<Word[]>([])
+  const [result, setResult] = useState<WordResult[]>([])
   const [answer, setAnswer] = useState<string>('')
   const word = isReview ? skippedWords[0] : words[index]
   const showAnswer = answer !== ''
 
   useEffect(() => {
     inputRef.current?.focus()
-  }, [words, index, skippedWords])
+  }, [words, index, isRevealed])
 
   if (noDeckSelected) {
     navigate('/')
@@ -46,23 +47,44 @@ export const Practice = (): JSX.Element => {
   ): Promise<void> => {
     const userAnswer = event.target.value
     setUserAnswer(userAnswer)
-    const isCorrectAnswer = await checkAnswer(word, userAnswer, isReview)
+    const shouldUpdate = !isReview && !isRevealed
+    const isCorrectAnswer = await checkAnswer(word, userAnswer, shouldUpdate)
     if (!isCorrectAnswer) return
-    showCorrect()
-    if (progress + 1 === words.length) {
-      setShowResult(true)
+
+    if (!isRevealed) {
+      if (progress + 1 === words.length) {
+        setShowResult(true)
+      }
+      showCorrect()
+      setProgress(progress + 1)
     }
-    setProgress(progress + 1)
     if (isReview) {
-      setSkippedWords(skippedWords.slice(1))
-      setUserAnswer('')
+      if (isRevealed) {
+        const [first, ...rest] = skippedWords
+        setSkippedWords([...rest, first])
+      } else {
+        setSkippedWords(skippedWords.slice(1))
+      }
     } else {
-      setResult([...result, { word, correct: true, skippedCnt: 0 }])
-      showNextWord()
+      if (isRevealed) {
+        setSkippedWords([...skippedWords, word])
+      } else {
+        setResult([...result, { word, correct: true, skippedCnt: 0 }])
+      }
+      const nextIndex = index + 1
+      if (nextIndex === words.length) {
+        setIsReview(true)
+      } else {
+        setIndex(nextIndex)
+      }
     }
+    setAnswer('')
+    setUserAnswer('')
+    setIsRevealed(false)
   }
 
-  const handleSkipClick = async (): Promise<void> => {
+  const handleRevealClick = async (): Promise<void> => {
+    setIsRevealed(true)
     word.skippedCnt++
     await word.save()
     const wordResult = result.find((r) => r.word.id === word.id)
@@ -72,27 +94,6 @@ export const Practice = (): JSX.Element => {
       setResult([...result, { word, correct: false, skippedCnt: 1 }])
     }
     setAnswer(word.answer)
-  }
-
-  const handleNextClick = (): void => {
-    if (isReview) {
-      const [first, ...rest] = skippedWords
-      setSkippedWords([...rest, first])
-    } else {
-      setSkippedWords([...skippedWords, word])
-    }
-    setAnswer('')
-    showNextWord()
-  }
-
-  const showNextWord = (): void => {
-    const nextIndex = index + 1
-    if (nextIndex === words.length) {
-      setIsReview(true)
-    } else {
-      setIndex(nextIndex)
-    }
-    setUserAnswer('')
   }
 
   if (words.length === 0) {
@@ -133,30 +134,18 @@ export const Practice = (): JSX.Element => {
                 ref={inputRef}
                 value={userAnswer}
                 onChange={handleAnswerChange}
-                disabled={showAnswer}
               />
             </div>
             <div className="flex justify-end">
-              {!showAnswer && (
-                <div>
-                  <button
-                    className="btn-outline btn mt-5"
-                    onClick={handleSkipClick}
-                  >
-                    Skip
-                  </button>
-                </div>
-              )}
-              {showAnswer && (
-                <div>
-                  <button
-                    className="btn-primary btn mt-5"
-                    onClick={handleNextClick}
-                  >
-                    Next
-                  </button>
-                </div>
-              )}
+              <div>
+                <button
+                  className="btn-outline btn mt-5"
+                  onClick={handleRevealClick}
+                  disabled={isRevealed}
+                >
+                  {isRevealed ? 'Revealed' : 'Reveal'}
+                </button>
+              </div>
             </div>
           </div>
         </div>

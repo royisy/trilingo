@@ -5,18 +5,18 @@ import { normalizeString } from '../utils/stringUtils'
 export const useCheckAnswer = (): ((
   word: Word,
   input: string,
-  isReview: boolean
+  shouldUpdate: boolean
 ) => Promise<boolean>) => {
   const checkAnswer = useCallback(
     async (
       word: Word,
       userAnswer: string,
-      isReview: boolean
+      shouldUpdate: boolean
     ): Promise<boolean> => {
       if (normalizeString(userAnswer) !== normalizeString(word.answer)) {
         return false
       }
-      if (!isReview) {
+      if (shouldUpdate) {
         word.correctCnt++
         await word.save()
       }

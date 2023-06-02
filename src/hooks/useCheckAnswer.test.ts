@@ -8,11 +8,11 @@ describe('useCheckAnswer', () => {
     const word = new Word(1, 1, 'definition 1 ', 'answer 1')
     await db.words.add(word)
     const { result } = renderHook(() => useCheckAnswer())
-    const isReview = false
+    const shouldUpdate = true
     await waitFor(async () => {
-      await expect(result.current(word, 'answer 1', isReview)).resolves.toBe(
-        true
-      )
+      await expect(
+        result.current(word, 'answer 1', shouldUpdate)
+      ).resolves.toBe(true)
     })
     const word1 = await db.words.get(1)
     expect(word1?.correctCnt).toBe(1)
@@ -22,11 +22,11 @@ describe('useCheckAnswer', () => {
   it('should not increment correctCnt in review', async () => {
     const word = new Word(1, 2, 'definition 2 ', 'answer 2')
     const { result } = renderHook(() => useCheckAnswer())
-    const isReview = true
+    const shouldUpdate = false
     await waitFor(async () => {
-      await expect(result.current(word, 'answer 2', isReview)).resolves.toBe(
-        true
-      )
+      await expect(
+        result.current(word, 'answer 2', shouldUpdate)
+      ).resolves.toBe(true)
     })
     const word2 = await db.words.get(2)
     expect(word2).toBeUndefined()
@@ -38,9 +38,9 @@ describe('useCheckAnswer', () => {
     const word = new Word(1, 3, 'definition 3 ', 'answer 3')
     await db.words.add(word)
     const { result } = renderHook(() => useCheckAnswer())
-    const isReview = false
+    const shouldUpdate = true
     await waitFor(async () => {
-      await expect(result.current(word, 'answer', isReview)).resolves.toBe(
+      await expect(result.current(word, 'answer', shouldUpdate)).resolves.toBe(
         false
       )
     })
