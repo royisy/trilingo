@@ -20,6 +20,14 @@ vi.mock('../hooks/useWords', () => ({
 }))
 
 describe('Practice', () => {
+  beforeAll(() => {
+    const scrollToMock = vi.fn()
+    Object.defineProperty(window, 'scrollTo', {
+      value: scrollToMock,
+      writable: true,
+    })
+  })
+
   let navigate: any
   beforeEach(async () => {
     navigate = vi.fn()
@@ -108,8 +116,23 @@ describe('Practice', () => {
     // answer word 1 (review)
     fireEvent.change(inputElement, { target: { value: 'answer 1' } })
     await waitFor(async () => {
+      const quitElement = screen.getByTitle('Quit')
+      expect(quitElement).toHaveClass('btn-disabled')
+      const progress = screen.getByRole('progressbar')
+      expect(progress).toHaveAttribute('value', '2')
+      expect(progress).toHaveAttribute('max', '2')
+      expect(screen.getByText('Review')).toBeInTheDocument()
+      expect(screen.getByText('definition 1')).toBeInTheDocument()
+      expect(container.querySelector('svg.text-green-500')).toBeInTheDocument()
+      expect(inputElement).not.toHaveValue('')
+      expect(inputElement).toBeDisabled()
+      expect(screen.getByText('Reveal')).toBeDisabled()
       expect(word1.correctCnt).toBe(0)
       expect(word1.skippedCnt).toBe(1)
+    })
+
+    // wait for result
+    await waitFor(async () => {
       expect(screen.getByText('Finish')).toBeInTheDocument()
       const row1 = screen.getByText('definition 1').closest('tr')
       const result1 = row1?.lastElementChild

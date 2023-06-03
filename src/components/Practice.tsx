@@ -27,6 +27,7 @@ export const Practice = (): JSX.Element => {
   const checkAnswer = useCheckAnswer()
   const { isCorrect, showCorrect } = useCorrectMark(CORRECT_DISPLAY_TIME)
   const [progress, setProgress] = useState<number>(0)
+  const [disabled, setDisabled] = useState<boolean>(false)
   const [showResult, setShowResult] = useState<boolean>(false)
   const [skippedWords, setSkippedWords] = useState<Word[]>([])
   const [result, setResult] = useState<WordResult[]>([])
@@ -52,12 +53,16 @@ export const Practice = (): JSX.Element => {
     if (!isCorrectAnswer) return
 
     if (!isRevealed) {
+      showCorrect()
+      setProgress(progress + 1)
       if (progress + 1 === words.length) {
+        setDisabled(true)
+        await new Promise((resolve) =>
+          setTimeout(resolve, CORRECT_DISPLAY_TIME)
+        )
         window.scrollTo({ top: 0 })
         setShowResult(true)
       }
-      showCorrect()
-      setProgress(progress + 1)
     }
     if (isReview) {
       if (isRevealed) {
@@ -109,7 +114,7 @@ export const Practice = (): JSX.Element => {
     <div className="flex justify-center">
       <div className="w-full max-w-screen-sm p-5">
         <div className="flex items-center">
-          <QuitButton />
+          <QuitButton disabled={disabled} />
           <progress
             className="progress progress-primary ml-2 mr-3 h-4 w-full sm:ml-5 sm:h-5"
             value={progress}
@@ -135,6 +140,7 @@ export const Practice = (): JSX.Element => {
                 ref={inputRef}
                 value={userAnswer}
                 onChange={handleAnswerChange}
+                disabled={disabled}
               />
             </div>
             <div className="flex justify-end">
@@ -142,7 +148,7 @@ export const Practice = (): JSX.Element => {
                 <button
                   className="btn-outline btn mt-5"
                   onClick={handleRevealClick}
-                  disabled={isRevealed}
+                  disabled={isRevealed || disabled}
                 >
                   {isRevealed ? 'Revealed' : 'Reveal'}
                 </button>
@@ -155,14 +161,18 @@ export const Practice = (): JSX.Element => {
   )
 }
 
-const QuitButton = (): JSX.Element => {
+interface QuitButtonProps {
+  disabled: boolean
+}
+
+const QuitButton = ({ disabled }: QuitButtonProps): JSX.Element => {
   const navigate = useNavigate()
 
   return (
     <>
       <label
         htmlFor="quit-practice-modal"
-        className="btn-ghost btn-square btn"
+        className={`btn-square btn ${disabled ? 'btn-disabled' : 'btn-ghost'}`}
         title="Quit"
       >
         <XMarkIcon className="w-10 sm:w-12" />
