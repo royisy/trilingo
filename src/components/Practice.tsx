@@ -53,6 +53,7 @@ export const Practice = (): JSX.Element => {
 
     if (!isRevealed) {
       if (progress + 1 === words.length) {
+        window.scrollTo({ top: 0 })
         setShowResult(true)
       }
       showCorrect()
