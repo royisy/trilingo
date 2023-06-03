@@ -1,4 +1,4 @@
-import { XMarkIcon } from '@heroicons/react/24/solid'
+import { XCircleIcon, XMarkIcon } from '@heroicons/react/24/solid'
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useCheckAnswer } from '../hooks/useCheckAnswer'
@@ -37,7 +37,7 @@ export const Practice = (): JSX.Element => {
 
   useEffect(() => {
     inputRef.current?.focus()
-  }, [words, index, isRevealed])
+  }, [words, index, isRevealed, userAnswer])
 
   if (noDeckSelected) {
     navigate('/')
@@ -89,6 +89,10 @@ export const Practice = (): JSX.Element => {
     setIsRevealed(false)
   }
 
+  const clearInput = (): void => {
+    setUserAnswer('')
+  }
+
   const handleRevealClick = async (): Promise<void> => {
     setIsRevealed(true)
     word.skippedCnt++
@@ -133,7 +137,7 @@ export const Practice = (): JSX.Element => {
         </div>
         <div className="flex flex-col items-center">
           <div>
-            <div>
+            <div className="relative">
               <input
                 type="text"
                 className="input-primary input w-72 text-2xl sm:w-96"
@@ -142,6 +146,11 @@ export const Practice = (): JSX.Element => {
                 onChange={handleAnswerChange}
                 disabled={disabled}
               />
+              {userAnswer !== '' && (
+                <button onClick={clearInput} className="absolute right-3 top-3">
+                  <XCircleIcon className="h-6 w-6 text-gray-500" />
+                </button>
+              )}
             </div>
             <div className="flex justify-end">
               <div>
