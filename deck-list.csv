@@ -1,4 +1,4 @@
-id,title
-1,Sample German Words
-2,Basic German Words
-3,Basic Russian Words
+id,lang,title
+1,de,Sample German Words
+2,de,Basic German Words
+3,ru,Basic Russian Words
