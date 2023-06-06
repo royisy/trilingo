@@ -17,8 +17,4 @@ export default {
     'bg-opacity-100',
   ],
   plugins: [require('daisyui')],
-  daisyui: {
-    themes: ['light', 'dark'],
-    darkTheme: 'dark',
-  },
 }
