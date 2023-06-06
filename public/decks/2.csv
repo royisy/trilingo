@@ -1,1008 +1,1001 @@
 no,definition,answer
-1,able,fähig
-2,about,um
-3,above,Oben
-4,across,über
-5,act,Handlung
-6,actor,Schauspieler
-7,active,aktiv
-8,activity,Aktivität
-9,add,hinzufügen
-10,afraid,besorgt
-11,after,nach
-12,again,wieder
-13,age,Alter
-14,ago,vor
-15,agree,zustimmen
-16,air,Luft
-17,all,alle
-18,alone,allein
-19,along,entlang
-20,already,schon
-21,always,stets
-22,am,bin
-23,amount,Menge
-24,an,ein
-25,and,und
-26,angry,wütend
-27,animal,Tier
-28,answer,Antworten
-29,any,irgendein
-30,anyone,jeder
-31,anything,irgendetwas
-32,anytime,Jederzeit
-33,appear,erscheinen
-34,apple,Apfel
-35,are,sind
-36,area,Bereich
-37,arm,Arm
-38,army,Heer
-39,around,um
-40,arrive,ankommen
-41,art,Kunst
-42,as,wie
-43,ask,Fragen
-44,at,bei
-45,attack,Attacke
-46,aunt,Tante
-47,autumn,Herbst
-48,away,weg
-49,baby,Baby
-50,base,Base
-51,back,zurück
-52,bad,Schlecht
-53,bag,Tasche
-54,ball,Ball
-55,bank,Bank
-56,basket,Korb
-57,bath,Bad
-58,be,sein
-59,bean,Bohne
-60,bear,Bär
-61,beautiful,schön
-62,beer,Bier
-63,bed,Bett
-64,bedroom,Schlafzimmer
-65,behave,verhalten
-66,before,Vor
-67,begin,Start
-68,behind,hinter
-69,bell,Glocke
-70,below,unter
-71,besides,Außerdem
-72,best,Beste
-73,better,besser
-74,between,zwischen
-75,big,groß
-76,bird,Vogel
-77,birth,Geburt
-78,birthday,Geburtstag
-79,bit,bisschen
-80,bite,beissen
-81,black,Schwarz
-82,bleed,bluten
-83,block,Block
-84,blood,Blut
-85,blow,Schlag
-86,blue,blau
-87,board,Tafel
-88,boat,Boot
-89,body,Karosserie
-90,boil,Kochen
-91,bone,Knochen
-92,book,Buchen
-93,border,Grenze
-94,born,geboren
-95,borrow,ausleihen
-96,both,beide
-97,bottle,Flasche
-98,bottom,Unterseite
-99,bowl,Schüssel
-100,box,Kasten
-101,boy,Junge
-102,branch,Zweig
-103,brave,tapfer
-104,bread,brot
-105,break,Unterbrechung
-106,breakfast,Frühstück
-107,breathe,atmen
-108,bridge,Brücke
-109,bright,hell
-110,bring,bringen
-111,brother,Bruder
-112,brown,braun
-113,brush,Bürste
-114,build,bauen
-115,burn,brennen
-116,business,Geschäft
-117,bus,Bus
-118,busy,belebt
-119,but,aber
-120,buy,Kaufen
-121,by,durch
-122,cake,Kuchen
-123,call,Anruf
-124,can,kann
-125,candle,Kerze
-126,cap,Deckel
-127,car,Wagen
-128,card,Karte
-129,care,Pflege
-130,careful,Vorsichtig
-131,careless,leichtsinnig
-132,carry,tragen
-133,case,Fall
-134,cat,Katze
-135,catch,Fang
-136,central,zentral
-137,century,Jahrhundert
-138,certain,sicher
-139,chair,Stuhl
-140,chance,Chance
-141,change,Rückgeld
-142,chase,Verfolgungsjagd
-143,cheap,billig
-144,cheese,Käse
-145,chicken,Hähnchen
-146,child,Kind
-147,children,Kinder
-148,chocolate,Schokolade
-149,choice,Auswahl
-150,choose,wählen
-151,circle,Kreis
-152,city,Stadt
-153,class,Klasse
-154,clever,clever
-155,clean,sauber
-156,clear,klar
-157,climb,steigen
-158,clock,Uhr
-159,cloth,Stoff
-160,clothes,Kleidung
-161,cloud,Wolke
-162,cloudy,wolkig
-163,close,schließen
-164,coffee,Kaffee
-165,coat,Mantel
-166,coin,Münze
-167,cold,kalt
-168,collect,sammeln
-169,colour,Farbe
-170,comb,Kamm
-171,come,kommen
-172,comfortable,gemütlich
-173,common,gemeinsames
-174,compare,vergleichen
-175,complete,Komplett
-176,computer,Computer
-177,condition,Bedingung
-178,continue,fortsetzen
-179,control,Kontrolle
-180,cook,Koch
-181,cool,Kalt
-182,copper,Kupfer
-183,corn,Mais
-184,corner,Ecke
-185,correct,Korrekt
-186,cost,kosten
-187,contain,enthalten
-188,count,zählen
-189,country,Land
-190,course,Kurs
-191,cover,Startseite
-192,crash,Absturz
-193,cross,Kreuz
-194,cry,Schrei
-195,cup,Tasse
-196,cupboard,Schrank
-197,cut,schneiden
-198,dance,tanzen
-199,danger,Achtung
-200,dangerous,gefährlich
-201,dark,dunkel
-202,daughter,Tochter
-203,day,Tag
-204,dead,tot
-205,decide,entscheiden
-206,decrease,Verringerung
-207,deep,tief
-208,deer,Hirsch
-209,depend,abhängen
-210,desk,Schreibtisch
-211,destroy,zerstören
-212,develop,entwickeln
-213,die,sterben
-214,different,anders
-215,difficult,schwierig
-216,dinner,Abendessen
-217,direction,Richtung
-218,dirty,schmutzig
-219,discover,entdecken
-220,dish,Gericht
-221,do,tun
-222,dog,Hund
-223,door,Tür
-224,double,doppelt
-225,down,unten
-226,draw,zeichnen
-227,dream,Traum
-228,dress,Kleid
-229,drink,Getränk
-230,drive,Fahrt
-231,drop,fallen
-232,dry,trocken
-233,duck,Ente
-234,dust,Staub
-235,duty,Pflicht
-236,destroy,zerstören
-237,dedicated,gewidmet
-238,each,jeder
-239,ear,Ohr
-240,early,frühzeitig
-241,earn,verdiene
-242,earth,Erde
-243,east,Ost
-244,easy,einfach
-245,eat,Essen
-246,education,Ausbildung
-247,effect,Wirkung
-248,egg,Ei
-249,eight,acht
-250,either,entweder
-251,electric,elektrisch
-252,elephant,Elefant
-253,else,anders
-254,empty,leer
-255,end,Ende
-256,enemy,Feind
-257,enjoy,Viel Spaß
-258,enough,genügend
-259,enter,Eintreten
-260,equal,gleich
-261,entrance,Eingang
-262,escape,Flucht
-263,even,eben
-264,evening,Abend
-265,event,Veranstaltung
-266,ever,je
-267,every,jeder
-268,everyone,alle
-269,exact,genau
-270,everybody,alle
-271,examination,Untersuchung
-272,example,Beispiel
-273,except,außer
-274,excited,aufgeregt
-275,exercise,Übung
-276,expect,erwarten
-277,expensive,teuer
-278,explain,erklären
-279,extremely,äußerst
-280,eye,Auge
-281,face,Gesicht
-282,fact,Tatsache
-283,fail,scheitern
-284,fall,Herbst
-285,false,falsch
-286,family,Familie
-287,famous,berühmt
-288,far,weit
-289,farm,Bauernhof
-290,father,Vater
-291,fast,schnell
-292,fat,fett
-293,fault,Fehler
-294,fear,Furcht
-295,feed,Einspeisung
-296,feel,Gefühl
-297,female,weiblich
-298,fever,Fieber
-299,few,wenig
-300,fight,Kampf
-301,fill,füllen
-302,film,Film
-303,find,finden
-304,fine,fein
-305,finger,Finger
-306,finish,Fertig
-307,fire,Feuer
-308,first,Erste
-309,fit,fit
-310,five,fünf
-311,fix,Fix
-312,flag,Flagge
-313,flat,eben
-314,float,schweben
-315,floor,Boden
-316,flour,Mehl
-317,flower,Blume
-318,fly,fliegen
-319,fold,falten
-320,food,Lebensmittel
-321,fool,täuschen
-322,foot,Fuß
-323,football,Fußball
-324,for,zum
-325,force,Macht
-326,foreign,ausländisch
-327,forest,Wald
-328,forget,vergessen
-329,forgive,verzeihen
-330,fork,Gabel
-331,form,bilden
-332,fox,Fuchs
-333,four,vier
-334,free,frei
-335,freedom,Freiheit
-336,freeze,einfrieren
-337,fresh,frisch
-338,friend,Freund
-339,friendly,freundlich
-340,from,aus
-341,front,Vorderseite
-342,fruit,Obst
-343,full,voll
-344,fun,Spaß
-345,funny,komisch
-346,furniture,Möbel
-347,further,des Weiteren
-348,future,Zukunft
-349,game,Spiel
-350,garden,Garten
-351,gate,Tor
-352,general,Allgemeines
-353,gentleman,Gentleman
-354,get,erhalten
-355,gift,Geschenk
-356,give,geben
-357,glad,froh
-358,glass,Glas
-359,go,gehen
-360,goat,Ziege
-361,god,Gott
-362,gold,Gold
-363,good,gut
-364,goodbye,Auf Wiedersehen
-365,grandfather,Großvater
-366,grandmother,Oma
-367,grass,Gras
-368,grave,Grab
-369,great,Großartig
-370,green,grün
-371,grey,grau
-372,ground,Boden
-373,group,Gruppe
-374,grow,wachsen
-375,gun,Pistole
-376,hair,Haar
-377,half,halb
-378,hall,Halle
-379,hammer,Hammer
-380,hand,Hand
-381,happen,passieren
-382,happy,glücklich
-383,hard,schwer
-384,hat,Hut
-385,hate,hassen
-386,have,haben
-387,he,er
-388,head,Kopf
-389,healthy,gesund
-390,hear,hören
-391,heavy,schwer
-392,hello,hallo
-393,help,Hilfe
-394,heart,Herz
-395,heaven,Himmel
-396,height,Höhe
-397,hen,Henne
-398,her,Sie
-399,here,hier
-400,hers,ihres
-401,hide,ausblenden
-402,high,hoch
-403,hill,hügel
-404,him,ihn
-405,his,seine
-406,hit,Schlag
-407,hobby,Hobby
-408,hold,halt
-409,hole,Loch
-410,holiday,Ferien
-411,home,Heimat
-412,hope,Hoffnung
-413,horse,Pferd
-414,hospital,Krankenhaus
-415,hot,heiß
-416,hotel,Hotel
-417,house,Haus
-418,how,wie
-419,hundred,hundert
-420,hungry,hungrig
-421,hour,Stunde
-422,hurry,eilen
-423,husband,Ehemann
-424,hurt,Schmerz
-425,I,ich
-426,ice,Eis
-427,idea,Idee
-428,if,wenn
-429,important,wichtig
-430,in,in
-431,increase,Zunahme
-432,inside,Innerhalb
-433,into,hinein
-434,introduce,einführen
-435,invent,erfinden
-436,iron,Eisen
-437,invite,einladen
-438,is,ist
-439,island,Insel
-440,it,es
-441,job,Arbeit
-442,join,beitreten
-443,juice,Saft
-444,jump,springen
-445,just,nur
-446,keep,behalten
-447,key,Schlüssel
-448,kid,Kind
-449,kill,töten
-450,kind,nett
-451,king,König
-452,kitchen,Küche
-453,knee,Knie
-454,knife,Messer
-455,knock,klopfen
-456,know,kennt
-457,ladder,Leiter
-458,lady,Dame
-459,lamp,Lampe
-460,land,Land
-461,large,groß
-462,last,letzte
-463,late,spät
-464,laugh,Lachen
-465,lazy,faul
-466,lead,führen
-467,leaf,Blatt
-468,learn,lernen
-469,leave,verlassen
-470,leg,Bein
-471,left,links
-472,lend,verleihen
-473,length,Länge
-474,less,weniger
-475,lesson,Lektion
-476,let,Lassen
-477,letter,Buchstabe
-478,library,Bibliothek
-479,lie,Lüge
-480,life,Leben
-481,light,hell
-482,like,wie
-483,lion,Löwe
-484,lip,Lippe
-485,list,aufführen
-486,listen,Hören
-487,little,wenig
-488,live,live
-489,lock,sperren
-490,lonely,einsam
-491,long,lang
-492,look,sehen
-493,lose,verlieren
-494,lot,viel
-495,love,Liebe
-496,low,niedrig
-497,lower,niedriger
-498,luck,Glück
-499,machine,Maschine
-500,main,hauptsächlich
-501,make,machen
-502,male,männlich
-503,man,Mann
-504,many,viele
-505,map,Karte
-506,mark,Kennzeichen
-507,market,Markt
-508,marry,heiraten
-509,matter,Angelegenheit
-510,may,kann
-511,me,mich
-512,meal,Mahlzeit
-513,mean,bedeuten
-514,measure,messen
-515,meat,Fleisch
-516,medicine,Medizin
-517,meet,Treffen
-518,member,Mitglied
-519,mention,nennen
-520,method,Methode
-521,middle,Mitte
-522,milk,Milch
-523,mill,Mühle
-524,million,Million
-525,mind,Geist
-526,mine,Mine
-527,minute,Minute
-528,miss,fehlschlagen
-529,mistake,Fehler
-530,mix,mischen
-531,model,Modell
-532,modern,modern
-533,moment,Moment
-534,money,Geld
-535,monkey,Affe
-536,month,Monat
-537,moon,Mond
-538,more,mehr
-539,morning,Morgen
-540,mother,Mutter
-541,mountain,Berg
-542,mouse,Maus
-543,mouth,Mund
-544,move,Bewegung
-545,much,viel
-546,music,Musik
-547,must,muss
-548,my,mein
-549,name,Name
-550,narrow,eng
-551,nation,Nation
-552,nature,Natur
-553,near,nahe
-554,nearly,fast
-555,neck,Nacken
-556,need,brauchen
-557,needle,Nadel
-558,neighbour,Nachbar
-559,neither,weder
-560,net,Netz
-561,never,nie
-562,new,Neu
-563,news,Nachrichten
-564,newspaper,Zeitung
-565,next,nächste
-566,nice,Hübsch
-567,night,Nacht
-568,nine,neun
-569,no,nein
-570,noble,edel
-571,noise,Lärm
-572,none,keiner
-573,nor,Noch
-574,north,Norden
-575,nose,Nase
-576,not,nicht
-577,nothing,nichts
-578,notice,Notiz
-579,now,jetzt
-580,number,Nummer
-581,obey,gehorchen
-582,object,Objekt
-583,ocean,Ozean
-584,of,von
-585,off,aus
-586,offer,Angebot
-587,office,Büro
-588,often,häufig
-589,oil,Öl
-590,old,alt
-591,on,an
-592,one,eines
-593,only,nur
-594,open,offen
-595,opposite,Gegenteil
-596,or,oder
-597,orange,Orange
-598,order,bestellen
-599,other,Sonstiges
-600,our,unser
-601,out,aus
-602,outside,außen
-603,over,Über
-604,own,besitzen
-605,page,Seite
-606,pain,Schmerzen
-607,paint,Farbe
-608,pair,Paar
-609,pan,Pfanne
-610,paper,Papier
-611,parent,Elternteil
-612,park,Park
-613,part,Teil
-614,partner,Partner
-615,party,Party
-616,pass,passieren
-617,past,vorbei
-618,path,Weg
-619,pay,Zahlen
-620,peace,Frieden
-621,pen,Stift
-622,pencil,Bleistift
-623,people,Personen
-624,pepper,Pfeffer
-625,per,pro
-626,perfect,perfekt
-627,period,Zeitraum
-628,person,Person
-629,petrol,Benzin
-630,photograph,Foto
-631,piano,Klavier
-632,pick,wählen
-633,picture,Bild
-634,piece,Stück
-635,pig,Schwein
-636,pill,Pille
-637,pin,Stift
-638,pink,rosa
-639,place,Platz
-640,plane,Flugzeug
-641,plant,Pflanze
-642,plastic,Plastik
-643,plate,Teller
-644,play,abspielen
-645,please,bitte
-646,pleased,zufrieden
-647,plenty,viel
-648,pocket,Tasche
-649,point,Punkt
-650,poison,Gift
-651,police,Polizei
-652,polite,höflich
-653,pool,Schwimmbad
-654,poor,Arm
-655,popular,Beliebt
-656,position,Position
-657,possible,möglich
-658,potato,Kartoffel
-659,pour,gießen
-660,power,Energie
-661,present,gegenwärtig
-662,press,drücken
-663,pretty,hübsch
-664,prevent,verhindern
-665,price,Preis
-666,prince,Prinz
-667,prison,Gefängnis
-668,private,Privatgelände
-669,prize,Preis
-670,probably,wahrscheinlich
-671,problem,Problem
-672,produce,produzieren
-673,promise,versprechen
-674,proper,richtig
-675,protect,beschützen
-676,provide,anbieten
-677,public,Öffentlichkeit
-678,pull,ziehen
-679,punish,bestrafen
-680,pupil,Schüler
-681,push,drücken
-682,put,stellen
-683,queen,Königin
-684,question,Frage
-685,quick,schnell
-686,quiet,ruhig
-687,quite,ziemlich
-688,radio,Radio
-689,rain,Regen
-690,rainy,regnerisch
-691,raise,heben
-692,reach,erreichen
-693,read,lesen
-694,ready,bereit
-695,real,real
-696,really,wirklich
-697,receive,erhalten
-698,record,Aufzeichnung
-699,red,rot
-700,remember,erinnern
-701,remind,erinnern
-702,remove,Löschen
-703,rent,Miete
-704,repair,Reparatur
-705,repeat,wiederholen
-706,reply,Antwort
-707,report,Bericht
-708,rest,Rest
-709,restaurant,Restaurant
-710,result,Ergebnis
-711,return,Rückkehr
-712,rice,Reis
-713,rich,Reich
-714,ride,Reiten
-715,right,Rechts
-716,ring,Ring
-717,rise,Aufstieg
-718,road,Straße
-719,rob,rauben
-720,rock,Felsen
-721,room,Zimmer
-722,round,runden
-723,rubber,Gummi
-724,rude,unhöflich
-725,rule,Regel
-726,ruler,Lineal
-727,run,Lauf
-728,rush,eilen
-729,sad,traurig
-730,safe,sicher
-731,sail,Segel
-732,salt,Salz
-733,same,gleich
-734,sand,Sand
-735,save,sparen
-736,say,sagen
-737,school,Schule
-738,science,Wissenschaft
-739,scissors,Schere
-740,search,Suche
-741,seat,Sitz
-742,second,zweite
-743,see,sehen
-744,seem,erscheinen
-745,sell,verkaufen
-746,send,senden
-747,sentence,Satz
-748,serve,Dienen
-749,seven,Sieben
-750,several,mehrere
-751,sex,Sex
-752,shade,Schatten
-753,shadow,Schatten
-754,shake,Shake
-755,shape,Form
-756,share,Teilen
-757,sharp,Scharf
-758,she,sie
-759,sheep,Schaf
-760,sheet,Blech
-761,shelf,Regal
-762,shine,scheinen
-763,ship,Schiff
-764,shirt,Shirt
-765,shoe,Schuh
-766,shoot,schießen
-767,shop,Geschäft
-768,short,kurz
-769,should,sollte
-770,shoulder,Schulter
-771,shout,schreien
-772,show,Show
-773,sick,krank
-774,side,Seite
-775,signal,Signal
-776,silence,Schweigen
-777,silly,dumm
-778,silver,Silber
-779,similar,ähnlich
-780,simple,einfach
-781,single,Single
-782,since,seit
-783,sing,singen
-784,sink,Waschbecken
-785,sister,Schwester
-786,sit,sitzen
-787,six,sechs
-788,size,Größe
-789,skill,Können
-790,skin,Haut
-791,skirt,Rock
-792,sky,Himmel
-793,sleep,schlafen
-794,slip,Unterhose
-795,slow,langsam
-796,small,klein
-797,smell,Geruch
-798,smile,lächeln
-799,smoke,Rauch
-800,snow,Schnee
-801,so,Also
-802,soap,Seife
-803,sock,Socke
-804,soft,Sanft
-805,some,etwas
-806,someone,jemand
-807,something,etwas
-808,sometimes,manchmal
-809,son,Sohn
-810,soon,demnächst
-811,sorry,Verzeihung
-812,sound,Klang
-813,soup,Suppe
-814,south,Süden
-815,space,Platz
-816,speak,sprechen
-817,special,Besondere
-818,speed,Geschwindigkeit
-819,spell,Fluch
-820,spend,verbringen
-821,spoon,Löffel
-822,sport,Sport
-823,spread,Verbreitung
-824,spring,Frühling
-825,square,Quadrat
-826,stamp,Stempel
-827,stand,Stand
-828,star,Stern
-829,start,Anfang
-830,station,Bahnhof
-831,stay,bleibe
-832,steal,stehlen
-833,steam,Dampf
-834,step,Schritt
-835,still,still
-836,stomach,Magen
-837,stone,Stein
-838,stop,Pause
-839,store,Laden
-840,storm,Sturm
-841,story,Geschichte
-842,strange,seltsam
-843,street,Straße
-844,strong,stark
-845,structure,Struktur
-846,student,Schüler
-847,study,lernen
-848,stupid,dumm
-849,subject,Thema
-850,substance,Substanz
-851,successful,erfolgreich
-852,such,eine solche
-853,sudden,plötzlich
-854,sugar,Zucker
-855,suitable,geeignet
-856,summer,Sommer
-857,sun,Sonne
-858,sunny,sonnig
-859,support,Unterstützung
-860,sure,sicher
-861,surprise,Überraschung
-862,sweet,süß
-863,swim,schwimmen
-864,sword,Schwert
-865,table,Tisch
-866,take,nehmen
-867,talk,sich unterhalten
-868,tall,hoch
-869,taste,Geschmack
-870,taxi,Taxi
-871,tea,Tee
-872,teach,unterrichten
-873,team,Mannschaft
-874,tear,Träne
-875,telephone,Telefon
-876,television,Fernsehen
-877,tell,erzählen
-878,ten,zehn
-879,tennis,Tennis
-880,terrible,abscheulich
-881,test,Prüfung
-882,than,als
-883,that,das
-884,the,das
-885,their,ihr
-886,theirs,ihre
-887,then,dann
-888,there,dort
-889,therefore,deshalb
-890,these,diese
-891,thick,dick
-892,thin,dünn
-893,thing,Ding
-894,think,denken
-895,third,dritte
-896,this,Dies
-897,those,diese
-898,though,obwohl
-899,threat,Drohung
-900,three,drei
-901,tidy,ordentlich
-902,tie,binden
-903,title,Titel
-904,to,zu
-905,today,heute
-906,toe,Zehe
-907,together,zusammen
-908,tomorrow,Morgen
-909,tonight,heute Abend
-910,too,zu
-911,tool,Werkzeug
-912,tooth,Zahn
-913,top,oben
-914,total,gesamt
-915,touch,berühren
-916,town,Stadt
-917,train,Zug
-918,tram,Straßenbahn
-919,travel,reisen
-920,tree,Baum
-921,trouble,Problem
-922,true,Stimmt
-923,trust,vertrauen
-924,twice,zweimal
-925,try,Versuchen
-926,turn,drehen
-927,type,Typ
-928,uncle,Onkel
-929,under,unter
-930,understand,verstehe
-931,unit,Einheit
-932,until,bis
-933,up,hoch
-934,use,verwenden
-935,useful,nützlich
-936,usual,üblich
-937,usually,normalerweise
-938,vegetable,Gemüse
-939,very,sehr
-940,village,Dorf
-941,voice,Stimme
-942,visit,Besuch
-943,wait,Warten
-944,wake,aufwachen
-945,walk,Spaziergang
-946,want,wollen
-947,warm,warm
-948,wash,waschen
-949,waste,Abfall
-950,watch,Uhr
-951,water,Wasser
-952,way,Weg
-953,we,wir
-954,weak,schwach
-955,wear,tragen
-956,weather,Wetter
-957,wedding,Hochzeit
-958,week,Woche
-959,weight,Gewicht
-960,welcome,willkommen
-961,well,Gut
-962,west,Westen
-963,wet,nass
-964,what,was
-965,wheel,Rad
-966,when,Wenn
-967,where,wo
-968,which,die
-969,while,während
-970,white,Weiß
-971,who,wer
-972,why,warum
-973,wide,breit
-974,wife,Ehefrau
-975,wild,wild
-976,will,Wille
-977,win,gewinnen
-978,wind,Wind
-979,window,Fenster
-980,wine,Wein
-981,winter,Winter
-982,wire,Kabel
-983,wise,weise
-984,wish,Wunsch
-985,with,mit
-986,without,ohne
-987,woman,Frau
-988,wonder,Wunder
-989,word,Wort
-990,work,Arbeit
-991,world,Welt
-992,worry,Sorge
-993,worst,schlechteste
-994,write,schreiben
-995,wrong,falsch
-996,year,Jahr
-997,yellow,gelb
-998,yes,Jawohl
-999,yesterday,gestern
-1000,yet,noch
-1001,you,Sie
-1002,young,jung
-1003,your,dein
-1004,yours,deine
-1005,zero,Null
-1006,zoo,Zoo
-1007,zoom,Zoomen
+1,the evening,der Abend
+2,the dinner,das Abendessen
+3,the adventure,das Abenteuer
+4,dependent,abhängig
+5,to refuse,ablehnen
+6,to distract,ablenken
+7,to dust,abstauben
+8,to vote,abstimmen
+9,the eagle,der Adler
+10,the monkey,der Affe
+11,active,aktiv
+12,to accept,akzeptieren
+13,alone,allein
+14,general,allgemein
+15,common,alltäglich
+16,thus / therefore,also
+17,old (not young / new),alt
+18,the ant,die Ameise
+19,to offer,anbieten
+20,to last,andauern
+21,to change,ändern
+22,to begin,anfangen
+23,the supply,das Angebot
+24,to fish,angeln
+25,the employee (male),der Angestellte
+26,the fear,die Angst
+27,to scare,ängstigen
+28,to assume,annehmen
+29,to arrange,anordnen
+30,the answer,die Antwort
+31,to answer,antworten
+32,to apply,anwenden
+33,the suit,der Anzug
+34,the apple,der Apfel
+35,the pharmacy,die Apotheke
+36,the work,die Arbeit
+37,to work,arbeiten
+38,the arena,die Arena
+39,to annoy,ärgern
+40,poor,arm
+41,the arm,der Arm
+42,the bracelet,das Armband
+43,the watch,die Armbanduhr
+44,the article,der Artikel
+45,the doctor,der Arzt
+46,the branch,der Ast
+47,also / as well (too),auch
+48,to perform,aufführen
+49,to stop (an action),aufhören
+50,the elevator,der Aufzug
+51,the eye,das Auge
+52,foreign,ausländisch
+53,sufficient,ausreichend
+54,to choose / select,auswählen
+55,the car,das Auto
+56,the author,der Autor
+57,the bakery,die Bäckerei
+58,the bath,die Badewanne
+59,the bathroom,das Badezimmer
+60,the station,der Bahnhof
+61,soon,bald
+62,the ball,der Ball
+63,the ballet,das Ballett
+64,the banana,die Banane
+65,the bank,die Bank
+66,the bar,die Bar
+67,the bear,der Bär
+68,the battery,die Batterie
+69,to build,bauen
+70,the farm,der Bauernhof
+71,the tree,der Baum
+72,the cotton,die Baumwolle
+73,to regret,bedauern
+74,to impress,beeindrucken
+75,to influence,beeinflussen
+76,to finish,beenden
+77,to bury,begraben
+78,to welcome,begrüßen
+79,to treat,behandeln
+80,to claim,behaupten
+81,to maintain,beibehalten
+82,the leg,das Bein
+83,to notice,bemerken
+84,comfortable,bequem
+85,to advise,beraten
+86,to provide,bereitstellen
+87,the mountain,der Berg
+88,the job,der Beruf
+89,famous,berühmt
+90,to touch,berühren
+91,to damage,beschädigen
+92,humble,bescheiden
+93,to complain,beschweren
+94,especially / particularly,besonders
+95,to determine,bestimmen
+96,to punish,bestrafen
+97,to consider,betrachten
+98,to cheat,betrügen
+99,the bed,das Bett
+100,to beg,betteln
+101,to judge,beurteilen
+102,to prefer,bevorzugen
+103,to prove,beweisen
+104,to pay,bezahlen
+105,the relationship,die Beziehung
+106,the library,die Bibliothek
+107,the bee,die Biene
+108,the beer,das Bier
+109,the picture,das Bild
+110,the screen,der Bildschirm
+111,the education,die Bildung
+112,cheap,billig
+113,to approve,billigen
+114,bitter,bitter
+115,the leaf,das Blatt
+116,to remain,bleiben
+117,the pencil,der Bleistift
+118,to blink,blinzeln
+119,the lightning,der Blitz
+120,the flower,die Blume
+121,the blouse,die Bluse
+122,the drill,die Bohrmaschine
+123,the boat,das Boot
+124,to need,brauchen
+125,to break (an object),brechen
+126,the letter (mail),der Brief
+127,the stamp,die Briefmarke
+128,the wallet,die Brieftasche
+129,the glasses,die Brille
+130,to bring,bringen
+131,the bread,das Brot
+132,the bridge,die Brücke
+133,the brother,der Bruder
+134,the fountain,der Brunnen
+135,the book,das Buch
+136,the letter (alphabet),der Buchstabe
+137,the stage,die Bühne
+138,the office,das Büro
+139,the brush,die Bürste
+140,the bus,der Bus
+141,the butter,die Butter
+142,the camping,das Camping
+143,the boss (male),der Chef
+144,the computer,der Computer
+145,therefore,daher
+146,so that / in order to,damit
+147,afterwards,danach
+148,the data,die Daten
+149,the blanket,die Decke
+150,the dolphin,der Delfin
+151,to think,denken
+152,the monument,das Denkmal
+153,the dessert,das Dessert
+154,the poetry,die Dichtung
+155,fat (person) / thick (not thin),dick
+156,the dinosaur,der Dinosaurier
+157,the diploma,das Diplom
+158,directly,direkt
+159,the thunder,der Donner
+160,the village,das Dorf
+161,there,dort
+162,the wire,der Draht
+163,thirdly,drittens
+164,to threaten,drohen
+165,to print,drucken
+166,the printer,der Drucker
+167,dark,dunkel
+168,thin (not thick),dünn
+169,the shower,die Dusche
+170,real,echt
+171,efficient,effizient
+172,the marriage,die Ehe
+173,honest,ehrlich
+174,the egg,das Ei
+175,actually,eigentlich
+176,simple,einfach
+177,native,einheimisch
+178,to invite,einladen
+179,to hire,einstellen
+180,to wrap,einwickeln
+181,the ice,das Eis
+182,the elephant,der Elefant
+183,the parent,der Elternteil
+184,the emotion,die Emotion
+185,to receive,empfangen
+186,to recommend,empfehlen
+187,to end,enden
+188,finally,endlich
+189,tight,eng
+190,to discover,entdecken
+191,the discovery,die Entdeckung
+192,the duck,die Ente
+193,to decide,entscheiden
+194,to excuse,entschuldigen
+195,to disappoint,enttäuschen
+196,to develop,entwickeln
+197,the earthquake,das Erdbeben
+198,the strawberry,die Erdbeere
+199,the experience,die Erfahrung
+200,the success,der Erfolg
+201,unsuccessful,erfolglos
+202,successful,erfolgreich
+203,to remind,erinnern
+204,the memory,die Erinnerung
+205,to recognize,erkennen
+206,to explain,erklären
+207,to encourage,ermutigen
+208,serious,ernst
+209,seriously,ernsthaft
+210,to achieve,erreichen
+211,firstly,erstens
+212,to expect,erwarten
+213,to tell,erzählen
+214,to generate,erzeugen
+215,the food,das Essen
+216,to eat,essen
+217,the budget,der Etat
+218,around (approximately),etwa
+219,somewhat,etwas
+220,the owl,die Eule
+221,to exist,existieren
+222,the experiment,das Experiment
+223,to explode,explodieren
+224,the factory,die Fabrik
+225,able,fähig
+226,to drive,fahren
+227,the ticket,die Fahrkarte
+228,the bicycle,das Fahrrad
+229,to drop (an item),fallen lassen
+230,wrong / fake,falsch
+231,the family,die Familie
+232,to catch,fangen
+233,the color / paint,die Farbe
+234,almost,fast
+235,cowardly,feige
+236,the field,das Feld
+237,the window,das Fenster
+238,the TV,der Fernseher
+239,ready,fertig
+240,the festival,das Festival
+241,the film,der Film
+242,the finance,die Finanzen
+243,to find,finden
+244,the finger,der Finger
+245,the company,die Firma
+246,the fish,der Fisch
+247,the gym,das Fitnessstudio
+248,shallow,flach
+249,the bottle,die Flasche
+250,the bat,die Fledermaus
+251,the meat,das Fleisch
+252,flexible,flexibel
+253,to fly,fliegen
+254,to escape,fliehen
+255,the airport,der Flughafen
+256,the plane,das Flugzeug
+257,the river,der Fluss
+258,to whisper,flüstern
+259,to follow,folgen
+260,consequently,folglich
+261,the research,die Forschung
+262,the photo,das Foto
+263,the question,die Frage
+264,to ask,fragen
+265,the woman,die Frau
+266,to release,freilassen
+267,strange,fremd
+268,the friend (male),der Freund
+269,the friendship,die Freundschaft
+270,the peace,der Frieden
+271,fresh,frisch
+272,the frog,der Frosch
+273,the fruit,die Frucht
+274,early,früh
+275,the breakfast,das Frühstück
+276,to feel,fühlen
+277,the foot,der Fuß
+278,the fork,die Gabel
+279,to yawn,gähnen
+280,the galaxy,die Galaxie
+281,the gallery,die Galerie
+282,to guarantee,garantieren
+283,the garden,der Garten
+284,the building,das Gebäude
+285,the poem,das Gedicht
+286,the freezer,der Gefrierschrank
+287,towards,gegen
+288,the present,die Gegenwart
+289,to go,gehen
+290,the money,das Geld
+291,to succeed,gelingen
+292,the painting,das Gemälde
+293,mean,gemein
+294,the vegetable,das Gemüse
+295,cozy,gemütlich
+296,exactly,genau
+297,generous,generös
+298,to enjoy,genießen
+299,just now,gerade
+300,the dish,das Gericht
+301,gladly,gern
+302,the gift,das Geschenk
+303,the history,die Geschichte
+304,the dishwasher,der Geschirrspüler
+305,closed,geschlossen
+306,the sibling,das Geschwister
+307,the law,das Gesetz
+308,the face,das Gesicht
+309,yesterday,gestern
+310,stressed,gestresst
+311,healthy,gesund
+312,the health,die Gesundheit
+313,the drink,das Getränk
+314,separate,getrennt
+315,the profit,der Gewinn
+316,to win,gewinnen
+317,the spice,das Gewürz
+318,greedy,gierig
+319,the giraffe,die Giraffe
+320,the guitar,die Gitarre
+321,the glass,das Glas
+322,smooth,glatt
+323,to believe,glauben
+324,equally,gleich
+325,indifferent,gleichgültig
+326,the happiness,das Glück
+327,happy,glücklich
+328,the light bulb,die Glühbirne
+329,the grass,das Gras
+330,to congratulate,gratulieren
+331,to grab,greifen
+332,big,groß
+333,great (fantastic),großartig
+334,to greet,grüßen
+335,the rubber,der Gummi
+336,the belt,der Gürtel
+337,good,gut
+338,the hair,das Haar
+339,the necklace,die Halskette
+340,the hammer,der Hammer
+341,the hand,die Hand
+342,to trade,handeln
+343,the gloves,die Handschuhe
+344,the towel,das Handtuch
+345,the mobile phone,das Handy
+346,hard (texture),hart
+347,the rabbit,der Hase
+348,to hate,hassen
+349,ugly,hässlich
+350,the house,das Haus
+351,hot (temperature),heiß
+352,to help,helfen
+353,bright,hell
+354,the shirt,das Hemd
+355,the stove,der Herd
+356,the heart,das Herz
+357,today,heute
+358,here,hier
+359,the sky,der Himmel
+360,tall (height),hoch
+361,to hope,hoffen
+362,the hope,die Hoffnung
+363,hopeful,hoffnungsvoll
+364,polite,höflich
+365,the cave,die Höhle
+366,the wood,das Holz
+367,to hear,hören
+368,the trousers,die Hose
+369,the hotel,das Hotel
+370,the hill,der Hügel
+371,the chicken,das Huhn
+372,the dog,der Hund
+373,to cough,husten
+374,the hat,der Hut
+375,to ignore,ignorieren
+376,illegal,illegal
+377,always,immer
+378,the industry,die Industrie
+379,inefficient,ineffizient
+380,domestically,inländisch
+381,the innovation,die Innovation
+382,notably / particularly,insbesondere
+383,the insect,das Insekt
+384,the island,die Insel
+385,to inspire,inspirieren
+386,interesting,interessant
+387,internationally,international
+388,the investment,die Investition
+389,meanwhile,inzwischen
+390,the jacket,die Jacke
+391,to hunt,jagen
+392,the year,das Jahr
+393,however,jedoch
+394,now,jetzt
+395,respectively,jeweils
+396,the journalism,der Journalismus
+397,the hostel,die Jugendherberge
+398,young,jung
+399,the boy,der Junge
+400,the coffee,der Kaffee
+401,the calendar,der Kalender
+402,cold (temperature),kalt
+403,the camera,die Kamera
+404,the comb,der Kamm
+405,to fight,kämpfen
+406,the carrot,die Karotte
+407,the career,die Karriere
+408,the card / ticket / map,die Karte
+409,the potato,die Kartoffel
+410,the cardboard,der Karton
+411,the cheese,der Käse
+412,the cat,die Katze
+413,to buy,kaufen
+414,barely,kaum
+415,the cookie,der Keks
+416,to know (a person),kennen
+417,the candle,die Kerze
+418,to kick,kicken
+419,the child,das Kind
+420,the cinema,das Kino
+421,the church,die Kirche
+422,the cherry,die Kirsche
+423,the pillow,das Kissen
+424,clear,klar
+425,to applaud / clap,klatschen
+426,the piano,das Klavier
+427,the tape,das Klebeband
+428,the glue,der Klebstoff
+429,the dress,das Kleid
+430,the clothes,die Kleidung
+431,small,klein
+432,to climb,klettern
+433,the client,der Klient
+434,the pub,die Kneipe
+435,the garlic,der Knoblauch
+436,the koala,der Koala
+437,to cook / boil,kochen
+438,the suitcase,der Koffer
+439,the colleague,der Kollege
+440,to come,kommen
+441,the compass,der Kompass
+442,complex,komplex
+443,the account,das Konto
+444,the concert,das Konzert
+445,the concert hall,die Konzerthalle
+446,the head,der Kopf
+447,the body,der Körper
+448,free,kostenlos
+449,sick,krank
+450,the hospital,das Krankenhaus
+451,the nurse,die Krankenschwester
+452,the disease,die Krankheit
+453,the tie,die Krawatte
+454,the credit,der Kredit
+455,the credit card,die Kreditkarte
+456,the war,der Krieg
+457,to criticise,kritisieren
+458,the kitchen,die Küche
+459,the cow,die Kuh
+460,cool (temperature),kühl
+461,the fridge,der Kühlschrank
+462,the customer,der Kunde
+463,the art,die Kunst
+464,the plastic,der Kunststoff
+465,the course,der Kurs
+466,short (height / length),kurz
+467,the laboratory,das Labor
+468,the smile,das Lächeln
+469,the laugh,das Lachen
+470,to laugh,lachen
+471,the charger,das Ladegerät
+472,the shop,der Laden
+473,the sheet,das Laken
+474,the lamp,die Lampe
+475,the country,das Land
+476,to land,landen
+477,the map,die Landkarte
+478,long (length),lang
+479,slow,langsam
+480,boring,langweilig
+481,to run,laufen
+482,loud,laut
+483,the speaker,der Lautsprecher
+484,the life,das Leben
+485,alive,lebendig
+486,the leather,das Leder
+487,empty,leer
+488,legal,legal
+489,to teach,lehren
+490,the teacher (male),der Lehrer
+491,easy / light (weight),leicht
+492,to suffer,leiden
+493,unfortunately,leider
+494,to borrow,leihen
+495,quiet,leise
+496,to afford,leisten
+497,the ladder,die Leiter
+498,the lesson,die Lektion
+499,to study,lernen
+500,to read,lesen
+501,to deny,leugnen
+502,the people,die Leute
+503,the light,das Licht
+504,the love,die Liebe
+505,to love,lieben
+506,to deliver,liefern
+507,to lie (recline),liegen
+508,the lipstick,der Lippenstift
+509,loose,locker
+510,the spoon,der Löffel
+511,the lion,der Löwe
+512,to lie (untruth),lügen
+513,liar,lügnerisch
+514,funny,lustig
+515,the girl,das Mädchen
+516,the meal,die Mahlzeit
+517,sometimes,manchmal
+518,the man,der Mann
+519,the team,die Mannschaft
+520,the coat,der Mantel
+521,the marketing,das Marketing
+522,the market,der Markt
+523,the mouse,die Maus
+524,the medicine,die Medizin
+525,the sea,das Meer
+526,the meeting,das Meeting
+527,more,mehr
+528,to measure,messen
+529,the knife,das Messer
+530,the metal,das Metall
+531,the microscope,das Mikroskop
+532,the microwave,die Mikrowelle
+533,the milk,die Milch
+534,the lunch,das Mittagessen
+535,modern,modern
+536,possible,möglich
+537,the moment,der Moment
+538,the moon,der Mond
+539,tomorrow,morgen
+540,the morning,der Morgen
+541,the motorcycle,das Motorrad
+542,the mouth,der Mund
+543,the coin,die Münze
+544,the museum,das Museum
+545,the music,die Musik
+546,brave,mutig
+547,the mother,die Mutter
+548,the cap,die Mütze
+549,the demand,die Nachfrage
+550,the night,die Nacht
+551,the nail,der Nagel
+552,the name,der Name
+553,namely,nämlich
+554,wet,nass
+555,the nature,die Natur
+556,natural,natürlich
+557,the fog,der Nebel
+558,besides,neben
+559,negative,negativ
+560,kind,nett
+561,the network,das Netzwerk
+562,new,neu
+563,curious,neugierig
+564,recently,neulich
+565,never,nie
+566,nowhere,nirgendwo
+567,yet (still),noch
+568,normal,normal
+569,usually,normalerweise
+570,the grade,die Note
+571,the notebook,das Notizbuch
+572,necessary,notwendig
+573,necessarily,notwendigerweise
+574,only,nur
+575,up,oben
+576,the oven,der Ofen
+577,open,offen
+578,obviously,offensichtlich
+579,public,öffentlich
+580,often,oft
+581,without,ohne
+582,the ear,das Ohr
+583,the earrings,die Ohrringe
+584,the opera,die Oper
+585,the opera house,das Opernhaus
+586,the orange,die Orange
+587,original,originell
+588,the place,der Ort
+589,local,örtlich
+590,the ocean,der Ozean
+591,the palace,der Palast
+592,the panda,der Panda
+593,the paper,das Papier
+594,the perfume,das Parfüm
+595,the park,der Park
+596,the party (political),die Partei
+597,passive,passiv
+598,the patient,der Patient
+599,the pan,die Pfanne
+600,the pepper,der Pfeffer
+601,to whistle,pfeifen
+602,the horse,das Pferd
+603,to plant,pflanzen
+604,the penguin,der Pinguin
+605,the square,der Platz
+606,suddenly,plötzlich
+607,the police station,die Polizeistation
+608,positive,positiv
+609,the post office,das Postamt
+610,practically,praktisch
+611,the presentation,die Präsentation
+612,precisely,präzise
+613,the price,der Preis
+614,private,privat
+615,the problem,das Problem
+616,the product,das Produkt
+617,to produce,produzieren
+618,the professor,der Professor
+619,to program,programmieren
+620,the exam,die Prüfung
+621,the sweater,der Pullover
+622,the score,der Punktestand
+623,the pyramid,die Pyramide
+624,the eraser,der Radiergummi
+625,the radio,das Radio
+626,to guess,raten
+627,the rat,die Ratte
+628,rough,rau
+629,to rob,rauben
+630,to react,reagieren
+631,realistic,realistisch
+632,the reality,die Realität
+633,to calculate,rechnen
+634,the editor,der Redakteur
+635,to talk,reden
+636,the rain,der Regen
+637,the rainbow,der Regenbogen
+638,the umbrella,der Regenschirm
+639,the government,die Regierung
+640,rich,reich
+641,to clean,reinigen
+642,the journey,die Reise
+643,to travel,reisen
+644,the passport,der Reisepass
+645,the race,das Rennen
+646,to repair,reparieren
+647,to respect,respektieren
+648,the restaurant,das Restaurant
+649,to save (rescue),retten
+650,the recipe,das Rezept
+651,correct,richtig
+652,to smell,riechen
+653,the ring,der Ring
+654,to risk,risikieren
+655,the skirt,der Rock
+656,the scooter,der Roller
+657,the novel,der Roman
+658,the backpack,der Rucksack
+659,to call,rufen
+660,calm,ruhig
+661,to stir,rühren
+662,the ruins,die Ruinen
+663,to slide,rutschen
+664,the thing,die Sache
+665,the juice,der Saft
+666,the saw,die Säge
+667,the salt,das Salz
+668,salty,salzig
+669,to collect,sammeln
+670,the sandals,die Sandalen
+671,the sentence,der Satz
+672,clean,sauber
+673,sour,sauer
+674,the sheep,das Schaf
+675,to create,schaffen
+676,the scarf,der Schal
+677,to peel,schälen
+678,spicy,scharf
+679,the actor,der Schauspieler
+680,the actress,die Schauspielerin
+681,the check,der Scheck
+682,to seem,scheinen
+683,the failure,das Scheitern
+684,to fail,scheitern
+685,the ship,das Schiff
+686,the tortoise,die Schildkröte
+687,the pajamas,der Schlafanzug
+688,to sleep,schlafen
+689,the racket,der Schläger
+690,the snake,die Schlange
+691,bad,schlecht
+692,to drag,schleppen
+693,eventually,schließlich
+694,the castle,das Schloss
+695,the key,der Schlüssel
+696,to taste,schmecken
+697,the pain,der Schmerz
+698,the butterfly,der Schmetterling
+699,dirty,schmutzig
+700,the snow,der Schnee
+701,to cut,schneiden
+702,fast,schnell
+703,to shock,schockieren
+704,the chocolate,die Schokolade
+705,already,schon
+706,beautiful,schön
+707,the cupboard,der Schrank
+708,the screw,die Schraube
+709,to write,schreiben
+710,to yell / scream,schreien
+711,the drawer,die Schublade
+712,the shoe,der Schuh
+713,the shoes,die Schuhe
+714,the school,die Schule
+715,the bowl,die Schüssel
+716,weak,schwach
+717,the pig,das Schwein
+718,hard (difficulty) / heavy,schwer
+719,the sister,die Schwester
+720,the pool,das Schwimmbad
+721,to swim,schwimmen
+722,to swing,schwingen
+723,to sweat,schwitzen
+724,the lake,der See
+725,to sail,segeln
+726,to bless,segnen
+727,to see / look (at),sehen
+728,very,sehr
+729,the silk,die Seide
+730,the soap,die Seife
+731,the page,die Seite
+732,confident,selbstbewusst
+733,to send,senden
+734,the shampoo,das Shampoo
+735,the shorts,die Shorts
+736,to behave,sich benehmen
+737,to remember,sich erinnern
+738,to mind,sich kümmern
+739,to worry,sich sorgen
+740,certainly,sicher
+741,visible,sichtbar
+742,the victory,der Sieg
+743,to sing,singen
+744,to sit,sitzen
+745,the skateboard,das Skateboard
+746,the ski,der Ski
+747,the snowboard,das Snowboard
+748,so (in such a way),so
+749,the socks,die Socken
+750,the sofa,das Sofa
+751,immediately,sofort
+752,the son,der Sohn
+753,the sun,die Sonne
+754,the sunglasses,die Sonnenbrille
+755,otherwise,sonst
+756,to save (money),sparen
+757,late,spät
+758,specifically,speziell
+759,the mirror,der Spiegel
+760,the match,das Spiel
+761,to play (a game),spielen
+762,the player,der Spieler
+763,the toy,das Spielzeug
+764,the spider,die Spinne
+765,the sport,der Sport
+766,the language,die Sprache
+767,to speak,sprechen
+768,the stadium,das Stadion
+769,the city / town,die Stadt
+770,strong,stark
+771,rigid,starr
+772,instead,stattdessen
+773,the statue,die Statue
+774,to stand,stehen
+775,to die,sterben
+776,the star,der Stern
+777,the boots,die Stiefel
+778,to stare,stieren
+779,the pen,der Stift
+780,the voice,die Stimme
+781,the beach,der Strand
+782,the street / road,die Straße
+783,the tram,die Straßenbahn
+784,the strategy,die Strategie
+785,to stretch,strecken
+786,the matches,die Streichhölzer
+787,to argue,streiten
+788,to knit,stricken
+789,the play,das Stück
+790,the student (male),der Student
+791,the chair,der Stuhl
+792,the storm,der Sturm
+793,to search,suchen
+794,the supermarket,der Supermarkt
+795,sweet,süß
+796,the candy,die Süßigkeit
+797,the day,der Tag
+798,the valley,das Tal
+799,to dance,tanzen
+800,the bag,die Tasche
+801,the cup,die Tasse
+802,the keyboard,die Tastatur
+803,indeed,tatsächlich
+804,to dive,tauchen
+805,to exchange,tauschen
+806,the teamwork,die Teamarbeit
+807,the technology,die Technologie
+808,the tea,der Tee
+809,to share,teilen
+810,to participate,teilnehmen
+811,partly,teilweise
+812,the phone,das Telefon
+813,the telescope,das Teleskop
+814,the plate,der Teller
+815,the test,der Test
+816,expensive,teuer
+817,the theater,das Theater
+818,the theme park,der Themenpark
+819,the theory,die Theorie
+820,deep,tief
+821,the animal,das Tier
+822,the tiger,der Tiger
+823,the table,der Tisch
+824,the daughter,die Tochter
+825,the toilet,die Toilette
+826,the tomato,die Tomate
+827,the pot,der Topf
+828,the goal,das Tor
+829,dead,tot
+830,to carry,tragen
+831,the coach,der Trainer
+832,to exercise,trainieren
+833,the tear,die Träne
+834,to mourn,trauern
+835,the dream,der Traum
+836,to dream,träumen
+837,sad,traurig
+838,the sadness,die Traurigkeit
+839,to meet,treffen
+840,the stairs,die Treppe
+841,to drink,trinken
+842,dry,trocken
+843,the drum,die Trommel
+844,to comfort,trösten
+845,the tunnel,der Tunnel
+846,the door,die Tür
+847,the tower,der Turm
+848,typically,typischerweise
+849,the subway,die U-Bahn
+850,everywhere,überall
+851,to surprise,überraschen
+852,to translate,übersetzen
+853,to convince,überzeugen
+854,incidentally,übrigens
+855,the clock,die Uhr
+856,the envelope,der Umschlag
+857,unknown,unbekannt
+858,uncomfortable,unbequem
+859,unable,unfähig
+860,approximately,ungefähr
+861,inaccurate,ungenau
+862,rude,unhöflich
+863,the university,die Universität
+864,unclear,unklar
+865,impossible,unmöglich
+866,unnecessary,unnötig
+867,unrealistic,unrealistisch
+868,insecure,unsicher
+869,invisible,unsichtbar
+870,down,unten
+871,to entertain,unterhalten
+872,the entrepreneur,der Unternehmer
+873,to support,unterstützen
+874,to examine,untersuchen
+875,unimportant,unwichtig
+876,insufficient,unzureichend
+877,the father,der Vater
+878,the consumer,der Verbraucher
+879,to suspect,verdächtigen
+880,to deserve,verdienen
+881,united,vereint
+882,the past,die Vergangenheit
+883,to forgive,vergeben
+884,to forget,vergessen
+885,the simile,der Vergleich
+886,to compare,vergleichen
+887,to increase,vergrößern
+888,the negotiation,die Verhandlung
+889,to prevent,verhindern
+890,the sales,der Verkauf
+891,to sell,verkaufen
+892,to embarrass,verlegen machen
+893,to lend,verleihen
+894,to hurt,verletzen
+895,to lose (object),verlieren
+896,the loss,der Verlust
+897,to avoid,vermeiden
+898,reasonable,vernünftig
+899,to miss,verpassen
+900,to spill,verschütten
+901,to promise / pledge,versprechen
+902,to understand,verstehen
+903,to try,versuchen
+904,to trust,vertrauen
+905,familiar,vertraut
+906,to confuse,verwirren
+907,desperate,verzweifelt
+908,perhaps / maybe,vielleicht
+909,the violin,die Violine
+910,the bird,der Vogel
+911,full,voll
+912,completely,völlig
+913,to suggest,vorschlagen
+914,to introduce,vorstellen
+915,the imagination,die Vorstellungskraft
+916,the volcano,der Vulkan
+917,to dare,wagen
+918,during,während
+919,probably,wahrscheinlich
+920,the whale,der Wal
+921,the forest,der Wald
+922,to wander,wandern
+923,warm,warm
+924,to warn,warnen
+925,to wait,warten
+926,the sink,das Waschbecken
+927,the washing machine,die Waschmaschine
+928,the water,das Wasser
+929,the waterfall,der Wasserfall
+930,the path,der Weg
+931,soft,weich
+932,the wine,der Wein
+933,to cry,weinen
+934,the wisdom,die Weisheit
+935,far,weit
+936,the wave,die Welle
+937,the world,die Welt
+938,the advertisement,die Werbung
+939,to become,werden
+940,worthless,wertlos
+941,precious,wertvoll
+942,important,wichtig
+943,to matter,wichtig sein
+944,again,wieder
+945,to repeat,wiederholen
+946,to weigh,wiegen
+947,the wind,der Wind
+948,to wave,winken
+949,really,wirklich
+950,the economy,die Wirtschaft
+951,the knowledge,das Wissen
+952,to know (a fact),wissen
+953,the science,die Wissenschaft
+954,the scientist,der Wissenschaftler
+955,to live (reside),wohnen
+956,the apartment,die Wohnung
+957,the cloud,die Wolke
+958,the wool,die Wolle
+959,to want,wollen
+960,the word,das Wort
+961,to wonder,wundern
+962,to wish,wünschen
+963,the root,die Wurzel
+964,the desert,die Wüste
+965,the anger,die Wut
+966,angry,wütend
+967,the number,die Zahl
+968,the tooth,der Zahn
+969,the toothbrush,die Zahnbürste
+970,the toothpaste,die Zahnpasta
+971,the zebra,das Zebra
+972,the toe,der Zeh
+973,to draw,zeichnen
+974,the drawing,die Zeichnung
+975,to show,zeigen
+976,the time,die Zeit
+977,the magazine,die Zeitschrift
+978,the newspaper,die Zeitung
+979,the tent,das Zelt
+980,to camp,zelten
+981,to destroy,zerstören
+982,the goat,die Ziege
+983,the room,das Zimmer
+984,the zoo,der Zoo
+985,too (excessive),zu
+986,the sugar,der Zucker
+987,to satisfy,zufriedenstellen
+988,the train,der Zug
+989,to admit,zugeben
+990,to belong,zugehören
+991,the future,die Zukunft
+992,to return (give back),zurückgeben
+993,to return (come back),zurückkehren
+994,currently,zurzeit
+995,together,zusammen
+996,additionally,zusätzlich
+997,to agree,zustimmen
+998,to doubt,zweifeln
+999,secondly / secondly,zweitens
+1000,the onion,die Zwiebel
