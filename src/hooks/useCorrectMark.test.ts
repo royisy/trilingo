@@ -5,7 +5,7 @@ describe('useCorrectMark', () => {
   it('should return isCorrect as true after showCorrect is called', async () => {
     const { result } = renderHook(() => useCorrectMark(0))
     expect(result.current.isCorrect).toBe(false)
-    void act(() => {
+    act(() => {
       result.current.showCorrect()
     })
     expect(result.current.isCorrect).toBe(true)

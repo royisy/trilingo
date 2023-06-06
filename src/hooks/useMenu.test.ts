@@ -6,13 +6,13 @@ describe('useMenu', () => {
     const { result } = renderHook(() => useMenu())
     expect(result.current.drawerOpen).toBe(false)
     expect(result.current.menuComponent).toBe('menu')
-    void act(() => {
+    act(() => {
       result.current.setMenuComponent('add-deck')
       result.current.toggleDrawerOpen()
     })
     expect(result.current.drawerOpen).toBe(true)
     expect(result.current.menuComponent).toBe('menu')
-    void act(() => {
+    act(() => {
       result.current.toggleDrawerOpen()
     })
     expect(result.current.drawerOpen).toBe(false)
