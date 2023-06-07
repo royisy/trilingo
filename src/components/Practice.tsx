@@ -233,18 +233,20 @@ const Result = ({ result }: ResultProps): JSX.Element => {
           Finish
         </button>
       </div>
-      <table className="table-zebra mt-5 table w-96">
+      <table className="table-zebra mt-5 table max-w-screen-sm">
         <tbody className="text-lg">
           {result.map((wordResult, index) => (
             <tr key={wordResult.word.id}>
               <td className="text-right">{index + 1}</td>
               <td>{wordResult.word.definition}</td>
               <td>{wordResult.word.answer}</td>
-              <td className="flex justify-center text-red-500">
-                {wordResult.correct && (
-                  <CheckIcon className="w-9 text-green-500" />
-                )}
-                {!wordResult.correct && `+${wordResult.skippedCnt}`}
+              <td className="text-red-500">
+                <div className="flex justify-center">
+                  {wordResult.correct && (
+                    <CheckIcon className="w-9 text-green-500" />
+                  )}
+                  {!wordResult.correct && `+${wordResult.skippedCnt}`}
+                </div>
               </td>
             </tr>
           ))}
