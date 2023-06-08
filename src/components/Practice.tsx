@@ -5,6 +5,7 @@ import { useCheckAnswer } from '../hooks/useCheckAnswer'
 import { useCorrectMark } from '../hooks/useCorrectMark'
 import { useWords } from '../hooks/useWords'
 import { type Word } from '../models/Word'
+import { splitAnswerByMatch } from '../utils/stringUtils'
 import { CheckIcon } from './CheckIcon'
 
 const NUM_OF_WORDS = 10
@@ -133,7 +134,9 @@ export const Practice = (): JSX.Element => {
           {isCorrect && !showAnswer && (
             <CheckIcon className="-mt-1 w-12 text-green-500 sm:mt-5 sm:w-16" />
           )}
-          <p className="mt-1 text-2xl sm:mt-8 sm:text-3xl">{answer}</p>
+          <p className="mt-1 text-2xl sm:mt-8 sm:text-3xl">
+            <Answer answer={answer} userAnswer={userAnswer} />
+          </p>
         </div>
         <div className="flex flex-col items-center">
           <div>
@@ -210,6 +213,21 @@ const QuitButton = ({ disabled }: QuitButtonProps): JSX.Element => {
           </div>
         </label>
       </label>
+    </>
+  )
+}
+
+interface AnswerProps {
+  answer: string
+  userAnswer: string
+}
+
+const Answer = ({ answer, userAnswer }: AnswerProps): JSX.Element => {
+  const { matchedPart, remainingPart } = splitAnswerByMatch(answer, userAnswer)
+  return (
+    <>
+      <span className="text-primary">{matchedPart}</span>
+      {remainingPart}
     </>
   )
 }
