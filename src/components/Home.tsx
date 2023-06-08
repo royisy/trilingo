@@ -7,7 +7,9 @@ import { MenuContext } from '../contexts/MenuContext'
 import { useDeleteDeck } from '../hooks/useDeleteDeck'
 import { useMenu } from '../hooks/useMenu'
 import { useSelectedDeck } from '../hooks/useSelectedDeck'
+import { useStats } from '../hooks/useStats'
 import { type Deck } from '../models/Deck'
+import { type Word } from '../models/Word'
 import { getAppSetting } from '../repositories/appSetting'
 import { AddDeck } from './AddDeck'
 import { DeckProgress } from './DeckProgress'
@@ -25,7 +27,7 @@ export const Home = (): JSX.Element => {
   const [deckToDelete, setDeckToDelete] = useState<Deck | null>(null)
 
   return (
-    <div className="lg:drawer-open drawer">
+    <div className="drawer lg:drawer-open">
       <input
         id="home-drawer"
         type="checkbox"
@@ -63,7 +65,8 @@ export const Home = (): JSX.Element => {
           </div>
           {title != null && (
             <>
-              <div className="my-10 self-center lg:mt-5">
+              <Stats words={words} />
+              <div className="my-10 self-center">
                 <button
                   className="btn-primary btn"
                   onClick={() => {
@@ -103,6 +106,39 @@ export const Home = (): JSX.Element => {
       <WordTooltip />
       <DeleteDeckModal deckToDelete={deckToDelete} />
     </div>
+  )
+}
+
+interface StatsProps {
+  words: Word[]
+}
+
+const Stats = ({ words }: StatsProps): JSX.Element => {
+  const { memorizedWords, remainingWords, progress } = useStats(words)
+  return (
+    <>
+      <div className="stats mt-5 w-fit self-center shadow sm:w-full lg:mt-0">
+        <StatsItem title="Memorized" value={memorizedWords.toString()} />
+        <StatsItem title="Remaining" value={remainingWords.toString()} />
+        <StatsItem title="Progress" value={`${progress}%`} />
+      </div>
+    </>
+  )
+}
+
+interface StatsItemProps {
+  title: string
+  value: string
+}
+
+const StatsItem = ({ title, value }: StatsItemProps): JSX.Element => {
+  return (
+    <>
+      <div className="stat place-items-center">
+        <div className="stat-title text-sm sm:text-base">{title}</div>
+        <div className="stat-value text-2xl sm:text-4xl">{value}</div>
+      </div>
+    </>
   )
 }
 
