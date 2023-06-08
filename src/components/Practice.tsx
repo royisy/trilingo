@@ -226,7 +226,7 @@ const Answer = ({ answer, userAnswer }: AnswerProps): JSX.Element => {
   const { matchedPart, remainingPart } = splitAnswerByMatch(answer, userAnswer)
   return (
     <>
-      <span className="text-primary">{matchedPart}</span>
+      <span className="text-green-500">{matchedPart}</span>
       {remainingPart}
     </>
   )
