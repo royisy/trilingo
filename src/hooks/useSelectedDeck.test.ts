@@ -9,13 +9,13 @@ describe('useDeck', () => {
   beforeAll(async () => {
     const deck1 = new Deck(1, 'deck 1')
     await db.decks.add(deck1)
-    const word1 = new Word(1, 1, 'definition 1', 'answer 1')
+    const word1 = new Word(1, 1, 'pos 1', 'definition 1', 'answer 1')
     await db.words.add(word1)
     const deck2 = new Deck(2, 'deck 2')
     await db.decks.add(deck2)
-    const word2 = new Word(2, 1, 'definition 2', 'answer 2')
+    const word2 = new Word(2, 1, 'pos 2', 'definition 2', 'answer 2')
     await db.words.add(word2)
-    const word3 = new Word(2, 2, 'definition 3', 'answer 3')
+    const word3 = new Word(2, 2, 'pos 3', 'definition 3', 'answer 3')
     await db.words.add(word3)
   })
 

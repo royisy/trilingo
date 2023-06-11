@@ -7,8 +7,8 @@ import { AppSetting } from '../models/AppSetting'
 import { Word } from '../models/Word'
 import { Practice } from './Practice'
 
-const word1 = new Word(1, 1, 'definition 1', 'answer 1')
-const word2 = new Word(1, 2, 'definition 2', 'answer 2')
+const word1 = new Word(1, 1, 'pos 1', 'definition 1', 'answer 1')
+const word2 = new Word(1, 2, 'pos 2', 'definition 2', 'answer 2')
 
 vi.mock('../hooks/useWords', () => ({
   useWords: (numOfWords: number) => {

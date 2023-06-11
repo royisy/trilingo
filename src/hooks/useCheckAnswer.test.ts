@@ -5,7 +5,7 @@ import { useCheckAnswer } from './useCheckAnswer'
 
 describe('useCheckAnswer', () => {
   it('should return true if user answer is correct', async () => {
-    const word = new Word(1, 1, 'definition 1 ', 'answer 1')
+    const word = new Word(1, 1, 'pos 1', 'definition 1 ', 'answer 1')
     await db.words.add(word)
     const { result } = renderHook(() => useCheckAnswer())
     const shouldUpdate = true
@@ -20,7 +20,7 @@ describe('useCheckAnswer', () => {
   })
 
   it('should not increment correctCnt in review', async () => {
-    const word = new Word(1, 2, 'definition 2 ', 'answer 2')
+    const word = new Word(1, 2, 'pos 2', 'definition 2 ', 'answer 2')
     const { result } = renderHook(() => useCheckAnswer())
     const shouldUpdate = false
     await waitFor(async () => {
@@ -35,7 +35,7 @@ describe('useCheckAnswer', () => {
   })
 
   it('should return false if user answer is incorrect', async () => {
-    const word = new Word(1, 3, 'definition 3 ', 'answer 3')
+    const word = new Word(1, 3, 'pos 3', 'definition 3 ', 'answer 3')
     await db.words.add(word)
     const { result } = renderHook(() => useCheckAnswer())
     const shouldUpdate = true

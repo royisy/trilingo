@@ -56,11 +56,11 @@ describe('Home', () => {
     await db.appSettings.add(appSetting)
     const deck = new Deck(1, 'deck 1')
     await db.decks.add(deck)
-    const word1 = new Word(1, 1, 'definition 1', 'answer 1')
+    const word1 = new Word(1, 1, 'pos 1', 'definition 1', 'answer 1')
     word1.correctCnt = 0
     word1.skippedCnt = 0
     await db.words.add(word1)
-    const word2 = new Word(1, 2, 'definition 2', 'answer 2')
+    const word2 = new Word(1, 2, 'pos 2', 'definition 2', 'answer 2')
     word2.correctCnt = 0
     word2.skippedCnt = 0
     await db.words.add(word2)

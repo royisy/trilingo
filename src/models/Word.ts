@@ -4,14 +4,22 @@ export class Word {
   id?: number
   deckId: number
   no: number
+  partOfSpeech: string
   definition: string
   answer: string
   correctCnt: number
   skippedCnt: number
 
-  constructor(deckId: number, no: number, definition: string, answer: string) {
+  constructor(
+    deckId: number,
+    no: number,
+    partOfSpeech: string,
+    definition: string,
+    answer: string
+  ) {
     this.deckId = deckId
     this.no = no
+    this.partOfSpeech = partOfSpeech
     this.definition = definition
     this.answer = answer
     this.correctCnt = 0
