@@ -35,6 +35,19 @@ export const Practice = (): JSX.Element => {
   const [answer, setAnswer] = useState<string>('')
   const word = isReview ? skippedWords[0] : words[index]
   const showAnswer = answer !== ''
+  const definitionLength = word?.definition.length ?? 0
+  let definitionFontSize = 'text-3xl'
+  let answerMargin = '-mt-0.5'
+  if (definitionLength > 25) {
+    definitionFontSize = 'text-base'
+    answerMargin = '-mt-2.5'
+  } else if (definitionLength > 20) {
+    definitionFontSize = 'text-lg'
+    answerMargin = '-mt-1.5'
+  } else if (definitionLength > 15) {
+    definitionFontSize = 'text-2xl'
+    answerMargin = '-mt-1'
+  }
 
   useEffect(() => {
     inputRef.current?.focus()
@@ -121,7 +134,7 @@ export const Practice = (): JSX.Element => {
         <div className="flex items-center">
           <QuitButton disabled={disabled} />
           <progress
-            className="progress progress-primary ml-2 mr-3 h-4 w-full sm:ml-5 sm:h-5"
+            className="progress-primary progress ml-2 mr-3 h-4 w-full sm:ml-5 sm:h-5"
             value={progress}
             max={words.length}
           ></progress>
@@ -130,13 +143,28 @@ export const Practice = (): JSX.Element => {
           {isReview && <p className="badge badge-primary p-3">Review</p>}
         </div>
         <div className="flex h-20 flex-col items-center sm:h-52">
-          <p className="-mt-1 text-3xl sm:mt-16">{word?.definition}</p>
+          <div className={`flex h-10 items-center sm:mt-16 ${answerMargin}`}>
+            <div className="grid grid-cols-[55px,1fr,55px] sm:grid-cols-[60px,1fr,60px]">
+              <div className="flex justify-end">
+                <p className="badge badge-md sm:badge-lg">
+                  {word?.partOfSpeech}
+                </p>
+              </div>
+              <p
+                className={`whitespace-nowrap sm:text-3xl ${definitionFontSize}`}
+              >
+                {word?.definition}
+              </p>
+            </div>
+          </div>
           {isCorrect && !showAnswer && (
-            <CheckIcon className="-mt-1 w-12 text-green-500 sm:mt-5 sm:w-16" />
+            <CheckIcon className="-mt-2 w-12 text-green-500 sm:mt-4 sm:w-16" />
           )}
-          <p className="mt-1 text-2xl sm:mt-8 sm:text-3xl">
-            <Answer answer={answer} userAnswer={userAnswer} />
-          </p>
+          {showAnswer && (
+            <p className="-mt-0.5 text-2xl sm:mt-7 sm:text-3xl">
+              <Answer answer={answer} userAnswer={userAnswer} />
+            </p>
+          )}
         </div>
         <div className="flex flex-col items-center">
           <div>
