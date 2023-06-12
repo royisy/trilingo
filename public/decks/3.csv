@@ -1,1002 +1,1001 @@
-no,definition,answer
-1,able,способный
-2,about,о
-3,above,выше
-4,across,через
-5,act,действовать
-6,actor,актер
-7,active,активный
-8,activity,мероприятия
-9,add,добавлять
-10,afraid,боюсь
-11,after,после
-12,again,опять
-13,age,возраст
-14,ago,назад
-15,agree,соглашаться
-16,air,воздуха
-17,all,все
-18,alone,один
-19,along,вместе
-20,already,уже
-21,always,всегда
-22,amount,количество
-23,angry,злой
-24,animal,животное
-25,another,еще один
-26,answer,отвечать
-27,any,любые
-28,anyone,кто угодно
-29,anything,что угодно
-30,appear,появляться
-31,apple,яблоко
-32,area,область
-33,arm,рука
-34,army,армия
-35,around,около
-36,arrive,прибыть
-37,art,искусство
-38,ask,спросить
-39,at,в
-40,attack,атака
-41,aunt,тетя
-42,autumn,осень
-43,away,прочь
-44,baby,малыш
-45,base,база
-46,back,назад
-47,bad,плохо
-48,bag,сумка
-49,ball,мяч
-50,bank,банк
-51,basket,корзина
-52,bath,ванна
-53,be,быть
-54,bean,фасоль
-55,bear,медведь
-56,beautiful,красивая
-57,beer,пиво
-58,bed,кровать
-59,bedroom,спальня
-60,behave,вести себя
-61,before,до
-62,begin,начинать
-63,behind,позади
-64,bell,колокол
-65,below,ниже
-66,besides,помимо
-67,best,лучший
-68,better,лучше
-69,between,между
-70,big,большой
-71,bird,птица
-72,birth,рождение
-73,birthday,день рождения
-74,bit,кусочек
-75,bite,кусать
-76,black,черный
-77,bleed,кровотечение
-78,block,блокировать
-79,blood,кровь
-80,blow,дуть
-81,blue,синий
-82,board,доска
-83,boat,лодка
-84,body,тело
-85,boil,кипятить
-86,bone,кость
-87,book,книга
-88,border,граница
-89,born,родился
-90,borrow,занимать
-91,both,оба
-92,bottle,бутылка
-93,bottom,нижний
-94,bowl,чаша
-95,box,коробка
-96,boy,мальчик
-97,branch,ответвляться
-98,brave,храбрый
-99,bread,хлеб
-100,break,ломать
-101,breakfast,завтрак
-102,breathe,дышать
-103,bridge,мост
-104,bright,яркий
-105,bring,приносить
-106,brother,брат
-107,brown,коричневый
-108,brush,щетка
-109,build,строить
-110,burn,гореть
-111,business,бизнес
-112,bus,автобус
-113,busy,занятый
-114,but,но
-115,buy,купить
-116,by,по
-117,cake,кекс
-118,call,вызов
-119,can,можно
-120,candle,свеча
-121,cap,крышка
-122,car,автомобиль
-123,card,открытка
-124,care,забота
-125,careful,осторожный
-126,careless,беспечный
-127,carry,нести
-128,case,кейс
-129,cat,кошка
-130,catch,ловить
-131,central,центральный
-132,century,век
-133,certain,определенный
-134,chair,стул
-135,chance,шанс
-136,change,сдача
-137,chase,гнаться
-138,cheap,дешевый
-139,cheese,сыр
-140,chicken,курица
-141,child,ребенок
-142,children,дети
-143,chocolate,шоколад
-144,choice,выбор
-145,choose,выбирать
-146,circle,круг
-147,city,город
-148,class,класс
-149,clever,умный
-150,clean,чистый
-151,clear,чисто
-152,climb,взбираться
-153,clock,часы
-154,cloth,ткань
-155,clothes,одежда
-156,cloud,облако
-157,cloudy,облачно
-158,close,закрыть
-159,coffee,кофе
-160,coat,пальто
-161,coin,монета
-162,cold,холодно
-163,collect,собирать
-164,colour,цвет
-165,comb,гребень
-166,come,прийти
-167,comfortable,комфортный
-168,common,общий
-169,compare,сравнивать
-170,complete,полный
-171,computer,компьютер
-172,condition,условие
-173,continue,продолжать
-174,control,контроль
-175,cook,готовить
-176,cool,круто
-177,copper,медь
-178,corn,кукуруза
-179,corner,угол
-180,correct,правильный
-181,cost,стоимость
-182,contain,содержать
-183,count,считать
-184,country,страна
-185,course,курс
-186,cover,покрытие
-187,crash,крушение
-188,cross,пересекать
-189,cry,плакать
-190,cup,чашка
-191,cupboard,буфет
-192,cut,резать
-193,dance,танец
-194,danger,опасность
-195,dangerous,опасный
-196,dark,темный
-197,daughter,дочь
-198,day,день
-199,dead,мертвых
-200,decide,решать
-201,decrease,снижаться
-202,deep,глубокий
-203,deer,олень
-204,depend,зависеть
-205,desk,стол
-206,destroy,разрушать
-207,develop,развивать
-208,die,умереть
-209,different,другой
-210,difficult,сложно
-211,dinner,обед
-212,direction,направление
-213,dirty,грязный
-214,discover,обнаружить
-215,dish,блюдо
-216,do,делать
-217,dog,собака
-218,door,дверь
-219,double,двойной
-220,down,вниз
-221,draw,рисовать
-222,dream,мечтать
-223,dress,платье
-224,drink,напиток
-225,drive,ездить
-226,drop,уронить
-227,dry,сухой
-228,duck,утка
-229,dust,пыль
-230,duty,долг
-231,destroy,разрушать
-232,dedicated,преданный
-233,each,каждый
-234,ear,ухо
-235,early,рано
-236,earn,зарабатывать
-237,earth,земной шар
-238,east,восток
-239,easy,легкий
-240,eat,есть
-241,education,образование
-242,effect,эффект
-243,egg,яйцо
-244,eight,восемь
-245,either,либо
-246,electric,электрический
-247,elephant,слон
-248,else,еще
-249,empty,пустой
-250,end,конец
-251,enemy,враг
-252,enjoy,наслаждаться
-253,enough,достаточно
-254,enter,войти
-255,equal,равный
-256,entrance,вход
-257,escape,побег
-258,even,даже
-259,evening,вечер
-260,event,мероприятие
-261,ever,когда-либо
-262,every,каждый
-263,everyone,каждый
-264,exact,точный
-265,everybody,все
-266,examination,экзамен
-267,example,пример
-268,except,кроме
-269,excited,взволнованный
-270,exercise,упражнение
-271,expect,ожидать
-272,expensive,дорогой
-273,explain,объяснять
-274,extremely,чрезвычайно
-275,eye,глаз
-276,face,лицо
-277,fact,факт
-278,fail,провал
-279,fall,падение
-280,false,ложь
-281,family,семья
-282,famous,известный
-283,far,далеко
-284,farm,ферма
-285,father,отец
-286,fast,быстро
-287,fat,толстый
-288,fault,вина
-289,fear,страх
-290,feed,подача
-291,feel,чувствовать
-292,female,женский
-293,fever,жар
-294,few,несколько
-295,fight,борьба
-296,fill,наполнять
-297,film,фильм
-298,find,найти
-299,fine,отлично
-300,finger,палец
-301,finish,финиш
-302,fire,огонь
-303,first,первый
-304,fit,поместиться
-305,five,пять
-306,fix,исправить
-307,flag,флаг
-308,flat,плоский
-309,float,плавать
-310,floor,пол
-311,flour,мука
-312,flower,цветок
-313,fly,летать
-314,fold,складывать
-315,food,еда
-316,fool,дурак
-317,foot,ступня
-318,football,футбол
-319,for,за
-320,force,сила
-321,foreign,иностранный
-322,forest,лес
-323,forget,забывать
-324,forgive,простить
-325,fork,вилка
-326,form,форма
-327,fox,лиса
-328,four,четыре
-329,free,свободно
-330,freedom,свобода
-331,freeze,заморозить
-332,fresh,свежий
-333,friend,друг
-334,friendly,дружелюбный
-335,from,из
-336,front,фронт
-337,fruit,фрукты
-338,full,полный
-339,fun,весело
-340,funny,смешной
-341,furniture,мебель
-342,further,дальше
-343,future,будущее
-344,game,игра
-345,garden,сад
-346,gate,ворота
-347,general,генеральная
-348,gentleman,джентльмен
-349,get,получить
-350,gift,подарок
-351,give,дайте
-352,glad,радостный
-353,glass,стакан
-354,go,идти
-355,goat,козел
-356,god,бог
-357,gold,золото
-358,good,хороший
-359,goodbye,до свидания
-360,grandfather,дедушка
-361,grandmother,бабушка
-362,grass,трава
-363,grave,могила
-364,great,большой
-365,green,зеленый
-366,grey,серый
-367,ground,земля
-368,group,группа
-369,grow,расти
-370,gun,пистолет
-371,hair,волосы
-372,half,половина
-373,hall,зал
-374,hammer,молоток
-375,hand,рука
-376,happen,случаться
-377,happy,счастливый
-378,hard,жесткий
-379,hat,шляпа
-380,hate,ненавидеть
-381,have,имеют
-382,he,он
-383,head,глава
-384,healthy,здоровый
-385,hear,слышать
-386,heavy,тяжелый
-387,hello,привет
-388,help,помощь
-389,heart,сердце
-390,heaven,небеса
-391,height,высота
-392,hen,курица
-393,her,ей
-394,here,здесь
-395,hers,ее
-396,hide,спрятать
-397,high,высокая
-398,hill,холм
-399,him,его
-400,his,его
-401,hit,хит
-402,hobby,хобби
-403,hold,держать
-404,hole,отверстие
-405,holiday,праздник
-406,home,дом
-407,hope,надеяться
-408,horse,лошадь
-409,hospital,больница
-410,hot,горячий
-411,hotel,отель
-412,house,дом
-413,how,как
-414,hundred,сто
-415,hungry,голодный
-416,hour,час
-417,hurry,торопиться
-418,husband,муж
-419,hurt,повредить
-420,I,я
-421,ice,лед
-422,idea,идея
-423,if,если
-424,important,важный
-425,in,в
-426,increase,увеличивать
-427,inside,внутри
-428,into,в
-429,introduce,вводить
-430,invent,изобретать
-431,iron,утюг
-432,invite,приглашать
-433,is,является
-434,island,остров
-435,it,это
-436,job,работа
-437,join,присоединиться
-438,juice,сок
-439,jump,прыжок
-440,just,просто
-441,keep,хранить
-442,key,ключ
-443,kid,ребенок
-444,kill,убийство
-445,kind,добрый
-446,king,король
-447,kitchen,кухня
-448,knee,колено
-449,knife,нож
-450,knock,стучать
-451,know,знать
-452,ladder,лестница
-453,lady,леди
-454,lamp,фонарь
-455,land,земля
-456,large,большой
-457,last,последний
-458,late,поздно
-459,laugh,смех
-460,lazy,ленивый
-461,lead,привести
-462,leaf,лист
-463,learn,учиться
-464,leave,оставлять
-465,leg,нога
-466,left,оставил
-467,lend,одолжить
-468,length,длина
-469,less,меньше
-470,lesson,урок
-471,let,позволять
-472,letter,письмо
-473,library,библиотека
-474,lie,ложь
-475,life,жизнь
-476,light,легкий
-477,like,как
-478,lion,лев
-479,lip,губа
-480,list,список
-481,listen,слушать
-482,little,маленький
-483,live,жить
-484,lock,замок
-485,lonely,одинокий
-486,long,длинная
-487,look,смотреть
-488,lose,терять
-489,lot,много
-490,love,любовь
-491,low,низкий
-492,lower,ниже
-493,luck,удача
-494,machine,машина
-495,main,главный
-496,make,делать
-497,male,мужчина
-498,man,человек
-499,many,много
-500,map,карта
-501,mark,отметка
-502,market,рынок
-503,marry,жениться
-504,matter,материя
-505,may,май
-506,me,мне
-507,meal,еда
-508,mean,иметь в виду
-509,measure,мера
-510,meat,мясо
-511,medicine,лекарство
-512,meet,встретиться
-513,member,член
-514,mention,упомянуть
-515,method,метод
-516,middle,середина
-517,milk,молоко
-518,mill,мельница
-519,million,миллион
-520,mind,разум
-521,mine,мой
-522,minute,минута
-523,miss,скучать
-524,mistake,ошибка
-525,mix,смешивание
-526,model,модель
-527,modern,современный
-528,moment,момент
-529,money,деньги
-530,monkey,обезьяна
-531,month,месяц
-532,moon,луна
-533,more,более
-534,morning,утро
-535,most,самый
-536,mother,мать
-537,mountain,гора
-538,mouse,мышь
-539,mouth,рот
-540,move,шаг
-541,much,много
-542,music,музыка
-543,must,должен
-544,my,мой
-545,name,имя
-546,narrow,узкий
-547,nation,нация
-548,nature,природа
-549,near,около
-550,nearly,около
-551,neck,шея
-552,need,необходимость
-553,needle,иголка
-554,neighbour,сосед
-555,neither,ни один
-556,net,сеть
-557,never,никогда
-558,new,новый
-559,news,новости
-560,newspaper,газета
-561,next,следующий
-562,nice,отлично
-563,night,ночь
-564,nine,девять
-565,no,нет
-566,noble,благородный
-567,noise,шум
-568,none,никто
-569,nor,ни
-570,north,к северу
-571,nose,нос
-572,not,нет
-573,nothing,ничего
-574,notice,уведомление
-575,now,сейчас
-576,number,количество
-577,obey,подчиниться
-578,object,объект
-579,ocean,океан
-580,of,из
-581,offer,предложение
-582,office,офис
-583,often,часто
-584,oil,масло
-585,old,старый
-586,on,на
-587,one,один
-588,only,только
-589,open,открытым
-590,opposite,противоположный
-591,or,или
-592,orange,апельсин
-593,order,заказ
-594,other,другой
-595,our,наш
-596,out,вне
-597,outside,вне
-598,over,над
-599,own,собственный
-600,page,страница
-601,pain,боль
-602,paint,краска
-603,pair,пара
-604,pan,сковорода
-605,paper,бумага
-606,parent,родитель
-607,park,парк
-608,part,часть
-609,partner,партнер
-610,party,партия
-611,pass,проходить
-612,past,мимо
-613,path,дорожка
-614,pay,платить
-615,peace,мир
-616,pen,ручка
-617,pencil,карандаш
-618,people,люди
-619,pepper,перец
-620,per,за
-621,perfect,идеально
-622,period,период
-623,person,человек
-624,petrol,бензин
-625,photograph,фотография
-626,piano,пианино
-627,pick,выбирать
-628,picture,картина
-629,piece,кусок
-630,pig,свинья
-631,pill,таблетка
-632,pin,штырь
-633,pink,розовый
-634,place,место
-635,plane,самолет
-636,plant,завод
-637,plastic,пластик
-638,plate,пластина
-639,play,играть
-640,please,пожалуйста
-641,pleased,довольный
-642,plenty,множество
-643,pocket,карман
-644,point,точка
-645,poison,яд
-646,police,полиция
-647,polite,вежливый
-648,pool,бассейн
-649,poor,бедный
-650,popular,популярный
-651,position,должность
-652,possible,возможный
-653,potato,картошка
-654,pour,налить
-655,power,сила
-656,present,подарок
-657,press,нажмите
-658,pretty,симпатичная
-659,prevent,предотвращать
-660,price,цена
-661,prince,принц
-662,prison,тюрьма
-663,private,частный
-664,prize,приз
-665,probably,вероятно
-666,problem,проблема
-667,produce,производить
-668,promise,обещать
-669,proper,правильный
-670,protect,защищать
-671,provide,предоставлять
-672,public,публичный
-673,pull,тянуть
-674,punish,наказывать
-675,pupil,ученица
-676,push,толкать
-677,put,помещать
-678,queen,королева
-679,question,вопрос
-680,quick,быстрый
-681,quiet,тихо
-682,quite,довольно
-683,radio,радио
-684,rain,дождь
-685,rainy,дождливый
-686,raise,поднимать
-687,reach,достигать
-688,read,читать
-689,ready,готовы
-690,real,настоящий
-691,really,действительно
-692,receive,получать
-693,record,записывать
-694,red,красный
-695,remember,запомнить
-696,remind,напоминать
-697,remove,удалять
-698,rent,арендовать
-699,repair,ремонт
-700,repeat,повторение
-701,reply,ответить
-702,report,отчет
-703,rest,отдыхать
-704,restaurant,ресторан
-705,result,результат
-706,return,возвращаться
-707,rice,рис
-708,rich,богатый
-709,ride,поездка
-710,right,правильно
-711,ring,звенеть
-712,rise,подниматься
-713,road,дорога
-714,rob,грабить
-715,rock,рок
-716,room,номер
-717,round,круглый
-718,rubber,резина
-719,rude,грубый
-720,rule,правило
-721,ruler,правитель
-722,run,бежать
-723,rush,порыв
-724,sad,грустный
-725,safe,безопасно
-726,sail,плыть
-727,salt,соль
-728,same,такой же
-729,sand,песок
-730,save,спасти
-731,say,сказать
-732,school,школа
-733,science,наука
-734,scissors,ножницы
-735,search,поиск
-736,seat,сиденье
-737,second,второй
-738,see,видеть
-739,seem,казаться
-740,sell,продавать
-741,send,отправить
-742,sentence,приговор
-743,serve,обслуживать
-744,seven,семь
-745,several,несколько
-746,sex,секс
-747,shade,оттенок
-748,shadow,тень
-749,shake,встряхнуть
-750,shape,форма
-751,share,поделиться
-752,sharp,острый
-753,she,она
-754,sheep,овец
-755,sheet,лист
-756,shelf,полка
-757,shine,светить
-758,ship,судно
-759,shirt,рубашка
-760,shoe,обувь
-761,shoot,стрелять
-762,shop,магазин
-763,short,короткая
-764,should,должен
-765,shoulder,плечо
-766,shout,кричать
-767,show,показывать
-768,sick,больной
-769,side,сторона
-770,signal,сигнал
-771,silence,тишина
-772,silly,глупый
-773,silver,серебряный
-774,similar,похожий
-775,simple,просто
-776,single,один
-777,since,поскольку
-778,sing,петь
-779,sink,раковина
-780,sister,сестра
-781,sit,сидеть
-782,six,шесть
-783,size,размер
-784,skill,навык
-785,skin,кожа
-786,skirt,юбка
-787,sky,небо
-788,sleep,спать
-789,slip,соскальзывать
-790,slow,медленный
-791,small,маленький
-792,smell,запах
-793,smile,улыбка
-794,smoke,дым
-795,snow,снег
-796,so,так
-797,soap,мыло
-798,sock,носок
-799,soft,мягкий
-800,some,немного
-801,someone,кто то
-802,something,что-нибудь
-803,sometimes,иногда
-804,son,сын
-805,soon,скоро
-806,sorry,извините
-807,sound,звук
-808,soup,суп
-809,south,юг
-810,space,пространство
-811,speak,говорить
-812,special,специальный
-813,speed,скорость
-814,spell,орфографии
-815,spend,проводить
-816,spoon,ложка
-817,sport,спорт
-818,spread,распространять
-819,spring,весна
-820,square,площадь
-821,stamp,печать
-822,stand,стоять
-823,star,звезда
-824,start,начало
-825,station,станция
-826,stay,остаться
-827,steal,воровать
-828,steam,готовить на пару
-829,step,шаг
-830,still,все еще
-831,stomach,желудок
-832,stone,камень
-833,stop,остановка
-834,store,хранить
-835,storm,буря
-836,story,история
-837,strange,странный
-838,street,улица
-839,strong,сильный
-840,structure,структура
-841,student,ученик
-842,study,исследование
-843,stupid,глупый
-844,subject,предмет
-845,substance,вещество
-846,successful,успешный
-847,such,такой
-848,sudden,внезапный
-849,sugar,сахар
-850,suitable,подходящее
-851,summer,лето
-852,sun,солнце
-853,sunny,солнечно
-854,support,поддерживать
-855,sure,конечно
-856,surprise,сюрприз
-857,sweet,сладкий
-858,swim,плавать
-859,sword,меч
-860,table,стол
-861,take,брать
-862,talk,разговаривать
-863,tall,высокий
-864,taste,вкус
-865,taxi,такси
-866,tea,чай
-867,teach,учить
-868,team,команда
-869,tear,рвать
-870,telephone,телефон
-871,television,телевидение
-872,tell,сказать
-873,ten,десять
-874,tennis,теннис
-875,terrible,ужасный
-876,test,тест
-877,than,чем
-878,that,что
-879,their,их
-880,theirs,их
-881,then,тогда
-882,there,там
-883,therefore,следовательно
-884,these,эти
-885,thick,толстый
-886,thin,тонкий
-887,thing,вещь
-888,think,считать
-889,third,в третьих
-890,this,это
-891,those,эти
-892,though,хотя
-893,threat,угроза
-894,three,три
-895,tidy,аккуратный
-896,tie,галстук
-897,title,заглавие
-898,to,к
-899,today,cегодня
-900,toe,палец
-901,together,вместе
-902,tomorrow,завтра
-903,tonight,сегодня ночью
-904,too,слишком
-905,tool,инструмент
-906,tooth,зуб
-907,top,топ
-908,total,общий
-909,touch,трогать
-910,town,город
-911,train,поезд
-912,tram,трамвай
-913,travel,путешествовать
-914,tree,дерево
-915,trouble,беда
-916,true,истинный
-917,trust,доверять
-918,twice,дважды
-919,try,пытаться
-920,turn,повернуть
-921,type,тип
-922,uncle,дядя
-923,under,под
-924,understand,понять
-925,unit,блок
-926,until,до
-927,up,вверх
-928,use,использовать
-929,useful,полезный
-930,usual,обычный
-931,usually,обычно
-932,vegetable,овощ
-933,very,очень
-934,village,деревня
-935,voice,голос
-936,visit,посещать
-937,wait,ждать
-938,wake,будить
-939,walk,ходить
-940,want,хочу
-941,warm,тепло
-942,wash,мыть
-943,waste,напрасно тратить
-944,watch,смотреть
-945,water,вода
-946,way,путь
-947,we,мы
-948,weak,слабый
-949,wear,носить
-950,weather,погода
-951,wedding,свадьба
-952,week,неделя
-953,weight,масса
-954,welcome,добро пожаловать
-955,well,что ж
-956,west,запад
-957,wet,мокрый
-958,what,какие
-959,wheel,рулевое колесо
-960,when,когда
-961,where,куда
-962,which,который
-963,while,пока
-964,white,белый
-965,who,кто
-966,why,почему
-967,wide,широкий
-968,wife,жена
-969,wild,дикий
-970,will,будут
-971,win,победить
-972,wind,ветер
-973,window,окно
-974,wine,вино
-975,winter,зима
-976,wire,провод
-977,wise,мудрый
-978,wish,желание
-979,with,с
-980,without,без
-981,woman,женщина
-982,wonder,удивляться
-983,word,слово
-984,work,работа
-985,world,мир
-986,worry,волноваться
-987,worst,худший
-988,write,записывать
-989,wrong,неправильный
-990,year,год
-991,yellow,желтый
-992,yes,да
-993,yesterday,вчера
-994,yet,пока что
-995,you,ты
-996,young,молодой
-997,your,ваш
-998,yours,твой
-999,zero,нуль
-1000,zoo,зоопарк
-1001,zoom,увеличить
+"id","part_of_speech","definition","answer"
+"1","","and","и"
+"2","","in (inside)","в"
+"3","","not","не"
+"4","","he","он"
+"5","","on","на"
+"6","","I","я"
+"7","","what","что"
+"8","","that (specific)","тот"
+"9","verb","be (state of being)","быть"
+"10","","with (along)","с"
+"11","","but (contrast)","а"
+"12","","whole","весь"
+"13","","this (neutral)","это"
+"14","","how","как"
+"15","","she","она"
+"16","","by","по"
+"17","","but (negative)","но"
+"18","","they","они"
+"19","","to (direction)","к"
+"20","","at (location)","у"
+"21","","you (singular)","ты"
+"22","","from (origin)","из"
+"23","","we","мы"
+"24","","for (in exchange)","за"
+"25","","you (plural)","вы"
+"26","adv.","so (in this way)","так"
+"27","","well (indeed)","же"
+"28","","from (distance)","от"
+"29","verb","say (once)","сказать"
+"30","","this (masculine)","этот"
+"31","","which (specific)","который"
+"32","verb","be able (general term)","мочь"
+"33","noun","person","человек"
+"34","","about (regarding)","о"
+"35","num.","one","один"
+"36","","yet","еще"
+"37","","would","бы"
+"38","","such (kind)","такой"
+"39","","only (solely)","только"
+"40","","self","себя"
+"41","","own (neutral gender)","свое"
+"42","","which (questioning)","какой"
+"43","","when","когда"
+"44","","already (used)","уже"
+"45","","for (purpose)","для"
+"46","","here","вот"
+"47","","who (specific)","кто"
+"48","","yes (affirmative)","да"
+"49","verb","speak (ongoing)","говорить"
+"50","noun","year","год"
+"51","verb","know (general)","знать"
+"52","","my","мой"
+"53","","before (until)","до"
+"54","","or","или"
+"55","","if (conditional)","если"
+"56","noun","time","время"
+"57","noun","hand","рука"
+"58","","no (negative)","нет"
+"59","","most","самый"
+"60","","nor","ни"
+"61","verb","become (become)","стать"
+"62","adj.","big","большой"
+"63","","even (also)","даже"
+"64","","other (alternative)","другой"
+"65","","our","наш"
+"66","","own (masculine)","свой"
+"67","","well (so)","ну"
+"68","","under","под"
+"69","adv.","where (at which place)","где"
+"70","noun","matter","дело"
+"71","verb","have (exist)","есть"
+"72","","itself","сам"
+"73","noun","time, occasion","раз"
+"74","","in order to (purpose)","чтобы"
+"75","num.","two","два"
+"76","adv.","there (over there)","там"
+"77","","than","чем"
+"78","noun","eye","глаз"
+"79","noun","life","жизнь"
+"80","num.","first","первый"
+"81","noun","day","день"
+"82","adv.","here (right here)","тут"
+"83","","in (into)","во"
+"84","","nothing (nihilistic)","ничто"
+"85","adv.","then (afterwards)","потом"
+"86","adv.","very","очень"
+"87","","with (together)","со"
+"88","verb","want (desire)","хотеть"
+"89","","whether","ли"
+"90","","at (during)","при"
+"91","noun","head","голова"
+"92","","must","надо"
+"93","","without","без"
+"94","verb","see (observe)","видеть"
+"95","verb","go (go by foot)","идти"
+"96","adv.","now (currently)","теперь"
+"97","adv.","also","тоже"
+"98","verb","stand (stand still)","стоять"
+"99","noun","friend","друг"
+"100","noun","house","дом"
+"101","adv.","now (right now)","сейчас"
+"102","","possible","можно"
+"103","","after (subsequent)","после"
+"104","noun","word","слово"
+"105","adv.","here (in this place)","здесь"
+"106","verb","think (contemplate)","думать"
+"107","noun","place","место"
+"108","verb","ask directly","спросить"
+"109","","through (across)","через"
+"110","noun","face","лицо"
+"111","","that (general)","что"
+"112","adv.","then (at that time)","тогда"
+"113","","after all","ведь"
+"114","adj.","good","хороший"
+"115","","every","каждый"
+"116","adj.","new (fresh)","новый"
+"117","verb","live (in general)","жить"
+"118","adj.","due","должный"
+"119","verb","watch (ongoing)","смотреть"
+"120","adv.","why (for what reason)","почему"
+"121","adv.","because","потому"
+"122","noun","side","сторона"
+"123","adv.","simply (merely)","просто"
+"124","noun","leg","нога"
+"125","verb","sit (sit)","сидеть"
+"126","verb","understand (understand)","понять"
+"127","verb","have (possess)","иметь"
+"128","adj.","final (last)","конечный"
+"129","verb","do","делать"
+"130","adv.","suddenly (unexpected)","вдруг"
+"131","","over (above)","над"
+"132","verb","take (take)","взять"
+"133","","nobody","никто"
+"134","verb","make (do something)","сделать"
+"135","noun","door","дверь"
+"136","","before (in front)","перед"
+"137","adj.","necessary (needed)","нужный"
+"138","verb","understand (be understanding)","понимать"
+"139","verb","seem","казаться"
+"140","noun","work","работа"
+"141","num.","three","три"
+"142","","your (plural)","ваш"
+"143","","already (informal)","уж"
+"144","noun","earth","земля"
+"145","noun","end","конец"
+"146","adv.","several","несколько"
+"147","noun","hour","час"
+"148","noun","voice","голос"
+"149","noun","city","город"
+"150","adj.","last","последний"
+"151","adv.","while","пока"
+"152","adv.","good","хорошо"
+"153","verb","give regularly","давать"
+"154","noun","water","вода"
+"155","adv.","more","более"
+"156","","although","хотя"
+"157","adv.","always","всегда"
+"158","num.","second","второй"
+"159","adv.","where (to which place)","куда"
+"160","verb","go (start going by foot)","пойти"
+"161","noun","table","стол"
+"162","noun","child","ребенок"
+"163","verb","see (catch sight)","увидеть"
+"164","noun","power (strength, force)","сила"
+"165","noun","father","отец"
+"166","noun","woman","женщина"
+"167","noun","car","машина"
+"168","noun","case","случай"
+"169","noun","night","ночь"
+"170","adv.","immediately (straightaway)","сразу"
+"171","noun","world","мир"
+"172","adv.","completely (utterly)","совсем"
+"173","verb","stay (once)","остаться"
+"174","","about (concerning)","об"
+"175","noun","view","вид"
+"176","verb","go out, exit","выйти"
+"177","verb","give once","дать"
+"178","verb","work (general term)","работать"
+"179","verb","love","любить"
+"180","adj.","old","старый"
+"181","adv.","almost","почти"
+"182","noun","row","ряд"
+"183","verb","turn out","оказаться"
+"184","noun","beginning","начало"
+"185","","your (singular)","твой"
+"186","noun","question","вопрос"
+"187","adv.","many","много"
+"188","noun","war","война"
+"189","adv.","again (once more)","снова"
+"190","verb","answer (single instance)","ответить"
+"191","","between (objects)","между"
+"192","verb","think (ponder)","подумать"
+"193","adv.","again (yet again)","опять"
+"194","adj.","white","белый"
+"195","noun","money","деньги"
+"196","verb","mean (specific)","значить"
+"197","","about (about)","про"
+"198","","only (merely)","лишь"
+"199","noun","minute","минута"
+"200","noun","wife","жена"
+"201","verb","watch (once)","посмотреть"
+"202","noun","truth","правда"
+"203","adj.","main (primary)","главный"
+"204","noun","country","страна"
+"205","noun","light","свет"
+"206","verb","wait (wait)","ждать"
+"207","noun","mother","мать"
+"208","","as if (supposedly)","будто"
+"209","adv.","never","никогда"
+"210","noun","comrade","товарищ"
+"211","noun","road","дорога"
+"212","","however (contrast)","однако"
+"213","verb","lie (physically)","лежать"
+"214","","precisely","именно"
+"215","noun","window","окно"
+"216","","no (none at all)","никакой"
+"217","verb","find directly","найти"
+"218","verb","write (general term)","писать"
+"219","noun","room","комната"
+"220","noun","Moscow","Москва"
+"221","noun","part","часть"
+"222","adv.","generally","вообще"
+"223","noun","book","книга"
+"224","adj.","small (little)","маленький"
+"225","noun","street","улица"
+"226","verb","decide (resolve)","решить"
+"227","adj.","distant (far away)","далёкий"
+"228","adv.","far","далеко"
+"229","noun","soul","душа"
+"230","adv.","slightly (a bit)","чуть"
+"231","verb","return (come back)","вернуться"
+"232","noun","morning","утро"
+"233","","some (certain)","некоторый"
+"234","verb","count (generally)","считать"
+"235","adv.","how many","сколько"
+"236","verb","remember (remember)","помнить"
+"237","noun","evening","вечер"
+"238","noun","floor","пол"
+"239","","indeed","таки"
+"240","verb","get (receive)","получить"
+"241","noun","people","народ"
+"242","noun","shoulder","плечо"
+"243","","even though","хоть"
+"244","adv.","today (this day)","сегодня"
+"245","noun","god","бог"
+"246","adv.","together (combined)","вместе"
+"247","noun","glance","взгляд"
+"248","verb","walk","ходить"
+"249","adv.","why (for what purpose)","зачем"
+"250","adj.","Soviet, Russian","советский"
+"251","noun","Russian","русский"
+"252","adj.","Russian (language)","русский"
+"253","verb","visit periodically","бывать"
+"254","adj.","full","полный"
+"255","verb","come (completed action)","прийти"
+"256","noun","finger","палец"
+"257","noun","Russia","Россия"
+"258","","any (every)","любой"
+"259","noun","history","история"
+"260","adv.","finally (at last)","наконец"
+"261","noun","thought","мысль"
+"262","verb","find out (discovery)","узнать"
+"263","adv.","back (directionally)","назад"
+"264","adj.","common","общий"
+"265","verb","notice (once)","заметить"
+"266","","as if (seemingly)","словно"
+"267","adj.","past (previous)","прошлый"
+"268","verb","leave (a place)","уйти"
+"269","adj.","well-known, famous","известный"
+"270","adv.","long ago","давно"
+"271","verb","hear (in general)","слышать"
+"272","verb","listen (listen)","слушать"
+"273","verb","be afraid","бояться"
+"274","noun","son","сын"
+"275","","cannot","нельзя"
+"276","adv.","straight","прямо"
+"277","adv.","long","долго"
+"278","adv.","fast","быстро"
+"279","adj.","fast","быстрый"
+"280","noun","forest","лес"
+"281","adj.","similar (resembling)","похожий"
+"282","noun","time, season","пора"
+"283","num.","five","пять"
+"284","verb","look (to glance)","глядеть"
+"285","","it","оно"
+"286","verb","sit (sit down)","сесть"
+"287","noun","name","имя"
+"288","","oh (surprise)","ж"
+"289","noun","conversation","разговор"
+"290","noun","body","тело"
+"291","adj.","young (youthful)","молодой"
+"292","noun","wall","стена"
+"293","adj.","red","красный"
+"294","verb","read (read)","читать"
+"295","noun","right","право"
+"296","noun","old man","старик"
+"297","adj.","early","ранний"
+"298","verb","want (want something)","хотеться"
+"299","noun","mom","мама"
+"300","verb","remain","оставаться"
+"301","adj.","tall, high","высокий"
+"302","adv.","high","высоко"
+"303","noun","path","путь"
+"304","adv.","therefore (as a result)","поэтому"
+"305","adv.","completely (totally)","совершенно"
+"306","","except","кроме"
+"307","num.","thousand","тысяча"
+"308","noun","month","месяц"
+"309","verb","take (be taking)","брать"
+"310","verb","write (completed action)","написать"
+"311","adj.","whole","целый"
+"312","adj.","huge (enormous)","огромный"
+"313","verb","begin doing","начинать"
+"314","noun","back","спина"
+"315","adj.","real (true)","настоящий"
+"316","","let","пусть"
+"317","noun","language","язык"
+"318","adv.","exactly (precise)","точно"
+"319","","among (in the midst)","среди"
+"320","verb","feel generally","чувствовать"
+"321","noun","heart","сердце"
+"322","verb","lead (lead by guiding)","вести"
+"323","adv.","sometimes","иногда"
+"324","noun","boy","мальчик"
+"325","verb","manage in time","успеть"
+"326","noun","sky","небо"
+"327","adj.","alive","живой"
+"328","noun","death","смерть"
+"329","verb","continue (action)","продолжать"
+"330","noun","girl","девушка"
+"331","noun","image","образ"
+"332","","to (towards)","ко"
+"333","verb","forget (completely)","забыть"
+"334","","around","вокруг"
+"335","noun","letter","письмо"
+"336","noun","power (authority, government)","власть"
+"337","adj.","black","черный"
+"338","verb","pass (once)","пройти"
+"339","verb","appear suddenly","появиться"
+"340","noun","air","воздух"
+"341","adj.","various, different","разный"
+"342","verb","go out, leave","выходить"
+"343","verb","request, ask","просить"
+"344","noun","brother","брат"
+"345","adj.","own","собственный"
+"346","noun","relationship","отношение"
+"347","adv.","then (subsequently)","затем"
+"348","verb","try (try)","пытаться"
+"349","verb","show (once)","показать"
+"350","verb","remember (recall)","вспомнить"
+"351","noun","system","система"
+"352","num.","four","четыре"
+"353","noun","apartment","квартира"
+"354","verb","hold (object)","держать"
+"355","","also","также"
+"356","noun","love","любовь"
+"357","noun","soldier","солдат"
+"358","adv.","where from","откуда"
+"359","","to (in order to)","чтоб"
+"360","verb","call regularly","называть"
+"361","num.","third","третий"
+"362","noun","owner","хозяин"
+"363","","like","вроде"
+"364","verb","leave gradually","уходить"
+"365","verb","approach closely","подойти"
+"366","verb","lift (lift up)","поднять"
+"367","adv.","especially","особенно"
+"368","verb","be asking","спрашивать"
+"369","noun","chief","начальник"
+"370","num.","both","оба"
+"371","verb","throw once","бросить"
+"372","noun","school","школа"
+"373","noun","guy","парень"
+"374","noun","blood","кровь"
+"375","num.","twenty","двадцать"
+"376","noun","sun","солнце"
+"377","noun","week","неделя"
+"378","verb","send once","послать"
+"379","verb","be located (temporary)","находиться"
+"380","noun","guys","ребята"
+"381","verb","put (put in place)","поставить"
+"382","verb","stand (stand up)","встать"
+"383","","for example","например"
+"384","noun","step","шаг"
+"385","noun","man","мужчина"
+"386","adv.","equally (fairly)","равно"
+"387","noun","nose","нос"
+"388","adv.","little","мало"
+"389","noun","attention","внимание"
+"390","noun","captain","капитан"
+"391","noun","ear","ухо"
+"392","adv.","there (to that place)","туда"
+"393","adv.","here (to this place)","сюда"
+"394","verb","play (repeatedly)","играть"
+"395","verb","follow, adhere","следовать"
+"396","verb","tell (once)","рассказать"
+"397","adj.","great (grand)","великий"
+"398","adv.","really (truly)","действительно"
+"399","adv.","too","слишком"
+"400","adj.","heavy (weight)","тяжёлый"
+"401","verb","sleep (ongoing)","спать"
+"402","verb","leave behind","оставить"
+"403","verb","enter (once)","войти"
+"404","adj.","long (in length)","длинный"
+"405","noun","feeling","чувство"
+"406","verb","be silent","молчать"
+"407","verb","tell (ongoing)","рассказывать"
+"408","verb","answer (in general)","отвечать"
+"409","verb","become (becoming)","становиться"
+"410","verb","stop oneself","остановиться"
+"411","noun","shore","берег"
+"412","noun","family","семья"
+"413","verb","search (ongoing)","искать"
+"414","noun","general","генерал"
+"415","noun","moment","момент"
+"416","num.","ten","десять"
+"417","verb","start immediately","начать"
+"418","adj.","next (following)","следующий"
+"419","adj.","personal","личный"
+"420","noun","work (labor)","труд"
+"421","verb","believe (continuously)","верить"
+"422","noun","group","группа"
+"423","adv.","a little","немного"
+"424","","however (by the way)","впрочем"
+"425","","apparently","видно"
+"426","verb","be (become)","являться"
+"427","noun","husband","муж"
+"428","","is it?","разве"
+"429","noun","movement (movement, motion)","движение"
+"430","noun","order","порядок"
+"431","noun","answer","ответ"
+"432","adv.","quietly (quiet)","тихо"
+"433","adj.","well-known, familiar","знакомый"
+"434","noun","newspaper","газета"
+"435","noun","help","помощь"
+"436","adj.","strong (powerful)","сильный"
+"437","adj.","quick","скорый"
+"438","noun","dog","собака"
+"439","noun","tree","дерево"
+"440","noun","snow","снег"
+"441","noun","dream (as in sleep)","сон"
+"442","noun","meaning","смысл"
+"443","verb","manage to, be able to","смочь"
+"444","","against","против"
+"445","verb","run (flee)","бежать"
+"446","noun","yard","двор"
+"447","noun","form","форма"
+"448","adj.","simple","простой"
+"449","verb","arrive (arrive at)","приехать"
+"450","","another","иной"
+"451","verb","shout repeatedly","кричать"
+"452","noun","possibility","возможность"
+"453","noun","society","общество"
+"454","adj.","green","зелёный"
+"455","noun","chest","грудь"
+"456","noun","corner","угол"
+"457","verb","open (once)","открыть"
+"458","verb","occur (general)","происходить"
+"459","adv.","okay","ладно"
+"460","noun","black","черный"
+"461","noun","century","век"
+"462","noun","pocket","карман"
+"463","verb","go (go by vehicle)","ехать"
+"464","noun","German (person)","немец"
+"465","adv.","probably (most likely)","наверное"
+"466","noun","lip","губа"
+"467","noun","uncle","дядя"
+"468","verb","come (regularly)","приходить"
+"469","adv.","often (frequently)","часто"
+"470","adv.","home","домой"
+"471","noun","fire","огонь"
+"472","noun","writer","писатель"
+"473","noun","army","армия"
+"474","noun","state (condition, status)","состояние"
+"475","noun","tooth","зуб"
+"476","noun","line","очередь"
+"477","","who (archaic)","кой"
+"478","verb","rise","подняться"
+"479","noun","stone","камень"
+"480","noun","guest","гость"
+"481","verb","seem to appear","показаться"
+"482","noun","wind","ветер"
+"483","verb","plan","собираться"
+"484","verb","get (get into)","попасть"
+"485","verb","accept (completed action)","принять"
+"486","adv.","first","сначала"
+"487","","either","либо"
+"488","verb","go (start going by vehicle)","поехать"
+"489","verb","hear (action completed)","услышать"
+"490","verb","know how to, be skilled","уметь"
+"491","verb","occur (completed action)","случиться"
+"492","adj.","strange","странный"
+"493","adj.","only","единственный"
+"494","noun","platoon","рота"
+"495","noun","law","закон"
+"496","adj.","short","короткий"
+"497","adv.","briefly","коротко"
+"498","noun","sea","море"
+"499","adj.","kind","добрый"
+"500","adj.","dark","темный"
+"501","noun","mountain","гора"
+"502","noun","doctor","врач"
+"503","noun","edge","край"
+"504","verb","try hard (ongoing)","стараться"
+"505","adj.","best","лучший"
+"506","noun","river","река"
+"507","noun","military","военный"
+"508","adj.","military (armed forces)","военный"
+"509","noun","measure","мера"
+"510","adj.","scary","страшный"
+"511","adv.","quite (completely)","вполне"
+"512","verb","invite, call","звать"
+"513","verb","take place","произойти"
+"514","","forward","вперед"
+"515","adv.","slowly","медленно"
+"516","adj.","slow","медленный"
+"517","","near (close to)","возле"
+"518","adv.","in no way","никак"
+"519","verb","deal with","заниматься"
+"520","noun","act (action or operation)","действие"
+"521","adv.","quite (sufficiently)","довольно"
+"522","noun","thing","вещь"
+"523","adj.","necessary (essential)","необходимый"
+"524","noun","movement (course, progress)","ход"
+"525","noun","pain","боль"
+"526","noun","fate","судьба"
+"527","noun","cause","причина"
+"528","verb","put (lay down)","положить"
+"529","adv.","just barely","едва"
+"530","noun","feature","черта"
+"531","noun","girl (younger)","девочка"
+"532","adj.","light (not heavy)","лёгкий"
+"533","adv.","easily","легко"
+"534","noun","hair","волос"
+"535","verb","buy (completed action)","купить"
+"536","noun","number","номер"
+"537","adj.","fundamental, main","основной"
+"538","adj.","wide","широкий"
+"539","verb","die (die)","умереть"
+"540","adv.","badly","плохо"
+"541","noun","chapter","глава"
+"542","adj.","attractive in appearance","красивый"
+"543","adj.","gray","серый"
+"544","verb","drink (general term)","пить"
+"545","noun","commander","командир"
+"546","adv.","usually","обычно"
+"547","noun","party","партия"
+"548","noun","problem","проблема"
+"549","noun","fear","страх"
+"550","verb","pass (regularly)","проходить"
+"551","adv.","clear (explicit)","ясно"
+"552","verb","remove (take off)","снять"
+"553","noun","paper","бумага"
+"554","noun","hero","герой"
+"555","noun","couple","пара"
+"556","noun","state (state, nation)","государство"
+"557","noun","village","деревня"
+"558","noun","speech","речь"
+"559","verb","begin (one-time event)","начаться"
+"560","noun","means","средство"
+"561","noun","position","положение"
+"562","noun","relation","связь"
+"563","adv.","soon (quickly)","скоро"
+"564","adj.","small (not big)","небольшой"
+"565","verb","imagine (continuously)","представлять"
+"566","adv.","tomorrow","завтра"
+"567","verb","explain (once)","объяснить"
+"568","adj.","empty","пустой"
+"569","verb","pronounce (once)","произнести"
+"570","adj.","human (pertaining to mankind)","человеческий"
+"571","verb","like (continuous)","нравиться"
+"572","adv.","once","однажды"
+"573","","past","мимо"
+"574","adv.","differently","иначе"
+"575","verb","exist (general)","существовать"
+"576","noun","class","класс"
+"577","verb","succeed (succeed)","удаться"
+"578","adj.","thick","толстый"
+"579","noun","goal","цель"
+"580","","through (penetrating)","сквозь"
+"581","verb","be required (situational)","прийтись"
+"582","adj.","clean","чистый"
+"583","noun","know","знать"
+"584","adj.","former (previous)","прежний"
+"585","noun","professor","профессор"
+"586","noun","sir, Mr.","господин"
+"587","noun","happiness","счастье"
+"588","adj.","thin (skinny)","худой"
+"589","noun","spirit","дух"
+"590","noun","plan","план"
+"591","adj.","foreign (strange)","чужой"
+"592","noun","hall","зал"
+"593","verb","imagine (once)","представить"
+"594","adj.","special (distinct)","особый"
+"595","noun","director","директор"
+"596","adj.","ex-, former","бывший"
+"597","noun","memory","память"
+"598","adj.","close","близкий"
+"599","","this (old usage)","сей"
+"600","noun","result","результат"
+"601","noun","sick person","больной"
+"602","adj.","sick","больной"
+"603","adj.","given","данный"
+"604","adv.","by the way","кстати"
+"605","verb","call once","назвать"
+"606","noun","trace","след"
+"607","verb","smile (continuously)","улыбаться"
+"608","noun","bottle","бутылка"
+"609","adv.","difficult","трудно"
+"610","noun","condition","условие"
+"611","","before (prior)","прежде"
+"612","noun","mind","ум"
+"613","verb","smile (once)","улыбнуться"
+"614","noun","process","процесс"
+"615","noun","painting","картина"
+"616","","instead of","вместо"
+"617","adj.","senior","старший"
+"618","noun","center","центр"
+"619","adj.","similar (alike)","подобный"
+"620","adv.","possibly","возможно"
+"621","adj.","possible","возможный"
+"622","","around (near)","около"
+"623","verb","laugh (be laughing)","смеяться"
+"624","num.","hundred","сто"
+"625","noun","future","будущее"
+"626","verb","grab (be grabbing)","хватать"
+"627","noun","number (figure)","число"
+"628","","any (various)","всякое"
+"629","noun","ruble","рубль"
+"630","verb","feel momentarily","почувствовать"
+"631","verb","bring here","принести"
+"632","noun","faith","вера"
+"633","adv.","at all (absolutely)","вовсе"
+"634","noun","strike","удар"
+"635","noun","phone","телефон"
+"636","noun","knee","колено"
+"637","verb","agree (once)","согласиться"
+"638","noun","corridor","коридор"
+"639","noun","guy, man","мужик"
+"640","adj.","right","правый"
+"641","noun","author","автор"
+"642","adv.","cold","холодно"
+"643","adj.","cold","холодный"
+"644","verb","be enough","хватить"
+"645","","many","многие"
+"646","noun","meeting (meeting, encounter)","встреча"
+"647","noun","office","кабинет"
+"648","noun","document","документ"
+"649","noun","airplane","самолет"
+"650","adv.","down","вниз"
+"651","verb","accept (ongoing action)","принимать"
+"652","noun","game","игра"
+"653","noun","story","рассказ"
+"654","noun","bread","хлеб"
+"655","noun","development","развитие"
+"656","verb","kill (one-time)","убить"
+"657","adj.","native (by birth)","родной"
+"658","adv.","openly","открыто"
+"659","adj.","open","открытый"
+"660","adv.","less","менее"
+"661","verb","suggest (propose)","предложить"
+"662","adj.","yellow","желтый"
+"663","verb","be required generally","приходиться"
+"664","verb","drink (all at once)","выпить"
+"665","verb","shout once","крикнуть"
+"666","noun","tube","трубка"
+"667","noun","enemy","враг"
+"668","verb","show (regularly)","показывать"
+"669","num.","two (people)","двое"
+"670","noun","doctor (an academic title)","доктор"
+"671","noun","palm","ладонь"
+"672","verb","cause, summon","вызвать"
+"673","adv.","calmly","спокойно"
+"674","verb","ask politely","попросить"
+"675","noun","science","наука"
+"676","noun","lieutenant","лейтенант"
+"677","noun","service","служба"
+"678","verb","find oneself appearing","оказываться"
+"679","verb","lead here, bring","привести"
+"680","num.","forty","сорок"
+"681","noun","score","счет"
+"682","verb","return (coming back)","возвращаться"
+"683","adj.","golden","золотой"
+"684","adj.","local (specific area)","местный"
+"685","noun","kitchen","кухня"
+"686","adj.","large","крупный"
+"687","noun","decision","решение"
+"688","noun","young","молодая"
+"689","num.","thirty","тридцать"
+"690","noun","novel","роман"
+"691","verb","demand (ongoing action)","требовать"
+"692","noun","company","компания"
+"693","adj.","frequent","частый"
+"694","adj.","Russian (relating to Russia)","российский"
+"695","adj.","working","рабочий"
+"696","verb","lose (completely)","потерять"
+"697","noun","flow","течение"
+"698","adj.","deep shade of blue","синий"
+"699","adv.","so much (this much)","столько"
+"700","adj.","warm","теплый"
+"701","noun","meter","метр"
+"702","verb","get (retrieve)","достать"
+"703","adj.","iron","железный"
+"704","noun","institute","институт"
+"705","verb","inform (one-time)","сообщить"
+"706","noun","interest","интерес"
+"707","adj.","usual","обычный"
+"708","verb","begin to appear","появляться"
+"709","verb","fall (sudden action)","упасть"
+"710","","the rest","остальной"
+"711","noun","half","половина"
+"712","adj.","Moscow","московский"
+"713","num.","six","шесть"
+"714","verb","succeed (turn out well)","получиться"
+"715","noun","quality","качество"
+"716","noun","fight (battle)","бой"
+"717","noun","neck","шея"
+"718","adv.","there (yonder)","вон"
+"719","noun","idea","идея"
+"720","adv.","apparently","видимо"
+"721","adv.","enough","достаточно"
+"722","adj.","sufficient","достаточный"
+"723","verb","spend (conduct)","провести"
+"724","adv.","important","важно"
+"725","adj.","important","важный"
+"726","noun","grass","трава"
+"727","noun","grandfather","дед"
+"728","noun","consciousness","сознание"
+"729","noun","parent","родитель"
+"730","verb","forgive (one-time)","простить"
+"731","verb","beat","бить"
+"732","noun","tea","чай"
+"733","adj.","late","поздний"
+"734","verb","nod (once)","кивнуть"
+"735","noun","kin","род"
+"736","verb","disappear instantly","исчезнуть"
+"737","adj.","thin (fine)","тонкий"
+"738","noun","German (language)","немецкий"
+"739","adj.","German (language)","немецкий"
+"740","noun","sound","звук"
+"741","verb","give away (once)","отдать"
+"742","noun","store","магазин"
+"743","noun","president","президент"
+"744","noun","poet","поэт"
+"745","noun","thank you","спасибо"
+"746","noun","illness","болезнь"
+"747","noun","event","событие"
+"748","verb","help (one-time assistance)","помочь"
+"749","noun","skin","кожа"
+"750","noun","leaf","лист"
+"751","verb","send continuously","слать"
+"752","verb","remember (be recalling)","вспоминать"
+"753","adj.","extremely beautiful","прекрасный"
+"754","noun","tear","слеза"
+"755","noun","hope","надежда"
+"756","adv.","silently (quiet)","молча"
+"757","adv.","strongly","сильно"
+"758","adv.","correctly (true)","верно"
+"759","adj.","faithful","верный"
+"760","noun","literature","литература"
+"761","noun","weapon","оружие"
+"762","adj.","ready","готовый"
+"763","noun","smell","запах"
+"764","adv.","unexpectedly","неожиданно"
+"765","adv.","yesterday","вчера"
+"766","adj.","yesterday's","вчерашний"
+"767","verb","sigh (once)","вздохнуть"
+"768","noun","role","роль"
+"769","noun","growth","рост"
+"770","noun","nature","природа"
+"771","adj.","political","политический"
+"772","noun","point","точка"
+"773","noun","star","звезда"
+"774","verb","sing (ongoing)","петь"
+"775","verb","sit (be sitting down)","садиться"
+"776","noun","surname","фамилия"
+"777","noun","character","характер"
+"778","","please","пожалуйста"
+"779","adv.","above","выше"
+"780","noun","officer","офицер"
+"781","noun","crowd","толпа"
+"782","verb","stop completely","перестать"
+"783","verb","be required","придтись"
+"784","noun","level","уровень"
+"785","adj.","unknown (unidentified)","неизвестный"
+"786","noun","armchair","кресло"
+"787","noun","old woman","баба"
+"788","noun","second","секунда"
+"789","verb","come (formal)","пожаловать"
+"790","noun","bank","банк"
+"791","noun","experience","опыт"
+"792","adj.","quiet","тихий"
+"793","","because (cause)","поскольку"
+"794","noun","boot","сапог"
+"795","noun","rule","правило"
+"796","noun","glass (material)","стекло"
+"797","verb","get (be receiving)","получать"
+"798","adj.","internal","внутренний"
+"799","noun","daughter","дочь"
+"800","verb","be called","называться"
+"801","verb","hope","надеяться"
+"802","noun","member","член"
+"803","verb","stretch out to","протянуть"
+"804","adj.","state","государственный"
+"805","noun","dozen","десяток"
+"806","adj.","deep","глубокий"
+"807","adv.","deeply","глубоко"
+"808","noun","flower","цветок"
+"809","","oh (astonishment)","ах"
+"810","noun","desire","желание"
+"811","noun","rain","дождь"
+"812","","ahead of","впереди"
+"813","verb","be approaching","подходить"
+"814","num.","many","много"
+"815","noun","forehead","лоб"
+"816","noun","smile","улыбка"
+"817","noun","struggle","борьба"
+"818","noun","gate","ворот"
+"819","noun","crate","ящик"
+"820","noun","floor (of a building)","этаж"
+"821","verb","serve (to work)","служить"
+"822","adv.","again (once again)","вновь"
+"823","noun","blue","голубой"
+"824","adj.","light, pale blue","голубой"
+"825","","nothing (to do)","нечего"
+"826","noun","revolution","революция"
+"827","adv.","for the first time","впервые"
+"828","noun","neighbor","сосед"
+"829","noun","sister","сестра"
+"830","adj.","long (in duration)","долгий"
+"831","","whose","чей"
+"832","verb","believe (specific instance)","поверить"
+"833","noun","situation","ситуация"
+"834","verb","look (to take a glance)","взглянуть"
+"835","adj.","weak","слабый"
+"836","noun","quantity","количество"
+"837","verb","cause, summon (repeatedly)","вызывать"
+"838","adj.","confident","уверенный"
+"839","noun","exit","выход"
+"840","noun","advice","совет"
+"841","noun","fool (male)","дурак"
+"842","adj.","beloved","любимый"
+"843","noun","union","союз"
+"844","noun","summer","лето"
+"845","verb","wait (expect)","ожидать"
+"846","adj.","recent (arrived)","пришлый"
+"847","verb","hang (to be suspended)","висеть"
+"848","noun","border","граница"
+"849","noun","color","цвет"
+"850","adj.","serious","серьёзный"
+"851","verb","create (once)","создать"
+"852","adv.","interestingly","интересно"
+"853","adj.","interesting","интересный"
+"854","noun","freedom","свобода"
+"855","","but (in return)","зато"
+"856","noun","chair","стул"
+"857","verb","leave by vehicle","уехать"
+"858","noun","train","поезд"
+"859","noun","music","музыка"
+"860","noun","shadow","тень"
+"861","noun","horse","лошадь"
+"862","noun","field","поле"
+"863","verb","look (to appear)","выглядеть"
+"864","verb","study (ongoing)","учиться"
+"865","adj.","left","левый"
+"866","verb","talk (ongoing)","разговаривать"
+"867","adj.","children's","детский"
+"868","noun","type","тип"
+"869","noun","court","суд"
+"870","adj.","connected","связанный"
+"871","adj.","hot (high temperature)","горячий"
+"872","noun","square","площадь"
+"873","verb","help (repeated assistance)","помогать"
+"874","adj.","happy","счастливый"
+"875","verb","turn oneself","повернуться"
+"876","verb","allow (allow once)","позволить"
+"877","verb","meet (someone)","встретить"
+"878","noun","joy","радость"
+"879","adj.","sharp (pointed)","острый"
+"880","noun","age","возраст"
+"881","noun","organ","орган"
+"882","noun","map","карта"
+"883","verb","enter (regularly)","входить"
+"884","verb","discover","обнаружить"
+"885","noun","king","король"
+"886","noun","fame","слава"
+"887","noun","colonel","полковник"
+"888","adj.","small (fine)","мелкий"
+"889","noun","side (lateral)","бок"
+"890","noun","price","цена"
+"891","noun","information","информация"
+"892","noun","brain","мозг"
+"893","noun","pleasure","удовольствие"
+"894","noun","will","воля"
+"895","noun","region","область"
+"896","noun","roof","крыша"
+"897","verb","carry (heavy load)","нести"
+"898","adv.","back (in return)","обратно"
+"899","adj.","modern","современный"
+"900","noun","lady","дама"
+"901","num.","seven","семь"
+"902","adv.","fun","весело"
+"903","adj.","cheerful","веселый"
+"904","verb","send over here","прислать"
+"905","noun","garden","сад"
+"906","noun","government","правительство"
+"907","adj.","cute","милый"
+"908","verb","relate","относиться"
+"909","verb","arise (ongoing process)","возникать"
+"910","","like (well)","мол"
+"911","verb","repeat (once)","повторить"
+"912","noun","name (title)","название"
+"913","adj.","medium","средний"
+"914","noun","example","пример"
+"915","adv.","impossible","невозможно"
+"916","noun","mirror","зеркало"
+"917","verb","die (perish)","погибнуть"
+"918","adj.","American","американский"
+"919","noun","smoke","дым"
+"920","verb","burn (continuous)","гореть"
+"921","verb","cry (general)","плакать"
+"922","adv.","quite (very)","весьма"
+"923","noun","fact","факт"
+"924","verb","move gradually","двигаться"
+"925","noun","fish","рыба"
+"926","verb","add (completed action)","добавить"
+"927","verb","be surprised","удивиться"
+"928","noun","grandmother","бабушка"
+"929","noun","wine","вино"
+"930","","because (for)","ибо"
+"931","noun","teacher","учитель"
+"932","verb","act (general action)","действовать"
+"933","adv.","cautiously","осторожно"
+"934","noun","circle","круг"
+"935","noun","dad","папа"
+"936","adv.","correctly (right)","правильно"
+"937","adv.","recently","недавно"
+"938","verb","behave","держаться"
+"939","adv.","and","причем"
+"940","verb","fly (action)","лететь"
+"941","verb","wear","носить"
+"942","noun","reason","повод"
+"943","noun","camp","лагерь"
+"944","noun","bird","птица"
+"945","noun","ship","корабль"
+"946","noun","opinion","мнение"
+"947","adj.","nightly","ночной"
+"948","adj.","healthy","здоровый"
+"949","noun","winter","зима"
+"950","adj.","dry","сухой"
+"951","noun","kilometer","километр"
+"952","noun","bed","кровать"
+"953","verb","get used to (after some time)","привыкнуть"
+"954","","otherwise","прочее"
+"955","adj.","free (liberated)","свободный"
+"956","noun","stairs","лестница"
+"957","","really","неужели"
+"958","adv.","necessarily","обязательно"
+"959","adv.","up","вверх"
+"960","noun","childhood","детство"
+"961","noun","island","остров"
+"962","noun","article","статья"
+"963","verb","call by phone","позвонить"
+"964","adv.","so (to such an extent)","столь"
+"965","verb","disturb","мешать"
+"966","noun","vodka","водка"
+"967","noun","darkness","темнота"
+"968","verb","arise (one-time event)","возникнуть"
+"969","adj.","capable","способный"
+"970","noun","station","станция"
+"971","verb","wish (ongoing)","желать"
+"972","verb","try (try once)","попробовать"
+"973","verb","work out","получаться"
+"974","noun","citizen","гражданин"
+"975","adv.","strangely","странно"
+"976","adv.","soon (shortly)","вскоре"
+"977","noun","team","команда"
+"978","noun","illness (medical condition)","заболевание"
+"979","noun","stomach (belly, abdomen)","живот"
+"980","verb","put (be putting)","ставить"
+"981","","for the sake of","ради"
+"982","noun","silence","тишина"
+"983","adv.","clear (understandable)","понятно"
+"984","noun","front","фронт"
+"985","noun","cheek","щека"
+"986","adv.","scary","страшно"
+"987","noun","district","район"
+"988","adv.","probably (presumably)","наверно"
+"989","verb","spend (conduct regularly)","проводить"
+"990","noun","expression","выражение"
+"991","adv.","slightly (a little)","слегка"
+"992","noun","sack","мешок"
+"993","verb","promise (ongoing)","обещать"
+"994","adv.","expensive","дорого"
+"995","adj.","expensive","дорогой"
+"996","verb","judge","судить"
+"997","noun","majority","большинство"
+"998","verb","gather (oneself or things)","собраться"
+"999","noun","management","управление"
+"1000","verb","sting (once)","колоть"
