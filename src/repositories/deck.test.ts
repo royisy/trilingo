@@ -4,9 +4,9 @@ import { getAllDecks, getDeckById } from './deck'
 
 describe('deck', () => {
   beforeAll(async () => {
-    const deck1 = new Deck(1, 'deck 1')
+    const deck1 = new Deck(1, 'language 1', 'deck 1')
     await db.decks.add(deck1)
-    const deck2 = new Deck(2, 'deck 2')
+    const deck2 = new Deck(2, 'language 2', 'deck 2')
     await db.decks.add(deck2)
   })
 

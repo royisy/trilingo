@@ -8,9 +8,9 @@ vi.mock('../utils/csvUtils', () => ({
   getCsv: async (filename: string) => {
     if (filename === 'deck-list.csv') {
       return [
-        { id: 1, title: 'deck 1' },
-        { id: 2, title: 'deck 2' },
-        { id: 3, title: 'deck 3' },
+        { id: 1, language: 'language 1', title: 'deck 1' },
+        { id: 2, language: 'language 2', title: 'deck 2' },
+        { id: 3, language: 'language 3', title: 'deck 3' },
       ]
     } else if (filename === 'decks/2.csv') {
       return [
@@ -23,7 +23,7 @@ vi.mock('../utils/csvUtils', () => ({
 
 describe('AddDeck', () => {
   it('should list decks that are not in database', async () => {
-    const deck1 = new Deck(1, 'deck 1')
+    const deck1 = new Deck(1, 'language 1', 'deck 1')
     await db.decks.add(deck1)
     render(<AddDeck />)
     await waitFor(() => {

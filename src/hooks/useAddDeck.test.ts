@@ -15,9 +15,9 @@ vi.mock('../utils/csvUtils', () => ({
 
 describe('useAddDeck', () => {
   it('should not add a new deck if the deck already exists', async () => {
-    const deck1 = new Deck(1, 'deck 1')
+    const deck1 = new Deck(1, 'language 1', 'deck 1')
     await db.decks.add(deck1)
-    const csvDeck = { id: 1, title: 'deck 1' }
+    const csvDeck = { id: 1, language: 'language 1', title: 'deck 1' }
     const { result } = renderHook(() => useAddDeck())
     expect(result.current.isLoading).toBe(false)
     await waitFor(async () => {
@@ -26,7 +26,7 @@ describe('useAddDeck', () => {
   })
 
   it('should add a new deck if the deck does not exist', async () => {
-    const csvDeck = { id: 2, title: 'deck 2' }
+    const csvDeck = { id: 2, language: 'language 2', title: 'deck 2' }
     const { result } = renderHook(() => useAddDeck())
     expect(result.current.isLoading).toBe(false)
     await waitFor(async () => {

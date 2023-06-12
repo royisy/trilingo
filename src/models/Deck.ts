@@ -3,11 +3,13 @@ import { type Word } from './Word'
 
 export class Deck {
   id: number
+  language: string
   title: string
   private _words: Promise<Word[]> | undefined
 
-  constructor(id: number, title: string) {
+  constructor(id: number, language: string, title: string) {
     this.id = id
+    this.language = language
     this.title = title
   }
 
@@ -21,7 +23,7 @@ export class Deck {
   async save(words: Word[]): Promise<void> {
     await db.transaction('rw', db.decks, db.words, async () => {
       await db.words.bulkAdd(words)
-      await db.decks.add(new Deck(this.id, this.title))
+      await db.decks.add(new Deck(this.id, this.language, this.title))
     })
   }
 

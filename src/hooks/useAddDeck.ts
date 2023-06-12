@@ -32,7 +32,7 @@ export const useAddDeck = (): {
           csvWord.answer
         )
     )
-    const newDeck = new Deck(csvDeck.id, csvDeck.title)
+    const newDeck = new Deck(csvDeck.id, csvDeck.language, csvDeck.title)
     await newDeck.save(words)
     const appSetting = await getAppSetting()
     appSetting.selectedDeckId = newDeck.id

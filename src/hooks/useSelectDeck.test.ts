@@ -9,7 +9,7 @@ describe('useSelectDeck', () => {
     const appSetting = new AppSetting()
     appSetting.selectedDeckId = 1
     await db.appSettings.add(appSetting)
-    const deck = new Deck(2, 'deck 2')
+    const deck = new Deck(2, 'language 2', 'deck 2')
     const { result } = renderHook(() => useSelectDeck())
     await waitFor(async () => {
       await expect(result.current(deck)).resolves.toBeUndefined()

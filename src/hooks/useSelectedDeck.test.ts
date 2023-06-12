@@ -7,11 +7,11 @@ import { useSelectedDeck } from './useSelectedDeck'
 
 describe('useDeck', () => {
   beforeAll(async () => {
-    const deck1 = new Deck(1, 'deck 1')
+    const deck1 = new Deck(1, 'language 1', 'deck 1')
     await db.decks.add(deck1)
     const word1 = new Word(1, 1, 'pos 1', 'definition 1', 'answer 1')
     await db.words.add(word1)
-    const deck2 = new Deck(2, 'deck 2')
+    const deck2 = new Deck(2, 'language 2', 'deck 2')
     await db.decks.add(deck2)
     const word2 = new Word(2, 1, 'pos 2', 'definition 2', 'answer 2')
     await db.words.add(word2)

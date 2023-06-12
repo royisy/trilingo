@@ -54,7 +54,7 @@ describe('Home', () => {
     const appSetting = new AppSetting()
     appSetting.selectedDeckId = 1
     await db.appSettings.add(appSetting)
-    const deck = new Deck(1, 'deck 1')
+    const deck = new Deck(1, 'language 1', 'deck 1')
     await db.decks.add(deck)
     const word1 = new Word(1, 1, 'pos 1', 'definition 1', 'answer 1')
     word1.correctCnt = 0

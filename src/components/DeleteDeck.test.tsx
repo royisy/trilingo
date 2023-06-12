@@ -7,9 +7,9 @@ import { DeleteDeck } from './DeleteDeck'
 
 describe('DeleteDeck', () => {
   it('should list decks that are in database', async () => {
-    const deck1 = new Deck(1, 'deck 1')
+    const deck1 = new Deck(1, 'language 1', 'deck 1')
     await db.decks.add(deck1)
-    const deck2 = new Deck(2, 'deck 2')
+    const deck2 = new Deck(2, 'language 2', 'deck 2')
     await db.decks.add(deck2)
     render(<DeleteDeck />)
     await waitFor(() => {
@@ -39,6 +39,8 @@ describe('DeleteDeck', () => {
     expect(svgElement).not.toBeNull()
     if (svgElement == null) return
     fireEvent.click(svgElement)
-    expect(mockSetDeckToDelete).toHaveBeenCalledWith(new Deck(1, 'deck 1'))
+    expect(mockSetDeckToDelete).toHaveBeenCalledWith(
+      new Deck(1, 'language 1', 'deck 1')
+    )
   })
 })

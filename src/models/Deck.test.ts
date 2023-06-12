@@ -5,7 +5,7 @@ import { Word } from './Word'
 
 describe('Deck', () => {
   beforeAll(async () => {
-    const deck1 = new Deck(1, 'deck 1')
+    const deck1 = new Deck(1, 'language 1', 'deck 1')
     await db.decks.add(deck1)
     const word1 = new Word(1, 1, 'pos 1', 'definition 1', 'answer 1')
     await db.words.add(word1)
@@ -13,7 +13,7 @@ describe('Deck', () => {
 
   describe('words', () => {
     it('should get Words of Deck', async () => {
-      const deck2 = new Deck(2, 'deck 2')
+      const deck2 = new Deck(2, 'language 2', 'deck 2')
       await db.decks.add(deck2)
       const word2 = new Word(2, 1, 'pos 2', 'definition 2', 'answer 2')
       await db.words.add(word2)
@@ -29,7 +29,7 @@ describe('Deck', () => {
     it('should save Deck with Words', async () => {
       const word4 = new Word(3, 1, 'pos 4', 'definition 4', 'answer 4')
       const word5 = new Word(3, 2, 'pos 5', 'definition 5', 'answer 5')
-      const deck3 = new Deck(3, 'deck 3')
+      const deck3 = new Deck(3, 'language 3', 'deck 3')
       await deck3.save([word4, word5])
       const decks = await db.decks.toArray()
       expect(decks).toHaveLength(3)
@@ -39,7 +39,7 @@ describe('Deck', () => {
 
     it('should rollback when saving Deck with Words', async () => {
       const word6 = new Word(3, 3, 'pos 6', 'definition 6', 'answer 6')
-      const deck3 = new Deck(3, 'deck 3')
+      const deck3 = new Deck(3, 'language 3', 'deck 3')
       await expect(deck3.save([word6])).rejects.toThrowError('ConstraintError')
       const decks = await db.decks.toArray()
       expect(decks).toHaveLength(3)
@@ -76,7 +76,7 @@ describe('Deck', () => {
 
   describe('getUnansweredWords', () => {
     it('should get Words where correctCnt = 0', async () => {
-      const deck2 = new Deck(2, 'deck 2')
+      const deck2 = new Deck(2, 'language 2', 'deck 2')
       await db.decks.add(deck2)
       const word2 = new Word(2, 1, 'pos 2', 'definition 2', 'answer 2')
       word2.correctCnt = 0
@@ -97,7 +97,7 @@ describe('Deck', () => {
 
   describe('getAnsweredWords', () => {
     it('should get Words where correctCnt > 0', async () => {
-      const deck2 = new Deck(2, 'deck 2')
+      const deck2 = new Deck(2, 'language 2', 'deck 2')
       await db.decks.add(deck2)
       const word2 = new Word(2, 1, 'pos 2', 'definition 2', 'answer 2')
       word2.correctCnt = 0

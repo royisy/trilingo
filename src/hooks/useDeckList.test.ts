@@ -18,7 +18,7 @@ describe('useDeckList', () => {
       { id: 1, title: 'deck 1' },
       { id: 3, title: 'deck 3' },
     ]
-    const deck2 = new Deck(2, 'deck 2')
+    const deck2 = new Deck(2, 'language 2', 'deck 2')
     await db.decks.add(deck2)
     const mockedGetCsv = getCsv as jest.MockedFunction<typeof getCsv>
     mockedGetCsv.mockResolvedValue(mockCsvData)
