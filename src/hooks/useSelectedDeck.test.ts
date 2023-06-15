@@ -22,7 +22,7 @@ describe('useDeck', () => {
   it('should return null title and empty words when deck is not selected', async () => {
     const { result } = renderHook(() => useSelectedDeck())
     await waitFor(() => {
-      expect(result.current.title).toBeNull()
+      expect(result.current.selectedDeck).toBeNull()
       expect(result.current.words).toEqual([])
     })
   })
@@ -33,7 +33,7 @@ describe('useDeck', () => {
     await db.appSettings.add(appSetting)
     const { result } = renderHook(() => useSelectedDeck())
     await waitFor(() => {
-      expect(result.current.title).toBe('deck 2')
+      expect(result.current.selectedDeck?.title).toBe('deck 2')
       expect(result.current.words.length).toBe(2)
     })
   })

@@ -22,7 +22,7 @@ export const Home = (): JSX.Element => {
     useMenu()
   const appSetting = useLiveQuery(getAppSetting)
   const noDeckSelected = appSetting != null && appSetting.selectedDeckId == null
-  const { title, words } = useSelectedDeck()
+  const { selectedDeck, words } = useSelectedDeck()
   const navigate = useNavigate()
   const [deckToDelete, setDeckToDelete] = useState<Deck | null>(null)
 
@@ -59,11 +59,11 @@ export const Home = (): JSX.Element => {
             )}
             {!noDeckSelected && (
               <h1 className="ml-4 text-2xl font-bold sm:ml-5 sm:text-3xl lg:ml-0 lg:hidden">
-                {title}
+                {selectedDeck?.title}
               </h1>
             )}
           </div>
-          {title != null && (
+          {selectedDeck != null && (
             <>
               <Stats words={words} />
               <div className="my-10 self-center">
