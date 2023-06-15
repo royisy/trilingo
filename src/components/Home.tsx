@@ -84,6 +84,7 @@ const Header = ({
 }: HeaderProps): JSX.Element => {
   const appSetting = useLiveQuery(getAppSetting)
   const noDeckSelected = appSetting != null && appSetting.selectedDeckId == null
+
   return (
     <div
       className={
@@ -114,6 +115,7 @@ interface StatsProps {
 
 const Stats = ({ words }: StatsProps): JSX.Element => {
   const { memorizedWords, remainingWords, progress } = useStats(words)
+
   return (
     <>
       <div className="stats mt-5 w-fit self-center shadow sm:w-full lg:mt-0">
@@ -143,6 +145,7 @@ const StatsItem = ({ title, value }: StatsItemProps): JSX.Element => {
 
 const PracticeButton = (): JSX.Element => {
   const navigate = useNavigate()
+
   return (
     <div className="my-10 self-center">
       <button

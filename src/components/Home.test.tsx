@@ -86,22 +86,14 @@ describe('Home', () => {
   })
 
   it('should render Menu by default and can switch to AddDeck', () => {
-    render(
-      <MemoryRouter>
-        <Home />
-      </MemoryRouter>
-    )
+    render(<Home />)
     expect(screen.getByText('Menu component')).toBeInTheDocument()
     fireEvent.click(screen.getByText('Add deck'))
     expect(screen.getByText('AddDeck component')).toBeInTheDocument()
   })
 
   it('should render Menu by default and can switch to DeleteDeck', () => {
-    render(
-      <MemoryRouter>
-        <Home />
-      </MemoryRouter>
-    )
+    render(<Home />)
     expect(screen.getByText('Menu component')).toBeInTheDocument()
     fireEvent.click(screen.getByText('Delete deck'))
     expect(screen.getByText('DeleteDeck component')).toBeInTheDocument()

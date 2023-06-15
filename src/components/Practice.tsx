@@ -1,21 +1,25 @@
 import { XCircleIcon, XMarkIcon } from '@heroicons/react/24/solid'
-import { useEffect, useRef, useState } from 'react'
+import {
+  useEffect,
+  useRef,
+  useState,
+  type ChangeEventHandler,
+  type Dispatch,
+  type MouseEventHandler,
+  type SetStateAction,
+} from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useCheckAnswer } from '../hooks/useCheckAnswer'
 import { useCorrectMark } from '../hooks/useCorrectMark'
 import { useWords } from '../hooks/useWords'
 import { type Word } from '../models/Word'
+import { type WordResult } from '../models/WordResult'
 import { splitAnswerByMatch } from '../utils/stringUtils'
+import { PracticeResult } from './PracticeResult'
 import { CheckIcon } from './icons/CheckIcon'
 
 const NUM_OF_WORDS = 10
 const CORRECT_DISPLAY_TIME = 1000
-
-interface WordResult {
-  word: Word
-  correct: boolean
-  skippedCnt: number
-}
 
 export const Practice = (): JSX.Element => {
   const inputRef = useRef<HTMLInputElement | null>(null)
@@ -34,16 +38,6 @@ export const Practice = (): JSX.Element => {
   const [result, setResult] = useState<WordResult[]>([])
   const [answer, setAnswer] = useState<string>('')
   const word = isReview ? skippedWords[0] : words[index]
-  const showAnswer = answer !== ''
-  const definitionLength = word?.definition.length ?? 0
-  let definitionFontSize = 'text-3xl'
-  if (definitionLength > 25) {
-    definitionFontSize = 'text-base'
-  } else if (definitionLength > 20) {
-    definitionFontSize = 'text-lg'
-  } else if (definitionLength > 15) {
-    definitionFontSize = 'text-2xl'
-  }
 
   useEffect(() => {
     inputRef.current?.focus()
@@ -99,10 +93,6 @@ export const Practice = (): JSX.Element => {
     setIsRevealed(false)
   }
 
-  const clearInput = (): void => {
-    setUserAnswer('')
-  }
-
   const handleRevealClick = async (): Promise<void> => {
     setIsRevealed(true)
     word.skippedCnt++
@@ -121,7 +111,7 @@ export const Practice = (): JSX.Element => {
   }
 
   if (showResult) {
-    return <Result result={result} />
+    return <PracticeResult result={result} />
   }
 
   return (
@@ -136,71 +126,28 @@ export const Practice = (): JSX.Element => {
           />
         </div>
         <div className="-mt-4 flex h-32 flex-col sm:-mt-3.5 sm:h-56">
-          <div className="flex h-full justify-end pr-3">
-            {isReview && (
-              <p className="badge badge-primary mt-3.5 p-2.5 sm:mt-4 sm:p-3">
-                Review
-              </p>
-            )}
-          </div>
-          <div className="flex justify-center">
-            <div className="grid grid-cols-[55px,1fr,55px] sm:grid-cols-[60px,1fr,60px]">
-              <div className="flex justify-end">
-                <p className="pr-3 text-sm sm:text-base">
-                  {word?.partOfSpeech}
-                </p>
-              </div>
-              <p
-                className={`whitespace-nowrap sm:text-3xl ${definitionFontSize}`}
-              >
-                {word?.definition}
-              </p>
-            </div>
-          </div>
-          <div className="relative h-full">
-            <div
-              className="absolute left-1/2 top-1/2 -mt-1.5 flex -translate-x-1/2 -translate-y-1/2
-              transform items-center sm:h-56"
-            >
-              {isCorrect && !showAnswer && (
-                <CheckIcon className="w-12 text-green-500" />
-              )}
-              {showAnswer && (
-                <p className="whitespace-nowrap text-2xl sm:text-3xl">
-                  <Answer answer={answer} userAnswer={userAnswer} />
-                </p>
-              )}
-            </div>
-          </div>
+          <ReviewBadge isReview={isReview} />
+          <Definition word={word} />
+          <Answer
+            answer={answer}
+            userAnswer={userAnswer}
+            isCorrect={isCorrect}
+          />
         </div>
         <div className="flex flex-col items-center">
           <div>
-            <div className="relative">
-              <input
-                type="text"
-                className="input-primary input w-72 text-2xl sm:w-96"
-                ref={inputRef}
-                value={userAnswer}
-                onChange={handleAnswerChange}
-                disabled={disabled}
-              />
-              {userAnswer !== '' && (
-                <button onClick={clearInput} className="absolute right-3 top-3">
-                  <XCircleIcon className="h-6 w-6 text-gray-500" />
-                </button>
-              )}
-            </div>
-            <div className="flex justify-end">
-              <div>
-                <button
-                  className="btn-outline btn mt-5"
-                  onClick={handleRevealClick}
-                  disabled={isRevealed || disabled}
-                >
-                  {isRevealed ? 'Revealed' : 'Reveal'}
-                </button>
-              </div>
-            </div>
+            <AnswerInput
+              setUserAnswer={setUserAnswer}
+              inputRef={inputRef}
+              userAnswer={userAnswer}
+              handleAnswerChange={handleAnswerChange}
+              disabled={disabled}
+            />
+            <RevealButton
+              isRevealed={isRevealed}
+              handleRevealClick={handleRevealClick}
+              disabled={disabled}
+            />
           </div>
         </div>
       </div>
@@ -252,59 +199,145 @@ const QuitButton = ({ disabled }: QuitButtonProps): JSX.Element => {
   )
 }
 
-interface AnswerProps {
-  answer: string
-  userAnswer: string
+interface ReviewBadgeProps {
+  isReview: boolean
 }
 
-const Answer = ({ answer, userAnswer }: AnswerProps): JSX.Element => {
-  const { matchedPart, remainingPart } = splitAnswerByMatch(answer, userAnswer)
+const ReviewBadge = ({ isReview }: ReviewBadgeProps): JSX.Element => {
   return (
-    <>
-      <span className="text-green-500">{matchedPart}</span>
-      {remainingPart}
-    </>
+    <div className="flex h-full justify-end pr-3">
+      {isReview && (
+        <p className="badge badge-primary mt-3.5 p-2.5 sm:mt-4 sm:p-3">
+          Review
+        </p>
+      )}
+    </div>
   )
 }
 
-interface ResultProps {
-  result: WordResult[]
+interface DefinitionProps {
+  word: Word | undefined
 }
 
-const Result = ({ result }: ResultProps): JSX.Element => {
-  const navigate = useNavigate()
+const Definition = ({ word }: DefinitionProps): JSX.Element => {
+  const definitionLength = word?.definition.length ?? 0
+  let definitionFontSize = 'text-3xl'
+  if (definitionLength > 25) {
+    definitionFontSize = 'text-base'
+  } else if (definitionLength > 20) {
+    definitionFontSize = 'text-lg'
+  } else if (definitionLength > 15) {
+    definitionFontSize = 'text-2xl'
+  }
 
   return (
-    <div className="flex flex-col items-center p-5">
+    <div className="flex justify-center">
+      <div className="grid grid-cols-[55px,1fr,55px] sm:grid-cols-[60px,1fr,60px]">
+        <div className="flex justify-end">
+          <p className="pr-3 text-sm sm:text-base">{word?.partOfSpeech}</p>
+        </div>
+        <p className={`whitespace-nowrap sm:text-3xl ${definitionFontSize}`}>
+          {word?.definition}
+        </p>
+      </div>
+    </div>
+  )
+}
+
+interface AnswerProps {
+  answer: string
+  userAnswer: string
+  isCorrect: boolean
+}
+
+const Answer = ({
+  answer,
+  userAnswer,
+  isCorrect,
+}: AnswerProps): JSX.Element => {
+  const showAnswer = answer !== ''
+  const { matchedPart, remainingPart } = splitAnswerByMatch(answer, userAnswer)
+
+  return (
+    <div className="relative h-full">
+      <div
+        className="absolute left-1/2 top-1/2 -mt-1.5 flex -translate-x-1/2 -translate-y-1/2
+              transform items-center sm:h-56"
+      >
+        {isCorrect && !showAnswer && (
+          <CheckIcon className="w-12 text-green-500" />
+        )}
+        {showAnswer && (
+          <p className="whitespace-nowrap text-2xl sm:text-3xl">
+            <span className="text-green-500">{matchedPart}</span>
+            {remainingPart}
+          </p>
+        )}
+      </div>
+    </div>
+  )
+}
+
+interface AnswerInputProps {
+  setUserAnswer: Dispatch<SetStateAction<string>>
+  inputRef: React.RefObject<HTMLInputElement>
+  userAnswer: string
+  handleAnswerChange: ChangeEventHandler<HTMLInputElement>
+  disabled: boolean
+}
+
+const AnswerInput = ({
+  setUserAnswer,
+  inputRef,
+  userAnswer,
+  handleAnswerChange,
+  disabled,
+}: AnswerInputProps): JSX.Element => {
+  const clearInput = (): void => {
+    setUserAnswer('')
+  }
+
+  return (
+    <div className="relative">
+      <input
+        type="text"
+        className="input-primary input w-72 text-2xl sm:w-96"
+        ref={inputRef}
+        value={userAnswer}
+        onChange={handleAnswerChange}
+        disabled={disabled}
+      />
+      {userAnswer !== '' && (
+        <button onClick={clearInput} className="absolute right-3 top-3">
+          <XCircleIcon className="h-6 w-6 text-gray-500" />
+        </button>
+      )}
+    </div>
+  )
+}
+
+interface RevealButtonProps {
+  handleRevealClick: MouseEventHandler<HTMLButtonElement>
+  isRevealed: boolean
+  disabled: boolean
+}
+
+const RevealButton = ({
+  handleRevealClick,
+  isRevealed,
+  disabled,
+}: RevealButtonProps): JSX.Element => {
+  return (
+    <div className="flex justify-end">
       <div>
         <button
-          className="btn-primary btn"
-          onClick={() => {
-            navigate('/')
-          }}
+          className="btn-outline btn mt-5"
+          onClick={handleRevealClick}
+          disabled={isRevealed || disabled}
         >
-          Finish
+          {isRevealed ? 'Revealed' : 'Reveal'}
         </button>
       </div>
-      <table className="table-zebra mt-5 table max-w-screen-sm">
-        <tbody className="text-lg">
-          {result.map((wordResult, index) => (
-            <tr key={wordResult.word.id}>
-              <td className="text-right">{index + 1}</td>
-              <td>{wordResult.word.definition}</td>
-              <td>{wordResult.word.answer}</td>
-              <td className="text-red-500">
-                <div className="flex justify-center">
-                  {wordResult.correct && (
-                    <CheckIcon className="w-9 text-green-500" />
-                  )}
-                  {!wordResult.correct && `+${wordResult.skippedCnt}`}
-                </div>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
     </div>
   )
 }
