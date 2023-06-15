@@ -6,7 +6,7 @@ import { useCorrectMark } from '../hooks/useCorrectMark'
 import { useWords } from '../hooks/useWords'
 import { type Word } from '../models/Word'
 import { splitAnswerByMatch } from '../utils/stringUtils'
-import { CheckIcon } from './CheckIcon'
+import { CheckIcon } from './icons/CheckIcon'
 
 const NUM_OF_WORDS = 10
 const CORRECT_DISPLAY_TIME = 1000
