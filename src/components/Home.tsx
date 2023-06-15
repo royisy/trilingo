@@ -20,10 +20,7 @@ import { Menu } from './Menu'
 export const Home = (): JSX.Element => {
   const { menuComponent, setMenuComponent, drawerOpen, toggleDrawerOpen } =
     useMenu()
-  const appSetting = useLiveQuery(getAppSetting)
-  const noDeckSelected = appSetting != null && appSetting.selectedDeckId == null
   const { selectedDeck, words } = useSelectedDeck()
-  const navigate = useNavigate()
   const [deckToDelete, setDeckToDelete] = useState<Deck | null>(null)
 
   return (
@@ -37,48 +34,15 @@ export const Home = (): JSX.Element => {
       />
       <div className="drawer-content flex justify-center py-5 lg:justify-start lg:p-5">
         <div className="flex w-[360px] flex-col sm:w-[480px] lg:items-center">
-          <div
-            className={
-              noDeckSelected
-                ? 'grid grid-cols-3 items-center'
-                : 'flex items-center'
-            }
-          >
-            <label
-              htmlFor="home-drawer"
-              className="btn-ghost btn-square btn lg:hidden"
-              onClick={toggleDrawerOpen}
-              title="Menu"
-            >
-              <Bars3Icon className="min-h-0 w-10 sm:w-12" />
-            </label>
-            {noDeckSelected && (
-              <div className="flex justify-center lg:hidden">
-                <Logo />
-              </div>
-            )}
-            {!noDeckSelected && (
-              <h1 className="ml-4 text-2xl font-bold sm:ml-5 sm:text-3xl lg:ml-0 lg:hidden">
-                {selectedDeck?.title}
-              </h1>
-            )}
-          </div>
+          <Header
+            toggleDrawerOpen={toggleDrawerOpen}
+            selectedDeck={selectedDeck}
+          />
           {selectedDeck != null && (
             <>
               <Stats words={words} />
-              <div className="my-10 self-center">
-                <button
-                  className="btn-primary btn"
-                  onClick={() => {
-                    navigate('/practice')
-                  }}
-                >
-                  Practice
-                </button>
-              </div>
-              <div className="flex justify-center">
-                <DeckProgress words={words} />
-              </div>
+              <PracticeButton />
+              <DeckProgress words={words} />
             </>
           )}
         </div>
@@ -105,6 +69,41 @@ export const Home = (): JSX.Element => {
       </div>
       <WordTooltip />
       <DeleteDeckModal deckToDelete={deckToDelete} />
+    </div>
+  )
+}
+
+interface HeaderProps {
+  toggleDrawerOpen: () => void
+  selectedDeck: Deck | null
+}
+
+const Header = ({
+  toggleDrawerOpen,
+  selectedDeck,
+}: HeaderProps): JSX.Element => {
+  const appSetting = useLiveQuery(getAppSetting)
+  const noDeckSelected = appSetting != null && appSetting.selectedDeckId == null
+  return (
+    <div
+      className={
+        noDeckSelected ? 'grid grid-cols-3 items-center' : 'flex items-center'
+      }
+    >
+      <label
+        htmlFor="home-drawer"
+        className="btn-ghost btn-square btn lg:hidden"
+        onClick={toggleDrawerOpen}
+        title="Menu"
+      >
+        <Bars3Icon className="min-h-0 w-10 sm:w-12" />
+      </label>
+      {noDeckSelected && <Logo className="flex justify-center lg:hidden" />}
+      {!noDeckSelected && (
+        <h1 className="ml-4 text-2xl font-bold sm:ml-5 sm:text-3xl lg:ml-0 lg:hidden">
+          {selectedDeck?.title}
+        </h1>
+      )}
     </div>
   )
 }
@@ -139,6 +138,22 @@ const StatsItem = ({ title, value }: StatsItemProps): JSX.Element => {
         <div className="stat-value text-2xl sm:text-4xl">{value}</div>
       </div>
     </>
+  )
+}
+
+const PracticeButton = (): JSX.Element => {
+  const navigate = useNavigate()
+  return (
+    <div className="my-10 self-center">
+      <button
+        className="btn-primary btn"
+        onClick={() => {
+          navigate('/practice')
+        }}
+      >
+        Practice
+      </button>
+    </div>
   )
 }
 

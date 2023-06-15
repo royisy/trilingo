@@ -17,9 +17,7 @@ export const Menu = (): JSX.Element => {
 
   return (
     <>
-      <div className="p-5">
-        <Logo />
-      </div>
+      <Logo className="p-5" />
       <DeckList>
         <>
           {decks?.map((deck) => (
@@ -33,7 +31,7 @@ export const Menu = (): JSX.Element => {
       </DeckList>
       <div className="mt-5">
         <button
-          className="btn-outline btn-sm btn-square btn ml-4"
+          className="btn-outline btn-square btn-sm btn ml-4"
           onClick={() => {
             setMenuComponent('add-deck')
           }}
@@ -42,7 +40,7 @@ export const Menu = (): JSX.Element => {
           <PlusIcon className="w-8" />
         </button>
         <button
-          className="btn-outline btn-sm btn-square btn ml-4"
+          className="btn-outline btn-square btn-sm btn ml-4"
           onClick={() => {
             setMenuComponent('delete-deck')
           }}
