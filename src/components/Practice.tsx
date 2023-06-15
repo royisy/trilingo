@@ -37,20 +37,12 @@ export const Practice = (): JSX.Element => {
   const showAnswer = answer !== ''
   const definitionLength = word?.definition.length ?? 0
   let definitionFontSize = 'text-3xl'
-  let checkMargin = '-mt-1.5'
-  let answerMargin = 'mt-0'
   if (definitionLength > 25) {
     definitionFontSize = 'text-base'
-    checkMargin = '-mt-2.5'
-    answerMargin = '-mt-1'
   } else if (definitionLength > 20) {
     definitionFontSize = 'text-lg'
-    checkMargin = '-mt-2.5'
-    answerMargin = '-mt-1'
   } else if (definitionLength > 15) {
     definitionFontSize = 'text-2xl'
-    checkMargin = '-mt-2'
-    answerMargin = '-mt-0.5'
   }
 
   useEffect(() => {
@@ -141,13 +133,17 @@ export const Practice = (): JSX.Element => {
             className="progress-primary progress ml-1 mr-3 h-4 w-full sm:ml-3 sm:h-5"
             value={progress}
             max={words.length}
-          ></progress>
+          />
         </div>
-        <div className="flex h-8 justify-end pr-3 sm:pt-1">
-          {isReview && <p className="badge badge-primary p-3">Review</p>}
-        </div>
-        <div className="flex h-20 flex-col items-center sm:h-52">
-          <div className="-mt-1.5 flex h-10 items-center sm:mt-16">
+        <div className="-mt-4 flex h-32 flex-col sm:-mt-3.5 sm:h-56">
+          <div className="flex h-full justify-end pr-3">
+            {isReview && (
+              <p className="badge badge-primary mt-3.5 p-2.5 sm:mt-4 sm:p-3">
+                Review
+              </p>
+            )}
+          </div>
+          <div className="flex justify-center">
             <div className="grid grid-cols-[55px,1fr,55px] sm:grid-cols-[60px,1fr,60px]">
               <div className="flex justify-end">
                 <p className="pr-3 text-sm sm:text-base">
@@ -161,16 +157,21 @@ export const Practice = (): JSX.Element => {
               </p>
             </div>
           </div>
-          {isCorrect && !showAnswer && (
-            <CheckIcon
-              className={`w-12 text-green-500 sm:mt-4 sm:w-16 ${checkMargin}`}
-            />
-          )}
-          {showAnswer && (
-            <p className={`text-2xl sm:mt-7 sm:text-3xl ${answerMargin}`}>
-              <Answer answer={answer} userAnswer={userAnswer} />
-            </p>
-          )}
+          <div className="relative h-full">
+            <div
+              className="absolute left-1/2 top-1/2 -mt-1.5 flex -translate-x-1/2 -translate-y-1/2
+              transform items-center sm:h-56"
+            >
+              {isCorrect && !showAnswer && (
+                <CheckIcon className="w-12 text-green-500" />
+              )}
+              {showAnswer && (
+                <p className="whitespace-nowrap text-2xl sm:text-3xl">
+                  <Answer answer={answer} userAnswer={userAnswer} />
+                </p>
+              )}
+            </div>
+          </div>
         </div>
         <div className="flex flex-col items-center">
           <div>
