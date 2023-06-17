@@ -308,7 +308,11 @@ const AnswerInput = ({
         disabled={disabled}
       />
       {userAnswer !== '' && (
-        <button onClick={clearInput} className="absolute right-3 top-3">
+        <button
+          onClick={clearInput}
+          className="absolute right-3 top-3"
+          disabled={disabled}
+        >
           <XCircleIcon className="h-6 w-6 text-gray-500" />
         </button>
       )}
