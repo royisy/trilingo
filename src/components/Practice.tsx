@@ -64,14 +64,21 @@ export const Practice = (): JSX.Element => {
       triggerShowCorrect()
       setProgress(progress + 1)
       if (progress + 1 === words.length) {
-        setDisabled(true)
-        await new Promise((resolve) =>
-          setTimeout(resolve, CORRECT_DISPLAY_TIME)
-        )
-        topRef.current?.scrollIntoView()
-        setShowResult(true)
+        await moveToResult()
       }
     }
+    showNextWord()
+    resetState()
+  }
+
+  const moveToResult = async (): Promise<void> => {
+    setDisabled(true)
+    await new Promise((resolve) => setTimeout(resolve, CORRECT_DISPLAY_TIME))
+    topRef.current?.scrollIntoView()
+    setShowResult(true)
+  }
+
+  const showNextWord = (): void => {
     if (isReview) {
       if (isRevealed) {
         const [first, ...rest] = skippedWords
@@ -92,6 +99,9 @@ export const Practice = (): JSX.Element => {
         setIndex(nextIndex)
       }
     }
+  }
+
+  const resetState = (): void => {
     setAnswer('')
     setUserAnswer('')
     setIsRevealed(false)
@@ -101,7 +111,9 @@ export const Practice = (): JSX.Element => {
     setIsRevealed(true)
     word.skippedCnt++
     await word.save()
-    const wordResult = wordResults.find((r) => r.word.id === word.id)
+    const wordResult = wordResults.find(
+      (wordResult) => wordResult.word.id === word.id
+    )
     if (wordResult != null) {
       wordResult.skippedCnt++
     } else {
