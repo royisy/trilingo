@@ -5,10 +5,7 @@ import { getAppSetting } from '../repositories/appSetting'
 import { getDeckById } from '../repositories/deck'
 import { limitWords, shuffleArray } from '../utils/wordUtils'
 
-export const useWords = (
-  numOfWords: number
-): { noDeckSelected: boolean; words: Word[] } => {
-  const [noDeckSelected, setNoDeckSelected] = useState<boolean>(false)
+export const useWords = (numOfWords: number): Word[] => {
   const [selectedDeck, setSelectedDeck] = useState<Deck | null>(null)
   const [words, setWords] = useState<Word[]>([])
 
@@ -16,10 +13,7 @@ export const useWords = (
     const getSelectedDeck = async (): Promise<void> => {
       const appSetting = await getAppSetting()
       const deckId = appSetting.selectedDeckId
-      if (deckId == null) {
-        setNoDeckSelected(true)
-      } else {
-        setNoDeckSelected(false)
+      if (deckId != null) {
         const deck = await getDeckById(deckId)
         if (deck == null) {
           throw new Error('Deck not found.')
@@ -59,5 +53,5 @@ export const useWords = (
     void getWords()
   }, [selectedDeck, numOfWords])
 
-  return { noDeckSelected, words }
+  return words
 }

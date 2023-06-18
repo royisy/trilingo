@@ -12,10 +12,7 @@ const word2 = new Word(1, 2, 'pos 2', 'definition 2', 'answer 2')
 
 vi.mock('../hooks/useWords', () => ({
   useWords: (numOfWords: number) => {
-    return {
-      noDeckSelected: true,
-      words: [word1, word2],
-    }
+    return [word1, word2]
   },
 }))
 

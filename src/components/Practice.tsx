@@ -11,6 +11,7 @@ import {
 import { useNavigate } from 'react-router-dom'
 import { useCheckAnswer } from '../hooks/useCheckAnswer'
 import { useCorrectMark } from '../hooks/useCorrectMark'
+import { useSelectedDeckStatus } from '../hooks/useSelectedDeckStatus'
 import { useWords } from '../hooks/useWords'
 import { type Word } from '../models/Word'
 import { type WordResult } from '../models/WordResult'
@@ -23,7 +24,8 @@ const CORRECT_DISPLAY_TIME = 1000
 
 export const Practice = (): JSX.Element => {
   const inputRef = useRef<HTMLInputElement | null>(null)
-  const { noDeckSelected, words } = useWords(NUM_OF_WORDS)
+  const isDeckSelected = useSelectedDeckStatus()
+  const words = useWords(NUM_OF_WORDS)
   const [index, setIndex] = useState<number>(0)
   const [isRevealed, setIsRevealed] = useState<boolean>(false)
   const navigate = useNavigate()
@@ -35,7 +37,7 @@ export const Practice = (): JSX.Element => {
   const [disabled, setDisabled] = useState<boolean>(false)
   const [showResult, setShowResult] = useState<boolean>(false)
   const [skippedWords, setSkippedWords] = useState<Word[]>([])
-  const [result, setResult] = useState<WordResult[]>([])
+  const [wordResults, setWordResults] = useState<WordResult[]>([])
   const [answer, setAnswer] = useState<string>('')
   const word = isReview ? skippedWords[0] : words[index]
 
@@ -43,7 +45,7 @@ export const Practice = (): JSX.Element => {
     inputRef.current?.focus()
   }, [words, index, isRevealed, userAnswer])
 
-  if (noDeckSelected) {
+  if (isDeckSelected != null && !isDeckSelected) {
     navigate('/')
   }
 
@@ -79,7 +81,7 @@ export const Practice = (): JSX.Element => {
       if (isRevealed) {
         setSkippedWords([...skippedWords, word])
       } else {
-        setResult([...result, { word, correct: true, skippedCnt: 0 }])
+        setWordResults([...wordResults, { word, correct: true, skippedCnt: 0 }])
       }
       const nextIndex = index + 1
       if (nextIndex === words.length) {
@@ -97,11 +99,11 @@ export const Practice = (): JSX.Element => {
     setIsRevealed(true)
     word.skippedCnt++
     await word.save()
-    const wordResult = result.find((r) => r.word.id === word.id)
+    const wordResult = wordResults.find((r) => r.word.id === word.id)
     if (wordResult != null) {
       wordResult.skippedCnt++
     } else {
-      setResult([...result, { word, correct: false, skippedCnt: 1 }])
+      setWordResults([...wordResults, { word, correct: false, skippedCnt: 1 }])
     }
     setAnswer(word.answer)
   }
@@ -111,7 +113,7 @@ export const Practice = (): JSX.Element => {
   }
 
   if (showResult) {
-    return <PracticeResult result={result} />
+    return <PracticeResult result={wordResults} />
   }
 
   return (

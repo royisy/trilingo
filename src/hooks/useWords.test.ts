@@ -29,11 +29,9 @@ describe('useWords', () => {
 
   it('should return empty words when deck is null', async () => {
     const { result } = renderHook(() => useWords(2))
-    expect(result.current.noDeckSelected).toEqual(false)
-    expect(result.current.words).toEqual([])
+    expect(result.current).toEqual([])
     await waitFor(() => {
-      expect(result.current.noDeckSelected).toEqual(true)
-      expect(result.current.words).toEqual([])
+      expect(result.current).toEqual([])
     })
   })
 
@@ -43,10 +41,9 @@ describe('useWords', () => {
     await db.appSettings.add(appSetting)
     const { result } = renderHook(() => useWords(2))
     await waitFor(() => {
-      expect(result.current.noDeckSelected).toBe(false)
-      expect(result.current.words.length).toBe(2)
-      expect(result.current.words[0].no).not.toBe(3)
-      expect(result.current.words[1].no).not.toBe(3)
+      expect(result.current.length).toBe(2)
+      expect(result.current[0].no).not.toBe(3)
+      expect(result.current[1].no).not.toBe(3)
     })
   })
 })
