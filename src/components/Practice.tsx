@@ -36,6 +36,7 @@ export const Practice = (): JSX.Element => {
     useCorrectMark(CORRECT_DISPLAY_TIME)
   const [progress, setProgress] = useState<number>(0)
   const [disabled, setDisabled] = useState<boolean>(false)
+  const topRef = useRef<HTMLDivElement | null>(null)
   const [showResult, setShowResult] = useState<boolean>(false)
   const [skippedWords, setSkippedWords] = useState<Word[]>([])
   const [wordResults, setWordResults] = useState<WordResult[]>([])
@@ -67,7 +68,7 @@ export const Practice = (): JSX.Element => {
         await new Promise((resolve) =>
           setTimeout(resolve, CORRECT_DISPLAY_TIME)
         )
-        window.scrollTo({ top: 0 })
+        topRef.current?.scrollIntoView()
         setShowResult(true)
       }
     }
@@ -118,7 +119,7 @@ export const Practice = (): JSX.Element => {
   }
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center" ref={topRef}>
       <div className="w-full max-w-screen-sm p-5">
         <div className="flex items-center">
           <QuitButton disabled={disabled} />

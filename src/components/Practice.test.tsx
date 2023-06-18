@@ -18,11 +18,8 @@ vi.mock('../hooks/useWords', () => ({
 
 describe('Practice', () => {
   beforeAll(() => {
-    const scrollToMock = vi.fn()
-    Object.defineProperty(window, 'scrollTo', {
-      value: scrollToMock,
-      writable: true,
-    })
+    const scrollIntoViewMock = vi.fn()
+    window.HTMLElement.prototype.scrollIntoView = scrollIntoViewMock
   })
 
   let navigate: any
