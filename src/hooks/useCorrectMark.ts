@@ -3,28 +3,28 @@ import { useEffect, useRef, useState } from 'react'
 export const useCorrectMark = (
   timeout: number
 ): {
-  isCorrect: boolean
-  showCorrect: () => void
+  showCorrect: boolean
+  triggerShowCorrect: () => void
 } => {
-  const [isCorrect, setIsCorrect] = useState(false)
+  const [showCorrect, setShowCorrect] = useState(false)
   const [key, setKey] = useState(0)
   const timeoutIdRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      setIsCorrect(false)
+      setShowCorrect(false)
     }, timeout)
     timeoutIdRef.current = timeoutId
 
     return () => {
       if (timeoutIdRef.current != null) clearTimeout(timeoutIdRef.current)
     }
-  }, [isCorrect, key, timeout])
+  }, [showCorrect, key, timeout])
 
-  const showCorrect = (): void => {
-    setIsCorrect(true)
+  const triggerShowCorrect = (): void => {
+    setShowCorrect(true)
     setKey((prevKey) => prevKey + 1)
   }
 
-  return { isCorrect, showCorrect }
+  return { showCorrect, triggerShowCorrect }
 }

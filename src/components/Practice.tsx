@@ -32,7 +32,8 @@ export const Practice = (): JSX.Element => {
   const [userAnswer, setUserAnswer] = useState<string>('')
   const [isReview, setIsReview] = useState<boolean>(false)
   const checkAnswer = useCheckAnswer()
-  const { isCorrect, showCorrect } = useCorrectMark(CORRECT_DISPLAY_TIME)
+  const { showCorrect, triggerShowCorrect } =
+    useCorrectMark(CORRECT_DISPLAY_TIME)
   const [progress, setProgress] = useState<number>(0)
   const [disabled, setDisabled] = useState<boolean>(false)
   const [showResult, setShowResult] = useState<boolean>(false)
@@ -59,7 +60,7 @@ export const Practice = (): JSX.Element => {
     if (!isCorrectAnswer) return
 
     if (!isRevealed) {
-      showCorrect()
+      triggerShowCorrect()
       setProgress(progress + 1)
       if (progress + 1 === words.length) {
         setDisabled(true)
@@ -133,7 +134,7 @@ export const Practice = (): JSX.Element => {
           <Answer
             answer={answer}
             userAnswer={userAnswer}
-            isCorrect={isCorrect}
+            showCorrect={showCorrect}
           />
         </div>
         <div className="flex flex-col items-center">
@@ -249,13 +250,13 @@ const Definition = ({ word }: DefinitionProps): JSX.Element => {
 interface AnswerProps {
   answer: string
   userAnswer: string
-  isCorrect: boolean
+  showCorrect: boolean
 }
 
 const Answer = ({
   answer,
   userAnswer,
-  isCorrect,
+  showCorrect,
 }: AnswerProps): JSX.Element => {
   const showAnswer = answer !== ''
   const { matchedPart, remainingPart } = splitAnswerByMatch(answer, userAnswer)
@@ -266,7 +267,7 @@ const Answer = ({
         className="absolute left-1/2 top-1/2 -mt-1.5 flex -translate-x-1/2 -translate-y-1/2
               transform items-center sm:h-56"
       >
-        {isCorrect && !showAnswer && (
+        {!showAnswer && showCorrect && (
           <CheckIcon className="w-12 text-green-500" />
         )}
         {showAnswer && (

@@ -4,10 +4,10 @@ import { useCorrectMark } from './useCorrectMark'
 describe('useCorrectMark', () => {
   it('should return isCorrect as true after showCorrect is called', async () => {
     const { result } = renderHook(() => useCorrectMark(0))
-    expect(result.current.isCorrect).toBe(false)
+    expect(result.current.showCorrect).toBe(false)
     act(() => {
-      result.current.showCorrect()
+      result.current.triggerShowCorrect()
     })
-    expect(result.current.isCorrect).toBe(true)
+    expect(result.current.showCorrect).toBe(true)
   })
 })
