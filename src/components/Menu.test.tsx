@@ -42,6 +42,7 @@ describe('Menu', () => {
       <MenuContext.Provider
         value={{
           setMenuComponent: mockSetMenuComponent,
+          menuComponent: 'menu',
           toggleDrawerOpen: mockToggleDrawerOpen,
           setDeckToDelete: mockSetDeckToDelete,
         }}
@@ -49,8 +50,7 @@ describe('Menu', () => {
         <Menu />
       </MenuContext.Provider>
     )
-    const buttons = screen.getAllByRole('button')
-    const addButton = buttons[0]
+    const addButton = screen.getByTitle('Add Deck')
     fireEvent.click(addButton)
     expect(mockSetMenuComponent).toHaveBeenCalledWith('add-deck')
   })
@@ -60,6 +60,7 @@ describe('Menu', () => {
       <MenuContext.Provider
         value={{
           setMenuComponent: mockSetMenuComponent,
+          menuComponent: 'menu',
           toggleDrawerOpen: mockToggleDrawerOpen,
           setDeckToDelete: mockSetDeckToDelete,
         }}
@@ -67,9 +68,69 @@ describe('Menu', () => {
         <Menu />
       </MenuContext.Provider>
     )
-    const buttons = screen.getAllByRole('button')
-    const addButton = buttons[1]
-    fireEvent.click(addButton)
+    const deleteButton = screen.getByTitle('Delete Deck')
+    fireEvent.click(deleteButton)
     expect(mockSetMenuComponent).toHaveBeenCalledWith('delete-deck')
+  })
+
+  it('should set menu component to menu', () => {
+    render(
+      <MenuContext.Provider
+        value={{
+          setMenuComponent: mockSetMenuComponent,
+          menuComponent: 'delete-deck',
+          toggleDrawerOpen: mockToggleDrawerOpen,
+          setDeckToDelete: mockSetDeckToDelete,
+        }}
+      >
+        <Menu />
+      </MenuContext.Provider>
+    )
+    const deleteButton = screen.getByTitle('Delete Deck')
+    fireEvent.click(deleteButton)
+    expect(mockSetMenuComponent).toHaveBeenCalledWith('menu')
+  })
+
+  it('should list decks to delete', async () => {
+    render(
+      <MenuContext.Provider
+        value={{
+          setMenuComponent: mockSetMenuComponent,
+          menuComponent: 'delete-deck',
+          toggleDrawerOpen: mockToggleDrawerOpen,
+          setDeckToDelete: mockSetDeckToDelete,
+        }}
+      >
+        <Menu />
+      </MenuContext.Provider>
+    )
+    await waitFor(() => {
+      expect(screen.getByText('deck 1')).toBeInTheDocument()
+      expect(screen.getByText('deck 2')).toBeInTheDocument()
+    })
+  })
+
+  it('should call setDeckToDelete with selected deck', async () => {
+    render(
+      <MenuContext.Provider
+        value={{
+          setMenuComponent: mockSetMenuComponent,
+          menuComponent: 'delete-deck',
+          toggleDrawerOpen: mockToggleDrawerOpen,
+          setDeckToDelete: mockSetDeckToDelete,
+        }}
+      >
+        <Menu />
+      </MenuContext.Provider>
+    )
+    const deck1Element = await screen.findByText('deck 1')
+    const parentLiElement = deck1Element.parentElement
+    const svgElement = parentLiElement?.querySelector('svg')
+    expect(svgElement).not.toBeNull()
+    if (svgElement == null) return
+    fireEvent.click(svgElement)
+    expect(mockSetDeckToDelete).toHaveBeenCalledWith(
+      new Deck(1, 'language 1', 'deck 1')
+    )
   })
 })

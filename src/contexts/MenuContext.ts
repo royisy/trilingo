@@ -5,12 +5,14 @@ export type MenuComponentKey = 'menu' | 'add-deck' | 'delete-deck'
 
 interface IMenuContext {
   setMenuComponent: Dispatch<SetStateAction<MenuComponentKey>>
+  menuComponent: MenuComponentKey
   toggleDrawerOpen: () => void
   setDeckToDelete: Dispatch<SetStateAction<Deck | null>>
 }
 
 export const MenuContext = createContext<IMenuContext>({
   setMenuComponent: () => {},
+  menuComponent: 'menu',
   toggleDrawerOpen: () => {},
   setDeckToDelete: () => {},
 })

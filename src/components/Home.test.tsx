@@ -43,12 +43,6 @@ vi.mock('./AddDeck', () => {
   return { AddDeck }
 })
 
-vi.mock('./DeleteDeck', () => {
-  const DeleteDeck = (): JSX.Element => <h1>DeleteDeck component</h1>
-  DeleteDeck.displayName = 'DeleteDeck'
-  return { DeleteDeck }
-})
-
 describe('Home', () => {
   it('should render deck title and words list', async () => {
     const appSetting = new AppSetting()
@@ -92,10 +86,10 @@ describe('Home', () => {
     expect(screen.getByText('AddDeck component')).toBeInTheDocument()
   })
 
-  it('should render Menu by default and can switch to DeleteDeck', () => {
+  it('should render Menu when Delete deck is clicked', () => {
     render(<Home />)
     expect(screen.getByText('Menu component')).toBeInTheDocument()
     fireEvent.click(screen.getByText('Delete deck'))
-    expect(screen.getByText('DeleteDeck component')).toBeInTheDocument()
+    expect(screen.getByText('Menu component')).toBeInTheDocument()
   })
 })

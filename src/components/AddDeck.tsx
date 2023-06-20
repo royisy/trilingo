@@ -1,25 +1,36 @@
+import { XMarkIcon } from '@heroicons/react/24/solid'
 import { useContext } from 'react'
 import { CircleFlag } from 'react-circle-flags'
 import { MenuContext } from '../contexts/MenuContext'
 import { useAddDeck } from '../hooks/useAddDeck'
 import { useDeckList } from '../hooks/useDeckList'
 import { type CsvDeck } from '../models/CsvDeck'
-import { DeckList } from './DeckList'
-import { MenuHeader } from './MenuHeader'
 
 export const AddDeck = (): JSX.Element => {
+  const { setMenuComponent } = useContext(MenuContext)
   const deckList = useDeckList()
 
   return (
     <>
-      <MenuHeader title="Add Deck" />
-      <DeckList>
+      <div className="flex items-center p-4">
+        <button
+          className="btn-ghost btn-square btn"
+          onClick={() => {
+            setMenuComponent('menu')
+          }}
+          title="Close"
+        >
+          <XMarkIcon className="min-h-0 w-10" />
+        </button>
+        <h1 className="ml-2 text-2xl font-bold">Add Deck</h1>
+      </div>
+      <ul className="menu">
         <>
           {deckList.map((csvDeck) => (
             <DeckItem key={csvDeck.id} csvDeck={csvDeck} />
           ))}
         </>
-      </DeckList>
+      </ul>
     </>
   )
 }

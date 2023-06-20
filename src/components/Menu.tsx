@@ -1,4 +1,9 @@
-import { MinusIcon, PlusIcon } from '@heroicons/react/24/solid'
+import {
+  MinusIcon,
+  PlusIcon,
+  TrashIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/solid'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { useContext } from 'react'
 import { CircleFlag } from 'react-circle-flags'
@@ -7,20 +12,19 @@ import { useSelectDeck } from '../hooks/useSelectDeck'
 import { type Deck } from '../models/Deck'
 import { getAppSetting } from '../repositories/appSetting'
 import { getAllDecks } from '../repositories/deck'
-import { DeckList } from './DeckList'
 import { Logo } from './Logo'
 
 export const Menu = (): JSX.Element => {
   const decks = useLiveQuery(getAllDecks)
   const appSetting = useLiveQuery(getAppSetting)
   const selectedDeckId = appSetting?.selectedDeckId ?? null
-  const { setMenuComponent } = useContext(MenuContext)
+  const { menuComponent, setMenuComponent } = useContext(MenuContext)
 
   return (
     <>
       <Logo className="p-5" />
-      <DeckList>
-        <>
+      {menuComponent === 'menu' && (
+        <ul className="menu">
           {decks?.map((deck) => (
             <DeckItem
               key={deck.id}
@@ -28,9 +32,16 @@ export const Menu = (): JSX.Element => {
               isSelected={deck.id === selectedDeckId}
             />
           ))}
-        </>
-      </DeckList>
-      <div className="mt-5">
+        </ul>
+      )}
+      {menuComponent === 'delete-deck' && (
+        <ul className="p-2">
+          {decks?.map((deck) => (
+            <DeleteDeckItem key={deck.id} deck={deck} />
+          ))}
+        </ul>
+      )}
+      <div className="mt-5 flex">
         <button
           className="btn-outline btn-square btn-sm btn ml-4"
           onClick={() => {
@@ -40,15 +51,24 @@ export const Menu = (): JSX.Element => {
         >
           <PlusIcon className="w-8" />
         </button>
-        <button
-          className="btn-outline btn-square btn-sm btn ml-4"
-          onClick={() => {
-            setMenuComponent('delete-deck')
-          }}
+        <label
+          className="swap-rotate swap btn-outline btn-square btn-sm btn ml-4"
           title="Delete Deck"
         >
-          <MinusIcon className="w-8" />
-        </button>
+          <input
+            type="checkbox"
+            onChange={() => {
+              if (menuComponent === 'menu') {
+                setMenuComponent('delete-deck')
+              } else {
+                setMenuComponent('menu')
+              }
+            }}
+            checked={menuComponent === 'delete-deck'}
+          />
+          <MinusIcon className="swap-off w-8" />
+          <XMarkIcon className="swap-on w-8" />
+        </label>
       </div>
     </>
   )
@@ -79,6 +99,39 @@ const DeckItem = ({ deck, isSelected }: DeckItemProps): JSX.Element => {
         </span>
         {deck.title}
       </button>
+    </li>
+  )
+}
+
+interface DeleteDeckItemProps {
+  deck: Deck
+}
+
+const DeleteDeckItem = ({ deck }: DeleteDeckItemProps): JSX.Element => {
+  const { setDeckToDelete } = useContext(MenuContext)
+
+  const handleDeckSelect = (deck: Deck): void => {
+    setDeckToDelete(deck)
+  }
+
+  return (
+    <li className="flex items-center justify-between p-3">
+      <div className="flex items-center text-xl">
+        <span className="ml-1 mr-2 h-5 w-5">
+          <CircleFlag countryCode={deck.language} />
+        </span>
+        {deck.title}
+      </div>
+      <label
+        htmlFor="delete-deck-modal"
+        className="btn-ghost btn-square btn h-7 min-h-0 w-7"
+        onClick={() => {
+          handleDeckSelect(deck)
+        }}
+        title="Delete"
+      >
+        <TrashIcon className="w-5" />
+      </label>
     </li>
   )
 }

@@ -13,7 +13,6 @@ import { type Word } from '../models/Word'
 import { getAppSetting } from '../repositories/appSetting'
 import { AddDeck } from './AddDeck'
 import { DeckProgress } from './DeckProgress'
-import { DeleteDeck } from './DeleteDeck'
 import { Logo } from './Logo'
 import { Menu } from './Menu'
 
@@ -57,13 +56,15 @@ export const Home = (): JSX.Element => {
           <MenuContext.Provider
             value={{
               setMenuComponent,
+              menuComponent,
               toggleDrawerOpen,
               setDeckToDelete,
             }}
           >
-            {menuComponent === 'menu' && <Menu />}
+            {(menuComponent === 'menu' || menuComponent === 'delete-deck') && (
+              <Menu />
+            )}
             {menuComponent === 'add-deck' && <AddDeck />}
-            {menuComponent === 'delete-deck' && <DeleteDeck />}
           </MenuContext.Provider>
         </div>
       </div>
