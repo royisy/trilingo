@@ -1,6 +1,7 @@
 import { MinusIcon, PlusIcon } from '@heroicons/react/24/solid'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { useContext } from 'react'
+import { CircleFlag } from 'react-circle-flags'
 import { MenuContext } from '../contexts/MenuContext'
 import { useSelectDeck } from '../hooks/useSelectDeck'
 import { type Deck } from '../models/Deck'
@@ -73,6 +74,9 @@ const DeckItem = ({ deck, isSelected }: DeckItemProps): JSX.Element => {
         className={`text-xl ${isSelected ? 'active' : ''}`}
         onClick={handleClick}
       >
+        <span className="h-5 w-5">
+          <CircleFlag countryCode={deck.language} />
+        </span>
         {deck.title}
       </button>
     </li>

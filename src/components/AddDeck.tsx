@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+import { CircleFlag } from 'react-circle-flags'
 import { MenuContext } from '../contexts/MenuContext'
 import { useAddDeck } from '../hooks/useAddDeck'
 import { useDeckList } from '../hooks/useDeckList'
@@ -41,7 +42,12 @@ const DeckItem = ({ csvDeck }: DeckItemProps): JSX.Element => {
 
   return (
     <li className="py-1" onClick={isLoading ? undefined : handleClick}>
-      <button className="text-xl">{csvDeck.title}</button>
+      <button className="text-xl">
+        <span className="h-5 w-5">
+          <CircleFlag countryCode={csvDeck.language} />
+        </span>
+        {csvDeck.title}
+      </button>
     </li>
   )
 }
