@@ -1,10 +1,10 @@
 import { XMarkIcon } from '@heroicons/react/24/solid'
 import { useContext } from 'react'
-import { CircleFlag } from 'react-circle-flags'
 import { MenuContext } from '../contexts/MenuContext'
 import { useAddDeck } from '../hooks/useAddDeck'
 import { useDeckList } from '../hooks/useDeckList'
 import { type CsvDeck } from '../models/CsvDeck'
+import { CustomCircleFlag } from './icons/CustomCircleFlag'
 
 export const AddDeck = (): JSX.Element => {
   const { setMenuComponent } = useContext(MenuContext)
@@ -55,7 +55,7 @@ const DeckItem = ({ csvDeck }: DeckItemProps): JSX.Element => {
     <li className="py-1" onClick={isLoading ? undefined : handleClick}>
       <button className="text-xl">
         <span className="h-5 w-5">
-          <CircleFlag countryCode={csvDeck.language} />
+          <CustomCircleFlag countryCode={csvDeck.language} />
         </span>
         {csvDeck.title}
       </button>

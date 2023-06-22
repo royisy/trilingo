@@ -6,13 +6,13 @@ import {
 } from '@heroicons/react/24/solid'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { useContext } from 'react'
-import { CircleFlag } from 'react-circle-flags'
 import { MenuContext } from '../contexts/MenuContext'
 import { useSelectDeck } from '../hooks/useSelectDeck'
 import { type Deck } from '../models/Deck'
 import { getAppSetting } from '../repositories/appSetting'
 import { getAllDecks } from '../repositories/deck'
 import { Logo } from './Logo'
+import { CustomCircleFlag } from './icons/CustomCircleFlag'
 
 export const Menu = (): JSX.Element => {
   const decks = useLiveQuery(getAllDecks)
@@ -95,7 +95,7 @@ const DeckItem = ({ deck, isSelected }: DeckItemProps): JSX.Element => {
         onClick={handleClick}
       >
         <span className="h-5 w-5">
-          <CircleFlag countryCode={deck.language} />
+          <CustomCircleFlag countryCode={deck.language} />
         </span>
         {deck.title}
       </button>
@@ -118,7 +118,7 @@ const DeleteDeckItem = ({ deck }: DeleteDeckItemProps): JSX.Element => {
     <li className="flex items-center justify-between p-3">
       <div className="flex items-center text-xl">
         <span className="ml-1 mr-2 h-5 w-5">
-          <CircleFlag countryCode={deck.language} />
+          <CustomCircleFlag countryCode={deck.language} />
         </span>
         {deck.title}
       </div>
