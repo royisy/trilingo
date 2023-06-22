@@ -108,10 +108,11 @@ interface DeleteDeckItemProps {
 }
 
 const DeleteDeckItem = ({ deck }: DeleteDeckItemProps): JSX.Element => {
-  const { setDeckToDelete } = useContext(MenuContext)
+  const { setDeckToDelete, openDialog } = useContext(MenuContext)
 
   const handleDeckSelect = (deck: Deck): void => {
     setDeckToDelete(deck)
+    openDialog()
   }
 
   return (
@@ -122,8 +123,7 @@ const DeleteDeckItem = ({ deck }: DeleteDeckItemProps): JSX.Element => {
         </span>
         {deck.title}
       </div>
-      <label
-        htmlFor="delete-deck-modal"
+      <button
         className="btn-ghost btn-square btn h-7 min-h-0 w-7"
         onClick={() => {
           handleDeckSelect(deck)
@@ -131,7 +131,7 @@ const DeleteDeckItem = ({ deck }: DeleteDeckItemProps): JSX.Element => {
         title="Delete"
       >
         <TrashIcon className="w-5" />
-      </label>
+      </button>
     </li>
   )
 }

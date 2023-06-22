@@ -8,6 +8,7 @@ interface IMenuContext {
   menuComponent: MenuComponentKey
   toggleDrawerOpen: () => void
   setDeckToDelete: Dispatch<SetStateAction<Deck | null>>
+  openDialog: () => void
 }
 
 export const MenuContext = createContext<IMenuContext>({
@@ -15,4 +16,5 @@ export const MenuContext = createContext<IMenuContext>({
   menuComponent: 'menu',
   toggleDrawerOpen: () => {},
   setDeckToDelete: () => {},
+  openDialog: () => {},
 })

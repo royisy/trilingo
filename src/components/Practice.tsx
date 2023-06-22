@@ -11,6 +11,7 @@ import {
 import { useNavigate } from 'react-router-dom'
 import { useCheckAnswer } from '../hooks/useCheckAnswer'
 import { useCorrectMark } from '../hooks/useCorrectMark'
+import { useDialog } from '../hooks/useDialog'
 import { useSelectedDeckStatus } from '../hooks/useSelectedDeckStatus'
 import { useWords } from '../hooks/useWords'
 import { type Word } from '../models/Word'
@@ -176,41 +177,37 @@ interface QuitButtonProps {
 }
 
 const QuitButton = ({ disabled }: QuitButtonProps): JSX.Element => {
+  const { dialogRef, openDialog } = useDialog()
   const navigate = useNavigate()
 
   return (
     <>
-      <label
-        htmlFor="quit-practice-modal"
+      <button
         className={`btn-square btn ${disabled ? 'btn-disabled' : 'btn-ghost'}`}
+        onClick={openDialog}
         title="Quit"
       >
         <XMarkIcon className="w-10 sm:w-12" />
-      </label>
-      <input
-        type="checkbox"
-        id="quit-practice-modal"
-        className="modal-toggle"
-      />
-      <label htmlFor="quit-practice-modal" className="modal cursor-pointer">
-        <label className="modal-box text-xl">
+      </button>
+      <dialog className="modal" ref={dialogRef}>
+        <form method="dialog" className="modal-box text-xl">
           <p>Quit practice?</p>
           <div className="modal-action">
-            <label htmlFor="quit-practice-modal" className="btn-outline btn">
-              Cancel
-            </label>
-            <label
-              htmlFor="quit-practice-modal"
+            <button className="btn-outline btn">Cancel</button>
+            <button
               className="btn-primary btn"
               onClick={() => {
                 navigate('/')
               }}
             >
               OK
-            </label>
+            </button>
           </div>
-        </label>
-      </label>
+        </form>
+        <form method="dialog" className="modal-backdrop">
+          <button>Close</button>
+        </form>
+      </dialog>
     </>
   )
 }

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { Tooltip } from 'react-tooltip'
 import { MenuContext } from '../contexts/MenuContext'
 import { useDeleteDeck } from '../hooks/useDeleteDeck'
+import { useDialog } from '../hooks/useDialog'
 import { useMenu } from '../hooks/useMenu'
 import { useSelectedDeck } from '../hooks/useSelectedDeck'
 import { useStats } from '../hooks/useStats'
@@ -21,6 +22,7 @@ export const Home = (): JSX.Element => {
     useMenu()
   const { selectedDeck, words } = useSelectedDeck()
   const [deckToDelete, setDeckToDelete] = useState<Deck | null>(null)
+  const { dialogRef, openDialog } = useDialog()
 
   return (
     <div className="drawer lg:drawer-open">
@@ -59,6 +61,7 @@ export const Home = (): JSX.Element => {
               menuComponent,
               toggleDrawerOpen,
               setDeckToDelete,
+              openDialog,
             }}
           >
             {(menuComponent === 'menu' || menuComponent === 'delete-deck') && (
@@ -69,7 +72,7 @@ export const Home = (): JSX.Element => {
         </div>
       </div>
       <WordTooltip />
-      <DeleteDeckModal deckToDelete={deckToDelete} />
+      <DeleteDeckModal dialogRef={dialogRef} deckToDelete={deckToDelete} />
     </div>
   )
 }
@@ -184,10 +187,12 @@ const WordTooltip = (): JSX.Element => {
 }
 
 interface DeleteDeckModalProps {
+  dialogRef: React.RefObject<HTMLDialogElement>
   deckToDelete: Deck | null
 }
 
 const DeleteDeckModal = ({
+  dialogRef,
   deckToDelete,
 }: DeleteDeckModalProps): JSX.Element => {
   const deleteDeck = useDeleteDeck()
@@ -199,25 +204,19 @@ const DeleteDeckModal = ({
   }
 
   return (
-    <>
-      <input type="checkbox" id="delete-deck-modal" className="modal-toggle" />
-      <label htmlFor="delete-deck-modal" className="modal cursor-pointer">
-        <label className="modal-box text-xl">
-          <p>Delete &quot;{deckToDelete?.title}&quot;?</p>
-          <div className="modal-action">
-            <label htmlFor="delete-deck-modal" className="btn-outline btn">
-              Cancel
-            </label>
-            <label
-              htmlFor="delete-deck-modal"
-              className="btn-primary btn"
-              onClick={handleDeleteDeck}
-            >
-              OK
-            </label>
-          </div>
-        </label>
-      </label>
-    </>
+    <dialog className="modal" ref={dialogRef}>
+      <form method="dialog" className="modal-box text-xl">
+        <p>Delete &quot;{deckToDelete?.title}&quot;?</p>
+        <div className="modal-action">
+          <button className="btn-outline btn">Cancel</button>
+          <button className="btn-primary btn" onClick={handleDeleteDeck}>
+            OK
+          </button>
+        </div>
+      </form>
+      <form method="dialog" className="modal-backdrop">
+        <button>Close</button>
+      </form>
+    </dialog>
   )
 }

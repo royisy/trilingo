@@ -9,6 +9,7 @@ describe('Menu', () => {
   const mockSetMenuComponent = vi.fn()
   const mockToggleDrawerOpen = vi.fn()
   const mockSetDeckToDelete = vi.fn()
+  const mockOpenDialog = vi.fn()
 
   beforeAll(async () => {
     const deck1 = new Deck(1, 'language 1', 'deck 1')
@@ -45,6 +46,7 @@ describe('Menu', () => {
           menuComponent: 'menu',
           toggleDrawerOpen: mockToggleDrawerOpen,
           setDeckToDelete: mockSetDeckToDelete,
+          openDialog: mockOpenDialog,
         }}
       >
         <Menu />
@@ -63,6 +65,7 @@ describe('Menu', () => {
           menuComponent: 'menu',
           toggleDrawerOpen: mockToggleDrawerOpen,
           setDeckToDelete: mockSetDeckToDelete,
+          openDialog: mockOpenDialog,
         }}
       >
         <Menu />
@@ -81,6 +84,7 @@ describe('Menu', () => {
           menuComponent: 'delete-deck',
           toggleDrawerOpen: mockToggleDrawerOpen,
           setDeckToDelete: mockSetDeckToDelete,
+          openDialog: mockOpenDialog,
         }}
       >
         <Menu />
@@ -99,6 +103,7 @@ describe('Menu', () => {
           menuComponent: 'delete-deck',
           toggleDrawerOpen: mockToggleDrawerOpen,
           setDeckToDelete: mockSetDeckToDelete,
+          openDialog: mockOpenDialog,
         }}
       >
         <Menu />
@@ -118,6 +123,7 @@ describe('Menu', () => {
           menuComponent: 'delete-deck',
           toggleDrawerOpen: mockToggleDrawerOpen,
           setDeckToDelete: mockSetDeckToDelete,
+          openDialog: mockOpenDialog,
         }}
       >
         <Menu />
