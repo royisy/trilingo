@@ -1,5 +1,6 @@
 import { useAddDeck } from '../hooks/useAddDeck'
 import { useDeckList } from '../hooks/useDeckList'
+import { usePreventDialogClose } from '../hooks/usePreventDialogClose'
 import { type CsvDeck } from '../models/CsvDeck'
 import { Logo } from './Logo'
 import { CustomCircleFlag } from './icons/CustomCircleFlag'
@@ -12,6 +13,7 @@ export const AddDeckDialog = ({
   dialogRef,
 }: AddDeckDialogProps): JSX.Element => {
   const deckList = useDeckList()
+  usePreventDialogClose(dialogRef)
 
   return (
     <dialog className="modal" ref={dialogRef}>
