@@ -6,7 +6,7 @@ export const useDialog = (): {
 } => {
   const dialogRef = useRef<HTMLDialogElement>(null)
   const openDialog = (): void => {
-    if (dialogRef.current != null) {
+    if (dialogRef.current != null && !dialogRef.current.open) {
       dialogRef.current.showModal()
     }
   }

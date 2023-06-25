@@ -108,11 +108,11 @@ interface DeleteDeckItemProps {
 }
 
 const DeleteDeckItem = ({ deck }: DeleteDeckItemProps): JSX.Element => {
-  const { setDeckToDelete, openDialog } = useContext(MenuContext)
+  const { setDeckToDelete, openDeleteDeckDialog } = useContext(MenuContext)
 
   const handleDeckSelect = (deck: Deck): void => {
     setDeckToDelete(deck)
-    openDialog()
+    openDeleteDeckDialog()
   }
 
   return (

@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Tooltip } from 'react-tooltip'
 import { MenuContext } from '../contexts/MenuContext'
+import { useAddDeckDialog } from '../hooks/useAddDeckDialog'
 import { useDeleteDeck } from '../hooks/useDeleteDeck'
 import { useDialog } from '../hooks/useDialog'
 import { useMenu } from '../hooks/useMenu'
@@ -13,6 +14,7 @@ import { type Deck } from '../models/Deck'
 import { type Word } from '../models/Word'
 import { getAppSetting } from '../repositories/appSetting'
 import { AddDeck } from './AddDeck'
+import { AddDeckDialog } from './AddDeckDialog'
 import { DeckProgress } from './DeckProgress'
 import { Logo } from './Logo'
 import { Menu } from './Menu'
@@ -20,9 +22,19 @@ import { Menu } from './Menu'
 export const Home = (): JSX.Element => {
   const { menuComponent, setMenuComponent, drawerOpen, toggleDrawerOpen } =
     useMenu()
+  const { showAddDeckDialog, addDeckDialogRef } = useAddDeckDialog(
+    setMenuComponent,
+    drawerOpen,
+    toggleDrawerOpen
+  )
   const { selectedDeck, words } = useSelectedDeck()
   const [deckToDelete, setDeckToDelete] = useState<Deck | null>(null)
-  const { dialogRef, openDialog } = useDialog()
+  const { dialogRef: deleteDeckDialogRef, openDialog: openDeleteDeckDialog } =
+    useDialog()
+
+  if (showAddDeckDialog) {
+    return <AddDeckDialog dialogRef={addDeckDialogRef} />
+  }
 
   return (
     <div className="drawer lg:drawer-open">
@@ -61,7 +73,7 @@ export const Home = (): JSX.Element => {
               menuComponent,
               toggleDrawerOpen,
               setDeckToDelete,
-              openDialog,
+              openDeleteDeckDialog,
             }}
           >
             {(menuComponent === 'menu' || menuComponent === 'delete-deck') && (
@@ -72,7 +84,10 @@ export const Home = (): JSX.Element => {
         </div>
       </div>
       <WordTooltip />
-      <DeleteDeckModal dialogRef={dialogRef} deckToDelete={deckToDelete} />
+      <DeleteDeckDialog
+        dialogRef={deleteDeckDialogRef}
+        deckToDelete={deckToDelete}
+      />
     </div>
   )
 }
@@ -186,15 +201,15 @@ const WordTooltip = (): JSX.Element => {
   )
 }
 
-interface DeleteDeckModalProps {
+interface DeleteDeckDialogProps {
   dialogRef: React.RefObject<HTMLDialogElement>
   deckToDelete: Deck | null
 }
 
-const DeleteDeckModal = ({
+const DeleteDeckDialog = ({
   dialogRef,
   deckToDelete,
-}: DeleteDeckModalProps): JSX.Element => {
+}: DeleteDeckDialogProps): JSX.Element => {
   const deleteDeck = useDeleteDeck()
 
   const handleDeleteDeck = async (): Promise<void> => {

@@ -46,7 +46,7 @@ describe('Menu', () => {
           menuComponent: 'menu',
           toggleDrawerOpen: mockToggleDrawerOpen,
           setDeckToDelete: mockSetDeckToDelete,
-          openDialog: mockOpenDialog,
+          openDeleteDeckDialog: mockOpenDialog,
         }}
       >
         <Menu />
@@ -65,7 +65,7 @@ describe('Menu', () => {
           menuComponent: 'menu',
           toggleDrawerOpen: mockToggleDrawerOpen,
           setDeckToDelete: mockSetDeckToDelete,
-          openDialog: mockOpenDialog,
+          openDeleteDeckDialog: mockOpenDialog,
         }}
       >
         <Menu />
@@ -84,7 +84,7 @@ describe('Menu', () => {
           menuComponent: 'delete-deck',
           toggleDrawerOpen: mockToggleDrawerOpen,
           setDeckToDelete: mockSetDeckToDelete,
-          openDialog: mockOpenDialog,
+          openDeleteDeckDialog: mockOpenDialog,
         }}
       >
         <Menu />
@@ -103,7 +103,7 @@ describe('Menu', () => {
           menuComponent: 'delete-deck',
           toggleDrawerOpen: mockToggleDrawerOpen,
           setDeckToDelete: mockSetDeckToDelete,
-          openDialog: mockOpenDialog,
+          openDeleteDeckDialog: mockOpenDialog,
         }}
       >
         <Menu />
@@ -123,7 +123,7 @@ describe('Menu', () => {
           menuComponent: 'delete-deck',
           toggleDrawerOpen: mockToggleDrawerOpen,
           setDeckToDelete: mockSetDeckToDelete,
-          openDialog: mockOpenDialog,
+          openDeleteDeckDialog: mockOpenDialog,
         }}
       >
         <Menu />
