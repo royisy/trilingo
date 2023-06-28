@@ -26,7 +26,8 @@
         "GitHub.copilot",
         "oderwat.indent-rainbow",
         "ms-python.black-formatter",
-        "ms-python.flake8"
+        "ms-python.flake8",
+        "ms-python.isort"
       ]
     }
   }
