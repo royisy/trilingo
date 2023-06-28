@@ -23,7 +23,8 @@
         "esbenp.prettier-vscode",
         "bradlc.vscode-tailwindcss",
         "mechatroner.rainbow-csv",
-        "GitHub.copilot"
+        "GitHub.copilot",
+        "oderwat.indent-rainbow"
       ]
     }
   }
