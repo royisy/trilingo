@@ -25,7 +25,8 @@
         "mechatroner.rainbow-csv",
         "GitHub.copilot",
         "oderwat.indent-rainbow",
-        "ms-python.black-formatter"
+        "ms-python.black-formatter",
+        "ms-python.flake8"
       ]
     }
   }
