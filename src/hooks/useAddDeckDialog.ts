@@ -22,8 +22,10 @@ export const useAddDeckDialog = (
       setMenuComponent('menu')
       if (drawerOpen) toggleDrawerOpen()
       openAddDeckDialog()
+      addDeckDialogRef.current?.blur()
     }
   }, [
+    addDeckDialogRef,
     decks,
     drawerOpen,
     openAddDeckDialog,
