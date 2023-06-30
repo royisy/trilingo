@@ -10,11 +10,12 @@
   },
   "prettier.prettierPath": "./node_modules/prettier",
   "[python]": {
-    "editor.defaultFormatter": "ms-python.black-formatter",
-    "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
       "source.organizeImports": true
-    }
+    },
+    "editor.defaultFormatter": "ms-python.black-formatter",
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4
   },
-  "python.linting.flake8Args": ["--max-line-length=88"]
+  "python.linting.flake8Args": ["--max-line-length=88", "--ignore=E203"]
 }
