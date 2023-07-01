@@ -197,3 +197,4 @@ cython_debug/
 ##############################
 
 404.html
+scripts/csv/*.csv

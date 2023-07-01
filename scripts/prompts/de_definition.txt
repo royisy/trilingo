@@ -1,0 +1,10 @@
+This is a list of IDs and their corresponding German {pos}s.
+Provide the ID and the corresponding English word for each {pos} using the following format:
+ID,English word
+
+If the English word can be interpreted as multiple German words,
+include a concise explanation to differentiate them.
+However, ensure that the English word itself is limited to less than 30 characters.
+Your response should include only the list.
+
+{words}

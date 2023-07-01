@@ -1,0 +1,11 @@
+This is a list of IDs and their corresponding German words.
+Provide the ID and part of speech for each word using the following format:
+ID,part of speech
+
+The part of speech should be one of the following:
+{pos_list}
+
+If the part of speech is not clear, set it as unknown.
+Your response should include only the list.
+
+{words}
