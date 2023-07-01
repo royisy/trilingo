@@ -14,6 +14,11 @@ POS_DICT = {
 }
 
 
+def chunks(data, chunk_size):
+    for i in range(0, len(data), chunk_size):
+        yield data[i : i + chunk_size]
+
+
 def create_prompt(file_name, lang, words, pos=None):
     words_text = ""
     for word in words:
