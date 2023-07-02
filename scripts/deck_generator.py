@@ -24,18 +24,16 @@ CHUNK_SIZE = 200
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("lang", choices=["de"], help="Language")
-    parser.add_argument(
-        "process", choices=["part_of_speech", "base_form", "definition"], help="Process"
-    )
+    parser.add_argument("process", choices=["pos", "base", "def"], help="Process")
 
     args = parser.parse_args()
     lang = args.lang
 
-    if args.process == "part_of_speech":
+    if args.process == "pos":
         add_part_of_speech(lang)
-    elif args.process == "base_form":
+    elif args.process == "base":
         convert_to_base_form(lang)
-    elif args.process == "definition":
+    elif args.process == "def":
         add_english_definition(lang)
 
 
