@@ -1,7 +1,7 @@
 import csv
 import io
 
-from models.deck_csv import DeckCsv
+from scripts.models.deck_csv import DeckCsv
 
 
 def read_csv(csv_file: DeckCsv) -> list:

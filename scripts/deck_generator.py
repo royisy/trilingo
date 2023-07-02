@@ -1,19 +1,21 @@
 import argparse
+from pathlib import Path
 
-from clients.openai_api_client import mock_chat_completion
-from models.deck_csv import DeckCsv
-from utils.csv_utils import clear_csv, merge_csv, read_csv, read_csv_str
-from utils.deck_utils import chunks, create_prompt, group_by_pos
+from scripts.clients.openai_api_client import mock_chat_completion
+from scripts.models.deck_csv import DeckCsv
+from scripts.utils.csv_utils import clear_csv, merge_csv, read_csv, read_csv_str
+from scripts.utils.deck_utils import chunks, create_prompt, group_by_pos
 
-SOURCE_CSV = DeckCsv("./scripts/csv/source.csv", ["id", "answer"])
+CSV_DIR = Path(__file__).resolve().parent / "csv"
+
+SOURCE_CSV = DeckCsv(CSV_DIR / "source.csv", ["id", "answer"])
 PART_OF_SPEECH_CSV = DeckCsv(
-    "./scripts/csv/part_of_speech.csv", ["id", "part_of_speech", "answer"]
+    CSV_DIR / "part_of_speech.csv", ["id", "part_of_speech", "answer"]
 )
-BASE_FORM_CSV = DeckCsv(
-    "./scripts/csv/base_form.csv", ["id", "part_of_speech", "answer"]
-)
+BASE_FORM_CSV = DeckCsv(CSV_DIR / "base_form.csv", ["id", "part_of_speech", "answer"])
 DEFINITION_CSV = DeckCsv(
-    "./scripts/csv/definition.csv", ["id", "part_of_speech", "definition", "answer"]
+    CSV_DIR / "definition.csv",
+    ["id", "part_of_speech", "definition", "answer"],
 )
 
 CHUNK_SIZE = 200
