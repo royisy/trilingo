@@ -1,4 +1,4 @@
-POS_DICT = {
+PART_OF_SPEECH_DICT = {
     "de": [
         "noun",
         "verb",
@@ -22,12 +22,12 @@ def chunks(data, chunk_size):
 def create_prompt(file_name, lang, words, pos=None):
     words_text = ""
     for word in words:
-        words_text += f"{word['id']},{word['word']}\n"
+        words_text += f"{word['id']},{word['answer']}\n"
     template_file = f"./scripts/prompts/{lang}_{file_name}.txt"
     with open(template_file, "r") as f:
         prompt = f.read()
         prompt = prompt.replace("{words}", words_text)
-        prompt = prompt.replace("{pos_list}", ",".join(POS_DICT[lang]))
+        prompt = prompt.replace("{pos_list}", ",".join(PART_OF_SPEECH_DICT[lang]))
         if pos is not None:
             prompt = prompt.replace("{pos}", pos)
     return prompt

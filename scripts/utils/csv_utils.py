@@ -1,11 +1,13 @@
 import csv
 import io
 
+from models.deck_csv import DeckCsv
 
-def read_csv(csv_file, fieldnames) -> list:
+
+def read_csv(csv_file: DeckCsv) -> list:
     csv_rows = None
-    with open(csv_file, "r") as f:
-        csv_reader = csv.DictReader(f, fieldnames=fieldnames)
+    with open(csv_file.file_path, "r") as f:
+        csv_reader = csv.DictReader(f, fieldnames=csv_file.columns)
         csv_rows = list(csv_reader)
     return csv_rows
 
