@@ -19,10 +19,9 @@ def read_csv_str(csv_str, fieldnames) -> list:
 
 
 def clear_csv(csv_file):
-    pass
-    # with open(csv_file, "w") as f:
-    #     writer = csv.writer(f)
-    #     writer.writerows("")
+    with open(csv_file, "w") as f:
+        writer = csv.writer(f)
+        writer.writerows("")
 
 
 def append_csv(csv_file, data):
@@ -38,3 +37,8 @@ def merge_csv(src_data, add_data, key):
                 src_row[key] = add_row[key]
                 break
     return src_data
+
+
+def convert_to_list(csv_rows, columns):
+    converted_data = [[row[column] for column in columns] for row in csv_rows]
+    return converted_data
