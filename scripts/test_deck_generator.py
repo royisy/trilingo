@@ -26,10 +26,11 @@ def test_add_part_of_speech(
         {"id": "3", "answer": "word 3"},
         {"id": "4", "answer": "word 4"},
     ]
-    mock_chat_completion.return_value = "1,pos 1\n2,pos 2\n3,pos 3\n4,pos 4\n"
+    mock_chat_completion.return_value = ("1,pos 1\n2,pos 2\n3,pos 3\n4,pos 4\n", 1)
 
-    _add_part_of_speech("de")
+    total_tokens = _add_part_of_speech("de")
 
+    assert total_tokens == 1
     mock_init_csv.assert_called_once()
     mock_append_csv.assert_called_once_with(
         PART_OF_SPEECH_CSV,
@@ -66,13 +67,14 @@ def test_convert_to_base_form(
         "base_form prompt 2",
     ]
     mock_chat_completion.side_effect = [
-        "1,base noun 1\n3,base noun 3\n",
-        "1,article base noun 1\n3,article base noun 3\n",
-        "2,base verb 2\n4,base verb 4\n",
+        ("1,base noun 1\n3,base noun 3\n", 1),
+        ("1,article base noun 1\n3,article base noun 3\n", 1),
+        ("2,base verb 2\n4,base verb 4\n", 1),
     ]
 
-    _convert_to_base_form("de")
+    total_tokens = _convert_to_base_form("de")
 
+    assert total_tokens == 3
     mock_init_csv.assert_called_once()
     assert mock_chat_completion.call_args_list == [
         call("base_form_noun prompt"),
@@ -120,12 +122,13 @@ def test_add_definition(
         "definition prompt",
     ]
     mock_chat_completion.side_effect = [
-        "1,definition 1\n3,definition 3\n",
-        "2,definition 2\n4,definition 4\n",
+        ("1,definition 1\n3,definition 3\n", 1),
+        ("2,definition 2\n4,definition 4\n", 1),
     ]
 
-    _add_definition("de")
+    total_tokens = _add_definition("de")
 
+    assert total_tokens == 2
     mock_init_csv.assert_called_once()
     assert mock_chat_completion.call_args_list == [
         call("definition_noun prompt"),
