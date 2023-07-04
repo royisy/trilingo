@@ -1,7 +1,7 @@
 import csv
 import io
 
-from scripts.models.deck_csv import DeckCsv
+from scripts.models.deck_csv import Column, DeckCsv
 
 
 def read_csv(csv_file: DeckCsv) -> list:
@@ -33,7 +33,7 @@ def append_csv(csv_file, data):
 def merge_csv(src_data, add_data, key):
     for src_row in src_data:
         for add_row in add_data:
-            if src_row["id"] == add_row["id"]:
+            if src_row[Column.ID.value] == add_row[Column.ID.value]:
                 src_row[key] = add_row[key]
                 break
     return src_data

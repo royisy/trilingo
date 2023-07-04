@@ -2,7 +2,7 @@ import argparse
 from pathlib import Path
 
 from scripts.clients.openai_api_client import chat_completion
-from scripts.models.deck_csv import DeckCsv
+from scripts.models.deck_csv import Column, DeckCsv
 from scripts.utils.csv_utils import (
     append_csv,
     clear_csv,
@@ -15,14 +15,23 @@ from scripts.utils.deck_utils import chunks, create_prompt, group_by_pos
 
 CSV_DIR = Path(__file__).resolve().parent / "csv"
 
-SOURCE_CSV = DeckCsv(CSV_DIR / "source.csv", ["id", "answer"])
+SOURCE_CSV = DeckCsv(CSV_DIR / "source.csv", [Column.ID.value, Column.ANSWER.value])
 PART_OF_SPEECH_CSV = DeckCsv(
-    CSV_DIR / "part_of_speech.csv", ["id", "part_of_speech", "answer"]
+    CSV_DIR / "part_of_speech.csv",
+    [Column.ID.value, Column.PART_OF_SPEECH.value, Column.ANSWER.value],
 )
-BASE_FORM_CSV = DeckCsv(CSV_DIR / "base_form.csv", ["id", "part_of_speech", "answer"])
+BASE_FORM_CSV = DeckCsv(
+    CSV_DIR / "base_form.csv",
+    [Column.ID.value, Column.PART_OF_SPEECH.value, Column.ANSWER.value],
+)
 DEFINITION_CSV = DeckCsv(
     CSV_DIR / "definition.csv",
-    ["id", "part_of_speech", "definition", "answer"],
+    [
+        Column.ID.value,
+        Column.PART_OF_SPEECH.value,
+        Column.DEFINITION.value,
+        Column.ANSWER.value,
+    ],
 )
 
 CHUNK_SIZE = 200
@@ -55,8 +64,10 @@ def _add_part_of_speech(lang):
         pos_list_str = chat_completion(prompt)
         # TODO validate response
 
-        pos_list = read_csv_str(pos_list_str, ["id", "part_of_speech"])
-        merged_csv = merge_csv(csv_rows, pos_list, "part_of_speech")
+        pos_list = read_csv_str(
+            pos_list_str, [Column.ID.value, Column.PART_OF_SPEECH.value]
+        )
+        merged_csv = merge_csv(csv_rows, pos_list, Column.PART_OF_SPEECH.value)
         csv_data = convert_to_list(merged_csv, PART_OF_SPEECH_CSV.columns)
         append_csv(PART_OF_SPEECH_CSV, csv_data)
 
@@ -77,16 +88,20 @@ def _convert_to_base_form(lang):
             base_list_str = chat_completion(prompt)
             # TODO validate response
 
-            base_list = read_csv_str(base_list_str, ["id", "answer"])
-            merged_csv = merge_csv(csv_rows, base_list, "answer")
+            base_list = read_csv_str(
+                base_list_str, [Column.ID.value, Column.ANSWER.value]
+            )
+            merged_csv = merge_csv(csv_rows, base_list, Column.ANSWER.value)
 
             if part_of_speech == "noun":
                 prompt = create_prompt("article", lang, merged_csv)
                 article_list_str = chat_completion(prompt)
                 # TODO validate response
 
-                article_list = read_csv_str(article_list_str, ["id", "answer"])
-                merged_csv = merge_csv(merged_csv, article_list, "answer")
+                article_list = read_csv_str(
+                    article_list_str, [Column.ID.value, Column.ANSWER.value]
+                )
+                merged_csv = merge_csv(merged_csv, article_list, Column.ANSWER.value)
 
             csv_data = convert_to_list(merged_csv, BASE_FORM_CSV.columns)
             append_csv(BASE_FORM_CSV, csv_data)
@@ -108,8 +123,10 @@ def _add_definition(lang):
             definition_list_str = chat_completion(prompt)
             # TODO validate response
 
-            definition_list = read_csv_str(definition_list_str, ["id", "definition"])
-            merged_csv = merge_csv(csv_rows, definition_list, "definition")
+            definition_list = read_csv_str(
+                definition_list_str, [Column.ID.value, Column.DEFINITION.value]
+            )
+            merged_csv = merge_csv(csv_rows, definition_list, Column.DEFINITION.value)
             csv_data = convert_to_list(merged_csv, DEFINITION_CSV.columns)
             append_csv(DEFINITION_CSV, csv_data)
 

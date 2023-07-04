@@ -1,3 +1,5 @@
+from scripts.models.deck_csv import Column
+
 PART_OF_SPEECH_DICT = {
     "de": [
         "noun",
@@ -22,7 +24,7 @@ def chunks(data, chunk_size):
 def create_prompt(file_name, lang, words, pos=None):
     words_text = ""
     for word in words:
-        words_text += f"{word['id']},{word['answer']}\n"
+        words_text += f"{word[Column.ID.value]},{word[Column.ANSWER.value]}\n"
     template_file = f"./scripts/prompts/{lang}_{file_name}.txt"
     with open(template_file, "r") as f:
         prompt = f.read()
@@ -36,8 +38,6 @@ def create_prompt(file_name, lang, words, pos=None):
 def group_by_pos(csv_rows):
     pos_dict = {}
     for row in csv_rows:
-        pos = row["part_of_speech"]
-        if pos not in pos_dict:
-            pos_dict[pos] = []
-        pos_dict[pos].append(row)
+        pos = row[Column.PART_OF_SPEECH.value]
+        pos_dict.setdefault(pos, []).append(row)
     return pos_dict
