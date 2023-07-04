@@ -1,38 +1,22 @@
 import argparse
-from pathlib import Path
 
 from scripts.clients.openai_api_client import chat_completion
-from scripts.models.deck_csv import Column, DeckCsv
+from scripts.models.deck_csv import (
+    BASE_FORM_CSV,
+    DEFINITION_CSV,
+    PART_OF_SPEECH_CSV,
+    SOURCE_CSV,
+    Column,
+)
 from scripts.utils.csv_utils import (
     append_csv,
-    clear_csv,
     convert_to_list,
+    init_csv,
     merge_csv,
     read_csv,
     read_csv_str,
 )
 from scripts.utils.deck_utils import chunks, create_prompt, group_by_pos
-
-CSV_DIR = Path(__file__).resolve().parent / "csv"
-
-SOURCE_CSV = DeckCsv(CSV_DIR / "source.csv", [Column.ID.value, Column.ANSWER.value])
-PART_OF_SPEECH_CSV = DeckCsv(
-    CSV_DIR / "part_of_speech.csv",
-    [Column.ID.value, Column.PART_OF_SPEECH.value, Column.ANSWER.value],
-)
-BASE_FORM_CSV = DeckCsv(
-    CSV_DIR / "base_form.csv",
-    [Column.ID.value, Column.PART_OF_SPEECH.value, Column.ANSWER.value],
-)
-DEFINITION_CSV = DeckCsv(
-    CSV_DIR / "definition.csv",
-    [
-        Column.ID.value,
-        Column.PART_OF_SPEECH.value,
-        Column.DEFINITION.value,
-        Column.ANSWER.value,
-    ],
-)
 
 CHUNK_SIZE = 200
 
@@ -54,10 +38,8 @@ def main():
 
 
 def _add_part_of_speech(lang):
-    clear_csv(PART_OF_SPEECH_CSV)
+    init_csv(PART_OF_SPEECH_CSV)
     csv_rows = read_csv(SOURCE_CSV)
-
-    # TODO write header
 
     for chunk in chunks(csv_rows, CHUNK_SIZE):
         prompt = create_prompt("part_of_speech", lang, chunk)
@@ -73,11 +55,9 @@ def _add_part_of_speech(lang):
 
 
 def _convert_to_base_form(lang):
-    clear_csv(BASE_FORM_CSV)
+    init_csv(BASE_FORM_CSV)
     csv_rows = read_csv(PART_OF_SPEECH_CSV)
     pos_dict = group_by_pos(csv_rows)
-
-    # TODO write header
 
     for part_of_speech, csv_rows in pos_dict.items():
         for chunk in chunks(csv_rows, CHUNK_SIZE):
@@ -108,11 +88,9 @@ def _convert_to_base_form(lang):
 
 
 def _add_definition(lang):
-    clear_csv(DEFINITION_CSV)
+    init_csv(DEFINITION_CSV)
     csv_rows = read_csv(BASE_FORM_CSV)
     pos_dict = group_by_pos(csv_rows)
-
-    # TODO write header
 
     for part_of_speech, csv_rows in pos_dict.items():
         for chunk in chunks(csv_rows, CHUNK_SIZE):

@@ -1,3 +1,5 @@
+from typing import Generator
+
 from scripts.models.deck_csv import Column
 
 PART_OF_SPEECH_DICT = {
@@ -16,12 +18,12 @@ PART_OF_SPEECH_DICT = {
 }
 
 
-def chunks(data, chunk_size):
+def chunks(data: list[dict], chunk_size: int) -> Generator[list[dict], None, None]:
     for i in range(0, len(data), chunk_size):
         yield data[i : i + chunk_size]
 
 
-def create_prompt(file_name, lang, words, pos=None):
+def create_prompt(file_name: str, lang: str, words: list[dict], pos: str = None) -> str:
     words_text = ""
     for word in words:
         words_text += f"{word[Column.ID.value]},{word[Column.ANSWER.value]}\n"
@@ -35,7 +37,7 @@ def create_prompt(file_name, lang, words, pos=None):
     return prompt
 
 
-def group_by_pos(csv_rows):
+def group_by_pos(csv_rows: list[dict]) -> dict[str, list[dict]]:
     pos_dict = {}
     for row in csv_rows:
         pos = row[Column.PART_OF_SPEECH.value]

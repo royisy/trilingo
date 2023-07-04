@@ -13,9 +13,9 @@ from scripts.deck_generator import (
 @patch("scripts.deck_generator.append_csv")
 @patch("scripts.deck_generator.chat_completion")
 @patch("scripts.deck_generator.read_csv")
-@patch("scripts.deck_generator.clear_csv")
+@patch("scripts.deck_generator.init_csv")
 def test_add_part_of_speech(
-    mock_clear_csv: MagicMock,
+    mock_init_csv: MagicMock,
     mock_read_csv: MagicMock,
     mock_chat_completion: MagicMock,
     mock_append_csv: MagicMock,
@@ -30,7 +30,7 @@ def test_add_part_of_speech(
 
     _add_part_of_speech("de")
 
-    mock_clear_csv.assert_called_once()
+    mock_init_csv.assert_called_once()
     mock_append_csv.assert_called_once_with(
         PART_OF_SPEECH_CSV,
         [
@@ -46,9 +46,9 @@ def test_add_part_of_speech(
 @patch("scripts.deck_generator.chat_completion")
 @patch("scripts.deck_generator.create_prompt")
 @patch("scripts.deck_generator.read_csv")
-@patch("scripts.deck_generator.clear_csv")
+@patch("scripts.deck_generator.init_csv")
 def test_convert_to_base_form(
-    mock_clear_csv: MagicMock,
+    mock_init_csv: MagicMock,
     mock_read_csv: MagicMock,
     mock_create_prompt: MagicMock,
     mock_chat_completion: MagicMock,
@@ -73,7 +73,7 @@ def test_convert_to_base_form(
 
     _convert_to_base_form("de")
 
-    mock_clear_csv.assert_called_once()
+    mock_init_csv.assert_called_once()
     assert mock_chat_completion.call_args_list == [
         call("base_form_noun prompt"),
         call("base_form prompt 1"),
@@ -101,9 +101,9 @@ def test_convert_to_base_form(
 @patch("scripts.deck_generator.chat_completion")
 @patch("scripts.deck_generator.create_prompt")
 @patch("scripts.deck_generator.read_csv")
-@patch("scripts.deck_generator.clear_csv")
+@patch("scripts.deck_generator.init_csv")
 def test_add_definition(
-    mock_clear_csv: MagicMock,
+    mock_init_csv: MagicMock,
     mock_read_csv: MagicMock,
     mock_create_prompt: MagicMock,
     mock_chat_completion: MagicMock,
@@ -126,7 +126,7 @@ def test_add_definition(
 
     _add_definition("de")
 
-    mock_clear_csv.assert_called_once()
+    mock_init_csv.assert_called_once()
     assert mock_chat_completion.call_args_list == [
         call("definition_noun prompt"),
         call("definition prompt"),
