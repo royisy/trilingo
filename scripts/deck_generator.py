@@ -13,7 +13,7 @@ from scripts.utils.csv_utils import (
     append_csv,
     convert_to_list,
     init_csv,
-    merge_csv,
+    merge_csv_data,
     read_csv,
     read_csv_str,
 )
@@ -62,7 +62,7 @@ def _add_part_of_speech(lang) -> int:
         pos_list = read_csv_str(
             pos_list_str, [Column.ID.value, Column.PART_OF_SPEECH.value]
         )
-        merged_csv = merge_csv(csv_rows, pos_list, Column.PART_OF_SPEECH.value)
+        merged_csv = merge_csv_data(csv_rows, pos_list, Column.PART_OF_SPEECH.value)
         csv_data = convert_to_list(merged_csv, PART_OF_SPEECH_CSV.columns)
         append_csv(PART_OF_SPEECH_CSV, csv_data)
 
@@ -71,7 +71,7 @@ def _add_part_of_speech(lang) -> int:
 
 def _convert_to_base_form(lang) -> int:
     init_csv(BASE_FORM_CSV)
-    csv_rows = read_csv(PART_OF_SPEECH_CSV)
+    csv_rows = read_csv(PART_OF_SPEECH_CSV, remove_header=True)
     pos_dict = group_by_pos(csv_rows)
     total_tokens = 0
 
@@ -90,7 +90,7 @@ def _convert_to_base_form(lang) -> int:
             base_list = read_csv_str(
                 base_list_str, [Column.ID.value, Column.ANSWER.value]
             )
-            merged_csv = merge_csv(csv_rows, base_list, Column.ANSWER.value)
+            merged_csv = merge_csv_data(csv_rows, base_list, Column.ANSWER.value)
 
             if part_of_speech == "noun":
                 prompt = create_prompt("article", lang, merged_csv)
@@ -103,7 +103,9 @@ def _convert_to_base_form(lang) -> int:
                 article_list = read_csv_str(
                     article_list_str, [Column.ID.value, Column.ANSWER.value]
                 )
-                merged_csv = merge_csv(merged_csv, article_list, Column.ANSWER.value)
+                merged_csv = merge_csv_data(
+                    merged_csv, article_list, Column.ANSWER.value
+                )
 
             csv_data = convert_to_list(merged_csv, BASE_FORM_CSV.columns)
             append_csv(BASE_FORM_CSV, csv_data)
@@ -113,7 +115,7 @@ def _convert_to_base_form(lang) -> int:
 
 def _add_definition(lang) -> int:
     init_csv(DEFINITION_CSV)
-    csv_rows = read_csv(BASE_FORM_CSV)
+    csv_rows = read_csv(BASE_FORM_CSV, remove_header=True)
     pos_dict = group_by_pos(csv_rows)
     total_tokens = 0
 
@@ -132,7 +134,9 @@ def _add_definition(lang) -> int:
             definition_list = read_csv_str(
                 definition_list_str, [Column.ID.value, Column.DEFINITION.value]
             )
-            merged_csv = merge_csv(csv_rows, definition_list, Column.DEFINITION.value)
+            merged_csv = merge_csv_data(
+                csv_rows, definition_list, Column.DEFINITION.value
+            )
             csv_data = convert_to_list(merged_csv, DEFINITION_CSV.columns)
             append_csv(DEFINITION_CSV, csv_data)
 

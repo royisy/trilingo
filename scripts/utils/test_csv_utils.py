@@ -1,4 +1,4 @@
-from scripts.utils.csv_utils import convert_to_list, merge_csv
+from scripts.utils.csv_utils import convert_to_list, merge_csv_data
 
 
 def test_merge_csv():
@@ -10,7 +10,7 @@ def test_merge_csv():
         {"id": "1", "part_of_speech": "pos 1"},
         {"id": "2", "part_of_speech": "pos 2"},
     ]
-    result = merge_csv(src_data, add_data, "part_of_speech")
+    result = merge_csv_data(src_data, add_data, "part_of_speech")
     expected = [
         {"id": "1", "answer": "answer 1", "part_of_speech": "pos 1"},
         {"id": "2", "answer": "answer 2", "part_of_speech": "pos 2"},
