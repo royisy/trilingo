@@ -36,10 +36,21 @@ def read_csv(csv_file: DeckCsv, remove_header=False) -> list[dict]:
     return csv_rows
 
 
-def read_csv_str(csv_str: str, fieldnames: list[str]) -> list[dict]:
+def read_csv_str(csv_str: str, columns: list[str]) -> list[dict]:
     csv_file = io.StringIO(csv_str)
-    csv_reader = csv.DictReader(csv_file, fieldnames=fieldnames)
-    return list(csv_reader)
+    csv_reader = csv.DictReader(csv_file, fieldnames=columns)
+    csv_list = []
+    for row in csv_reader:
+        invalid = False
+        for key, value in row.items():
+            if key is None or value is None:
+                invalid = True
+                break
+        if invalid:
+            logger.error(f"invalid csv row: {row}")
+            continue
+        csv_list.append(row)
+    return csv_list
 
 
 def merge_csv_data(src_data: list[dict], add_data: list[dict], key: str) -> list[dict]:
