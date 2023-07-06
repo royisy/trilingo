@@ -19,7 +19,7 @@ def clear_csv(csv_file: DeckCsv):
 
 def append_csv(csv_file: DeckCsv, data: list[list[str]]):
     with open(csv_file.file_path, "a", newline="") as f:
-        writer = csv.writer(f)
+        writer = csv.writer(f, quoting=csv.QUOTE_ALL, escapechar='"')
         writer.writerows(data)
 
 
