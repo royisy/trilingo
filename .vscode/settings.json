@@ -8,6 +8,7 @@
   "files.associations": {
     "*.css": "tailwindcss"
   },
+  "isort.args": ["--profile", "black"],
   "prettier.prettierPath": "./node_modules/prettier",
   "[python]": {
     "editor.codeActionsOnSave": {
