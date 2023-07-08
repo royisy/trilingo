@@ -7,7 +7,8 @@ from scripts.utils.csv_utils import convert_to_list, merge_csv_data, read_csv_st
     "csv_str, expected",
     [
         (
-            "1,answer 1\n2,answer 2",
+            # check if spaces are trimmed
+            " 1 , answer 1 \n  2  ,  answer 2  ",
             [
                 {"id": "1", "answer": "answer 1"},
                 {"id": "2", "answer": "answer 2"},

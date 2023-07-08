@@ -26,7 +26,7 @@ def test_add_part_of_speech(
         {"id": "3", "answer": "word 3"},
         {"id": "4", "answer": "word 4"},
     ]
-    mock_chat_completion.return_value = ("1,pos 1\n2,pos 2\n3,pos 3\n4,pos 4\n", 1)
+    mock_chat_completion.return_value = ("1,noun\n2,verb\n3,adjective\n4,adverb\n", 1)
 
     total_tokens = _add_part_of_speech("de")
 
@@ -35,10 +35,10 @@ def test_add_part_of_speech(
     mock_append_csv.assert_called_once_with(
         PART_OF_SPEECH_CSV,
         [
-            ["1", "pos 1", "word 1"],
-            ["2", "pos 2", "word 2"],
-            ["3", "pos 3", "word 3"],
-            ["4", "pos 4", "word 4"],
+            ["1", "noun", "word 1"],
+            ["2", "verb", "word 2"],
+            ["3", "adjective", "word 3"],
+            ["4", "adverb", "word 4"],
         ],
     )
 

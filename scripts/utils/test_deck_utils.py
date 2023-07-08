@@ -1,4 +1,4 @@
-from scripts.utils.deck_utils import group_by_pos
+from scripts.utils.deck_utils import filter_invalid_part_of_speech, group_by_pos
 
 
 def test_group_by_pos():
@@ -19,3 +19,16 @@ def test_group_by_pos():
             {"id": "4", "part_of_speech": "pos 2", "answer": "answer 4"},
         ],
     }
+
+
+def test_filter_invalid_part_of_speech():
+    csv_rows = [
+        {"id": "1", "part_of_speech": "noun", "answer": "answer 1"},
+        {"id": "2", "part_of_speech": "unknown", "answer": "answer 2"},
+        {"id": "3", "part_of_speech": "error", "answer": "answer 3"},
+    ]
+    result = filter_invalid_part_of_speech(csv_rows, "de")
+    assert result == [
+        {"id": "1", "part_of_speech": "noun", "answer": "answer 1"},
+        {"id": "2", "part_of_speech": "unknown", "answer": "answer 2"},
+    ]

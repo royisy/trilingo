@@ -49,6 +49,7 @@ def read_csv_str(csv_str: str, columns: list[str]) -> list[dict]:
         if invalid:
             logger.error(f"invalid csv row: {row}")
             continue
+        row = {key.strip(): value.strip() for key, value in row.items()}
         csv_list.append(row)
     return csv_list
 

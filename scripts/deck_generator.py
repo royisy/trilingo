@@ -17,7 +17,13 @@ from scripts.utils.csv_utils import (
     read_csv,
     read_csv_str,
 )
-from scripts.utils.deck_utils import chunks, create_prompt, group_by_pos
+from scripts.utils.deck_consts import POS_NOUN, POS_UNKNOWN
+from scripts.utils.deck_utils import (
+    chunks,
+    create_prompt,
+    filter_invalid_part_of_speech,
+    group_by_pos,
+)
 
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
@@ -54,15 +60,16 @@ def _add_part_of_speech(lang) -> int:
     for chunk in chunks(csv_rows, CHUNK_SIZE):
         prompt = create_prompt("part_of_speech", lang, chunk)
         pos_list_str, tokens = chat_completion(prompt)
+        total_tokens += tokens
         if pos_list_str is None:
             continue
-        total_tokens += tokens
-        # TODO validate response
-
         pos_list = read_csv_str(
             pos_list_str, [Column.ID.value, Column.PART_OF_SPEECH.value]
         )
-        merged_csv = merge_csv_data(csv_rows, pos_list, Column.PART_OF_SPEECH.value)
+        filtered_pos_list = filter_invalid_part_of_speech(pos_list, lang)
+        merged_csv = merge_csv_data(
+            csv_rows, filtered_pos_list, Column.PART_OF_SPEECH.value
+        )
         csv_data = convert_to_list(merged_csv, PART_OF_SPEECH_CSV.columns)
         append_csv(PART_OF_SPEECH_CSV, csv_data)
 
@@ -76,30 +83,28 @@ def _convert_to_base_form(lang) -> int:
     total_tokens = 0
 
     for part_of_speech, csv_rows in pos_dict.items():
+        if part_of_speech == POS_UNKNOWN:
+            continue
         for chunk in chunks(csv_rows, CHUNK_SIZE):
-            if part_of_speech == "noun":
+            if part_of_speech == POS_NOUN:
                 prompt = create_prompt("base_form_noun", lang, chunk)
             else:
                 prompt = create_prompt("base_form", lang, chunk, part_of_speech)
             base_list_str, tokens = chat_completion(prompt)
+            total_tokens += tokens
             if base_list_str is None:
                 continue
-            total_tokens += tokens
-            # TODO validate response
-
             base_list = read_csv_str(
                 base_list_str, [Column.ID.value, Column.ANSWER.value]
             )
             merged_csv = merge_csv_data(csv_rows, base_list, Column.ANSWER.value)
 
-            if part_of_speech == "noun":
+            if part_of_speech == POS_NOUN:
                 prompt = create_prompt("article", lang, merged_csv)
                 article_list_str, tokens = chat_completion(prompt)
+                total_tokens += tokens
                 if article_list_str is None:
                     continue
-                total_tokens += tokens
-                # TODO validate response
-
                 article_list = read_csv_str(
                     article_list_str, [Column.ID.value, Column.ANSWER.value]
                 )
@@ -120,17 +125,17 @@ def _add_definition(lang) -> int:
     total_tokens = 0
 
     for part_of_speech, csv_rows in pos_dict.items():
+        if part_of_speech == POS_UNKNOWN:
+            continue
         for chunk in chunks(csv_rows, CHUNK_SIZE):
-            if part_of_speech == "noun":
+            if part_of_speech == POS_NOUN:
                 prompt = create_prompt("definition_noun", lang, chunk)
             else:
                 prompt = create_prompt("definition", lang, chunk, part_of_speech)
             definition_list_str, tokens = chat_completion(prompt)
+            total_tokens += tokens
             if definition_list_str is None:
                 continue
-            total_tokens += tokens
-            # TODO validate response
-
             definition_list = read_csv_str(
                 definition_list_str, [Column.ID.value, Column.DEFINITION.value]
             )
