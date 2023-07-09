@@ -33,6 +33,7 @@ def read_csv(csv_file: DeckCsv, remove_header=False) -> list[dict]:
             csv_rows = list(csv_reader)
     except FileNotFoundError:
         logger.error(f"file not found: {csv_file.file_path}")
+        return csv_rows
     if remove_header:
         csv_rows.pop(0)
     return csv_rows
@@ -45,12 +46,7 @@ def read_csv_str(csv_str: str, columns: list[Column]) -> list[dict]:
     )
     csv_list = []
     for row in csv_reader:
-        invalid = False
-        for key, value in row.items():
-            if key is None or value is None:
-                invalid = True
-                break
-        if invalid:
+        if not all([key and value for key, value in row.items()]):
             logger.error(f"invalid csv row: {row}")
             continue
         row = {key.strip(): value.strip() for key, value in row.items()}

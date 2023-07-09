@@ -34,14 +34,15 @@ def create_prompt(
     template_file = f"./scripts/prompts/{lang}_{file_name}.txt"
     with open(template_file, "r") as f:
         prompt = f.read()
-        prompt = prompt.replace("{words}", words_text)
-        prompt = prompt.replace("{pos_list}", ",".join(PART_OF_SPEECH_DICT[lang]))
+        prompt = prompt.format(
+            words=words_text, pos_list=",".join(PART_OF_SPEECH_DICT[lang])
+        )
         if pos is not None:
-            prompt = prompt.replace("{pos}", pos)
+            prompt = prompt.format(pos=pos)
     return prompt
 
 
-def filter_invalid_part_of_speech(csv_rows: list[dict], lang: str) -> list[dict]:
+def remove_invalid_part_of_speech(csv_rows: list[dict], lang: str) -> list[dict]:
     filtered_csv_rows = []
     for row in csv_rows:
         part_of_speech = row[Column.PART_OF_SPEECH.value]

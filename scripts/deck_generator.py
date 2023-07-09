@@ -21,8 +21,8 @@ from scripts.utils.deck_constants import POS_NOUN, POS_UNKNOWN
 from scripts.utils.deck_utils import (
     chunks,
     create_prompt,
-    filter_invalid_part_of_speech,
     group_by_pos,
+    remove_invalid_part_of_speech,
 )
 
 logging.basicConfig(
@@ -64,7 +64,7 @@ def _add_part_of_speech(lang) -> int:
         if pos_list_str is None:
             continue
         pos_list = read_csv_str(pos_list_str, [Column.ID, Column.PART_OF_SPEECH])
-        filtered_pos_list = filter_invalid_part_of_speech(pos_list, lang)
+        filtered_pos_list = remove_invalid_part_of_speech(pos_list, lang)
         merged_csv = merge_csv_data(csv_rows, filtered_pos_list, Column.PART_OF_SPEECH)
         csv_data = convert_to_list(merged_csv, PART_OF_SPEECH_CSV.columns)
         append_csv(PART_OF_SPEECH_CSV, csv_data)
