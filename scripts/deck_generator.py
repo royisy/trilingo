@@ -63,13 +63,9 @@ def _add_part_of_speech(lang) -> int:
         total_tokens += tokens
         if pos_list_str is None:
             continue
-        pos_list = read_csv_str(
-            pos_list_str, [Column.ID.value, Column.PART_OF_SPEECH.value]
-        )
+        pos_list = read_csv_str(pos_list_str, [Column.ID, Column.PART_OF_SPEECH])
         filtered_pos_list = filter_invalid_part_of_speech(pos_list, lang)
-        merged_csv = merge_csv_data(
-            csv_rows, filtered_pos_list, Column.PART_OF_SPEECH.value
-        )
+        merged_csv = merge_csv_data(csv_rows, filtered_pos_list, Column.PART_OF_SPEECH)
         csv_data = convert_to_list(merged_csv, PART_OF_SPEECH_CSV.columns)
         append_csv(PART_OF_SPEECH_CSV, csv_data)
 
@@ -94,10 +90,8 @@ def _convert_to_base_form(lang) -> int:
             total_tokens += tokens
             if base_list_str is None:
                 continue
-            base_list = read_csv_str(
-                base_list_str, [Column.ID.value, Column.ANSWER.value]
-            )
-            merged_csv = merge_csv_data(csv_rows, base_list, Column.ANSWER.value)
+            base_list = read_csv_str(base_list_str, [Column.ID, Column.ANSWER])
+            merged_csv = merge_csv_data(csv_rows, base_list, Column.ANSWER)
 
             if part_of_speech == POS_NOUN:
                 prompt = create_prompt("article", lang, merged_csv)
@@ -106,11 +100,9 @@ def _convert_to_base_form(lang) -> int:
                 if article_list_str is None:
                     continue
                 article_list = read_csv_str(
-                    article_list_str, [Column.ID.value, Column.ANSWER.value]
+                    article_list_str, [Column.ID, Column.ANSWER]
                 )
-                merged_csv = merge_csv_data(
-                    merged_csv, article_list, Column.ANSWER.value
-                )
+                merged_csv = merge_csv_data(merged_csv, article_list, Column.ANSWER)
 
             csv_data = convert_to_list(merged_csv, BASE_FORM_CSV.columns)
             append_csv(BASE_FORM_CSV, csv_data)
@@ -137,11 +129,9 @@ def _add_definition(lang) -> int:
             if definition_list_str is None:
                 continue
             definition_list = read_csv_str(
-                definition_list_str, [Column.ID.value, Column.DEFINITION.value]
+                definition_list_str, [Column.ID, Column.DEFINITION]
             )
-            merged_csv = merge_csv_data(
-                csv_rows, definition_list, Column.DEFINITION.value
-            )
+            merged_csv = merge_csv_data(csv_rows, definition_list, Column.DEFINITION)
             csv_data = convert_to_list(merged_csv, DEFINITION_CSV.columns)
             append_csv(DEFINITION_CSV, csv_data)
 

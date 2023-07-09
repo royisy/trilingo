@@ -27,7 +27,9 @@ def read_csv(csv_file: DeckCsv, remove_header=False) -> list[dict]:
     csv_rows = []
     try:
         with open(csv_file.file_path, "r") as f:
-            csv_reader = csv.DictReader(f, fieldnames=csv_file.columns)
+            csv_reader = csv.DictReader(
+                f, fieldnames=[column.value for column in csv_file.columns]
+            )
             csv_rows = list(csv_reader)
     except FileNotFoundError:
         logger.error(f"file not found: {csv_file.file_path}")
@@ -36,9 +38,11 @@ def read_csv(csv_file: DeckCsv, remove_header=False) -> list[dict]:
     return csv_rows
 
 
-def read_csv_str(csv_str: str, columns: list[str]) -> list[dict]:
+def read_csv_str(csv_str: str, columns: list[Column]) -> list[dict]:
     csv_file = io.StringIO(csv_str)
-    csv_reader = csv.DictReader(csv_file, fieldnames=columns)
+    csv_reader = csv.DictReader(
+        csv_file, fieldnames=[column.value for column in columns]
+    )
     csv_list = []
     for row in csv_reader:
         invalid = False
@@ -54,15 +58,17 @@ def read_csv_str(csv_str: str, columns: list[str]) -> list[dict]:
     return csv_list
 
 
-def merge_csv_data(src_data: list[dict], add_data: list[dict], key: str) -> list[dict]:
+def merge_csv_data(
+    src_data: list[dict], add_data: list[dict], merge_column: Column
+) -> list[dict]:
     for src_row in src_data:
         for add_row in add_data:
             if src_row[Column.ID.value] == add_row[Column.ID.value]:
-                src_row[key] = add_row[key]
+                src_row[merge_column.value] = add_row[merge_column.value]
                 break
     return src_data
 
 
-def convert_to_list(csv_rows: list[dict], columns: list[str]) -> list[list[str]]:
-    converted_data = [[row[column] for column in columns] for row in csv_rows]
+def convert_to_list(csv_rows: list[dict], columns: list[Column]) -> list[list[str]]:
+    converted_data = [[row[column.value] for column in columns] for row in csv_rows]
     return converted_data

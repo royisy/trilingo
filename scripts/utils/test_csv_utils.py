@@ -1,5 +1,6 @@
 import pytest
 
+from scripts.models.deck_csv import Column
 from scripts.utils.csv_utils import convert_to_list, merge_csv_data, read_csv_str
 
 
@@ -23,12 +24,12 @@ from scripts.utils.csv_utils import convert_to_list, merge_csv_data, read_csv_st
     ],
 )
 def test_read_csv_str(csv_str, expected):
-    columns = ["id", "answer"]
+    columns = [Column.ID, Column.ANSWER]
     result = read_csv_str(csv_str, columns)
     assert result == expected
 
 
-def test_merge_csv():
+def test_merge_csv_data():
     src_data = [
         {"id": "1", "answer": "answer 1"},
         {"id": "2", "answer": "answer 2"},
@@ -37,7 +38,7 @@ def test_merge_csv():
         {"id": "1", "part_of_speech": "pos 1"},
         {"id": "2", "part_of_speech": "pos 2"},
     ]
-    result = merge_csv_data(src_data, add_data, "part_of_speech")
+    result = merge_csv_data(src_data, add_data, Column.PART_OF_SPEECH)
     expected = [
         {"id": "1", "answer": "answer 1", "part_of_speech": "pos 1"},
         {"id": "2", "answer": "answer 2", "part_of_speech": "pos 2"},
@@ -50,7 +51,7 @@ def test_convert_to_list():
         {"id": "1", "part_of_speech": "pos 1", "answer": "answer 1"},
         {"id": "2", "part_of_speech": "pos 2", "answer": "answer 2"},
     ]
-    columns = ["id", "answer"]
+    columns = [Column.ID, Column.ANSWER]
     result = convert_to_list(csv_rows, columns)
     expected = [["1", "answer 1"], ["2", "answer 2"]]
     assert result == expected
