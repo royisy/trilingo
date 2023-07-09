@@ -2,7 +2,7 @@ import logging
 from typing import Generator, Optional
 
 from scripts.models.deck_csv import Column
-from scripts.utils.deck_consts import PART_OF_SPEECH_DICT, POS_UNKNOWN
+from scripts.utils.deck_constants import PART_OF_SPEECH_DICT, POS_UNKNOWN
 
 logger = logging.getLogger(__name__)
 

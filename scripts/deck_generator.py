@@ -17,7 +17,7 @@ from scripts.utils.csv_utils import (
     read_csv,
     read_csv_str,
 )
-from scripts.utils.deck_consts import POS_NOUN, POS_UNKNOWN
+from scripts.utils.deck_constants import POS_NOUN, POS_UNKNOWN
 from scripts.utils.deck_utils import (
     chunks,
     create_prompt,
