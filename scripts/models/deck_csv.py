@@ -15,7 +15,7 @@ class Column(Enum):
 
 @dataclass
 class DeckCsv:
-    file_path: str
+    file_path: Path
     columns: list[Column]
 
 

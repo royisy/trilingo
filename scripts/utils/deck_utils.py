@@ -1,5 +1,5 @@
 import logging
-from typing import Generator
+from typing import Generator, Optional
 
 from scripts.models.deck_csv import Column
 from scripts.utils.deck_consts import PART_OF_SPEECH_DICT, POS_UNKNOWN
@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 
 
 def group_by_pos(csv_rows: list[dict]) -> dict[str, list[dict]]:
-    pos_dict = {}
+    pos_dict: dict[str, list[dict]] = {}
     for row in csv_rows:
         pos = row[Column.PART_OF_SPEECH.value]
         pos_dict.setdefault(pos, []).append(row)
@@ -20,7 +20,9 @@ def chunks(data: list[dict], chunk_size: int) -> Generator[list[dict], None, Non
         yield data[i : i + chunk_size]
 
 
-def create_prompt(file_name: str, lang: str, words: list[dict], pos: str = None) -> str:
+def create_prompt(
+    file_name: str, lang: str, words: list[dict], pos: Optional[str] = None
+) -> str:
     words_text = ""
     for word in words:
         words_text += f"{word[Column.ID.value]},{word[Column.ANSWER.value]}\n"
@@ -34,7 +36,7 @@ def create_prompt(file_name: str, lang: str, words: list[dict], pos: str = None)
     return prompt
 
 
-def filter_invalid_part_of_speech(csv_rows: list[dict], lang: str) -> bool:
+def filter_invalid_part_of_speech(csv_rows: list[dict], lang: str) -> list[dict]:
     filtered_csv_rows = []
     for row in csv_rows:
         part_of_speech = row[Column.PART_OF_SPEECH.value]
