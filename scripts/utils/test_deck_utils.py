@@ -1,4 +1,9 @@
-from scripts.utils.deck_utils import group_by_pos, remove_invalid_part_of_speech
+from scripts.utils.deck_utils import (
+    chunks,
+    group_by_pos,
+    parts_of_speech,
+    remove_invalid_part_of_speech,
+)
 
 
 def test_group_by_pos():
@@ -19,6 +24,57 @@ def test_group_by_pos():
             {"id": "4", "part_of_speech": "pos 2", "answer": "answer 4"},
         ],
     }
+
+
+def test_parts_of_speech():
+    pos_dict = {
+        "noun": [
+            {"id": "1", "part_of_speech": "noun", "answer": "answer 1"},
+            {"id": "2", "part_of_speech": "noun", "answer": "answer 2"},
+        ],
+        "verb": [
+            {"id": "3", "part_of_speech": "verb", "answer": "answer 3"},
+        ],
+    }
+    generator = parts_of_speech(pos_dict)
+    expected = [
+        (
+            "noun",
+            [
+                {"id": "1", "part_of_speech": "noun", "answer": "answer 1"},
+                {"id": "2", "part_of_speech": "noun", "answer": "answer 2"},
+            ],
+        ),
+        (
+            "verb",
+            [
+                {"id": "3", "part_of_speech": "verb", "answer": "answer 3"},
+            ],
+        ),
+    ]
+    for i, value in enumerate(generator):
+        assert value == expected[i]
+
+
+def test_chunks():
+    data = [
+        {"id": "1", "part_of_speech": "noun", "answer": "answer 1"},
+        {"id": "2", "part_of_speech": "noun", "answer": "answer 2"},
+        {"id": "3", "part_of_speech": "verb", "answer": "answer 3"},
+    ]
+    chunk_size = 2
+    generator = chunks(data, chunk_size)
+    expected = [
+        [
+            {"id": "1", "part_of_speech": "noun", "answer": "answer 1"},
+            {"id": "2", "part_of_speech": "noun", "answer": "answer 2"},
+        ],
+        [
+            {"id": "3", "part_of_speech": "verb", "answer": "answer 3"},
+        ],
+    ]
+    for i, value in enumerate(generator):
+        assert value == expected[i]
 
 
 def test_filter_invalid_part_of_speech():

@@ -17,11 +17,12 @@ from scripts.utils.csv_utils import (
     read_csv,
     read_csv_str,
 )
-from scripts.utils.deck_constants import POS_NOUN, POS_UNKNOWN
+from scripts.utils.deck_constants import POS_NOUN
 from scripts.utils.deck_utils import (
     chunks,
     create_prompt,
     group_by_pos,
+    parts_of_speech,
     remove_invalid_part_of_speech,
 )
 
@@ -78,9 +79,7 @@ def _convert_to_base_form(lang) -> int:
     pos_dict = group_by_pos(csv_rows)
     total_tokens = 0
 
-    for part_of_speech, csv_rows in pos_dict.items():
-        if part_of_speech == POS_UNKNOWN:
-            continue
+    for part_of_speech, csv_rows in parts_of_speech(pos_dict):
         for chunk in chunks(csv_rows, CHUNK_SIZE):
             if part_of_speech == POS_NOUN:
                 prompt = create_prompt("base_form_noun", lang, chunk)
@@ -116,9 +115,7 @@ def _add_definition(lang) -> int:
     pos_dict = group_by_pos(csv_rows)
     total_tokens = 0
 
-    for part_of_speech, csv_rows in pos_dict.items():
-        if part_of_speech == POS_UNKNOWN:
-            continue
+    for part_of_speech, csv_rows in parts_of_speech(pos_dict):
         for chunk in chunks(csv_rows, CHUNK_SIZE):
             if part_of_speech == POS_NOUN:
                 prompt = create_prompt("definition_noun", lang, chunk)

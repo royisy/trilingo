@@ -16,6 +16,16 @@ def group_by_pos(csv_rows: list[dict]) -> dict[str, list[dict]]:
     return pos_dict
 
 
+def parts_of_speech(
+    pos_dict: dict[str, list[dict]]
+) -> Generator[tuple[str, list[dict]], None, None]:
+    for part_of_speech, csv_rows in pos_dict.items():
+        if part_of_speech == POS_UNKNOWN:
+            logger.info(f"skipping unknown part of speech: {len(csv_rows)} words")
+            continue
+        yield part_of_speech, csv_rows
+
+
 def chunks(data: list[dict], chunk_size: int) -> Generator[list[dict], None, None]:
     for i in range(0, len(data), chunk_size):
         logger.info(
