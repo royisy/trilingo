@@ -1,4 +1,5 @@
 import logging
+import math
 from typing import Generator, Optional
 
 from scripts.models.deck_csv import Column
@@ -17,6 +18,10 @@ def group_by_pos(csv_rows: list[dict]) -> dict[str, list[dict]]:
 
 def chunks(data: list[dict], chunk_size: int) -> Generator[list[dict], None, None]:
     for i in range(0, len(data), chunk_size):
+        logger.info(
+            f"processing chunk {math.ceil((i / chunk_size) + 1)}"
+            f"/{math.ceil(len(data) / chunk_size)}"
+        )
         yield data[i : i + chunk_size]
 
 
