@@ -46,10 +46,8 @@ def create_prompt(
     with open(template_file, "r") as f:
         prompt = f.read()
         prompt = prompt.format(
-            words=words_text, pos_list=",".join(PART_OF_SPEECH_DICT[lang])
+            pos_list=",".join(PART_OF_SPEECH_DICT[lang]), pos=pos, words=words_text
         )
-        if pos is not None:
-            prompt = prompt.format(pos=pos)
     return prompt
 
 
