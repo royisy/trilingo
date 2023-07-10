@@ -26,5 +26,5 @@ def chat_completion(prompt: str) -> tuple[Optional[str], Optional[int]]:
         logger.exception("api error")
     except (AttributeError, IndexError, TypeError):
         logger.exception(f"unexpected response from api: {chat_completion}")
-
+    logger.info(f"tokens : {total_tokens}")
     return response, total_tokens
