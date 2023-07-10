@@ -80,11 +80,11 @@ def test_chunks():
 def test_filter_invalid_part_of_speech():
     csv_rows = [
         {"id": "1", "part_of_speech": "noun", "answer": "answer 1"},
-        {"id": "2", "part_of_speech": "unknown", "answer": "answer 2"},
-        {"id": "3", "part_of_speech": "error", "answer": "answer 3"},
+        {"id": "2", "part_of_speech": "other", "answer": "answer 2"},
+        {"id": "3", "part_of_speech": "invalid", "answer": "answer 3"},
     ]
     result = remove_invalid_part_of_speech(csv_rows, "de")
     assert result == [
         {"id": "1", "part_of_speech": "noun", "answer": "answer 1"},
-        {"id": "2", "part_of_speech": "unknown", "answer": "answer 2"},
+        {"id": "2", "part_of_speech": "other", "answer": "answer 2"},
     ]

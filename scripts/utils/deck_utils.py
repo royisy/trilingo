@@ -3,7 +3,7 @@ import math
 from typing import Generator, Optional
 
 from scripts.models.deck_csv import Column
-from scripts.utils.deck_constants import PART_OF_SPEECH_DICT, POS_UNKNOWN
+from scripts.utils.deck_constants import PART_OF_SPEECH_DICT, POS_TO_IGNORE
 
 logger = logging.getLogger(__name__)
 
@@ -20,8 +20,8 @@ def parts_of_speech(
     pos_dict: dict[str, list[dict]]
 ) -> Generator[tuple[str, list[dict]], None, None]:
     for part_of_speech, csv_rows in pos_dict.items():
-        if part_of_speech == POS_UNKNOWN:
-            logger.info(f"skipping unknown part of speech: {len(csv_rows)} words")
+        if part_of_speech in POS_TO_IGNORE:
+            logger.info(f"skipping {part_of_speech}: {len(csv_rows)} words")
             continue
         logger.info(f"processing {part_of_speech}: {len(csv_rows)} words")
         yield part_of_speech, csv_rows
@@ -57,7 +57,7 @@ def remove_invalid_part_of_speech(csv_rows: list[dict], lang: str) -> list[dict]
         part_of_speech = row[Column.PART_OF_SPEECH.value]
         if (
             part_of_speech not in PART_OF_SPEECH_DICT[lang]
-            and part_of_speech != POS_UNKNOWN
+            and part_of_speech not in POS_TO_IGNORE
         ):
             logger.error(
                 f"invalid part of speech: {part_of_speech}, id: {row[Column.ID.value]}"

@@ -8,7 +8,11 @@ POS_PREPOSITION = "preposition"
 POS_CONJUNCTION = "conjunction"
 POS_INTERJECTION = "interjection"
 POS_NUMERAL = "numeral"
-POS_UNKNOWN = "unknown"
+POS_PROPER_NOUN = "proper noun"
+POS_ABBREVIATION = "abbreviation"
+POS_OTHER = "other"
+
+POS_TO_IGNORE = [POS_PROPER_NOUN, POS_ABBREVIATION, POS_OTHER]
 
 PART_OF_SPEECH_DICT = {
     "de": [
@@ -22,5 +26,6 @@ PART_OF_SPEECH_DICT = {
         POS_CONJUNCTION,
         POS_INTERJECTION,
         POS_NUMERAL,
+        POS_PROPER_NOUN,
     ]
 }
