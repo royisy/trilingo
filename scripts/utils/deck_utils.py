@@ -23,6 +23,7 @@ def parts_of_speech(
         if part_of_speech == POS_UNKNOWN:
             logger.info(f"skipping unknown part of speech: {len(csv_rows)} words")
             continue
+        logger.info(f"processing {part_of_speech}: {len(csv_rows)} words")
         yield part_of_speech, csv_rows
 
 
