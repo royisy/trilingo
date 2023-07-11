@@ -22,6 +22,7 @@ from scripts.utils.deck_utils import (
     chunks,
     create_prompt,
     group_by_pos,
+    lowercase_words,
     parts_of_speech,
     remove_invalid_part_of_speech,
 )
@@ -102,6 +103,8 @@ def _convert_to_base_form(lang) -> int:
                     article_list_str, [Column.ID, Column.ANSWER]
                 )
                 merged_csv = merge_csv_data(merged_csv, article_list, Column.ANSWER)
+            else:
+                merged_csv = lowercase_words(merged_csv)
 
             csv_data = convert_to_list(merged_csv, BASE_FORM_CSV.columns)
             append_csv(BASE_FORM_CSV, csv_data)

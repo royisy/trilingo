@@ -16,10 +16,10 @@ class PartOfSpeech(Enum):
     ABBREVIATION = "abbreviation"
     OTHER = "other"
 
-    def __eq__(self, other):
-        if isinstance(other, str):
-            return other == self.value
-        return super().__eq__(other)
+    def __eq__(self, target):
+        if isinstance(target, str):
+            return target == self.value
+        return super().__eq__(target)
 
 
 POS_TO_IGNORE = [

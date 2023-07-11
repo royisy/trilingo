@@ -67,3 +67,9 @@ def remove_invalid_part_of_speech(csv_rows: list[dict], lang: str) -> list[dict]
         else:
             filtered_csv_rows.append(row)
     return filtered_csv_rows
+
+
+def lowercase_words(csv_rows: list[dict]) -> list[dict]:
+    for row in csv_rows:
+        row[Column.ANSWER.value] = row[Column.ANSWER.value].lower()
+    return csv_rows
