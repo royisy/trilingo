@@ -33,15 +33,16 @@ def test_merge_csv_data():
     src_data = [
         {"id": "1", "answer": "answer 1"},
         {"id": "2", "answer": "answer 2"},
+        {"id": "3", "answer": "answer 3"},
     ]
     add_data = [
         {"id": "1", "part_of_speech": "pos 1"},
-        {"id": "2", "part_of_speech": "pos 2"},
+        {"id": "3", "part_of_speech": "pos 3"},
     ]
     result = merge_csv_data(src_data, add_data, Column.PART_OF_SPEECH)
     expected = [
         {"id": "1", "answer": "answer 1", "part_of_speech": "pos 1"},
-        {"id": "2", "answer": "answer 2", "part_of_speech": "pos 2"},
+        {"id": "3", "answer": "answer 3", "part_of_speech": "pos 3"},
     ]
     assert result == expected
 

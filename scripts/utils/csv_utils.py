@@ -57,12 +57,14 @@ def read_csv_str(csv_str: str, columns: list[Column]) -> list[dict]:
 def merge_csv_data(
     src_data: list[dict], add_data: list[dict], merge_column: Column
 ) -> list[dict]:
+    merged_data = []
     for src_row in src_data:
         for add_row in add_data:
             if src_row[Column.ID.value] == add_row[Column.ID.value]:
                 src_row[merge_column.value] = add_row[merge_column.value]
+                merged_data.append(src_row)
                 break
-    return src_data
+    return merged_data
 
 
 def convert_to_list(csv_rows: list[dict], columns: list[Column]) -> list[list[str]]:
