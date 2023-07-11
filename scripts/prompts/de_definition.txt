@@ -1,5 +1,5 @@
 This is a list of IDs and their corresponding German {part_of_speech}s.
-Provide the ID and the corresponding English word for each {pos} using the following format:
+Provide the ID and the corresponding English word for each {part_of_speech} using the following format:
 ID,English word
 
 If the English word can be interpreted as multiple German words,
