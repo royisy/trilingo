@@ -67,9 +67,9 @@ def _add_part_of_speech(lang: Language) -> int:
     for chunk in chunks(csv_rows, CHUNK_SIZE):
         prompt = create_prompt("part_of_speech", lang, chunk)
         pos_list_str, tokens = chat_completion(prompt)
-        total_tokens += tokens
         if pos_list_str is None:
             continue
+        total_tokens += tokens
         pos_list = read_csv_str(pos_list_str, [Column.ID, Column.PART_OF_SPEECH])
         filtered_pos_list = remove_invalid_part_of_speech(pos_list, lang)
         merged_csv = merge_csv_data(csv_rows, filtered_pos_list, Column.PART_OF_SPEECH)
@@ -92,18 +92,18 @@ def _convert_to_base_form(lang: Language) -> int:
             else:
                 prompt = create_prompt("base_form", lang, chunk, part_of_speech)
             base_list_str, tokens = chat_completion(prompt)
-            total_tokens += tokens
             if base_list_str is None:
                 continue
+            total_tokens += tokens
             base_list = read_csv_str(base_list_str, [Column.ID, Column.ANSWER])
             merged_csv = merge_csv_data(csv_rows, base_list, Column.ANSWER)
 
             if part_of_speech == PartOfSpeech.NOUN:
                 prompt = create_prompt("article", lang, merged_csv)
                 article_list_str, tokens = chat_completion(prompt)
-                total_tokens += tokens
                 if article_list_str is None:
                     continue
+                total_tokens += tokens
                 article_list = read_csv_str(
                     article_list_str, [Column.ID, Column.ANSWER]
                 )
@@ -130,9 +130,9 @@ def _add_definition(lang: Language) -> int:
             else:
                 prompt = create_prompt("definition", lang, chunk, part_of_speech)
             definition_list_str, tokens = chat_completion(prompt)
-            total_tokens += tokens
             if definition_list_str is None:
                 continue
+            total_tokens += tokens
             definition_list = read_csv_str(
                 definition_list_str, [Column.ID, Column.DEFINITION]
             )
