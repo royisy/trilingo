@@ -35,7 +35,7 @@ dictConfig(logging_config)
 
 logger = logging.getLogger(__name__)
 
-CHUNK_SIZE = 200
+CHUNK_SIZE = 100
 
 
 def main():
