@@ -1,5 +1,7 @@
 from enum import Enum
 
+from scripts.models.language import Language
+
 
 class PartOfSpeech(Enum):
     NOUN = "noun"
@@ -29,7 +31,7 @@ POS_TO_IGNORE = [
 ]
 
 POS_BY_LANG = {
-    "de": [
+    Language.GERMAN: [
         PartOfSpeech.NOUN,
         PartOfSpeech.VERB,
         PartOfSpeech.ADJECTIVE,

@@ -3,6 +3,7 @@ import math
 from typing import Generator, Optional
 
 from scripts.models.deck_csv import Column
+from scripts.models.language import Language
 from scripts.models.part_of_speech import POS_BY_LANG, POS_TO_IGNORE
 
 logger = logging.getLogger(__name__)
@@ -37,7 +38,10 @@ def chunks(data: list[dict], chunk_size: int) -> Generator[list[dict], None, Non
 
 
 def create_prompt(
-    file_name: str, lang: str, words: list[dict], part_of_speech: Optional[str] = None
+    file_name: str,
+    lang: Language,
+    words: list[dict],
+    part_of_speech: Optional[str] = None,
 ) -> str:
     words_text = ""
     for word in words:
@@ -53,7 +57,7 @@ def create_prompt(
     return prompt
 
 
-def remove_invalid_part_of_speech(csv_rows: list[dict], lang: str) -> list[dict]:
+def remove_invalid_part_of_speech(csv_rows: list[dict], lang: Language) -> list[dict]:
     filtered_csv_rows = []
     for row in csv_rows:
         part_of_speech = row[Column.PART_OF_SPEECH.value]

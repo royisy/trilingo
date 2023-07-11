@@ -9,6 +9,8 @@ from scripts.models.deck_csv import (
     SOURCE_CSV,
     Column,
 )
+from scripts.models.deck_process import DeckProcess
+from scripts.models.language import Language
 from scripts.models.part_of_speech import PartOfSpeech
 from scripts.utils.csv_utils import (
     append_csv,
@@ -38,23 +40,26 @@ CHUNK_SIZE = 200
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("lang", choices=["de"], help="Language")
-    parser.add_argument("process", choices=["pos", "base", "def"], help="Process")
+    parser.add_argument("lang", choices=Language.get_choices(), help="Language")
+    parser.add_argument(
+        "deck_process", choices=DeckProcess.get_choices(), help="Process"
+    )
 
     args = parser.parse_args()
-    lang = args.lang
+    lang = Language(args.lang)
+    deck_process = DeckProcess(args.deck_process)
 
-    if args.process == "pos":
+    if deck_process == DeckProcess.PART_OF_SPEECH:
         total_tokens = _add_part_of_speech(lang)
-    elif args.process == "base":
+    elif deck_process == DeckProcess.BASE_FORM:
         total_tokens = _convert_to_base_form(lang)
-    elif args.process == "def":
+    elif deck_process == DeckProcess.DEFINITION:
         total_tokens = _add_definition(lang)
 
     logger.info(f"total_tokens: {total_tokens}")
 
 
-def _add_part_of_speech(lang) -> int:
+def _add_part_of_speech(lang: Language) -> int:
     init_csv(PART_OF_SPEECH_CSV)
     csv_rows = read_csv(SOURCE_CSV)
     total_tokens = 0
@@ -74,7 +79,7 @@ def _add_part_of_speech(lang) -> int:
     return total_tokens
 
 
-def _convert_to_base_form(lang) -> int:
+def _convert_to_base_form(lang: Language) -> int:
     init_csv(BASE_FORM_CSV)
     csv_rows = read_csv(PART_OF_SPEECH_CSV, remove_header=True)
     pos_dict = group_by_pos(csv_rows)
@@ -112,7 +117,7 @@ def _convert_to_base_form(lang) -> int:
     return total_tokens
 
 
-def _add_definition(lang) -> int:
+def _add_definition(lang: Language) -> int:
     init_csv(DEFINITION_CSV)
     csv_rows = read_csv(BASE_FORM_CSV, remove_header=True)
     pos_dict = group_by_pos(csv_rows)

@@ -8,6 +8,7 @@ from scripts.deck_generator import (
     _add_part_of_speech,
     _convert_to_base_form,
 )
+from scripts.models.language import Language
 
 
 @patch("scripts.deck_generator.append_csv")
@@ -28,7 +29,7 @@ def test_add_part_of_speech(
     ]
     mock_chat_completion.return_value = ("1,noun\n2,verb\n3,adjective\n4,adverb\n", 1)
 
-    total_tokens = _add_part_of_speech("de")
+    total_tokens = _add_part_of_speech(Language.GERMAN)
 
     assert total_tokens == 1
     mock_init_csv.assert_called_once()
@@ -72,7 +73,7 @@ def test_convert_to_base_form(
         ("2,base verb 2\n4,base verb 4\n", 1),
     ]
 
-    total_tokens = _convert_to_base_form("de")
+    total_tokens = _convert_to_base_form(Language.GERMAN)
 
     assert total_tokens == 3
     mock_init_csv.assert_called_once()
@@ -126,7 +127,7 @@ def test_add_definition(
         ("2,definition 2\n4,definition 4\n", 1),
     ]
 
-    total_tokens = _add_definition("de")
+    total_tokens = _add_definition(Language.GERMAN)
 
     assert total_tokens == 2
     mock_init_csv.assert_called_once()
