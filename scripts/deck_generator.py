@@ -1,7 +1,9 @@
 import argparse
 import logging
+from logging.config import dictConfig
 
 from scripts.clients.openai_api_client import chat_completion
+from scripts.conf.logging_config import logging_config
 from scripts.models.deck_csv import (
     BASE_FORM_CSV,
     DEFINITION_CSV,
@@ -29,9 +31,7 @@ from scripts.utils.deck_utils import (
     remove_invalid_part_of_speech,
 )
 
-logging.basicConfig(
-    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
-)
+dictConfig(logging_config)
 
 logger = logging.getLogger(__name__)
 
