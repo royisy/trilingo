@@ -9,6 +9,7 @@ from scripts.models.deck_csv import (
     SOURCE_CSV,
     Column,
 )
+from scripts.models.part_of_speech import PartOfSpeech
 from scripts.utils.csv_utils import (
     append_csv,
     convert_to_list,
@@ -17,7 +18,6 @@ from scripts.utils.csv_utils import (
     read_csv,
     read_csv_str,
 )
-from scripts.utils.deck_constants import POS_NOUN
 from scripts.utils.deck_utils import (
     chunks,
     create_prompt,
@@ -81,7 +81,7 @@ def _convert_to_base_form(lang) -> int:
 
     for part_of_speech, csv_rows in parts_of_speech(pos_dict):
         for chunk in chunks(csv_rows, CHUNK_SIZE):
-            if part_of_speech == POS_NOUN:
+            if part_of_speech == PartOfSpeech.NOUN:
                 prompt = create_prompt("base_form_noun", lang, chunk)
             else:
                 prompt = create_prompt("base_form", lang, chunk, part_of_speech)
@@ -92,7 +92,7 @@ def _convert_to_base_form(lang) -> int:
             base_list = read_csv_str(base_list_str, [Column.ID, Column.ANSWER])
             merged_csv = merge_csv_data(csv_rows, base_list, Column.ANSWER)
 
-            if part_of_speech == POS_NOUN:
+            if part_of_speech == PartOfSpeech.NOUN:
                 prompt = create_prompt("article", lang, merged_csv)
                 article_list_str, tokens = chat_completion(prompt)
                 total_tokens += tokens
@@ -117,7 +117,7 @@ def _add_definition(lang) -> int:
 
     for part_of_speech, csv_rows in parts_of_speech(pos_dict):
         for chunk in chunks(csv_rows, CHUNK_SIZE):
-            if part_of_speech == POS_NOUN:
+            if part_of_speech == PartOfSpeech.NOUN:
                 prompt = create_prompt("definition_noun", lang, chunk)
             else:
                 prompt = create_prompt("definition", lang, chunk, part_of_speech)
