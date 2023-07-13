@@ -1,6 +1,7 @@
 from scripts.models.language import Language
 from scripts.utils.deck_utils import (
     chunks,
+    get_duplicated_definitions,
     group_by_pos,
     lowercase_words,
     parts_of_speech,
@@ -132,4 +133,72 @@ def test_remove_duplicated_answers():
         {"id": "1", "part_of_speech": "noun", "answer": "answer 1"},
         {"id": "2", "part_of_speech": "noun", "answer": "answer 2"},
         {"id": "4", "part_of_speech": "verb", "answer": "answer 1"},
+    ]
+
+
+def test_get_duplicated_definitions():
+    csv_rows = [
+        {
+            "id": "1",
+            "part_of_speech": "noun",
+            "definition": "definition 1",
+            "answer": "answer 1",
+        },
+        {
+            "id": "2",
+            "part_of_speech": "verb",
+            "definition": "definition 1",
+            "answer": "answer 2",
+        },
+        {
+            "id": "3",
+            "part_of_speech": "noun",
+            "definition": "definition 1",
+            "answer": "answer 3",
+        },
+        {
+            "id": "4",
+            "part_of_speech": "verb",
+            "definition": "definition 4",
+            "answer": "answer 4",
+        },
+        {
+            "id": "5",
+            "part_of_speech": "verb",
+            "definition": "definition 5",
+            "answer": "answer 5",
+        },
+        {
+            "id": "6",
+            "part_of_speech": "verb",
+            "definition": "definition 4",
+            "answer": "answer 6",
+        },
+    ]
+    result = get_duplicated_definitions(csv_rows)
+    assert result == [
+        {
+            "id": "1",
+            "part_of_speech": "noun",
+            "definition": "definition 1",
+            "answer": "answer 1",
+        },
+        {
+            "id": "3",
+            "part_of_speech": "noun",
+            "definition": "definition 1",
+            "answer": "answer 3",
+        },
+        {
+            "id": "4",
+            "part_of_speech": "verb",
+            "definition": "definition 4",
+            "answer": "answer 4",
+        },
+        {
+            "id": "6",
+            "part_of_speech": "verb",
+            "definition": "definition 4",
+            "answer": "answer 6",
+        },
     ]

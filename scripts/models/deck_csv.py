@@ -39,3 +39,12 @@ DEFINITION_CSV = DeckCsv(
         Column.ANSWER,
     ],
 )
+REMOVE_DUPLICATES_CSV = DeckCsv(
+    CSV_DIR / "remove_duplicates.csv",
+    [
+        Column.ID,
+        Column.PART_OF_SPEECH,
+        Column.DEFINITION,
+        Column.ANSWER,
+    ],
+)

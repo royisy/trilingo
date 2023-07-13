@@ -93,3 +93,15 @@ def remove_duplicated_answers(csv_rows: list[dict]) -> list[dict]:
             seen.add(key)
     logger.info(f"removed {len(csv_rows) - len(result)} duplicated answers")
     return result
+
+
+def get_duplicated_definitions(csv_rows: list[dict]) -> list[dict]:
+    groups: dict = {}
+    for row in csv_rows:
+        key = (row[Column.PART_OF_SPEECH.value], row[Column.DEFINITION.value])
+        groups.setdefault(key, []).append(row)
+    duplicates = []
+    for group in groups.values():
+        if len(group) > 1:
+            duplicates.extend(group)
+    return duplicates
