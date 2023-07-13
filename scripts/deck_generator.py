@@ -28,7 +28,9 @@ from scripts.utils.deck_utils import (
     group_by_pos,
     lowercase_words,
     parts_of_speech,
+    remove_duplicated_answers,
     remove_invalid_part_of_speech,
+    sort_by_id,
 )
 
 dictConfig(logging_config)
@@ -120,7 +122,9 @@ def _convert_to_base_form(lang: Language) -> int:
 def _add_definition(lang: Language) -> int:
     init_csv(DEFINITION_CSV)
     csv_rows = read_csv(BASE_FORM_CSV, remove_header=True)
-    pos_dict = group_by_pos(csv_rows)
+    sorted_csv_rows = sort_by_id(csv_rows)
+    filtered_csv_rows = remove_duplicated_answers(sorted_csv_rows)
+    pos_dict = group_by_pos(filtered_csv_rows)
     total_tokens = 0
 
     for part_of_speech, csv_rows in parts_of_speech(pos_dict):

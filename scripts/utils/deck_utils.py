@@ -77,3 +77,19 @@ def lowercase_words(csv_rows: list[dict]) -> list[dict]:
     for row in csv_rows:
         row[Column.ANSWER.value] = row[Column.ANSWER.value].lower()
     return csv_rows
+
+
+def sort_by_id(csv_rows: list[dict]) -> list[dict]:
+    return sorted(csv_rows, key=lambda x: x[Column.ID.value])
+
+
+def remove_duplicated_answers(csv_rows: list[dict]) -> list[dict]:
+    seen = set()
+    result = []
+    for row in csv_rows:
+        key = (row[Column.PART_OF_SPEECH.value], row[Column.ANSWER.value])
+        if key not in seen:
+            result.append(row)
+            seen.add(key)
+    logger.info(f"removed {len(csv_rows) - len(result)} duplicated answers")
+    return result

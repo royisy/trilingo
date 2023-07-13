@@ -4,7 +4,9 @@ from scripts.utils.deck_utils import (
     group_by_pos,
     lowercase_words,
     parts_of_speech,
+    remove_duplicated_answers,
     remove_invalid_part_of_speech,
+    sort_by_id,
 )
 
 
@@ -79,7 +81,7 @@ def test_chunks():
         assert value == expected[i]
 
 
-def test_filter_invalid_part_of_speech():
+def test_remove_invalid_part_of_speech():
     csv_rows = [
         {"id": "1", "part_of_speech": "noun", "answer": "answer 1"},
         {"id": "2", "part_of_speech": "other", "answer": "answer 2"},
@@ -101,4 +103,33 @@ def test_lowercase_words():
     assert result == [
         {"id": "1", "part_of_speech": "noun", "answer": "answer 1"},
         {"id": "2", "part_of_speech": "verb", "answer": "answer 2"},
+    ]
+
+
+def test_sort_by_id():
+    csv_rows = [
+        {"id": "2", "part_of_speech": "noun", "answer": "answer 2"},
+        {"id": "3", "part_of_speech": "noun", "answer": "answer 3"},
+        {"id": "1", "part_of_speech": "verb", "answer": "answer 1"},
+    ]
+    result = sort_by_id(csv_rows)
+    assert result == [
+        {"id": "1", "part_of_speech": "verb", "answer": "answer 1"},
+        {"id": "2", "part_of_speech": "noun", "answer": "answer 2"},
+        {"id": "3", "part_of_speech": "noun", "answer": "answer 3"},
+    ]
+
+
+def test_remove_duplicated_answers():
+    csv_rows = [
+        {"id": "1", "part_of_speech": "noun", "answer": "answer 1"},
+        {"id": "2", "part_of_speech": "noun", "answer": "answer 2"},
+        {"id": "3", "part_of_speech": "noun", "answer": "answer 1"},
+        {"id": "4", "part_of_speech": "verb", "answer": "answer 1"},
+    ]
+    result = remove_duplicated_answers(csv_rows)
+    assert result == [
+        {"id": "1", "part_of_speech": "noun", "answer": "answer 1"},
+        {"id": "2", "part_of_speech": "noun", "answer": "answer 2"},
+        {"id": "4", "part_of_speech": "verb", "answer": "answer 1"},
     ]
