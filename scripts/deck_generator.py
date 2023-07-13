@@ -46,8 +46,22 @@ def main():
     parser.add_argument(
         "deck_process", choices=DeckProcess.get_choices(), help="Process"
     )
-
+    parser.add_argument("--loglevel", default="INFO", help="Set log level")
     args = parser.parse_args()
+
+    levels = {
+        "DEBUG": logging.DEBUG,
+        "INFO": logging.INFO,
+        "WARNING": logging.WARNING,
+        "ERROR": logging.ERROR,
+        "CRITICAL": logging.CRITICAL,
+    }
+    level = levels.get(args.loglevel.upper())
+    if not level:
+        raise ValueError(f"Invalid log level: {args.loglevel}")
+    root_logger = logging.getLogger()
+    root_logger.setLevel(level)
+
     lang = Language(args.lang)
     deck_process = DeckProcess(args.deck_process)
 
