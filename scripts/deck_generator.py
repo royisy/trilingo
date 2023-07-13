@@ -33,7 +33,8 @@ from scripts.utils.deck_utils import (
     sort_by_id,
 )
 
-dictConfig(logging_config)
+if __name__ == "__main__":
+    dictConfig(logging_config)
 
 logger = logging.getLogger(__name__)
 
