@@ -9,12 +9,6 @@ from scripts.models.part_of_speech import POS_BY_LANG, POS_TO_IGNORE
 logger = logging.getLogger(__name__)
 
 
-def remove_unused_part_of_speech(csv_rows: list[dict]) -> list[dict]:
-    return [
-        row for row in csv_rows if row[Column.PART_OF_SPEECH.value] not in POS_TO_IGNORE
-    ]
-
-
 def group_by_pos(csv_rows: list[dict]) -> dict[str, list[dict]]:
     pos_dict: dict[str, list[dict]] = {}
     for row in csv_rows:

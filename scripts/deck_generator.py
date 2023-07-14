@@ -2,14 +2,11 @@ import argparse
 import logging
 from logging.config import dictConfig
 
-import spacy
-
 from scripts.clients.openai_api_client import chat_completion
 from scripts.conf.logging_config import logging_config
 from scripts.models.deck_csv import (
     BASE_FORM_CSV,
     DEFINITION_CSV,
-    LEMMATIZE_CSV,
     PART_OF_SPEECH_CSV,
     REMOVE_DUPLICATES_CSV,
     SOURCE_CSV,
@@ -17,7 +14,7 @@ from scripts.models.deck_csv import (
 )
 from scripts.models.deck_process import DeckProcess
 from scripts.models.language import Language
-from scripts.models.part_of_speech import PartOfSpeech, pos_mapping
+from scripts.models.part_of_speech import PartOfSpeech
 from scripts.utils.csv_utils import (
     append_csv,
     convert_to_list,
@@ -35,7 +32,6 @@ from scripts.utils.deck_utils import (
     parts_of_speech,
     remove_duplicated_answers,
     remove_invalid_part_of_speech,
-    remove_unused_part_of_speech,
     sort_by_id,
 )
 
@@ -72,12 +68,7 @@ def main():
     lang = Language(args.lang)
     deck_process = DeckProcess(args.deck_process)
 
-    logger.info(f"start: {lang}, {deck_process}")
-
-    total_tokens = 0
-    if deck_process == DeckProcess.LEMMATIZE:
-        _lemmatize(lang)
-    elif deck_process == DeckProcess.PART_OF_SPEECH:
+    if deck_process == DeckProcess.PART_OF_SPEECH:
         total_tokens = _add_part_of_speech(lang)
     elif deck_process == DeckProcess.BASE_FORM:
         total_tokens = _convert_to_base_form(lang)
@@ -87,29 +78,6 @@ def main():
         total_tokens = _remove_duplicates(lang)
 
     logger.info(f"total_tokens: {total_tokens}")
-
-
-def _lemmatize(lang: Language):
-    init_csv(LEMMATIZE_CSV)
-    csv_rows = read_csv(SOURCE_CSV)
-
-    nlp = spacy.load(f"{lang.GERMAN}_core_news_sm")
-
-    for row in csv_rows:
-        doc = nlp(row[Column.ANSWER.value])
-        for token in doc:
-            pos = token.pos_
-            lemma = token.lemma_
-        row[Column.PART_OF_SPEECH.value] = pos_mapping[pos].value
-        row[Column.ANSWER.value] = lemma
-
-    filtered_csv_rows = remove_unused_part_of_speech(csv_rows)
-    logger.info(f"removed {len(csv_rows) - len(filtered_csv_rows)} words by unused pos")
-
-    filtered_csv_rows = remove_duplicated_answers(filtered_csv_rows)
-
-    csv_data = convert_to_list(filtered_csv_rows, PART_OF_SPEECH_CSV.columns)
-    append_csv(LEMMATIZE_CSV, csv_data)
 
 
 def _add_part_of_speech(lang: Language) -> int:

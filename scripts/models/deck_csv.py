@@ -22,10 +22,6 @@ class DeckCsv:
 CSV_DIR = Path(__file__).resolve().parent.parent / "csv"
 
 SOURCE_CSV = DeckCsv(CSV_DIR / "source.csv", [Column.ID, Column.ANSWER])
-LEMMATIZE_CSV = DeckCsv(
-    CSV_DIR / "lemmatize.csv",
-    [Column.ID, Column.PART_OF_SPEECH, Column.ANSWER],
-)
 PART_OF_SPEECH_CSV = DeckCsv(
     CSV_DIR / "part_of_speech.csv",
     [Column.ID, Column.PART_OF_SPEECH, Column.ANSWER],
