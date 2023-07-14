@@ -15,7 +15,6 @@ class PartOfSpeech(Enum):
     INTERJECTION = "interjection"
     NUMERAL = "numeral"
     PROPER_NOUN = "proper noun"
-    ABBREVIATION = "abbreviation"
     OTHER = "other"
 
     def __eq__(self, target):
@@ -24,9 +23,29 @@ class PartOfSpeech(Enum):
         return super().__eq__(target)
 
 
+pos_mapping = {
+    "ADJ": PartOfSpeech.ADJECTIVE,  # adjective
+    "ADP": PartOfSpeech.PREPOSITION,  # adposition
+    "ADV": PartOfSpeech.ADVERB,  # adverb
+    "AUX": PartOfSpeech.VERB,  # auxiliary verb
+    "CONJ": PartOfSpeech.CONJUNCTION,  # coordinating conjunction
+    "CCONJ": PartOfSpeech.CONJUNCTION,  # coordinating conjunction
+    "DET": PartOfSpeech.ARTICLE,  # determiner
+    "INTJ": PartOfSpeech.INTERJECTION,  # interjection
+    "NOUN": PartOfSpeech.NOUN,  # noun
+    "NUM": PartOfSpeech.NUMERAL,  # numeral
+    "PART": PartOfSpeech.OTHER,  # particle
+    "PRON": PartOfSpeech.PRONOUN,  # pronoun
+    "PROPN": PartOfSpeech.PROPER_NOUN,  # proper noun
+    "PUNCT": PartOfSpeech.OTHER,  # punctuation
+    "SCONJ": PartOfSpeech.CONJUNCTION,  # subordinating conjunction
+    "SYM": PartOfSpeech.OTHER,  # symbol
+    "VERB": PartOfSpeech.VERB,  # verb
+    "X": PartOfSpeech.OTHER,  # other
+}
+
 POS_TO_IGNORE = [
     PartOfSpeech.PROPER_NOUN,
-    PartOfSpeech.ABBREVIATION,
     PartOfSpeech.OTHER,
 ]
 

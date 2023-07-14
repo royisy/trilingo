@@ -7,8 +7,23 @@ from scripts.utils.deck_utils import (
     parts_of_speech,
     remove_duplicated_answers,
     remove_invalid_part_of_speech,
+    remove_unused_part_of_speech,
     sort_by_id,
 )
+
+
+def test_remove_unused_part_of_speech():
+    csv_rows = [
+        {"id": "1", "part_of_speech": "noun", "answer": "answer 1"},
+        {"id": "2", "part_of_speech": "proper noun", "answer": "answer 2"},
+        {"id": "3", "part_of_speech": "other", "answer": "answer 3"},
+        {"id": "4", "part_of_speech": "verb", "answer": "answer 4"},
+    ]
+    result = remove_unused_part_of_speech(csv_rows)
+    assert result == [
+        {"id": "1", "part_of_speech": "noun", "answer": "answer 1"},
+        {"id": "4", "part_of_speech": "verb", "answer": "answer 4"},
+    ]
 
 
 def test_group_by_pos():
