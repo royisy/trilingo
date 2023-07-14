@@ -80,7 +80,7 @@ def lowercase_words(csv_rows: list[dict]) -> list[dict]:
 
 
 def sort_by_id(csv_rows: list[dict]) -> list[dict]:
-    return sorted(csv_rows, key=lambda x: x[Column.ID.value])
+    return sorted(csv_rows, key=lambda row: int(row["id"]))
 
 
 def remove_duplicated_answers(csv_rows: list[dict]) -> list[dict]:

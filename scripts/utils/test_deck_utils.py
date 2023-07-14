@@ -111,6 +111,7 @@ def test_sort_by_id():
     csv_rows = [
         {"id": "2", "part_of_speech": "noun", "answer": "answer 2"},
         {"id": "3", "part_of_speech": "noun", "answer": "answer 3"},
+        {"id": "10", "part_of_speech": "verb", "answer": "answer 10"},
         {"id": "1", "part_of_speech": "verb", "answer": "answer 1"},
     ]
     result = sort_by_id(csv_rows)
@@ -118,6 +119,7 @@ def test_sort_by_id():
         {"id": "1", "part_of_speech": "verb", "answer": "answer 1"},
         {"id": "2", "part_of_speech": "noun", "answer": "answer 2"},
         {"id": "3", "part_of_speech": "noun", "answer": "answer 3"},
+        {"id": "10", "part_of_speech": "verb", "answer": "answer 10"},
     ]
 
 
