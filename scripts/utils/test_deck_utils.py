@@ -140,7 +140,7 @@ def test_remove_duplicated_answers():
 
 def test_sort_by_answer():
     csv_rows = [
-        {"id": "4", "part_of_speech": "noun", "answer": "answer 3"},
+        {"id": "4", "part_of_speech": "noun", "answer": "ANSWER 3"},
         {"id": "5", "part_of_speech": "noun", "answer": "answer 2"},
         {"id": "10", "part_of_speech": "noun", "answer": "answer 1"},
         {"id": "1", "part_of_speech": "noun", "answer": "answer 1"},
@@ -152,7 +152,7 @@ def test_sort_by_answer():
         {"id": "2", "part_of_speech": "noun", "answer": "answer 1"},
         {"id": "10", "part_of_speech": "noun", "answer": "answer 1"},
         {"id": "5", "part_of_speech": "noun", "answer": "answer 2"},
-        {"id": "4", "part_of_speech": "noun", "answer": "answer 3"},
+        {"id": "4", "part_of_speech": "noun", "answer": "ANSWER 3"},
     ]
 
 

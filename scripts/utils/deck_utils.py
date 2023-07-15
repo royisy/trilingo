@@ -125,7 +125,8 @@ def remove_duplicated_answers(csv_rows: list[dict]) -> list[dict]:
 
 def sort_by_answer(csv_rows: list[dict]) -> list[dict]:
     return sorted(
-        csv_rows, key=lambda row: (row[Column.ANSWER.value], int(row[Column.ID.value]))
+        csv_rows,
+        key=lambda row: (row[Column.ANSWER.value].lower(), int(row[Column.ID.value])),
     )
 
 
