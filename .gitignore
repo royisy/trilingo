@@ -196,5 +196,9 @@ cython_debug/
 # custom
 ##############################
 
+# React
 404.html
+
+# Python
+*.log.*
 scripts/csv/*.csv

@@ -10,10 +10,13 @@ logging_config = dict(
             "level": logging.DEBUG,
         },
         "file": {
-            "class": "logging.FileHandler",
+            "class": "logging.handlers.TimedRotatingFileHandler",
             "formatter": "f",
             "level": logging.DEBUG,
             "filename": "deck_generator.log",
+            "when": "midnight",
+            "interval": 1,
+            "backupCount": 10,
         },
     },
     root={
