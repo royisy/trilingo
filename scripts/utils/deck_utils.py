@@ -92,10 +92,6 @@ def lowercase_word(csv_rows: list[dict]) -> list[dict]:
     return csv_rows
 
 
-def sort_by_id(csv_rows: list[dict]) -> list[dict]:
-    return sorted(csv_rows, key=lambda row: int(row["id"]))
-
-
 def remove_duplicated_answers(csv_rows: list[dict]) -> list[dict]:
     seen = set()
     result = []
@@ -106,6 +102,14 @@ def remove_duplicated_answers(csv_rows: list[dict]) -> list[dict]:
             seen.add(key)
     logger.info(f"removed {len(csv_rows) - len(result)} duplicated answers")
     return result
+
+
+def sort_by_answer(csv_rows: list[dict]) -> list[dict]:
+    return sorted(csv_rows, key=lambda row: (row["answer"], int(row["id"])))
+
+
+def sort_by_id(csv_rows: list[dict]) -> list[dict]:
+    return sorted(csv_rows, key=lambda row: int(row["id"]))
 
 
 def get_duplicated_definitions(csv_rows: list[dict]) -> list[dict]:

@@ -7,8 +7,9 @@ from scripts.conf.logging_config import logging_config
 from scripts.models.deck_csv import (
     BASE_FORM_CSV,
     DEFINITION_CSV,
+    DUP_ANSWER_CSV,
+    DUP_DEFINITION_CSV,
     PART_OF_SPEECH_CSV,
-    REMOVE_DUPLICATES_CSV,
     SOURCE_CSV,
     Column,
 )
@@ -33,7 +34,7 @@ from scripts.utils.deck_utils import (
     parts_of_speech,
     remove_duplicated_answers,
     remove_invalid_part_of_speech,
-    sort_by_id,
+    sort_by_answer,
 )
 
 if __name__ == "__main__":
@@ -71,14 +72,17 @@ def main():
 
     logger.info(f"start: {lang}, {deck_process}")
 
+    total_tokens = 0
     if deck_process == DeckProcess.PART_OF_SPEECH:
         total_tokens = _add_part_of_speech(lang)
     elif deck_process == DeckProcess.BASE_FORM:
         total_tokens = _convert_to_base_form(lang)
+    elif deck_process == DeckProcess.REMOVE_DUP_ANSWER:
+        _remove_duplicated_answers()
     elif deck_process == DeckProcess.DEFINITION:
         total_tokens = _add_definition(lang)
-    elif deck_process == DeckProcess.REMOVE_DUPLICATES:
-        total_tokens = _remove_duplicates(lang)
+    elif deck_process == DeckProcess.REMOVE_DUP_DEFINITION:
+        total_tokens = _remove_duplicated_definitions(lang)
 
     logger.info(f"total_tokens: {total_tokens}")
 
@@ -142,12 +146,22 @@ def _convert_to_base_form(lang: Language) -> int:
     return total_tokens
 
 
+def _remove_duplicated_answers():
+    init_csv(DUP_ANSWER_CSV)
+    csv_rows = read_csv(BASE_FORM_CSV, remove_header=True)
+    filtered_csv_rows = remove_duplicated_answers(csv_rows)
+    pos_dict = group_by_pos(filtered_csv_rows)
+
+    for _, csv_rows in parts_of_speech(pos_dict):
+        sorted_csv_rows = sort_by_answer(csv_rows)
+        csv_data = convert_to_list(sorted_csv_rows, DUP_ANSWER_CSV.columns)
+        append_csv(DUP_ANSWER_CSV, csv_data)
+
+
 def _add_definition(lang: Language) -> int:
     init_csv(DEFINITION_CSV)
     csv_rows = read_csv(BASE_FORM_CSV, remove_header=True)
-    sorted_csv_rows = sort_by_id(csv_rows)
-    filtered_csv_rows = remove_duplicated_answers(sorted_csv_rows)
-    pos_dict = group_by_pos(filtered_csv_rows)
+    pos_dict = group_by_pos(csv_rows)
     total_tokens = 0
 
     for part_of_speech, csv_rows in parts_of_speech(pos_dict):
@@ -170,8 +184,8 @@ def _add_definition(lang: Language) -> int:
     return total_tokens
 
 
-def _remove_duplicates(lang: Language) -> int:
-    init_csv(REMOVE_DUPLICATES_CSV)
+def _remove_duplicated_definitions(lang: Language) -> int:
+    init_csv(DUP_DEFINITION_CSV)
     csv_rows = read_csv(DEFINITION_CSV, remove_header=True)
     logger.info(f"total definitions: {len(csv_rows)}")
     duplicates = get_duplicated_definitions(csv_rows)

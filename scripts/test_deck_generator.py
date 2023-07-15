@@ -7,7 +7,9 @@ from scripts.deck_generator import (
     _add_definition,
     _add_part_of_speech,
     _convert_to_base_form,
+    _remove_duplicated_answers,
 )
+from scripts.models.deck_csv import DUP_ANSWER_CSV
 from scripts.models.language import Language
 
 
@@ -95,6 +97,42 @@ def test_convert_to_base_form(
             [
                 ["2", "verb", "base verb 2"],
                 ["4", "verb", "base verb 4"],
+            ],
+        ),
+    ]
+
+
+@patch("scripts.deck_generator.append_csv")
+@patch("scripts.deck_generator.read_csv")
+@patch("scripts.deck_generator.init_csv")
+def test_remove_duplicated_answers(
+    mock_init_csv: MagicMock,
+    mock_read_csv: MagicMock,
+    mock_append_csv: MagicMock,
+):
+    mock_read_csv.return_value = [
+        {"id": "1", "part_of_speech": "noun", "answer": "word 1"},
+        {"id": "2", "part_of_speech": "verb", "answer": "word 2"},
+        {"id": "3", "part_of_speech": "noun", "answer": "word 1"},
+        {"id": "4", "part_of_speech": "verb", "answer": "word 2"},
+        {"id": "5", "part_of_speech": "noun", "answer": "word 3"},
+    ]
+
+    _remove_duplicated_answers()
+
+    mock_init_csv.assert_called_once()
+    assert mock_append_csv.call_args_list == [
+        call(
+            DUP_ANSWER_CSV,
+            [
+                ["1", "noun", "word 1"],
+                ["5", "noun", "word 3"],
+            ],
+        ),
+        call(
+            DUP_ANSWER_CSV,
+            [
+                ["2", "verb", "word 2"],
             ],
         ),
     ]
