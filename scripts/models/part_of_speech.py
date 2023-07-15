@@ -4,19 +4,19 @@ from scripts.models.language import Language
 
 
 class PartOfSpeech(Enum):
-    NOUN = "noun"
-    VERB = "verb"
+    ABBREVIATION = "abbreviation"
     ADJECTIVE = "adjective"
     ADVERB = "adverb"
-    PRONOUN = "pronoun"
     ARTICLE = "article"
-    PREPOSITION = "preposition"
     CONJUNCTION = "conjunction"
     INTERJECTION = "interjection"
+    NOUN = "noun"
     NUMERAL = "numeral"
-    PROPER_NOUN = "proper noun"
-    ABBREVIATION = "abbreviation"
     OTHER = "other"
+    PREPOSITION = "preposition"
+    PRONOUN = "pronoun"
+    PROPER_NOUN = "proper noun"
+    VERB = "verb"
 
     def __eq__(self, target):
         if isinstance(target, str):
@@ -25,24 +25,24 @@ class PartOfSpeech(Enum):
 
 
 POS_TO_IGNORE = [
-    PartOfSpeech.PROPER_NOUN,
     PartOfSpeech.ABBREVIATION,
     PartOfSpeech.OTHER,
+    PartOfSpeech.PROPER_NOUN,
 ]
 
 POS_BY_LANG = {
     Language.GERMAN: [
-        PartOfSpeech.NOUN,
-        PartOfSpeech.VERB,
         PartOfSpeech.ADJECTIVE,
         PartOfSpeech.ADVERB,
-        PartOfSpeech.PRONOUN,
         PartOfSpeech.ARTICLE,
-        PartOfSpeech.PREPOSITION,
         PartOfSpeech.CONJUNCTION,
         PartOfSpeech.INTERJECTION,
+        PartOfSpeech.NOUN,
         PartOfSpeech.NUMERAL,
+        PartOfSpeech.PREPOSITION,
+        PartOfSpeech.PRONOUN,
         PartOfSpeech.PROPER_NOUN,
+        PartOfSpeech.VERB,
     ]
 }
 
