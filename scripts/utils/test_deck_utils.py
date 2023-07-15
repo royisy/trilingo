@@ -125,9 +125,9 @@ def test_lowercase_word():
 
 def test_remove_duplicated_answers():
     csv_rows = [
+        {"id": "3", "part_of_speech": "noun", "answer": "answer 1"},
         {"id": "1", "part_of_speech": "noun", "answer": "answer 1"},
         {"id": "2", "part_of_speech": "noun", "answer": "answer 2"},
-        {"id": "3", "part_of_speech": "noun", "answer": "answer 1"},
         {"id": "4", "part_of_speech": "verb", "answer": "answer 1"},
     ]
     result = remove_duplicated_answers(csv_rows)

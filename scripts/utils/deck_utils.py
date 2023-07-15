@@ -93,9 +93,10 @@ def lowercase_word(csv_rows: list[dict]) -> list[dict]:
 
 
 def remove_duplicated_answers(csv_rows: list[dict]) -> list[dict]:
+    sorted_csv_rows = sort_by_id(csv_rows)
     seen = set()
     result = []
-    for row in csv_rows:
+    for row in sorted_csv_rows:
         key = (row[Column.PART_OF_SPEECH.value], row[Column.ANSWER.value])
         if key not in seen:
             result.append(row)
