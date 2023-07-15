@@ -7,6 +7,7 @@ The part of speech should be one of the following:
 
 If the word is an abbreviation, set it as abbreviation.
 If there is no matching part of speech, set it as other.
+If the word is not a German word, set it as other.
 Your response should include only the list.
 
 {words}
