@@ -9,6 +9,7 @@ class PartOfSpeech(Enum):
     ADVERB = "adverb"
     ARTICLE = "article"
     CONJUNCTION = "conjunction"
+    FOREIGN = "foreign"
     INTERJECTION = "interjection"
     NOUN = "noun"
     NUMERAL = "numeral"
@@ -26,6 +27,7 @@ class PartOfSpeech(Enum):
 
 POS_TO_IGNORE = [
     PartOfSpeech.ABBREVIATION,
+    PartOfSpeech.FOREIGN,
     PartOfSpeech.OTHER,
     PartOfSpeech.PROPER_NOUN,
 ]
