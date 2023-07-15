@@ -13,7 +13,7 @@ def group_by_pos(csv_rows: list[dict]) -> dict[str, list[dict]]:
     """Group csv rows by part of speech
 
     First, group csv rows by part of speech.
-    Then, sort csv rows by answer and id.
+    Then, sort csv rows by id.
     Then, sort part of speech by key.
 
     Args:
@@ -28,7 +28,7 @@ def group_by_pos(csv_rows: list[dict]) -> dict[str, list[dict]]:
         pos_dict.setdefault(pos, []).append(row)
 
     for pos, rows in pos_dict.items():
-        pos_dict[pos] = sort_by_answer(rows)
+        pos_dict[pos] = sort_by_id(rows)
 
     sorted_pos_dict = dict(sorted(pos_dict.items()))
 

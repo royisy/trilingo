@@ -90,7 +90,6 @@ def main():
 def _add_part_of_speech(lang: Language) -> int:
     init_csv(PART_OF_SPEECH_CSV)
     csv_rows = read_csv(SOURCE_CSV)
-    csv_rows = sort_by_answer(csv_rows)
     total_tokens = 0
 
     for chunk in chunks(csv_rows, CHUNK_SIZE):
@@ -154,7 +153,8 @@ def _remove_duplicated_answers():
     pos_dict = group_by_pos(filtered_csv_rows)
 
     for _, csv_rows in parts_of_speech(pos_dict):
-        csv_data = convert_to_list(csv_rows, DUP_ANSWER_CSV.columns)
+        sorted_csv_rows = sort_by_answer(csv_rows)
+        csv_data = convert_to_list(sorted_csv_rows, DUP_ANSWER_CSV.columns)
         append_csv(DUP_ANSWER_CSV, csv_data)
 
 
