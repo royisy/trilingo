@@ -10,11 +10,29 @@ logger = logging.getLogger(__name__)
 
 
 def group_by_pos(csv_rows: list[dict]) -> dict[str, list[dict]]:
+    """Group csv rows by part of speech
+
+    First, group csv rows by part of speech.
+    Then, sort csv rows by answer and id.
+    Then, sort part of speech by key.
+
+    Args:
+        csv_rows (list[dict]): csv rows
+
+    Returns:
+        dict[str, list[dict]]: grouped csv rows
+    """
     pos_dict: dict[str, list[dict]] = {}
     for row in csv_rows:
         pos = row[Column.PART_OF_SPEECH.value]
         pos_dict.setdefault(pos, []).append(row)
-    return pos_dict
+
+    for pos, rows in pos_dict.items():
+        pos_dict[pos] = sort_by_answer(rows)
+
+    sorted_pos_dict = dict(sorted(pos_dict.items()))
+
+    return sorted_pos_dict
 
 
 def parts_of_speech(
@@ -106,11 +124,13 @@ def remove_duplicated_answers(csv_rows: list[dict]) -> list[dict]:
 
 
 def sort_by_answer(csv_rows: list[dict]) -> list[dict]:
-    return sorted(csv_rows, key=lambda row: (row["answer"], int(row["id"])))
+    return sorted(
+        csv_rows, key=lambda row: (row[Column.ANSWER.value], int(row[Column.ID.value]))
+    )
 
 
 def sort_by_id(csv_rows: list[dict]) -> list[dict]:
-    return sorted(csv_rows, key=lambda row: int(row["id"]))
+    return sorted(csv_rows, key=lambda row: int(row[Column.ID.value]))
 
 
 def get_duplicated_definitions(csv_rows: list[dict]) -> list[dict]:
