@@ -69,6 +69,8 @@ def main():
     lang = Language(args.lang)
     deck_process = DeckProcess(args.deck_process)
 
+    logger.info(f"start: {lang}, {deck_process}")
+
     if deck_process == DeckProcess.PART_OF_SPEECH:
         total_tokens = _add_part_of_speech(lang)
     elif deck_process == DeckProcess.BASE_FORM:
