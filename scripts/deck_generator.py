@@ -28,7 +28,8 @@ from scripts.utils.deck_utils import (
     create_prompt,
     get_duplicated_definitions,
     group_by_pos,
-    lowercase_words,
+    lowercase_article,
+    lowercase_word,
     parts_of_speech,
     remove_duplicated_answers,
     remove_invalid_part_of_speech,
@@ -129,8 +130,9 @@ def _convert_to_base_form(lang: Language) -> int:
                     article_list_str, [Column.ID, Column.ANSWER]
                 )
                 merged_csv = merge_csv_data(merged_csv, article_list, Column.ANSWER)
+                merged_csv = lowercase_article(merged_csv, lang)
             else:
-                merged_csv = lowercase_words(merged_csv)
+                merged_csv = lowercase_word(merged_csv)
 
             csv_data = convert_to_list(merged_csv, BASE_FORM_CSV.columns)
             append_csv(BASE_FORM_CSV, csv_data)

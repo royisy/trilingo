@@ -4,7 +4,7 @@ from typing import Generator, Optional
 
 from scripts.models.deck_csv import Column
 from scripts.models.language import Language
-from scripts.models.part_of_speech import POS_BY_LANG, POS_TO_IGNORE
+from scripts.models.part_of_speech import ARTICLES_BY_LANG, POS_BY_LANG, POS_TO_IGNORE
 
 logger = logging.getLogger(__name__)
 
@@ -73,7 +73,20 @@ def remove_invalid_part_of_speech(csv_rows: list[dict], lang: Language) -> list[
     return filtered_csv_rows
 
 
-def lowercase_words(csv_rows: list[dict]) -> list[dict]:
+def lowercase_article(csv_rows: list[dict], lang: Language) -> list[dict]:
+    articles = ARTICLES_BY_LANG[lang]
+    result = []
+    for row in csv_rows:
+        answer: str = row[Column.ANSWER.value]
+        first_word = answer.split()[0]
+        if first_word.lower() in articles:
+            answer = answer.replace(first_word, first_word.lower(), 1)
+        result.append({**row, Column.ANSWER.value: answer})
+    return result
+
+
+def lowercase_word(csv_rows: list[dict]) -> list[dict]:
+    row: dict[str, str]
     for row in csv_rows:
         row[Column.ANSWER.value] = row[Column.ANSWER.value].lower()
     return csv_rows

@@ -45,3 +45,5 @@ POS_BY_LANG = {
         PartOfSpeech.PROPER_NOUN,
     ]
 }
+
+ARTICLES_BY_LANG = {Language.GERMAN: ["der", "die", "das"]}
