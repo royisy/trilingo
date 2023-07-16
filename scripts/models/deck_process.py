@@ -7,3 +7,4 @@ class DeckProcess(ArgEnum):
     REMOVE_DUP_ANSWER = "dup_ans"
     DEFINITION = "def"
     REMOVE_DUP_DEFINITION = "dup_def"
+    FINALIZE = "fin"

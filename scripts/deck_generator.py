@@ -9,6 +9,7 @@ from scripts.models.deck_csv import (
     DEFINITION_CSV,
     DEST_DUP_DEFINITION_CSV,
     DUP_ANSWER_CSV,
+    FINALIZE_CSV,
     PART_OF_SPEECH_CSV,
     SOURCE_CSV,
     SRC_DUP_DEFINITION_CSV,
@@ -26,6 +27,7 @@ from scripts.utils.csv_utils import (
 )
 from scripts.utils.deck_utils import (
     chunks,
+    convert_pos,
     create_prompt,
     get_duplicated_definitions,
     group_by_pos,
@@ -35,6 +37,7 @@ from scripts.utils.deck_utils import (
     remove_duplicated_answers,
     remove_invalid_part_of_speech,
     sort_by_answer,
+    sort_by_id,
 )
 
 if __name__ == "__main__":
@@ -83,6 +86,8 @@ def main():
         total_tokens = _add_definition(lang)
     elif deck_process == DeckProcess.REMOVE_DUP_DEFINITION:
         total_tokens = _remove_duplicated_definitions(lang)
+    elif deck_process == DeckProcess.FINALIZE:
+        _finalize()
 
     logger.info(f"total_tokens: {total_tokens}")
 
@@ -218,6 +223,19 @@ def _remove_duplicated_definitions(lang: Language) -> int:
     logger.info(f"remaining duplicated definitions: {len(duplicates)}")
 
     return total_tokens
+
+
+def _finalize():
+    init_csv(FINALIZE_CSV)
+    csv_rows = read_csv(DEST_DUP_DEFINITION_CSV, remove_header=True)
+    csv_rows = sort_by_id(csv_rows)
+
+    converted_csv_rows = []
+    for row in csv_rows:
+        converted_row = convert_pos(row)
+        converted_csv_rows.append(converted_row)
+
+    append_csv_rows(FINALIZE_CSV, converted_csv_rows)
 
 
 if __name__ == "__main__":

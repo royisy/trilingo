@@ -1,6 +1,7 @@
 from scripts.models.language import Language
 from scripts.utils.deck_utils import (
     chunks,
+    convert_pos,
     get_duplicated_definitions,
     group_by_pos,
     lowercase_article,
@@ -253,3 +254,19 @@ def test_get_duplicated_definitions():
             "answer": "answer 5",
         },
     ]
+
+
+def test_convert_pos():
+    csv_row = {
+        "id": "1",
+        "part_of_speech": "adjective",
+        "definition": "definition 1",
+        "answer": "answer 1",
+    }
+    result = convert_pos(csv_row)
+    assert result == {
+        "id": "1",
+        "part_of_speech": "adj.",
+        "definition": "definition 1",
+        "answer": "answer 1",
+    }

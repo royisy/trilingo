@@ -79,3 +79,12 @@ DEST_DUP_DEFINITION_CSV = DeckCsv(
         Column.ANSWER,
     ],
 )
+FINALIZE_CSV = DeckCsv(
+    CSV_DIR / "output.csv",
+    [
+        Column.ID,
+        Column.PART_OF_SPEECH,
+        Column.DEFINITION,
+        Column.ANSWER,
+    ],
+)

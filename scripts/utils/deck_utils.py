@@ -4,7 +4,12 @@ from typing import Generator, Optional
 
 from scripts.models.deck_csv import Column
 from scripts.models.language import Language
-from scripts.models.part_of_speech import ARTICLES_BY_LANG, POS_BY_LANG, POS_TO_IGNORE
+from scripts.models.part_of_speech import (
+    ABBREVIATED_POS,
+    ARTICLES_BY_LANG,
+    POS_BY_LANG,
+    POS_TO_IGNORE,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -134,3 +139,11 @@ def get_duplicated_definitions(csv_rows: list[dict]) -> tuple[list[dict], list[d
         else:
             non_duplicates.extend(group)
     return duplicates, non_duplicates
+
+
+def convert_pos(row: dict) -> dict:
+    new_row = row.copy()
+    pos = row[Column.PART_OF_SPEECH.value]
+    abbr_pos = ABBREVIATED_POS[pos]
+    new_row[Column.PART_OF_SPEECH.value] = abbr_pos
+    return new_row
