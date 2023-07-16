@@ -67,6 +67,11 @@ def merge_csv_data(
     return merged_data
 
 
-def convert_to_list(csv_rows: list[dict], columns: list[Column]) -> list[list[str]]:
+def append_csv_rows(csv_file: DeckCsv, csv_rows: list[dict]):
+    list_data = _convert_to_list(csv_rows, csv_file.columns)
+    append_csv(csv_file, list_data)
+
+
+def _convert_to_list(csv_rows: list[dict], columns: list[Column]) -> list[list[str]]:
     converted_data = [[row[column.value] for column in columns] for row in csv_rows]
     return converted_data

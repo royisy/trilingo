@@ -17,8 +17,7 @@ from scripts.models.deck_process import DeckProcess
 from scripts.models.language import Language
 from scripts.models.part_of_speech import PartOfSpeech
 from scripts.utils.csv_utils import (
-    append_csv,
-    convert_to_list,
+    append_csv_rows,
     init_csv,
     merge_csv_data,
     read_csv,
@@ -101,8 +100,7 @@ def _add_part_of_speech(lang: Language) -> int:
         pos_list = read_csv_str(pos_list_str, [Column.ID, Column.PART_OF_SPEECH])
         filtered_pos_list = remove_invalid_part_of_speech(pos_list, lang)
         merged_csv = merge_csv_data(csv_rows, filtered_pos_list, Column.PART_OF_SPEECH)
-        csv_data = convert_to_list(merged_csv, PART_OF_SPEECH_CSV.columns)
-        append_csv(PART_OF_SPEECH_CSV, csv_data)
+        append_csv_rows(PART_OF_SPEECH_CSV, merged_csv)
 
     return total_tokens
 
@@ -140,8 +138,7 @@ def _convert_to_base_form(lang: Language) -> int:
             else:
                 merged_csv = lowercase_word(merged_csv)
 
-            csv_data = convert_to_list(merged_csv, BASE_FORM_CSV.columns)
-            append_csv(BASE_FORM_CSV, csv_data)
+            append_csv_rows(BASE_FORM_CSV, merged_csv)
 
     return total_tokens
 
@@ -154,8 +151,7 @@ def _remove_duplicated_answers():
 
     for _, csv_rows in parts_of_speech(pos_dict):
         sorted_csv_rows = sort_by_answer(csv_rows)
-        csv_data = convert_to_list(sorted_csv_rows, DUP_ANSWER_CSV.columns)
-        append_csv(DUP_ANSWER_CSV, csv_data)
+        append_csv_rows(DUP_ANSWER_CSV, sorted_csv_rows)
 
 
 def _add_definition(lang: Language) -> int:
@@ -178,8 +174,7 @@ def _add_definition(lang: Language) -> int:
                 definition_list_str, [Column.ID, Column.DEFINITION]
             )
             merged_csv = merge_csv_data(csv_rows, definition_list, Column.DEFINITION)
-            csv_data = convert_to_list(merged_csv, DEFINITION_CSV.columns)
-            append_csv(DEFINITION_CSV, csv_data)
+            append_csv_rows(DEFINITION_CSV, merged_csv)
 
     return total_tokens
 

@@ -1,7 +1,7 @@
 import pytest
 
 from scripts.models.deck_csv import Column
-from scripts.utils.csv_utils import convert_to_list, merge_csv_data, read_csv_str
+from scripts.utils.csv_utils import _convert_to_list, merge_csv_data, read_csv_str
 
 
 @pytest.mark.parametrize(
@@ -53,6 +53,6 @@ def test_convert_to_list():
         {"id": "2", "part_of_speech": "pos 2", "answer": "answer 2"},
     ]
     columns = [Column.ID, Column.ANSWER]
-    result = convert_to_list(csv_rows, columns)
+    result = _convert_to_list(csv_rows, columns)
     expected = [["1", "answer 1"], ["2", "answer 2"]]
     assert result == expected
