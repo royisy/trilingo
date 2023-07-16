@@ -1,6 +1,6 @@
 This is a list of IDs and their corresponding German nouns.
-Some of them may not in singular form.
-Convert any nouns that are not in singular form using the following format:
+Some of them may not be in their singular form.
+Convert any nouns that are not in their singular form using the following format:
 ID,singular form of the noun
 
 Your response should include only the list.
