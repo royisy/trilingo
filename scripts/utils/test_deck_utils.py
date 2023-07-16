@@ -15,12 +15,13 @@ from scripts.utils.deck_utils import (
 
 def test_group_by_pos():
     csv_rows = [
-        {"id": "4", "part_of_speech": "pos 2", "answer": "answer 4"},
-        {"id": "3", "part_of_speech": "pos 1", "answer": "answer 3"},
         {"id": "2", "part_of_speech": "pos 2", "answer": "answer 2"},
         {"id": "1", "part_of_speech": "pos 1", "answer": "answer 1"},
+        {"id": "4", "part_of_speech": "pos 2", "answer": "answer 4"},
+        {"id": "3", "part_of_speech": "pos 1", "answer": "answer 3"},
     ]
     result = group_by_pos(csv_rows)
+    assert list(result.keys()) == ["pos 1", "pos 2"]
     assert result == {
         "pos 1": [
             {"id": "1", "part_of_speech": "pos 1", "answer": "answer 1"},

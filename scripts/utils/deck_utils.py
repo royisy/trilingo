@@ -10,28 +10,11 @@ logger = logging.getLogger(__name__)
 
 
 def group_by_pos(csv_rows: list[dict]) -> dict[str, list[dict]]:
-    """Group csv rows by part of speech
-
-    First, group csv rows by part of speech.
-    Then, sort csv rows by id.
-    Then, sort part of speech by key.
-
-    Args:
-        csv_rows (list[dict]): csv rows
-
-    Returns:
-        dict[str, list[dict]]: grouped csv rows
-    """
     pos_dict: dict[str, list[dict]] = {}
     for row in csv_rows:
         pos = row[Column.PART_OF_SPEECH.value]
         pos_dict.setdefault(pos, []).append(row)
-
-    for pos, rows in pos_dict.items():
-        pos_dict[pos] = sort_by_id(rows)
-
     sorted_pos_dict = dict(sorted(pos_dict.items()))
-
     return sorted_pos_dict
 
 
