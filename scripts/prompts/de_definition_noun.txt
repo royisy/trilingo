@@ -1,13 +1,13 @@
 This is a list of IDs and their corresponding German nouns.
 For each noun, provide the ID and the corresponding English word using the following format:
+"""
 ID,English word
-
+"""
 Since each German word has a definite article, also provide 'the' with each English word.
-
-If the English word corresponds to multiple German words,
-include a concise explanation to differentiate them.
+If the English word corresponds to multiple German words, include a concise explanation to differentiate them.
 However, make sure that the English word itself is limited to less than 30 characters.
-
 Your response should include only the list.
 
+"""
 {words}
+"""
