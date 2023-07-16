@@ -141,6 +141,16 @@ def get_duplicated_definitions(csv_rows: list[dict]) -> tuple[list[dict], list[d
     return duplicates, non_duplicates
 
 
+def check_definition_length(csv_rows: list[dict]):
+    MAX_DEFINITION_LENGTH = 30
+    for row in csv_rows:
+        definition = row[Column.DEFINITION.value]
+        if len(definition) > MAX_DEFINITION_LENGTH:
+            logger.error(
+                f"definition too long: {definition}, id: {row[Column.ID.value]}"
+            )
+
+
 def convert_pos(row: dict) -> dict:
     new_row = row.copy()
     pos = row[Column.PART_OF_SPEECH.value]

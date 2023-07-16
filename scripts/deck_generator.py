@@ -26,6 +26,7 @@ from scripts.utils.csv_utils import (
     read_csv_str,
 )
 from scripts.utils.deck_utils import (
+    check_definition_length,
     chunks,
     convert_pos,
     create_prompt,
@@ -221,6 +222,7 @@ def _remove_duplicated_definitions(lang: Language) -> int:
     updated_csv_rows = read_csv(DEST_DUP_DEFINITION_CSV, remove_header=True)
     duplicates, _ = get_duplicated_definitions(updated_csv_rows)
     logger.info(f"remaining duplicated definitions: {len(duplicates)}")
+    check_definition_length(updated_csv_rows)
 
     return total_tokens
 

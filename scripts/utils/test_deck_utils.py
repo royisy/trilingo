@@ -1,5 +1,6 @@
 from scripts.models.language import Language
 from scripts.utils.deck_utils import (
+    check_definition_length,
     chunks,
     convert_pos,
     get_duplicated_definitions,
@@ -254,6 +255,31 @@ def test_get_duplicated_definitions():
             "answer": "answer 5",
         },
     ]
+
+
+def test_check_definition_length(caplog):
+    csv_rows = [
+        {
+            "id": "1",
+            "part_of_speech": "noun",
+            "definition": "123456789012345678901234567890",
+            "answer": "answer 1",
+        },
+        {
+            "id": "2",
+            "part_of_speech": "noun",
+            "definition": "1234567890123456789012345678901",
+            "answer": "answer 2",
+        },
+        {
+            "id": "3",
+            "part_of_speech": "noun",
+            "definition": "1234567890123456789012345678901",
+            "answer": "answer 3",
+        },
+    ]
+    check_definition_length(csv_rows)
+    assert len(caplog.record_tuples) == 2
 
 
 def test_convert_pos():
