@@ -23,7 +23,7 @@ def append_csv(csv_file: DeckCsv, data: list[list[str]]):
         writer.writerows(data)
 
 
-def read_csv(csv_file: DeckCsv, remove_header=False) -> list[dict]:
+def read_csv(csv_file: DeckCsv, remove_header: bool = False) -> list[dict]:
     csv_rows = []
     try:
         with open(csv_file.file_path, "r") as f:
