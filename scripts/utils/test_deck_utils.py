@@ -212,8 +212,8 @@ def test_get_duplicated_definitions():
             "answer": "answer 6",
         },
     ]
-    result = get_duplicated_definitions(csv_rows)
-    assert result == [
+    duplicates, non_duplicates = get_duplicated_definitions(csv_rows)
+    assert duplicates == [
         {
             "id": "1",
             "part_of_speech": "noun",
@@ -237,5 +237,19 @@ def test_get_duplicated_definitions():
             "part_of_speech": "verb",
             "definition": "definition 4",
             "answer": "answer 6",
+        },
+    ]
+    assert non_duplicates == [
+        {
+            "id": "2",
+            "part_of_speech": "verb",
+            "definition": "definition 1",
+            "answer": "answer 2",
+        },
+        {
+            "id": "5",
+            "part_of_speech": "verb",
+            "definition": "definition 5",
+            "answer": "answer 5",
         },
     ]

@@ -7,10 +7,11 @@ from scripts.conf.logging_config import logging_config
 from scripts.models.deck_csv import (
     BASE_FORM_CSV,
     DEFINITION_CSV,
+    DEST_DUP_DEFINITION_CSV,
     DUP_ANSWER_CSV,
-    DUP_DEFINITION_CSV,
     PART_OF_SPEECH_CSV,
     SOURCE_CSV,
+    SRC_DUP_DEFINITION_CSV,
     Column,
 )
 from scripts.models.deck_process import DeckProcess
@@ -116,7 +117,9 @@ def _convert_to_base_form(lang: Language) -> int:
             if part_of_speech == PartOfSpeech.NOUN:
                 prompt = create_prompt("base_form_noun", lang, chunk)
             else:
-                prompt = create_prompt("base_form", lang, chunk, part_of_speech)
+                prompt = create_prompt(
+                    "base_form", lang, chunk, part_of_speech=part_of_speech
+                )
             base_list_str, tokens = chat_completion(prompt)
             if base_list_str is None:
                 continue
@@ -156,7 +159,7 @@ def _remove_duplicated_answers():
 
 def _add_definition(lang: Language) -> int:
     init_csv(DEFINITION_CSV)
-    csv_rows = read_csv(BASE_FORM_CSV, remove_header=True)
+    csv_rows = read_csv(DUP_ANSWER_CSV, remove_header=True)
     pos_dict = group_by_pos(csv_rows)
     total_tokens = 0
 
@@ -165,7 +168,9 @@ def _add_definition(lang: Language) -> int:
             if part_of_speech == PartOfSpeech.NOUN:
                 prompt = create_prompt("definition_noun", lang, chunk)
             else:
-                prompt = create_prompt("definition", lang, chunk, part_of_speech)
+                prompt = create_prompt(
+                    "definition", lang, chunk, part_of_speech=part_of_speech
+                )
             definition_list_str, tokens = chat_completion(prompt)
             if definition_list_str is None:
                 continue
@@ -180,19 +185,38 @@ def _add_definition(lang: Language) -> int:
 
 
 def _remove_duplicated_definitions(lang: Language) -> int:
-    init_csv(DUP_DEFINITION_CSV)
-    csv_rows = read_csv(DEFINITION_CSV, remove_header=True)
+    init_csv(DEST_DUP_DEFINITION_CSV)
+    csv_rows = read_csv(SRC_DUP_DEFINITION_CSV, remove_header=True)
     logger.info(f"total definitions: {len(csv_rows)}")
-    duplicates = get_duplicated_definitions(csv_rows)
+    duplicates, non_duplicates = get_duplicated_definitions(csv_rows)
     logger.info(f"duplicated definitions: {len(duplicates)}")
-
-    for row in duplicates:
-        print(
-            f"{row[Column.ID.value]}: ({row[Column.PART_OF_SPEECH.value]}) "
-            f"{row[Column.DEFINITION.value]} / {row[Column.ANSWER.value]}"
-        )
-
+    append_csv_rows(DEST_DUP_DEFINITION_CSV, non_duplicates)
+    pos_dict = group_by_pos(duplicates)
     total_tokens = 0
+
+    for part_of_speech, csv_rows in parts_of_speech(pos_dict):
+        for chunk in chunks(csv_rows, CHUNK_SIZE):
+            prompt = create_prompt(
+                "duplicated_definition",
+                lang,
+                chunk,
+                words_columns=[Column.ID, Column.ANSWER, Column.DEFINITION],
+                part_of_speech=part_of_speech,
+            )
+            definition_list_str, tokens = chat_completion(prompt)
+            if definition_list_str is None:
+                continue
+            total_tokens += tokens
+            definition_list = read_csv_str(
+                definition_list_str, [Column.ID, Column.ANSWER, Column.DEFINITION]
+            )
+            merged_csv = merge_csv_data(csv_rows, definition_list, Column.DEFINITION)
+            append_csv_rows(DEST_DUP_DEFINITION_CSV, merged_csv)
+
+    updated_csv_rows = read_csv(DEST_DUP_DEFINITION_CSV, remove_header=True)
+    duplicates, _ = get_duplicated_definitions(updated_csv_rows)
+    logger.info(f"remaining duplicated definitions: {len(duplicates)}")
+
     return total_tokens
 
 

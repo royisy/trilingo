@@ -42,11 +42,14 @@ def create_prompt(
     file_name: str,
     lang: Language,
     words: list[dict],
+    words_columns: list[Column] = [Column.ID, Column.ANSWER],
     part_of_speech: Optional[str] = None,
 ) -> str:
     words_text = ""
     for word in words:
-        words_text += f"{word[Column.ID.value]},{word[Column.ANSWER.value]}\n"
+        words_text += (
+            ",".join(str(word[column.value]) for column in words_columns) + "\n"
+        )
     template_file = f"./scripts/prompts/{lang}_{file_name}.txt"
     with open(template_file, "r") as f:
         prompt = f.read()
@@ -55,6 +58,7 @@ def create_prompt(
             part_of_speech=part_of_speech,
             words=words_text,
         )
+    logger.debug(f"prompt: {prompt}")
     return prompt
 
 
@@ -117,13 +121,16 @@ def sort_by_id(csv_rows: list[dict]) -> list[dict]:
     return sorted(csv_rows, key=lambda row: int(row[Column.ID.value]))
 
 
-def get_duplicated_definitions(csv_rows: list[dict]) -> list[dict]:
+def get_duplicated_definitions(csv_rows: list[dict]) -> tuple[list[dict], list[dict]]:
     groups: dict = {}
     for row in csv_rows:
         key = (row[Column.PART_OF_SPEECH.value], row[Column.DEFINITION.value])
         groups.setdefault(key, []).append(row)
     duplicates = []
+    non_duplicates = []
     for group in groups.values():
         if len(group) > 1:
             duplicates.extend(group)
-    return duplicates
+        else:
+            non_duplicates.extend(group)
+    return duplicates, non_duplicates

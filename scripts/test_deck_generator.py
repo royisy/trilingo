@@ -8,8 +8,9 @@ from scripts.deck_generator import (
     _add_part_of_speech,
     _convert_to_base_form,
     _remove_duplicated_answers,
+    _remove_duplicated_definitions,
 )
-from scripts.models.deck_csv import DUP_ANSWER_CSV
+from scripts.models.deck_csv import DEST_DUP_DEFINITION_CSV, DUP_ANSWER_CSV, Column
 from scripts.models.language import Language
 
 
@@ -204,6 +205,157 @@ def test_add_definition(
                     "id": "4",
                     "part_of_speech": "verb",
                     "definition": "definition 4",
+                    "answer": "word 4",
+                },
+            ],
+        ),
+    ]
+
+
+@patch("scripts.deck_generator.append_csv_rows")
+@patch("scripts.deck_generator.chat_completion")
+@patch("scripts.deck_generator.create_prompt")
+@patch("scripts.deck_generator.read_csv")
+@patch("scripts.deck_generator.init_csv")
+def test_remove_duplicated_definitions(
+    mock_init_csv: MagicMock,
+    mock_read_csv: MagicMock,
+    mock_create_prompt: MagicMock,
+    mock_chat_completion: MagicMock,
+    mock_append_csv_rows: MagicMock,
+):
+    mock_read_csv.return_value = [
+        {
+            "id": "1",
+            "part_of_speech": "noun",
+            "definition": "definition 1",
+            "answer": "word 1",
+        },
+        {
+            "id": "2",
+            "part_of_speech": "verb",
+            "definition": "definition 2",
+            "answer": "word 2",
+        },
+        {
+            "id": "3",
+            "part_of_speech": "noun",
+            "definition": "definition 1",
+            "answer": "word 3",
+        },
+        {
+            "id": "4",
+            "part_of_speech": "verb",
+            "definition": "definition 2",
+            "answer": "word 4",
+        },
+        {
+            "id": "5",
+            "part_of_speech": "noun",
+            "definition": "definition 5",
+            "answer": "word 5",
+        },
+    ]
+    mock_create_prompt.return_value = "de_duplicated_definition prompt"
+    mock_chat_completion.side_effect = [
+        ("1,answer 1,detailed definition 1\n3,answer 3,detailed definition 3\n", 1),
+        ("2,answer 2,detailed definition 2\n4,answer 4,detailed definition 4\n", 1),
+    ]
+
+    total_tokens = _remove_duplicated_definitions(Language.GERMAN)
+
+    assert total_tokens == 2
+    mock_init_csv.assert_called_once()
+    assert len(mock_create_prompt.call_args_list) == 2
+    assert mock_chat_completion.call_args_list == [
+        call("de_duplicated_definition prompt"),
+        call("de_duplicated_definition prompt"),
+    ]
+    assert len(mock_append_csv_rows.call_args_list) == 3
+    assert mock_create_prompt.call_args_list == [
+        call(
+            "duplicated_definition",
+            Language.GERMAN,
+            [
+                {
+                    "id": "1",
+                    "part_of_speech": "noun",
+                    "definition": "definition 1",
+                    "answer": "word 1",
+                },
+                {
+                    "id": "3",
+                    "part_of_speech": "noun",
+                    "definition": "definition 1",
+                    "answer": "word 3",
+                },
+            ],
+            words_columns=[Column.ID, Column.ANSWER, Column.DEFINITION],
+            part_of_speech="noun",
+        ),
+        call(
+            "duplicated_definition",
+            Language.GERMAN,
+            [
+                {
+                    "id": "2",
+                    "part_of_speech": "verb",
+                    "definition": "definition 2",
+                    "answer": "word 2",
+                },
+                {
+                    "id": "4",
+                    "part_of_speech": "verb",
+                    "definition": "definition 2",
+                    "answer": "word 4",
+                },
+            ],
+            words_columns=[Column.ID, Column.ANSWER, Column.DEFINITION],
+            part_of_speech="verb",
+        ),
+    ]
+    assert mock_append_csv_rows.call_args_list == [
+        call(
+            DEST_DUP_DEFINITION_CSV,
+            [
+                {
+                    "id": "5",
+                    "part_of_speech": "noun",
+                    "definition": "definition 5",
+                    "answer": "word 5",
+                }
+            ],
+        ),
+        call(
+            DEST_DUP_DEFINITION_CSV,
+            [
+                {
+                    "id": "1",
+                    "part_of_speech": "noun",
+                    "definition": "detailed definition 1",
+                    "answer": "word 1",
+                },
+                {
+                    "id": "3",
+                    "part_of_speech": "noun",
+                    "definition": "detailed definition 3",
+                    "answer": "word 3",
+                },
+            ],
+        ),
+        call(
+            DEST_DUP_DEFINITION_CSV,
+            [
+                {
+                    "id": "2",
+                    "part_of_speech": "verb",
+                    "definition": "detailed definition 2",
+                    "answer": "word 2",
+                },
+                {
+                    "id": "4",
+                    "part_of_speech": "verb",
+                    "definition": "detailed definition 4",
                     "answer": "word 4",
                 },
             ],
