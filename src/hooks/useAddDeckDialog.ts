@@ -9,12 +9,14 @@ export const useAddDeckDialog = (
   drawerOpen: boolean,
   toggleDrawerOpen: () => void
 ): {
+  isLoading: boolean
   showAddDeckDialog: boolean
   addDeckDialogRef: React.RefObject<HTMLDialogElement>
 } => {
   const decks = useLiveQuery(getAllDecks)
   const { dialogRef: addDeckDialogRef, openDialog: openAddDeckDialog } =
     useDialog()
+  const isLoading = decks === undefined
   const showAddDeckDialog = decks !== undefined && decks.length === 0
 
   useEffect(() => {
@@ -34,5 +36,5 @@ export const useAddDeckDialog = (
     toggleDrawerOpen,
   ])
 
-  return { showAddDeckDialog, addDeckDialogRef }
+  return { isLoading, showAddDeckDialog, addDeckDialogRef }
 }

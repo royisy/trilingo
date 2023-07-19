@@ -15,7 +15,7 @@ vi.mock('./Menu', () => {
 
     return (
       <>
-        <h1> Menu component </h1>
+        <h1>Menu component</h1>
         <button
           onClick={() => {
             setMenuComponent('add-deck')
@@ -79,17 +79,21 @@ describe('Home', () => {
     })
   })
 
-  it('should render Menu by default and can switch to AddDeck', () => {
+  it('should render Menu by default and can switch to AddDeck', async () => {
     render(<Home />)
-    expect(screen.getByText('Menu component')).toBeInTheDocument()
-    fireEvent.click(screen.getByText('Add deck'))
-    expect(screen.getByText('AddDeck component')).toBeInTheDocument()
+    await waitFor(() => {
+      expect(screen.getByText('Menu component')).toBeInTheDocument()
+      fireEvent.click(screen.getByText('Add deck'))
+      expect(screen.getByText('AddDeck component')).toBeInTheDocument()
+    })
   })
 
-  it('should render Menu when Delete deck is clicked', () => {
+  it('should render Menu when Delete deck is clicked', async () => {
     render(<Home />)
-    expect(screen.getByText('Menu component')).toBeInTheDocument()
-    fireEvent.click(screen.getByText('Delete deck'))
-    expect(screen.getByText('Menu component')).toBeInTheDocument()
+    await waitFor(() => {
+      expect(screen.getByText('Menu component')).toBeInTheDocument()
+      fireEvent.click(screen.getByText('Delete deck'))
+      expect(screen.getByText('Menu component')).toBeInTheDocument()
+    })
   })
 })

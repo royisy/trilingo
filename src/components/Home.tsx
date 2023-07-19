@@ -22,7 +22,7 @@ import { Menu } from './Menu'
 export const Home = (): JSX.Element => {
   const { menuComponent, setMenuComponent, drawerOpen, toggleDrawerOpen } =
     useMenu()
-  const { showAddDeckDialog, addDeckDialogRef } = useAddDeckDialog(
+  const { isLoading, showAddDeckDialog, addDeckDialogRef } = useAddDeckDialog(
     setMenuComponent,
     drawerOpen,
     toggleDrawerOpen
@@ -31,6 +31,10 @@ export const Home = (): JSX.Element => {
   const [deckToDelete, setDeckToDelete] = useState<Deck | null>(null)
   const { dialogRef: deleteDeckDialogRef, openDialog: openDeleteDeckDialog } =
     useDialog()
+
+  if (isLoading) {
+    return <></>
+  }
 
   if (showAddDeckDialog) {
     return <AddDeckDialog dialogRef={addDeckDialogRef} />
