@@ -1,16 +1,13 @@
 from dataclasses import dataclass
-from enum import Enum
+from enum import StrEnum
 from pathlib import Path
 
 
-class Column(Enum):
+class Column(StrEnum):
     ID = "id"
     PART_OF_SPEECH = "part_of_speech"
     DEFINITION = "definition"
     ANSWER = "answer"
-
-    def __str__(self):
-        return self.value
 
 
 @dataclass
