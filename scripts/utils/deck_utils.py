@@ -50,11 +50,12 @@ def create_prompt(
     words_columns: list[Column] = [Column.ID, Column.ANSWER],
     part_of_speech: Optional[str] = None,
 ) -> str:
-    words_text = ""
+    word_text_list = []
     for word in words:
-        words_text += (
-            ",".join(str(word[column.value]) for column in words_columns) + "\n"
+        word_text_list.append(
+            ",".join(str(word[column.value]) for column in words_columns)
         )
+    words_text = "\n".join(word_text_list)
     template_file = f"./scripts/prompts/{lang}_{file_name}.txt"
     with open(template_file, "r") as f:
         prompt = f.read()
