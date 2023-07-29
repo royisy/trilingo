@@ -7,10 +7,16 @@ from scripts.deck_generator import (
     _add_definition,
     _add_part_of_speech,
     _convert_to_base_form,
+    _finalize,
     _remove_duplicated_answers,
     _remove_duplicated_definitions,
 )
-from scripts.models.deck_csv import DEST_DUP_DEFINITION_CSV, DUP_ANSWER_CSV, Column
+from scripts.models.deck_csv import (
+    DEST_DUP_DEFINITION_CSV,
+    DUP_ANSWER_CSV,
+    FINALIZE_CSV,
+    Column,
+)
 from scripts.models.language import Language
 
 CHUNK_SIZE = 10
@@ -359,6 +365,65 @@ def test_remove_duplicated_definitions(
                     "part_of_speech": "verb",
                     "definition": "detailed definition 4",
                     "answer": "word 4",
+                },
+            ],
+        ),
+    ]
+
+
+@patch("scripts.deck_generator.append_csv_rows")
+@patch("scripts.deck_generator.read_csv")
+@patch("scripts.deck_generator.init_csv")
+def test_finalize(
+    mock_init_csv: MagicMock,
+    mock_read_csv: MagicMock,
+    mock_append_csv_rows: MagicMock,
+):
+    mock_read_csv.return_value = [
+        {
+            "id": "3",
+            "part_of_speech": "noun",
+            "definition": "definition 3",
+            "answer": "word 3",
+        },
+        {
+            "id": "2",
+            "part_of_speech": "adjective",
+            "definition": "definition 2",
+            "answer": "word 2",
+        },
+        {
+            "id": "1",
+            "part_of_speech": "adverb",
+            "definition": "definition 1",
+            "answer": "word 1",
+        },
+    ]
+
+    _finalize()
+
+    mock_init_csv.assert_called_once()
+    assert mock_append_csv_rows.call_args_list == [
+        call(
+            FINALIZE_CSV,
+            [
+                {
+                    "id": "1",
+                    "part_of_speech": "adv.",
+                    "definition": "definition 1",
+                    "answer": "word 1",
+                },
+                {
+                    "id": "2",
+                    "part_of_speech": "adj.",
+                    "definition": "definition 2",
+                    "answer": "word 2",
+                },
+                {
+                    "id": "3",
+                    "part_of_speech": "noun",
+                    "definition": "definition 3",
+                    "answer": "word 3",
                 },
             ],
         ),
