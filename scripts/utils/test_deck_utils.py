@@ -42,8 +42,11 @@ def test_parts_of_speech():
             {"id": "1", "part_of_speech": "noun", "answer": "answer 1"},
             {"id": "2", "part_of_speech": "noun", "answer": "answer 2"},
         ],
+        "other": [
+            {"id": "3", "part_of_speech": "other", "answer": "answer 3"},
+        ],
         "verb": [
-            {"id": "3", "part_of_speech": "verb", "answer": "answer 3"},
+            {"id": "4", "part_of_speech": "verb", "answer": "answer 4"},
         ],
     }
     generator = parts_of_speech(pos_dict)
@@ -58,7 +61,7 @@ def test_parts_of_speech():
         (
             "verb",
             [
-                {"id": "3", "part_of_speech": "verb", "answer": "answer 3"},
+                {"id": "4", "part_of_speech": "verb", "answer": "answer 4"},
             ],
         ),
     ]

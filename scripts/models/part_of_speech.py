@@ -27,7 +27,10 @@ class PartOfSpeech(Enum):
 
 POS_TO_IGNORE = [
     PartOfSpeech.ABBREVIATION,
+    PartOfSpeech.ARTICLE,
     PartOfSpeech.FOREIGN,
+    PartOfSpeech.INTERJECTION,
+    PartOfSpeech.NUMERAL,
     PartOfSpeech.OTHER,
     PartOfSpeech.PROPER_NOUN,
 ]
