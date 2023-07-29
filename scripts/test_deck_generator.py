@@ -13,6 +13,8 @@ from scripts.deck_generator import (
 from scripts.models.deck_csv import DEST_DUP_DEFINITION_CSV, DUP_ANSWER_CSV, Column
 from scripts.models.language import Language
 
+CHUNK_SIZE = 10
+
 
 @patch("scripts.deck_generator.append_csv_rows")
 @patch("scripts.deck_generator.chat_completion")
@@ -32,7 +34,7 @@ def test_add_part_of_speech(
     ]
     mock_chat_completion.return_value = ("1,noun\n2,verb\n3,adjective\n4,adverb\n", 1)
 
-    total_tokens = _add_part_of_speech(Language.GERMAN)
+    total_tokens = _add_part_of_speech(CHUNK_SIZE, Language.GERMAN)
 
     assert total_tokens == 1
     mock_init_csv.assert_called_once()
@@ -76,7 +78,7 @@ def test_convert_to_base_form(
         ("2,base verb 2\n4,base verb 4\n", 1),
     ]
 
-    total_tokens = _convert_to_base_form(Language.GERMAN)
+    total_tokens = _convert_to_base_form(CHUNK_SIZE, Language.GERMAN)
 
     assert total_tokens == 3
     mock_init_csv.assert_called_once()
@@ -166,7 +168,7 @@ def test_add_definition(
         ("2,definition 2\n4,definition 4\n", 1),
     ]
 
-    total_tokens = _add_definition(Language.GERMAN)
+    total_tokens = _add_definition(CHUNK_SIZE, Language.GERMAN)
 
     assert total_tokens == 2
     mock_init_csv.assert_called_once()
@@ -262,7 +264,7 @@ def test_remove_duplicated_definitions(
         ("2,answer 2,detailed definition 2\n4,answer 4,detailed definition 4\n", 1),
     ]
 
-    total_tokens = _remove_duplicated_definitions(Language.GERMAN)
+    total_tokens = _remove_duplicated_definitions(CHUNK_SIZE, Language.GERMAN)
 
     assert total_tokens == 2
     mock_init_csv.assert_called_once()

@@ -46,7 +46,7 @@ if __name__ == "__main__":
 
 logger = logging.getLogger(__name__)
 
-CHUNK_SIZE = 100
+DEFAULT_CHUNK_SIZE = 100
 
 
 def main():
@@ -55,8 +55,14 @@ def main():
     parser.add_argument(
         "deck_process", choices=DeckProcess.get_choices(), help="Process"
     )
+    parser.add_argument("--chunk", help="Chunk size")
     parser.add_argument("--loglevel", default="INFO", help="Set log level")
     args = parser.parse_args()
+
+    chunk_size = DEFAULT_CHUNK_SIZE
+    if args.chunk:
+        chunk_size = int(args.chunk)
+    logger.info(f"chunk size: {chunk_size}")
 
     levels = {
         "DEBUG": logging.DEBUG,
@@ -93,12 +99,12 @@ def main():
     logger.info(f"total_tokens: {total_tokens}")
 
 
-def _add_part_of_speech(lang: Language) -> int:
+def _add_part_of_speech(chunk_size: int, lang: Language) -> int:
     init_csv(PART_OF_SPEECH_CSV)
     csv_rows = read_csv(SOURCE_CSV)
     total_tokens = 0
 
-    for chunk in chunks(csv_rows, CHUNK_SIZE):
+    for chunk in chunks(csv_rows, chunk_size):
         prompt = create_prompt("part_of_speech", lang, chunk)
         pos_list_str, tokens = chat_completion(prompt)
         if pos_list_str is None:
@@ -112,14 +118,14 @@ def _add_part_of_speech(lang: Language) -> int:
     return total_tokens
 
 
-def _convert_to_base_form(lang: Language) -> int:
+def _convert_to_base_form(chunk_size: int, lang: Language) -> int:
     init_csv(BASE_FORM_CSV)
     csv_rows = read_csv(PART_OF_SPEECH_CSV, remove_header=True)
     pos_dict = group_by_pos(csv_rows)
     total_tokens = 0
 
     for part_of_speech, csv_rows in parts_of_speech(pos_dict):
-        for chunk in chunks(csv_rows, CHUNK_SIZE):
+        for chunk in chunks(csv_rows, chunk_size):
             if part_of_speech == PartOfSpeech.NOUN:
                 prompt = create_prompt("base_form_noun", lang, chunk)
             else:
@@ -163,14 +169,14 @@ def _remove_duplicated_answers():
         append_csv_rows(DUP_ANSWER_CSV, sorted_csv_rows)
 
 
-def _add_definition(lang: Language) -> int:
+def _add_definition(chunk_size: int, lang: Language) -> int:
     init_csv(DEFINITION_CSV)
     csv_rows = read_csv(DUP_ANSWER_CSV, remove_header=True)
     pos_dict = group_by_pos(csv_rows)
     total_tokens = 0
 
     for part_of_speech, csv_rows in parts_of_speech(pos_dict):
-        for chunk in chunks(csv_rows, CHUNK_SIZE):
+        for chunk in chunks(csv_rows, chunk_size):
             if part_of_speech == PartOfSpeech.NOUN:
                 prompt = create_prompt("definition_noun", lang, chunk)
             else:
@@ -190,7 +196,7 @@ def _add_definition(lang: Language) -> int:
     return total_tokens
 
 
-def _remove_duplicated_definitions(lang: Language) -> int:
+def _remove_duplicated_definitions(chunk_size: int, lang: Language) -> int:
     init_csv(DEST_DUP_DEFINITION_CSV)
     csv_rows = read_csv(SRC_DUP_DEFINITION_CSV, remove_header=True)
     logger.info(f"total definitions: {len(csv_rows)}")
@@ -201,7 +207,7 @@ def _remove_duplicated_definitions(lang: Language) -> int:
     total_tokens = 0
 
     for part_of_speech, csv_rows in parts_of_speech(pos_dict):
-        for chunk in chunks(csv_rows, CHUNK_SIZE):
+        for chunk in chunks(csv_rows, chunk_size):
             prompt = create_prompt(
                 "duplicated_definition",
                 lang,
