@@ -84,15 +84,15 @@ def main():
 
     total_tokens = 0
     if deck_process == DeckProcess.PART_OF_SPEECH:
-        total_tokens = _add_part_of_speech(lang)
+        total_tokens = _add_part_of_speech(chunk_size, lang)
     elif deck_process == DeckProcess.BASE_FORM:
-        total_tokens = _convert_to_base_form(lang)
+        total_tokens = _convert_to_base_form(chunk_size, lang)
     elif deck_process == DeckProcess.REMOVE_DUP_ANSWER:
         _remove_duplicated_answers()
     elif deck_process == DeckProcess.DEFINITION:
-        total_tokens = _add_definition(lang)
+        total_tokens = _add_definition(chunk_size, lang)
     elif deck_process == DeckProcess.REMOVE_DUP_DEFINITION:
-        total_tokens = _remove_duplicated_definitions(lang)
+        total_tokens = _remove_duplicated_definitions(chunk_size, lang)
     elif deck_process == DeckProcess.FINALIZE:
         _finalize()
 
