@@ -417,13 +417,13 @@ def test_finalize(
 ):
     mock_read_csv.return_value = [
         {
-            "id": "3",
+            "id": "5",
             "part_of_speech": "noun",
             "definition": "definition 3",
             "answer": "word 3",
         },
         {
-            "id": "2",
+            "id": "3",
             "part_of_speech": "adjective",
             "definition": "definition 2",
             "answer": "word 2",

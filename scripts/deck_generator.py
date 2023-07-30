@@ -28,7 +28,6 @@ from scripts.utils.csv_utils import (
 from scripts.utils.deck_utils import (
     check_definition_length,
     chunks,
-    convert_pos,
     create_prompt,
     get_duplicated_definitions,
     group_by_pos,
@@ -39,6 +38,7 @@ from scripts.utils.deck_utils import (
     remove_invalid_part_of_speech,
     sort_by_answer,
     sort_by_id,
+    update_values,
 )
 
 if __name__ == "__main__":
@@ -241,12 +241,12 @@ def _finalize():
     csv_rows = read_csv(DUP_DEFINITION_CSV, remove_header=True)
     csv_rows = sort_by_id(csv_rows)
 
-    converted_csv_rows = []
-    for row in csv_rows:
-        converted_row = convert_pos(row)
-        converted_csv_rows.append(converted_row)
+    updated_csv_rows = []
+    for index, row in enumerate(csv_rows):
+        updated_row = update_values(row, index)
+        updated_csv_rows.append(updated_row)
 
-    append_csv_rows(FINALIZE_CSV, converted_csv_rows)
+    append_csv_rows(FINALIZE_CSV, updated_csv_rows)
 
 
 if __name__ == "__main__":

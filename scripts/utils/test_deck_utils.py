@@ -2,7 +2,6 @@ from scripts.models.language import Language
 from scripts.utils.deck_utils import (
     check_definition_length,
     chunks,
-    convert_pos,
     get_duplicated_definitions,
     group_by_pos,
     lowercase_article,
@@ -12,6 +11,7 @@ from scripts.utils.deck_utils import (
     remove_invalid_part_of_speech,
     sort_by_answer,
     sort_by_id,
+    update_values,
 )
 
 
@@ -292,9 +292,10 @@ def test_convert_pos():
         "definition": "definition 1",
         "answer": "answer 1",
     }
-    result = convert_pos(csv_row)
+    index = 1
+    result = update_values(csv_row, index)
     assert result == {
-        "id": "1",
+        "id": "2",
         "part_of_speech": "adj.",
         "definition": "definition 1",
         "answer": "answer 1",

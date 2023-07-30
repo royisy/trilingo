@@ -152,9 +152,10 @@ def check_definition_length(csv_rows: list[dict]):
             )
 
 
-def convert_pos(row: dict) -> dict:
+def update_values(row: dict, index: int) -> dict:
     new_row = row.copy()
     pos = row[Column.PART_OF_SPEECH.value]
     abbr_pos = ABBREVIATED_POS[pos]
+    new_row[Column.ID.value] = str(index + 1)
     new_row[Column.PART_OF_SPEECH.value] = abbr_pos
     return new_row
