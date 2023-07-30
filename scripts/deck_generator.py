@@ -7,12 +7,12 @@ from scripts.conf.logging_config import logging_config
 from scripts.models.deck_csv import (
     BASE_FORM_CSV,
     DEFINITION_CSV,
-    DEST_DUP_DEFINITION_CSV,
     DUP_ANSWER_CSV,
+    DUP_DEFINITION_CSV,
     FINALIZE_CSV,
+    OLD_DUP_DEFINITION_CSV,
     PART_OF_SPEECH_CSV,
     SOURCE_CSV,
-    SRC_DUP_DEFINITION_CSV,
     Column,
 )
 from scripts.models.deck_process import DeckProcess
@@ -197,12 +197,15 @@ def _add_definition(chunk_size: int, lang: Language) -> int:
 
 
 def _remove_duplicated_definitions(chunk_size: int, lang: Language) -> int:
-    init_csv(DEST_DUP_DEFINITION_CSV)
-    csv_rows = read_csv(SRC_DUP_DEFINITION_CSV, remove_header=True)
+    init_csv(OLD_DUP_DEFINITION_CSV)
+    csv_rows = read_csv(DUP_DEFINITION_CSV, remove_header=True)
+    append_csv_rows(OLD_DUP_DEFINITION_CSV, csv_rows)
+
     logger.info(f"total definitions: {len(csv_rows)}")
+    init_csv(DUP_DEFINITION_CSV)
     duplicates, non_duplicates = get_duplicated_definitions(csv_rows)
     logger.info(f"duplicated definitions: {len(duplicates)}")
-    append_csv_rows(DEST_DUP_DEFINITION_CSV, non_duplicates)
+    append_csv_rows(DUP_DEFINITION_CSV, non_duplicates)
     pos_dict = group_by_pos(duplicates)
     total_tokens = 0
 
@@ -223,9 +226,9 @@ def _remove_duplicated_definitions(chunk_size: int, lang: Language) -> int:
                 definition_list_str, [Column.ID, Column.ANSWER, Column.DEFINITION]
             )
             merged_csv = merge_csv_data(csv_rows, definition_list, Column.DEFINITION)
-            append_csv_rows(DEST_DUP_DEFINITION_CSV, merged_csv)
+            append_csv_rows(DUP_DEFINITION_CSV, merged_csv)
 
-    updated_csv_rows = read_csv(DEST_DUP_DEFINITION_CSV, remove_header=True)
+    updated_csv_rows = read_csv(DUP_DEFINITION_CSV, remove_header=True)
     duplicates, _ = get_duplicated_definitions(updated_csv_rows)
     logger.info(f"remaining duplicated definitions: {len(duplicates)}")
     check_definition_length(updated_csv_rows)
@@ -235,7 +238,7 @@ def _remove_duplicated_definitions(chunk_size: int, lang: Language) -> int:
 
 def _finalize():
     init_csv(FINALIZE_CSV)
-    csv_rows = read_csv(DEST_DUP_DEFINITION_CSV, remove_header=True)
+    csv_rows = read_csv(DUP_DEFINITION_CSV, remove_header=True)
     csv_rows = sort_by_id(csv_rows)
 
     converted_csv_rows = []

@@ -58,8 +58,8 @@ DEFINITION_CSV = DeckCsv(
         Column.ANSWER,
     ],
 )
-SRC_DUP_DEFINITION_CSV = DeckCsv(
-    CSV_DIR / "src_dup_definition.csv",
+DUP_DEFINITION_CSV = DeckCsv(
+    CSV_DIR / "dup_definition.csv",
     [
         Column.ID,
         Column.PART_OF_SPEECH,
@@ -67,8 +67,8 @@ SRC_DUP_DEFINITION_CSV = DeckCsv(
         Column.ANSWER,
     ],
 )
-DEST_DUP_DEFINITION_CSV = DeckCsv(
-    CSV_DIR / "dest_dup_definition.csv",
+OLD_DUP_DEFINITION_CSV = DeckCsv(
+    CSV_DIR / "dup_definition_old.csv",
     [
         Column.ID,
         Column.PART_OF_SPEECH,
