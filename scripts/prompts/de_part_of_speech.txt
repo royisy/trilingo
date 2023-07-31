@@ -1,17 +1,13 @@
 This is a list of IDs and their corresponding German words.
 For each word, provide the ID and part of speech using the following format:
-"""
 ID,part of speech
-"""
+
 The part of speech should be one of the following:
-"""
 {pos_list}
-"""
+
 If the word is an abbreviation, set it as abbreviation.
 If the word is not a German word, set it as foreign.
 If there is no matching part of speech, set it as other.
 Your response should include only the list.
 
-"""
 {words}
-"""

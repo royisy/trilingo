@@ -1,10 +1,7 @@
 This is a list of IDs and their corresponding German nouns.
 Add a definite article to the beginning of each noun using the following format:
-"""
 ID,noun with a definite article
-"""
+
 Your response should include only the list.
 
-"""
 {words}
-"""
