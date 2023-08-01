@@ -1,8 +1,8 @@
-This is a list of IDs and their corresponding German {part_of_speech}s.
+This is a list of IDs and their corresponding {lang} {part_of_speech}s.
 For each {part_of_speech}, provide the ID and the corresponding English word using the following format:
 ID,English word
 
-If the English word corresponds to multiple German words,
+If the English word corresponds to multiple {lang} words,
 include a concise explanation to differentiate them.
 However, make sure that the English word itself is limited to less than 30 characters.
 Your response should include only the list.

@@ -3,7 +3,7 @@ import math
 from typing import Generator, Optional
 
 from scripts.models.deck_csv import Column
-from scripts.models.language import Language
+from scripts.models.language import LANGUAGE_NAME, Language
 from scripts.models.part_of_speech import (
     ABBREVIATED_POS,
     ARTICLES_BY_LANG,
@@ -56,10 +56,11 @@ def create_prompt(
             ",".join(str(word[column.value]) for column in words_columns)
         )
     words_text = "\n".join(word_text_list)
-    template_file = f"./scripts/prompts/{lang}_{file_name}.txt"
+    template_file = f"./scripts/prompts/{file_name}.txt"
     with open(template_file, "r") as f:
         prompt = f.read()
         prompt = prompt.format(
+            lang=LANGUAGE_NAME[lang],
             pos_list=",".join([pos.value for pos in POS_BY_LANG[lang]]),
             part_of_speech=part_of_speech,
             words=words_text,

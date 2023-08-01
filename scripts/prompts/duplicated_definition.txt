@@ -1,10 +1,10 @@
-This is a list of IDs and their corresponding German {part_of_speech}s and English explanations.
+This is a list of IDs and their corresponding {lang} {part_of_speech}s and English explanations.
 The format follows:
-ID,German word,English explanation
+ID,{lang} word,English explanation
 
 There are duplicated English explanations in the list.
 Provide the updated list with more detailed English explanation so that they become unique using the following format:
-ID,German word,updated English explanation
+ID,{lang} word,updated English explanation
 
 However, make sure that the English explanation itself is limited to less than 30 characters.
 Your response should include only the list.
