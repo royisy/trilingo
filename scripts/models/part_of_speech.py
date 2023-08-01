@@ -1,7 +1,5 @@
 from enum import Enum
 
-from scripts.models.language import Language
-
 
 class PartOfSpeech(Enum):
     ABBREVIATION = "abbreviation"
@@ -47,22 +45,3 @@ ABBREVIATED_POS = {
     PartOfSpeech.PRONOUN.value: "pron.",
     PartOfSpeech.VERB.value: "verb",
 }
-
-
-POS_BY_LANG = {
-    Language.GERMAN: [
-        PartOfSpeech.ADJECTIVE,
-        PartOfSpeech.ADVERB,
-        PartOfSpeech.ARTICLE,
-        PartOfSpeech.CONJUNCTION,
-        PartOfSpeech.INTERJECTION,
-        PartOfSpeech.NOUN,
-        PartOfSpeech.NUMERAL,
-        PartOfSpeech.PREPOSITION,
-        PartOfSpeech.PRONOUN,
-        PartOfSpeech.PROPER_NOUN,
-        PartOfSpeech.VERB,
-    ]
-}
-
-ARTICLES_BY_LANG = {Language.GERMAN: ["der", "die", "das"]}

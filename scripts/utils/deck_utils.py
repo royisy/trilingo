@@ -3,13 +3,13 @@ import math
 from typing import Generator, Optional
 
 from scripts.models.deck_csv import Column
-from scripts.models.language import LANGUAGE_NAME, Language
-from scripts.models.part_of_speech import (
-    ABBREVIATED_POS,
+from scripts.models.language import (
     ARTICLES_BY_LANG,
+    LANGUAGE_NAME,
     POS_BY_LANG,
-    POS_TO_IGNORE,
+    Language,
 )
+from scripts.models.part_of_speech import ABBREVIATED_POS, POS_TO_IGNORE
 
 logger = logging.getLogger(__name__)
 
