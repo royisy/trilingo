@@ -2,7 +2,13 @@ import logging
 
 logging_config = dict(
     version=1,
-    formatters={"f": {"format": "%(asctime)s - %(levelname)s - %(message)s"}},
+    formatters={
+        "f": {
+            "format": (
+                "%(asctime)s - %(levelname)s - %(filename)s:%(lineno)d - %(message)s"
+            )
+        }
+    },
     handlers={
         "console": {
             "class": "logging.StreamHandler",
