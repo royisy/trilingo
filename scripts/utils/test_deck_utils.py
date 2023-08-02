@@ -1,3 +1,5 @@
+import pytest
+
 from scripts.models.language import Language
 from scripts.utils.deck_utils import (
     check_definition_length,
@@ -285,18 +287,40 @@ def test_check_definition_length(caplog):
     assert len(caplog.record_tuples) == 2
 
 
-def test_convert_pos():
-    csv_row = {
-        "id": "1",
-        "part_of_speech": "adjective",
-        "definition": "definition 1",
-        "answer": "answer 1",
-    }
+@pytest.mark.parametrize(
+    "csv_row, expected",
+    [
+        (
+            {
+                "id": "1",
+                "part_of_speech": "adjective",
+                "definition": "definition 1",
+                "answer": "answer 1",
+            },
+            {
+                "id": "2",
+                "part_of_speech": "adj.",
+                "definition": "definition 1",
+                "answer": "answer 1",
+            },
+        ),
+        (
+            {
+                "id": "1",
+                "part_of_speech": "adj.",
+                "definition": "definition 1",
+                "answer": "answer 1",
+            },
+            {
+                "id": "2",
+                "part_of_speech": "adj.",
+                "definition": "definition 1",
+                "answer": "answer 1",
+            },
+        ),
+    ],
+)
+def test_convert_pos(csv_row, expected):
     index = 1
     result = update_values(csv_row, index)
-    assert result == {
-        "id": "2",
-        "part_of_speech": "adj.",
-        "definition": "definition 1",
-        "answer": "answer 1",
-    }
+    assert result == expected
