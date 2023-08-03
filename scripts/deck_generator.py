@@ -104,16 +104,18 @@ def _add_part_of_speech(chunk_size: int, lang: Language) -> int:
     csv_rows = read_csv(SOURCE_CSV)
     total_tokens = 0
 
-    for chunk in chunks(csv_rows, chunk_size):
-        prompt = create_prompt("part_of_speech", lang, chunk)
+    for chunk_csv_rows in chunks(csv_rows, chunk_size):
+        prompt = create_prompt("part_of_speech", lang, chunk_csv_rows)
         pos_list_str, tokens = chat_completion(prompt)
         if pos_list_str is None:
             continue
         total_tokens += tokens
         pos_list = read_csv_str(pos_list_str, [Column.ID, Column.PART_OF_SPEECH])
         filtered_pos_list = remove_invalid_part_of_speech(pos_list, lang)
-        merged_csv = merge_csv_data(csv_rows, filtered_pos_list, Column.PART_OF_SPEECH)
-        append_csv_rows(PART_OF_SPEECH_CSV, merged_csv)
+        merged_csv_rows = merge_csv_data(
+            chunk_csv_rows, filtered_pos_list, Column.PART_OF_SPEECH
+        )
+        append_csv_rows(PART_OF_SPEECH_CSV, merged_csv_rows)
 
     return total_tokens
 
@@ -124,23 +126,23 @@ def _convert_to_base_form(chunk_size: int, lang: Language) -> int:
     pos_dict = group_by_pos(csv_rows)
     total_tokens = 0
 
-    for part_of_speech, csv_rows in parts_of_speech(pos_dict):
-        for chunk in chunks(csv_rows, chunk_size):
+    for part_of_speech, pos_csv_rows in parts_of_speech(pos_dict):
+        for chunk_csv_rows in chunks(pos_csv_rows, chunk_size):
             if part_of_speech == PartOfSpeech.NOUN:
-                prompt = create_prompt("base_form_noun", lang, chunk)
+                prompt = create_prompt("base_form_noun", lang, chunk_csv_rows)
             else:
                 prompt = create_prompt(
-                    "base_form", lang, chunk, part_of_speech=part_of_speech
+                    "base_form", lang, chunk_csv_rows, part_of_speech=part_of_speech
                 )
             base_list_str, tokens = chat_completion(prompt)
             if base_list_str is None:
                 continue
             total_tokens += tokens
             base_list = read_csv_str(base_list_str, [Column.ID, Column.ANSWER])
-            merged_csv = merge_csv_data(csv_rows, base_list, Column.ANSWER)
+            merged_csv_rows = merge_csv_data(chunk_csv_rows, base_list, Column.ANSWER)
 
             if part_of_speech == PartOfSpeech.NOUN:
-                prompt = create_prompt("article", lang, merged_csv)
+                prompt = create_prompt("article", lang, merged_csv_rows)
                 article_list_str, tokens = chat_completion(prompt)
                 if article_list_str is None:
                     continue
@@ -148,12 +150,14 @@ def _convert_to_base_form(chunk_size: int, lang: Language) -> int:
                 article_list = read_csv_str(
                     article_list_str, [Column.ID, Column.ANSWER]
                 )
-                merged_csv = merge_csv_data(merged_csv, article_list, Column.ANSWER)
-                merged_csv = lowercase_article(merged_csv, lang)
+                merged_csv_rows = merge_csv_data(
+                    merged_csv_rows, article_list, Column.ANSWER
+                )
+                merged_csv_rows = lowercase_article(merged_csv_rows, lang)
             else:
-                merged_csv = lowercase_word(merged_csv)
+                merged_csv_rows = lowercase_word(merged_csv_rows)
 
-            append_csv_rows(BASE_FORM_CSV, merged_csv)
+            append_csv_rows(BASE_FORM_CSV, merged_csv_rows)
 
     return total_tokens
 
@@ -164,8 +168,8 @@ def _remove_duplicated_answers():
     filtered_csv_rows = remove_duplicated_answers(csv_rows)
     pos_dict = group_by_pos(filtered_csv_rows)
 
-    for _, csv_rows in parts_of_speech(pos_dict):
-        sorted_csv_rows = sort_by_answer(csv_rows)
+    for _, pos_csv_rows in parts_of_speech(pos_dict):
+        sorted_csv_rows = sort_by_answer(pos_csv_rows)
         append_csv_rows(DUP_ANSWER_CSV, sorted_csv_rows)
 
 
@@ -175,13 +179,13 @@ def _add_definition(chunk_size: int, lang: Language) -> int:
     pos_dict = group_by_pos(csv_rows)
     total_tokens = 0
 
-    for part_of_speech, csv_rows in parts_of_speech(pos_dict):
-        for chunk in chunks(csv_rows, chunk_size):
+    for part_of_speech, pos_csv_rows in parts_of_speech(pos_dict):
+        for chunk_csv_rows in chunks(pos_csv_rows, chunk_size):
             if part_of_speech == PartOfSpeech.NOUN:
-                prompt = create_prompt("definition_noun", lang, chunk)
+                prompt = create_prompt("definition_noun", lang, chunk_csv_rows)
             else:
                 prompt = create_prompt(
-                    "definition", lang, chunk, part_of_speech=part_of_speech
+                    "definition", lang, chunk_csv_rows, part_of_speech=part_of_speech
                 )
             definition_list_str, tokens = chat_completion(prompt)
             if definition_list_str is None:
@@ -190,8 +194,10 @@ def _add_definition(chunk_size: int, lang: Language) -> int:
             definition_list = read_csv_str(
                 definition_list_str, [Column.ID, Column.DEFINITION]
             )
-            merged_csv = merge_csv_data(csv_rows, definition_list, Column.DEFINITION)
-            append_csv_rows(DEFINITION_CSV, merged_csv)
+            merged_csv_rows = merge_csv_data(
+                chunk_csv_rows, definition_list, Column.DEFINITION
+            )
+            append_csv_rows(DEFINITION_CSV, merged_csv_rows)
 
     return total_tokens
 
@@ -209,12 +215,12 @@ def _remove_duplicated_definitions(chunk_size: int, lang: Language) -> int:
     pos_dict = group_by_pos(duplicates)
     total_tokens = 0
 
-    for part_of_speech, csv_rows in parts_of_speech(pos_dict):
-        for chunk in chunks(csv_rows, chunk_size):
+    for part_of_speech, pos_csv_rows in parts_of_speech(pos_dict):
+        for chunk_csv_rows in chunks(pos_csv_rows, chunk_size):
             prompt = create_prompt(
                 "duplicated_definition",
                 lang,
-                chunk,
+                chunk_csv_rows,
                 words_columns=[Column.ID, Column.ANSWER, Column.DEFINITION],
                 part_of_speech=part_of_speech,
             )
@@ -225,8 +231,10 @@ def _remove_duplicated_definitions(chunk_size: int, lang: Language) -> int:
             definition_list = read_csv_str(
                 definition_list_str, [Column.ID, Column.ANSWER, Column.DEFINITION]
             )
-            merged_csv = merge_csv_data(csv_rows, definition_list, Column.DEFINITION)
-            append_csv_rows(DUP_DEFINITION_CSV, merged_csv)
+            merged_csv_rows = merge_csv_data(
+                chunk_csv_rows, definition_list, Column.DEFINITION
+            )
+            append_csv_rows(DUP_DEFINITION_CSV, merged_csv_rows)
 
     updated_csv_rows = read_csv(DUP_DEFINITION_CSV, remove_header=True)
     duplicates, _ = get_duplicated_definitions(updated_csv_rows)
