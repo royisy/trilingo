@@ -44,28 +44,28 @@ def read_csv_str(csv_str: str, columns: list[Column]) -> list[dict]:
     csv_reader = csv.DictReader(
         csv_file, fieldnames=[column.value for column in columns]
     )
-    csv_list = []
+    csv_rows = []
     for row in csv_reader:
         if not all([key and value for key, value in row.items()]):
             logger.error(f"invalid csv row: {row}")
             continue
         row = {key.strip(): value.strip() for key, value in row.items()}
-        csv_list.append(row)
-    return csv_list
+        csv_rows.append(row)
+    return csv_rows
 
 
 def merge_csv_data(
-    src_data: list[dict], add_data: list[dict], merge_column: Column
+    src_csv_rows: list[dict], add_csv_rows: list[dict], merge_column: Column
 ) -> list[dict]:
-    merged_data = []
-    for src_row in src_data:
-        for add_row in add_data:
+    merged_csv_rows = []
+    for src_row in src_csv_rows:
+        for add_row in add_csv_rows:
             if src_row[Column.ID.value] == add_row[Column.ID.value]:
                 merged_row = src_row.copy()
                 merged_row[merge_column.value] = add_row[merge_column.value]
-                merged_data.append(merged_row)
+                merged_csv_rows.append(merged_row)
                 break
-    return merged_data
+    return merged_csv_rows
 
 
 def append_csv_rows(csv_file: DeckCsv, csv_rows: list[dict]):

@@ -30,16 +30,16 @@ def test_read_csv_str(csv_str, expected):
 
 
 def test_merge_csv_data():
-    src_data = [
+    src_csv_rows = [
         {"id": "1", "answer": "answer 1"},
         {"id": "2", "answer": "answer 2"},
         {"id": "3", "answer": "answer 3"},
     ]
-    add_data = [
+    add_csv_rows = [
         {"id": "1", "part_of_speech": "pos 1"},
         {"id": "3", "part_of_speech": "pos 3"},
     ]
-    result = merge_csv_data(src_data, add_data, Column.PART_OF_SPEECH)
+    result = merge_csv_data(src_csv_rows, add_csv_rows, Column.PART_OF_SPEECH)
     expected = [
         {"id": "1", "answer": "answer 1", "part_of_speech": "pos 1"},
         {"id": "3", "answer": "answer 3", "part_of_speech": "pos 3"},
