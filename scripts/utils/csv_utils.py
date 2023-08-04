@@ -39,7 +39,16 @@ def read_csv(csv_file: DeckCsv, remove_header: bool = False) -> list[dict]:
     return csv_rows
 
 
-def read_csv_str(csv_str: str, columns: list[Column]) -> list[dict]:
+def read_csv_str(
+    csv_str: str, columns: list[Column], src_csv_rows: list[dict]
+) -> list[dict] | None:
+    csv_rows_from_str = _get_csv_rows_from_str(csv_str, columns)
+    if _validate_csv_rows(src_csv_rows, csv_rows_from_str):
+        return csv_rows_from_str
+    return None
+
+
+def _get_csv_rows_from_str(csv_str: str, columns: list[Column]) -> list[dict]:
     csv_file = io.StringIO(csv_str)
     csv_reader = csv.DictReader(
         csv_file, fieldnames=[column.value for column in columns]
@@ -52,6 +61,15 @@ def read_csv_str(csv_str: str, columns: list[Column]) -> list[dict]:
         row = {key.strip(): value.strip() for key, value in row.items()}
         csv_rows.append(row)
     return csv_rows
+
+
+def _validate_csv_rows(src_csv_rows: list[dict], csv_rows_from_str: list[dict]) -> bool:
+    src_ids = {row[Column.ID.value] for row in src_csv_rows}
+    str_ids = {row[Column.ID.value] for row in csv_rows_from_str}
+    if src_ids != str_ids:
+        logger.error(f"ids are not the same: {src_ids} != {str_ids}")
+        return False
+    return True
 
 
 def merge_csv_data(

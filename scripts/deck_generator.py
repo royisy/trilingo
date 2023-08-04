@@ -110,7 +110,11 @@ def _add_part_of_speech(chunk_size: int, lang: Language) -> int:
         if pos_list_str is None:
             continue
         total_tokens += tokens
-        pos_list = read_csv_str(pos_list_str, [Column.ID, Column.PART_OF_SPEECH])
+        pos_list = read_csv_str(
+            pos_list_str, [Column.ID, Column.PART_OF_SPEECH], chunk_csv_rows
+        )
+        if pos_list is None:
+            continue
         filtered_pos_list = remove_invalid_part_of_speech(pos_list, lang)
         merged_csv_rows = merge_csv_data(
             chunk_csv_rows, filtered_pos_list, Column.PART_OF_SPEECH
@@ -138,7 +142,11 @@ def _convert_to_base_form(chunk_size: int, lang: Language) -> int:
             if base_list_str is None:
                 continue
             total_tokens += tokens
-            base_list = read_csv_str(base_list_str, [Column.ID, Column.ANSWER])
+            base_list = read_csv_str(
+                base_list_str, [Column.ID, Column.ANSWER], chunk_csv_rows
+            )
+            if base_list is None:
+                continue
             merged_csv_rows = merge_csv_data(chunk_csv_rows, base_list, Column.ANSWER)
 
             if part_of_speech == PartOfSpeech.NOUN:
@@ -148,8 +156,10 @@ def _convert_to_base_form(chunk_size: int, lang: Language) -> int:
                     continue
                 total_tokens += tokens
                 article_list = read_csv_str(
-                    article_list_str, [Column.ID, Column.ANSWER]
+                    article_list_str, [Column.ID, Column.ANSWER], chunk_csv_rows
                 )
+                if article_list is None:
+                    continue
                 merged_csv_rows = merge_csv_data(
                     merged_csv_rows, article_list, Column.ANSWER
                 )
@@ -192,8 +202,10 @@ def _add_definition(chunk_size: int, lang: Language) -> int:
                 continue
             total_tokens += tokens
             definition_list = read_csv_str(
-                definition_list_str, [Column.ID, Column.DEFINITION]
+                definition_list_str, [Column.ID, Column.DEFINITION], chunk_csv_rows
             )
+            if definition_list is None:
+                continue
             merged_csv_rows = merge_csv_data(
                 chunk_csv_rows, definition_list, Column.DEFINITION
             )
@@ -229,8 +241,12 @@ def _remove_duplicated_definitions(chunk_size: int, lang: Language) -> int:
                 continue
             total_tokens += tokens
             definition_list = read_csv_str(
-                definition_list_str, [Column.ID, Column.ANSWER, Column.DEFINITION]
+                definition_list_str,
+                [Column.ID, Column.ANSWER, Column.DEFINITION],
+                chunk_csv_rows,
             )
+            if definition_list is None:
+                continue
             merged_csv_rows = merge_csv_data(
                 chunk_csv_rows, definition_list, Column.DEFINITION
             )

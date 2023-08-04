@@ -1,7 +1,35 @@
 import pytest
 
 from scripts.models.deck_csv import Column
-from scripts.utils.csv_utils import _convert_to_list, merge_csv_data, read_csv_str
+from scripts.utils.csv_utils import (
+    _convert_to_list,
+    _get_csv_rows_from_str,
+    _validate_csv_rows,
+    merge_csv_data,
+    read_csv_str,
+)
+
+
+@pytest.mark.parametrize(
+    "csv_str, expected",
+    [
+        (
+            "1,pos 1\n2,pos 2\n",
+            [
+                {"id": "1", "part_of_speech": "pos 1"},
+                {"id": "2", "part_of_speech": "pos 2"},
+            ],
+        ),
+        ("1,pos 1\n", None),
+    ],
+)
+def test_read_csv_str(csv_str, expected):
+    columns = [Column.ID, Column.PART_OF_SPEECH]
+    src_csv_rows = [
+        {"id": "1", "answer": "answer 1"},
+        {"id": "2", "answer": "answer 2"},
+    ]
+    assert read_csv_str(csv_str, columns, src_csv_rows) == expected
 
 
 @pytest.mark.parametrize(
@@ -23,10 +51,44 @@ from scripts.utils.csv_utils import _convert_to_list, merge_csv_data, read_csv_s
         ),
     ],
 )
-def test_read_csv_str(csv_str, expected):
+def test_get_csv_rows_from_str(csv_str, expected):
     columns = [Column.ID, Column.ANSWER]
-    result = read_csv_str(csv_str, columns)
+    result = _get_csv_rows_from_str(csv_str, columns)
     assert result == expected
+
+
+@pytest.mark.parametrize(
+    "csv_rows_from_str, expected",
+    [
+        (
+            [
+                {"id": "1", "part_of_speech": "pos 1"},
+                {"id": "2", "part_of_speech": "pos 2"},
+            ],
+            True,
+        ),
+        (
+            [
+                {"id": "1", "part_of_speech": "pos 1"},
+            ],
+            False,
+        ),
+        (
+            [
+                {"id": "1", "part_of_speech": "pos 1"},
+                {"id": "2", "part_of_speech": "pos 2"},
+                {"id": "3", "part_of_speech": "pos 3"},
+            ],
+            False,
+        ),
+    ],
+)
+def test_validate_csv_rows(csv_rows_from_str, expected):
+    src_csv_rows = [
+        {"id": "1", "answer": "answer 1"},
+        {"id": "2", "answer": "answer 2"},
+    ]
+    assert _validate_csv_rows(src_csv_rows, csv_rows_from_str) == expected
 
 
 def test_merge_csv_data():
