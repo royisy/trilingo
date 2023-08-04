@@ -2,7 +2,6 @@ import argparse
 import logging
 from logging.config import dictConfig
 
-from scripts.clients.openai_api_client import chat_completion
 from scripts.conf.logging_config import logging_config
 from scripts.models.deck_csv import (
     BASE_FORM_CSV,
@@ -18,17 +17,12 @@ from scripts.models.deck_csv import (
 from scripts.models.deck_process import DeckProcess
 from scripts.models.language import Language
 from scripts.models.part_of_speech import PartOfSpeech
-from scripts.utils.csv_utils import (
-    append_csv_rows,
-    init_csv,
-    merge_csv_data,
-    read_csv,
-    read_csv_str,
-)
+from scripts.utils.csv_utils import append_csv_rows, init_csv, merge_csv_data, read_csv
 from scripts.utils.deck_utils import (
     check_definition_length,
     chunks,
     create_prompt,
+    get_data_from_chat_gpt,
     get_duplicated_definitions,
     group_by_pos,
     lowercase_article,
@@ -106,13 +100,10 @@ def _add_part_of_speech(chunk_size: int, lang: Language) -> int:
 
     for chunk_csv_rows in chunks(csv_rows, chunk_size):
         prompt = create_prompt("part_of_speech", lang, chunk_csv_rows)
-        pos_list_str, tokens = chat_completion(prompt)
-        if pos_list_str is None:
-            continue
-        total_tokens += tokens
-        pos_list = read_csv_str(
-            pos_list_str, [Column.ID, Column.PART_OF_SPEECH], chunk_csv_rows
+        pos_list, tokens = get_data_from_chat_gpt(
+            prompt, [Column.ID, Column.PART_OF_SPEECH], chunk_csv_rows
         )
+        total_tokens += tokens
         if pos_list is None:
             continue
         filtered_pos_list = remove_invalid_part_of_speech(pos_list, lang)
@@ -138,26 +129,20 @@ def _convert_to_base_form(chunk_size: int, lang: Language) -> int:
                 prompt = create_prompt(
                     "base_form", lang, chunk_csv_rows, part_of_speech=part_of_speech
                 )
-            base_list_str, tokens = chat_completion(prompt)
-            if base_list_str is None:
-                continue
-            total_tokens += tokens
-            base_list = read_csv_str(
-                base_list_str, [Column.ID, Column.ANSWER], chunk_csv_rows
+            base_list, tokens = get_data_from_chat_gpt(
+                prompt, [Column.ID, Column.ANSWER], chunk_csv_rows
             )
+            total_tokens += tokens
             if base_list is None:
                 continue
             merged_csv_rows = merge_csv_data(chunk_csv_rows, base_list, Column.ANSWER)
 
             if part_of_speech == PartOfSpeech.NOUN:
                 prompt = create_prompt("article", lang, merged_csv_rows)
-                article_list_str, tokens = chat_completion(prompt)
-                if article_list_str is None:
-                    continue
-                total_tokens += tokens
-                article_list = read_csv_str(
-                    article_list_str, [Column.ID, Column.ANSWER], chunk_csv_rows
+                article_list, tokens = get_data_from_chat_gpt(
+                    prompt, [Column.ID, Column.ANSWER], chunk_csv_rows
                 )
+                total_tokens += tokens
                 if article_list is None:
                     continue
                 merged_csv_rows = merge_csv_data(
@@ -197,13 +182,10 @@ def _add_definition(chunk_size: int, lang: Language) -> int:
                 prompt = create_prompt(
                     "definition", lang, chunk_csv_rows, part_of_speech=part_of_speech
                 )
-            definition_list_str, tokens = chat_completion(prompt)
-            if definition_list_str is None:
-                continue
-            total_tokens += tokens
-            definition_list = read_csv_str(
-                definition_list_str, [Column.ID, Column.DEFINITION], chunk_csv_rows
+            definition_list, tokens = get_data_from_chat_gpt(
+                prompt, [Column.ID, Column.DEFINITION], chunk_csv_rows
             )
+            total_tokens += tokens
             if definition_list is None:
                 continue
             merged_csv_rows = merge_csv_data(
@@ -236,15 +218,10 @@ def _remove_duplicated_definitions(chunk_size: int, lang: Language) -> int:
                 words_columns=[Column.ID, Column.ANSWER, Column.DEFINITION],
                 part_of_speech=part_of_speech,
             )
-            definition_list_str, tokens = chat_completion(prompt)
-            if definition_list_str is None:
-                continue
-            total_tokens += tokens
-            definition_list = read_csv_str(
-                definition_list_str,
-                [Column.ID, Column.ANSWER, Column.DEFINITION],
-                chunk_csv_rows,
+            definition_list, tokens = get_data_from_chat_gpt(
+                prompt, [Column.ID, Column.ANSWER, Column.DEFINITION], chunk_csv_rows
             )
+            total_tokens += tokens
             if definition_list is None:
                 continue
             merged_csv_rows = merge_csv_data(

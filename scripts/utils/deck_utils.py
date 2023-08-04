@@ -2,6 +2,7 @@ import logging
 import math
 from typing import Generator, Optional
 
+from scripts.clients.openai_api_client import chat_completion
 from scripts.models.deck_csv import Column
 from scripts.models.language import (
     ARTICLES_BY_LANG,
@@ -10,6 +11,7 @@ from scripts.models.language import (
     Language,
 )
 from scripts.models.part_of_speech import ABBREVIATED_POS, POS_TO_IGNORE
+from scripts.utils.csv_utils import read_csv_str
 
 logger = logging.getLogger(__name__)
 
@@ -67,6 +69,16 @@ def create_prompt(
         )
     logger.debug(f"prompt: {prompt}")
     return prompt
+
+
+def get_data_from_chat_gpt(
+    prompt: str, columns: list[str], csv_rows: list[dict]
+) -> tuple[Optional[list[dict]], Optional[int]]:
+    csv_str, tokens = chat_completion(prompt)
+    if csv_str is None:
+        return None, tokens
+    api_csv_rows = read_csv_str(csv_str, columns, csv_rows)
+    return api_csv_rows, tokens
 
 
 def remove_invalid_part_of_speech(csv_rows: list[dict], lang: Language) -> list[dict]:

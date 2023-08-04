@@ -24,13 +24,13 @@ CHUNK_SIZE = 10
 
 
 @patch("scripts.deck_generator.append_csv_rows")
-@patch("scripts.deck_generator.chat_completion")
+@patch("scripts.deck_generator.get_data_from_chat_gpt")
 @patch("scripts.deck_generator.read_csv")
 @patch("scripts.deck_generator.init_csv")
 def test_add_part_of_speech(
     mock_init_csv: MagicMock,
     mock_read_csv: MagicMock,
-    mock_chat_completion: MagicMock,
+    mock_get_data_from_chat_gpt: MagicMock,
     mock_append_csv_rows: MagicMock,
 ):
     mock_read_csv.return_value = [
@@ -39,7 +39,15 @@ def test_add_part_of_speech(
         {"id": "3", "answer": "word 3"},
         {"id": "4", "answer": "word 4"},
     ]
-    mock_chat_completion.return_value = ("1,noun\n2,verb\n3,adjective\n4,adverb\n", 1)
+    mock_get_data_from_chat_gpt.return_value = (
+        [
+            {"id": "1", "part_of_speech": "noun"},
+            {"id": "2", "part_of_speech": "verb"},
+            {"id": "3", "part_of_speech": "adjective"},
+            {"id": "4", "part_of_speech": "adverb"},
+        ],
+        1,
+    )
 
     total_tokens = _add_part_of_speech(CHUNK_SIZE, Language.GERMAN)
 
@@ -57,7 +65,7 @@ def test_add_part_of_speech(
 
 
 @patch("scripts.deck_generator.append_csv_rows")
-@patch("scripts.deck_generator.chat_completion")
+@patch("scripts.deck_generator.get_data_from_chat_gpt")
 @patch("scripts.deck_generator.create_prompt")
 @patch("scripts.deck_generator.read_csv")
 @patch("scripts.deck_generator.init_csv")
@@ -65,7 +73,7 @@ def test_convert_to_base_form(
     mock_init_csv: MagicMock,
     mock_read_csv: MagicMock,
     mock_create_prompt: MagicMock,
-    mock_chat_completion: MagicMock,
+    mock_get_data_from_chat_gpt: MagicMock,
     mock_append_csv_rows: MagicMock,
 ):
     mock_read_csv.return_value = [
@@ -79,20 +87,59 @@ def test_convert_to_base_form(
         "base_form prompt 1",
         "base_form prompt 2",
     ]
-    mock_chat_completion.side_effect = [
-        ("1,base noun 1\n3,base noun 3\n", 1),
-        ("1,article base noun 1\n3,article base noun 3\n", 1),
-        ("2,base verb 2\n4,base verb 4\n", 1),
+    mock_get_data_from_chat_gpt.side_effect = [
+        (
+            [
+                {"id": "1", "answer": "base noun 1"},
+                {"id": "3", "answer": "base noun 3"},
+            ],
+            1,
+        ),
+        (
+            [
+                {"id": "1", "answer": "article base noun 1"},
+                {"id": "3", "answer": "article base noun 3"},
+            ],
+            1,
+        ),
+        (
+            [
+                {"id": "2", "answer": "base verb 2"},
+                {"id": "4", "answer": "base verb 4"},
+            ],
+            1,
+        ),
     ]
 
     total_tokens = _convert_to_base_form(CHUNK_SIZE, Language.GERMAN)
 
     assert total_tokens == 3
     mock_init_csv.assert_called_once()
-    assert mock_chat_completion.call_args_list == [
-        call("base_form_noun prompt"),
-        call("base_form prompt 1"),
-        call("base_form prompt 2"),
+    assert mock_get_data_from_chat_gpt.call_args_list == [
+        call(
+            "base_form_noun prompt",
+            [Column.ID, Column.ANSWER],
+            [
+                {"id": "1", "part_of_speech": "noun", "answer": "word 1"},
+                {"id": "3", "part_of_speech": "noun", "answer": "word 3"},
+            ],
+        ),
+        call(
+            "base_form prompt 1",
+            [Column.ID, Column.ANSWER],
+            [
+                {"id": "1", "part_of_speech": "noun", "answer": "word 1"},
+                {"id": "3", "part_of_speech": "noun", "answer": "word 3"},
+            ],
+        ),
+        call(
+            "base_form prompt 2",
+            [Column.ID, Column.ANSWER],
+            [
+                {"id": "2", "part_of_speech": "verb", "answer": "word 2"},
+                {"id": "4", "part_of_speech": "verb", "answer": "word 4"},
+            ],
+        ),
     ]
     assert mock_append_csv_rows.call_args_list == [
         call(
@@ -149,7 +196,7 @@ def test_remove_duplicated_answers(
 
 
 @patch("scripts.deck_generator.append_csv_rows")
-@patch("scripts.deck_generator.chat_completion")
+@patch("scripts.deck_generator.get_data_from_chat_gpt")
 @patch("scripts.deck_generator.create_prompt")
 @patch("scripts.deck_generator.read_csv")
 @patch("scripts.deck_generator.init_csv")
@@ -157,7 +204,7 @@ def test_add_definition(
     mock_init_csv: MagicMock,
     mock_read_csv: MagicMock,
     mock_create_prompt: MagicMock,
-    mock_chat_completion: MagicMock,
+    mock_get_data_from_chat_gpt: MagicMock,
     mock_append_csv_rows: MagicMock,
 ):
     mock_read_csv.return_value = [
@@ -170,18 +217,44 @@ def test_add_definition(
         "definition_noun prompt",
         "definition prompt",
     ]
-    mock_chat_completion.side_effect = [
-        ("1,definition 1\n3,definition 3\n", 1),
-        ("2,definition 2\n4,definition 4\n", 1),
+    mock_get_data_from_chat_gpt.side_effect = [
+        (
+            [
+                {"id": "1", "definition": "definition 1"},
+                {"id": "3", "definition": "definition 3"},
+            ],
+            1,
+        ),
+        (
+            [
+                {"id": "2", "definition": "definition 2"},
+                {"id": "4", "definition": "definition 4"},
+            ],
+            1,
+        ),
     ]
 
     total_tokens = _add_definition(CHUNK_SIZE, Language.GERMAN)
 
     assert total_tokens == 2
     mock_init_csv.assert_called_once()
-    assert mock_chat_completion.call_args_list == [
-        call("definition_noun prompt"),
-        call("definition prompt"),
+    assert mock_get_data_from_chat_gpt.call_args_list == [
+        call(
+            "definition_noun prompt",
+            [Column.ID, Column.DEFINITION],
+            [
+                {"id": "1", "part_of_speech": "noun", "answer": "word 1"},
+                {"id": "3", "part_of_speech": "noun", "answer": "word 3"},
+            ],
+        ),
+        call(
+            "definition prompt",
+            [Column.ID, Column.DEFINITION],
+            [
+                {"id": "2", "part_of_speech": "verb", "answer": "word 2"},
+                {"id": "4", "part_of_speech": "verb", "answer": "word 4"},
+            ],
+        ),
     ]
     assert mock_append_csv_rows.call_args_list == [
         call(
@@ -221,7 +294,7 @@ def test_add_definition(
     ]
 
 
-@patch("scripts.deck_generator.chat_completion")
+@patch("scripts.deck_generator.get_data_from_chat_gpt")
 @patch("scripts.deck_generator.create_prompt")
 @patch("scripts.deck_generator.append_csv_rows")
 @patch("scripts.deck_generator.read_csv")
@@ -231,7 +304,7 @@ def test_remove_duplicated_definitions(
     mock_read_csv: MagicMock,
     mock_append_csv_rows: MagicMock,
     mock_create_prompt: MagicMock,
-    mock_chat_completion: MagicMock,
+    mock_get_data_from_chat_gpt: MagicMock,
 ):
     mock_read_csv.return_value = [
         {
@@ -266,9 +339,37 @@ def test_remove_duplicated_definitions(
         },
     ]
     mock_create_prompt.return_value = "de_duplicated_definition prompt"
-    mock_chat_completion.side_effect = [
-        ("1,answer 1,detailed definition 1\n3,answer 3,detailed definition 3\n", 1),
-        ("2,answer 2,detailed definition 2\n4,answer 4,detailed definition 4\n", 1),
+    mock_get_data_from_chat_gpt.side_effect = [
+        (
+            [
+                {
+                    "id": "1",
+                    "answer": "answer 1",
+                    "definition": "detailed definition 1",
+                },
+                {
+                    "id": "3",
+                    "answer": "answer 3",
+                    "definition": "detailed definition 3",
+                },
+            ],
+            1,
+        ),
+        (
+            [
+                {
+                    "id": "2",
+                    "answer": "answer 2",
+                    "definition": "detailed definition 2",
+                },
+                {
+                    "id": "4",
+                    "answer": "answer 4",
+                    "definition": "detailed definition 4",
+                },
+            ],
+            1,
+        ),
     ]
 
     total_tokens = _remove_duplicated_definitions(CHUNK_SIZE, Language.GERMAN)
@@ -401,9 +502,43 @@ def test_remove_duplicated_definitions(
         ),
     ]
     assert len(mock_create_prompt.call_args_list) == 2
-    assert mock_chat_completion.call_args_list == [
-        call("de_duplicated_definition prompt"),
-        call("de_duplicated_definition prompt"),
+    assert mock_get_data_from_chat_gpt.call_args_list == [
+        call(
+            "de_duplicated_definition prompt",
+            [Column.ID, Column.ANSWER, Column.DEFINITION],
+            [
+                {
+                    "id": "1",
+                    "part_of_speech": "noun",
+                    "definition": "definition 1",
+                    "answer": "word 1",
+                },
+                {
+                    "id": "3",
+                    "part_of_speech": "noun",
+                    "definition": "definition 1",
+                    "answer": "word 3",
+                },
+            ],
+        ),
+        call(
+            "de_duplicated_definition prompt",
+            [Column.ID, Column.ANSWER, Column.DEFINITION],
+            [
+                {
+                    "id": "2",
+                    "part_of_speech": "verb",
+                    "definition": "definition 2",
+                    "answer": "word 2",
+                },
+                {
+                    "id": "4",
+                    "part_of_speech": "verb",
+                    "definition": "definition 2",
+                    "answer": "word 4",
+                },
+            ],
+        ),
     ]
 
 
