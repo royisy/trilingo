@@ -17,9 +17,9 @@ MAX_RETRIES = 3
 
 def chat_completion(
     prompt: str, retry_count: int = MAX_RETRIES
-) -> tuple[Optional[str], Optional[int]]:
+) -> tuple[Optional[str], int]:
     response = None
-    total_tokens = None
+    total_tokens = 0
     try:
         chat_completion_result = openai.ChatCompletion.create(
             model="gpt-3.5-turbo",

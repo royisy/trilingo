@@ -3,7 +3,7 @@ import math
 from typing import Generator, Optional
 
 from scripts.clients.openai_api_client import chat_completion
-from scripts.models.deck_csv import Column
+from scripts.models.deck_csv import Column, DeckCsv
 from scripts.models.language import (
     ARTICLES_BY_LANG,
     LANGUAGE_NAME,
@@ -11,7 +11,7 @@ from scripts.models.language import (
     Language,
 )
 from scripts.models.part_of_speech import ABBREVIATED_POS, POS_TO_IGNORE
-from scripts.utils.csv_utils import read_csv_str
+from scripts.utils.csv_utils import append_error_csv_rows, read_csv_str
 
 logger = logging.getLogger(__name__)
 
@@ -72,13 +72,16 @@ def create_prompt(
 
 
 def get_data_from_chat_gpt(
-    prompt: str, columns: list[str], csv_rows: list[dict]
-) -> tuple[Optional[list[dict]], Optional[int]]:
+    prompt: str, columns: list[Column], csv_rows: list[dict], source_csv: DeckCsv
+) -> tuple[Optional[list[dict]], int]:
     csv_str, tokens = chat_completion(prompt)
-    if csv_str is None:
-        return None, tokens
-    api_csv_rows = read_csv_str(csv_str, columns, csv_rows)
-    return api_csv_rows, tokens
+    if csv_str is not None:
+        api_csv_rows = read_csv_str(csv_str, columns, csv_rows)
+        if api_csv_rows is not None:
+            return api_csv_rows, tokens
+    logger.info("writing error csv rows")
+    append_error_csv_rows(source_csv, csv_rows)
+    return None, tokens
 
 
 def remove_invalid_part_of_speech(csv_rows: list[dict], lang: Language) -> list[dict]:

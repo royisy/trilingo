@@ -15,6 +15,14 @@ class DeckCsv:
     file_path: Path
     columns: list[Column]
 
+    @property
+    def columns_values(self) -> list[str]:
+        return [column.value for column in self.columns]
+
+    @property
+    def error_file_path(self) -> Path:
+        return self.file_path.parent / f"{self.file_path.stem}_error.csv"
+
 
 CSV_DIR = Path(__file__).resolve().parent.parent / "csv"
 

@@ -1,9 +1,13 @@
+from unittest.mock import MagicMock, patch
+
 import pytest
 
+from scripts.models.deck_csv import SOURCE_CSV, Column
 from scripts.models.language import Language
 from scripts.utils.deck_utils import (
     check_definition_length,
     chunks,
+    get_data_from_chat_gpt,
     get_duplicated_definitions,
     group_by_pos,
     lowercase_article,
@@ -90,6 +94,53 @@ def test_chunks():
     ]
     for i, value in enumerate(generator):
         assert value == expected[i]
+
+
+@pytest.mark.parametrize(
+    "csv_str, expected",
+    [
+        (
+            None,
+            None,
+        ),
+        (
+            "1,pos 1\n2,pos 2\n",
+            [
+                {"id": "1", "part_of_speech": "pos 1"},
+                {"id": "2", "part_of_speech": "pos 2"},
+            ],
+        ),
+        (
+            "2,pos 2\n",
+            None,
+        ),
+    ],
+)
+@patch("scripts.utils.deck_utils.append_error_csv_rows")
+@patch("scripts.utils.deck_utils.chat_completion")
+def test_get_data_from_chat_gpt(
+    mock_chat_completion: MagicMock,
+    mock_append_error_csv_rows: MagicMock,
+    csv_str,
+    expected,
+):
+    mock_chat_completion.return_value = (csv_str, 1)
+
+    prompt = "test prompt"
+    columns = [Column.ID, Column.PART_OF_SPEECH]
+    csv_rows = [
+        {"id": "1", "answer": "answer 1"},
+        {"id": "2", "answer": "answer 2"},
+    ]
+
+    data, tokens = get_data_from_chat_gpt(prompt, columns, csv_rows, SOURCE_CSV)
+
+    assert data == expected
+    if data is None:
+        mock_append_error_csv_rows.assert_called_once()
+    else:
+        mock_append_error_csv_rows.assert_not_called()
+    assert tokens == 1
 
 
 def test_remove_invalid_part_of_speech():

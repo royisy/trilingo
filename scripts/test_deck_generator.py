@@ -123,6 +123,7 @@ def test_convert_to_base_form(
                 {"id": "1", "part_of_speech": "noun", "answer": "word 1"},
                 {"id": "3", "part_of_speech": "noun", "answer": "word 3"},
             ],
+            PART_OF_SPEECH_CSV,
         ),
         call(
             "base_form prompt 1",
@@ -131,6 +132,7 @@ def test_convert_to_base_form(
                 {"id": "1", "part_of_speech": "noun", "answer": "word 1"},
                 {"id": "3", "part_of_speech": "noun", "answer": "word 3"},
             ],
+            PART_OF_SPEECH_CSV,
         ),
         call(
             "base_form prompt 2",
@@ -139,6 +141,7 @@ def test_convert_to_base_form(
                 {"id": "2", "part_of_speech": "verb", "answer": "word 2"},
                 {"id": "4", "part_of_speech": "verb", "answer": "word 4"},
             ],
+            PART_OF_SPEECH_CSV,
         ),
     ]
     assert mock_append_csv_rows.call_args_list == [
@@ -246,6 +249,7 @@ def test_add_definition(
                 {"id": "1", "part_of_speech": "noun", "answer": "word 1"},
                 {"id": "3", "part_of_speech": "noun", "answer": "word 3"},
             ],
+            DUP_ANSWER_CSV,
         ),
         call(
             "definition prompt",
@@ -254,6 +258,7 @@ def test_add_definition(
                 {"id": "2", "part_of_speech": "verb", "answer": "word 2"},
                 {"id": "4", "part_of_speech": "verb", "answer": "word 4"},
             ],
+            DUP_ANSWER_CSV,
         ),
     ]
     assert mock_append_csv_rows.call_args_list == [
@@ -520,6 +525,7 @@ def test_remove_duplicated_definitions(
                     "answer": "word 3",
                 },
             ],
+            DUP_DEFINITION_CSV,
         ),
         call(
             "de_duplicated_definition prompt",
@@ -538,6 +544,7 @@ def test_remove_duplicated_definitions(
                     "answer": "word 4",
                 },
             ],
+            DUP_DEFINITION_CSV,
         ),
     ]
 

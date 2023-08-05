@@ -101,7 +101,7 @@ def _add_part_of_speech(chunk_size: int, lang: Language) -> int:
     for chunk_csv_rows in chunks(csv_rows, chunk_size):
         prompt = create_prompt("part_of_speech", lang, chunk_csv_rows)
         pos_list, tokens = get_data_from_chat_gpt(
-            prompt, [Column.ID, Column.PART_OF_SPEECH], chunk_csv_rows
+            prompt, [Column.ID, Column.PART_OF_SPEECH], chunk_csv_rows, SOURCE_CSV
         )
         total_tokens += tokens
         if pos_list is None:
@@ -130,7 +130,7 @@ def _convert_to_base_form(chunk_size: int, lang: Language) -> int:
                     "base_form", lang, chunk_csv_rows, part_of_speech=part_of_speech
                 )
             base_list, tokens = get_data_from_chat_gpt(
-                prompt, [Column.ID, Column.ANSWER], chunk_csv_rows
+                prompt, [Column.ID, Column.ANSWER], chunk_csv_rows, PART_OF_SPEECH_CSV
             )
             total_tokens += tokens
             if base_list is None:
@@ -140,7 +140,10 @@ def _convert_to_base_form(chunk_size: int, lang: Language) -> int:
             if part_of_speech == PartOfSpeech.NOUN:
                 prompt = create_prompt("article", lang, merged_csv_rows)
                 article_list, tokens = get_data_from_chat_gpt(
-                    prompt, [Column.ID, Column.ANSWER], chunk_csv_rows
+                    prompt,
+                    [Column.ID, Column.ANSWER],
+                    chunk_csv_rows,
+                    PART_OF_SPEECH_CSV,
                 )
                 total_tokens += tokens
                 if article_list is None:
@@ -183,7 +186,7 @@ def _add_definition(chunk_size: int, lang: Language) -> int:
                     "definition", lang, chunk_csv_rows, part_of_speech=part_of_speech
                 )
             definition_list, tokens = get_data_from_chat_gpt(
-                prompt, [Column.ID, Column.DEFINITION], chunk_csv_rows
+                prompt, [Column.ID, Column.DEFINITION], chunk_csv_rows, DUP_ANSWER_CSV
             )
             total_tokens += tokens
             if definition_list is None:
@@ -219,7 +222,10 @@ def _remove_duplicated_definitions(chunk_size: int, lang: Language) -> int:
                 part_of_speech=part_of_speech,
             )
             definition_list, tokens = get_data_from_chat_gpt(
-                prompt, [Column.ID, Column.ANSWER, Column.DEFINITION], chunk_csv_rows
+                prompt,
+                [Column.ID, Column.ANSWER, Column.DEFINITION],
+                chunk_csv_rows,
+                DUP_DEFINITION_CSV,
             )
             total_tokens += tokens
             if definition_list is None:
