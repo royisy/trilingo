@@ -200,12 +200,12 @@ def _add_definition(chunk_size: int, lang: Language) -> int:
 
 
 def _remove_duplicated_definitions(chunk_size: int, lang: Language) -> int:
-    init_csv(OLD_DUP_DEFINITION_CSV)
+    init_csv(OLD_DUP_DEFINITION_CSV, check_file_exists=False)
     csv_rows = read_csv(DUP_DEFINITION_CSV, remove_header=True)
     append_csv_rows(OLD_DUP_DEFINITION_CSV, csv_rows)
 
     logger.info(f"total definitions: {len(csv_rows)}")
-    init_csv(DUP_DEFINITION_CSV)
+    init_csv(DUP_DEFINITION_CSV, check_file_exists=False)
     duplicates, non_duplicates = get_duplicated_definitions(csv_rows)
     logger.info(f"duplicated definitions: {len(duplicates)}")
     append_csv_rows(DUP_DEFINITION_CSV, non_duplicates)

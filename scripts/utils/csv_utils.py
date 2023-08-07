@@ -9,9 +9,12 @@ from scripts.models.deck_csv import Column, DeckCsv
 logger = logging.getLogger(__name__)
 
 
-def init_csv(csv_file: DeckCsv):
-    _clear_csv(csv_file.file_path)
-    _append_csv(csv_file.file_path, [csv_file.columns_values])
+def init_csv(csv_file: DeckCsv, check_file_exists: bool = True):
+    if check_file_exists and os.path.exists(csv_file.file_path):
+        raise FileExistsError(f"file already exists: {csv_file.file_path}")
+    else:
+        _clear_csv(csv_file.file_path)
+        _append_csv(csv_file.file_path, [csv_file.columns_values])
 
 
 def _clear_csv(csv_file_path: Path):
