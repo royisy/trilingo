@@ -22,14 +22,16 @@ export const AddDeckDialog = ({
         className="modal-box flex h-[500px] flex-col items-center text-xl"
       >
         <Logo className="my-5" />
-        <p className="mt-5">Select a deck to get started.</p>
-        <ul className="menu mt-5">
-          <>
-            {deckList.map((csvDeck) => (
-              <DeckItem key={csvDeck.id} csvDeck={csvDeck} />
-            ))}
-          </>
-        </ul>
+        <p className="my-5">Select a deck to get started.</p>
+        <div className="flex w-full flex-col items-center overflow-y-auto">
+          <ul className="menu w-fit">
+            <>
+              {deckList.map((csvDeck) => (
+                <DeckItem key={csvDeck.id} csvDeck={csvDeck} />
+              ))}
+            </>
+          </ul>
+        </div>
       </form>
     </dialog>
   )
