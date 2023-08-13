@@ -36,11 +36,8 @@ POS_TO_IGNORE = [
 ABBREVIATED_POS = {
     PartOfSpeech.ADJECTIVE.value: "adj.",
     PartOfSpeech.ADVERB.value: "adv.",
-    PartOfSpeech.ARTICLE.value: "art.",
     PartOfSpeech.CONJUNCTION.value: "conj.",
-    PartOfSpeech.INTERJECTION.value: "interj.",
     PartOfSpeech.NOUN.value: "noun",
-    PartOfSpeech.NUMERAL.value: "num.",
     PartOfSpeech.PREPOSITION.value: "prep.",
     PartOfSpeech.PRONOUN.value: "pron.",
     PartOfSpeech.VERB.value: "verb",

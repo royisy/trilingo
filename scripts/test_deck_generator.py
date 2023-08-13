@@ -1,3 +1,4 @@
+from pathlib import Path
 from unittest.mock import MagicMock, call, patch
 
 from scripts.deck_generator import (
@@ -17,6 +18,7 @@ from scripts.models.deck_csv import (
     FINALIZE_CSV,
     OLD_DUP_DEFINITION_CSV,
     Column,
+    DeckCsv,
 )
 from scripts.models.language import Language
 
@@ -560,48 +562,73 @@ def test_finalize(
     mock_read_csv.return_value = [
         {
             "id": "5",
-            "part_of_speech": "noun",
+            "part_of_speech": "conjunction",
             "definition": "definition 3",
             "answer": "word 3",
         },
         {
+            "id": "10",
+            "part_of_speech": "noun",
+            "definition": "definition 4",
+            "answer": "word 4",
+        },
+        {
             "id": "3",
-            "part_of_speech": "adjective",
+            "part_of_speech": "adverb",
             "definition": "definition 2",
             "answer": "word 2",
         },
         {
             "id": "1",
-            "part_of_speech": "adverb",
+            "part_of_speech": "adjective",
             "definition": "definition 1",
             "answer": "word 1",
         },
     ]
 
-    _finalize()
+    chunk_size = 2
+    _finalize(chunk_size)
 
-    mock_init_csv.assert_called_once()
+    assert mock_init_csv.call_count == 2
+    assert mock_append_csv_rows.call_count == 2
     assert mock_append_csv_rows.call_args_list == [
         call(
-            FINALIZE_CSV,
+            DeckCsv(
+                Path(str(FINALIZE_CSV.file_path).replace(".csv", "1.csv")),
+                FINALIZE_CSV.columns,
+            ),
             [
                 {
                     "id": "1",
-                    "part_of_speech": "adv.",
+                    "part_of_speech": "adj.",
                     "definition": "definition 1",
                     "answer": "word 1",
                 },
                 {
                     "id": "2",
-                    "part_of_speech": "adj.",
+                    "part_of_speech": "adv.",
                     "definition": "definition 2",
                     "answer": "word 2",
                 },
+            ],
+        ),
+        call(
+            DeckCsv(
+                Path(str(FINALIZE_CSV.file_path).replace(".csv", "2.csv")),
+                FINALIZE_CSV.columns,
+            ),
+            [
                 {
-                    "id": "3",
-                    "part_of_speech": "noun",
+                    "id": "1",
+                    "part_of_speech": "conj.",
                     "definition": "definition 3",
                     "answer": "word 3",
+                },
+                {
+                    "id": "2",
+                    "part_of_speech": "noun",
+                    "definition": "definition 4",
+                    "answer": "word 4",
                 },
             ],
         ),

@@ -1,6 +1,7 @@
 import argparse
 import logging
 from logging.config import dictConfig
+from pathlib import Path
 
 from scripts.conf.logging_config import logging_config
 from scripts.models.deck_csv import (
@@ -13,6 +14,7 @@ from scripts.models.deck_csv import (
     PART_OF_SPEECH_CSV,
     SOURCE_CSV,
     Column,
+    DeckCsv,
 )
 from scripts.models.deck_process import DeckProcess
 from scripts.models.language import Language
@@ -41,6 +43,7 @@ if __name__ == "__main__":
 logger = logging.getLogger(__name__)
 
 DEFAULT_CHUNK_SIZE = 100
+MAX_WORDS_PER_FILE = 1000
 
 
 def main():
@@ -88,7 +91,7 @@ def main():
     elif deck_process == DeckProcess.REMOVE_DUP_DEFINITION:
         total_tokens = _remove_duplicated_definitions(chunk_size, lang)
     elif deck_process == DeckProcess.FINALIZE:
-        _finalize()
+        _finalize(MAX_WORDS_PER_FILE)
 
     logger.info(f"total_tokens: {total_tokens}")
 
@@ -243,17 +246,21 @@ def _remove_duplicated_definitions(chunk_size: int, lang: Language) -> int:
     return total_tokens
 
 
-def _finalize():
-    init_csv(FINALIZE_CSV)
+def _finalize(chunk_size: int):
     csv_rows = read_csv(DUP_DEFINITION_CSV, remove_header=True)
     csv_rows = sort_by_id(csv_rows)
 
-    updated_csv_rows = []
-    for index, row in enumerate(csv_rows):
-        updated_row = update_values(row, index)
-        updated_csv_rows.append(updated_row)
-
-    append_csv_rows(FINALIZE_CSV, updated_csv_rows)
+    for index, chunk_csv_rows in enumerate(chunks(csv_rows, chunk_size)):
+        updated_csv_rows = []
+        for row_index, row in enumerate(chunk_csv_rows):
+            updated_row = update_values(row, row_index)
+            updated_csv_rows.append(updated_row)
+        csv = DeckCsv(
+            Path(str(FINALIZE_CSV.file_path).replace(".csv", f"{index + 1}.csv")),
+            FINALIZE_CSV.columns,
+        )
+        init_csv(csv)
+        append_csv_rows(csv, updated_csv_rows)
 
 
 if __name__ == "__main__":
