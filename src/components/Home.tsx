@@ -71,20 +71,21 @@ export const Home = (): JSX.Element => {
           onClick={toggleDrawerOpen}
         ></label>
         <div className="h-full w-80 bg-base-200">
-          <MenuContext.Provider
-            value={{
-              setMenuComponent,
-              menuComponent,
-              toggleDrawerOpen,
-              setDeckToDelete,
-              openDeleteDeckDialog,
-            }}
-          >
-            {(menuComponent === 'menu' || menuComponent === 'delete-deck') && (
-              <Menu />
-            )}
-            {menuComponent === 'add-deck' && <AddDeck />}
-          </MenuContext.Provider>
+          <div className="bg-base-200 pb-5">
+            <MenuContext.Provider
+              value={{
+                setMenuComponent,
+                menuComponent,
+                toggleDrawerOpen,
+                setDeckToDelete,
+                openDeleteDeckDialog,
+              }}
+            >
+              {(menuComponent === 'menu' ||
+                menuComponent === 'delete-deck') && <Menu />}
+              {menuComponent === 'add-deck' && <AddDeck />}
+            </MenuContext.Provider>
+          </div>
         </div>
       </div>
       <WordTooltip />
