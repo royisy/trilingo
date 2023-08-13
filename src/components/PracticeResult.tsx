@@ -13,7 +13,7 @@ export const PracticeResult = ({ result }: ResultProps): JSX.Element => {
     <div className="flex flex-col items-center p-5">
       <div>
         <button
-          className="btn-primary btn"
+          className="btn btn-primary"
           onClick={() => {
             navigate('/')
           }}
@@ -21,7 +21,7 @@ export const PracticeResult = ({ result }: ResultProps): JSX.Element => {
           Finish
         </button>
       </div>
-      <table className="table-zebra mt-5 table max-w-screen-sm">
+      <table className="table table-zebra mt-5 max-w-screen-sm">
         <tbody className="text-lg">
           {result.map((wordResult, index) => (
             <tr key={wordResult.word.id}>

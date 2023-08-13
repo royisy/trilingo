@@ -137,7 +137,7 @@ export const Practice = (): JSX.Element => {
         <div className="flex items-center">
           <QuitButton disabled={disabled} />
           <progress
-            className="progress-primary progress ml-1 mr-3 h-4 w-full sm:ml-3 sm:h-5"
+            className="progress progress-primary ml-1 mr-3 h-4 w-full sm:ml-3 sm:h-5"
             value={progress}
             max={words.length}
           />
@@ -183,7 +183,7 @@ const QuitButton = ({ disabled }: QuitButtonProps): JSX.Element => {
   return (
     <>
       <button
-        className={`btn-square btn ${disabled ? 'btn-disabled' : 'btn-ghost'}`}
+        className={`btn btn-square ${disabled ? 'btn-disabled' : 'btn-ghost'}`}
         onClick={openDialog}
         title="Quit"
       >
@@ -193,9 +193,9 @@ const QuitButton = ({ disabled }: QuitButtonProps): JSX.Element => {
         <form method="dialog" className="modal-box text-xl">
           <p>Quit practice?</p>
           <div className="modal-action">
-            <button className="btn-outline btn">Cancel</button>
+            <button className="btn btn-outline">Cancel</button>
             <button
-              className="btn-primary btn"
+              className="btn btn-primary"
               onClick={() => {
                 navigate('/')
               }}
@@ -314,7 +314,7 @@ const AnswerInput = ({
     <div className="relative">
       <input
         type="text"
-        className="input-primary input w-72 text-2xl sm:w-96"
+        className="input input-primary w-72 text-2xl sm:w-96"
         ref={inputRef}
         value={userAnswer}
         onChange={handleAnswerChange}
@@ -348,7 +348,7 @@ const RevealButton = ({
     <div className="flex justify-end">
       <div>
         <button
-          className="btn-outline btn mt-5"
+          className="btn btn-outline mt-5"
           onClick={handleRevealClick}
           disabled={isRevealed || disabled}
         >

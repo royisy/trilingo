@@ -117,7 +117,7 @@ const Header = ({
     >
       <label
         htmlFor="home-drawer"
-        className="btn-ghost btn-square btn lg:hidden"
+        className="btn btn-square btn-ghost lg:hidden"
         onClick={toggleDrawerOpen}
         title="Menu"
       >
@@ -173,7 +173,7 @@ const PracticeButton = (): JSX.Element => {
   return (
     <div className="my-10 self-center">
       <button
-        className="btn-primary btn"
+        className="btn btn-primary"
         onClick={() => {
           navigate('/practice')
         }}
@@ -228,8 +228,8 @@ const DeleteDeckDialog = ({
       <form method="dialog" className="modal-box text-xl">
         <p>Delete &quot;{deckToDelete?.title}&quot;?</p>
         <div className="modal-action">
-          <button className="btn-outline btn">Cancel</button>
-          <button className="btn-primary btn" onClick={handleDeleteDeck}>
+          <button className="btn btn-outline">Cancel</button>
+          <button className="btn btn-primary" onClick={handleDeleteDeck}>
             OK
           </button>
         </div>

@@ -43,7 +43,7 @@ export const Menu = (): JSX.Element => {
       )}
       <div className="mt-5 flex">
         <button
-          className="btn-outline btn-square btn-sm btn ml-4"
+          className="btn btn-square btn-outline btn-sm ml-4"
           onClick={() => {
             setMenuComponent('add-deck')
           }}
@@ -52,7 +52,7 @@ export const Menu = (): JSX.Element => {
           <PlusIcon className="w-8" />
         </button>
         <label
-          className="swap-rotate swap btn-outline btn-square btn-sm btn ml-4"
+          className="swap-rotate btn btn-square btn-outline swap btn-sm ml-4"
           title="Delete Deck"
         >
           <input
@@ -124,7 +124,7 @@ const DeleteDeckItem = ({ deck }: DeleteDeckItemProps): JSX.Element => {
         {deck.title}
       </div>
       <button
-        className="btn-ghost btn-square btn h-7 min-h-0 w-7"
+        className="btn btn-square btn-ghost h-7 min-h-0 w-7"
         onClick={() => {
           handleDeckSelect(deck)
         }}

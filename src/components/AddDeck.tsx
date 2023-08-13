@@ -14,7 +14,7 @@ export const AddDeck = (): JSX.Element => {
     <>
       <div className="flex items-center p-4">
         <button
-          className="btn-ghost btn-square btn"
+          className="btn btn-square btn-ghost"
           onClick={() => {
             setMenuComponent('menu')
           }}
