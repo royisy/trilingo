@@ -16,60 +16,33 @@ describe('getColor', () => {
 })
 
 describe('getOpacity', () => {
+  it('should return 100 if correctCnt > 0', () => {
+    const correctCnt = 1
+    const skippedCnt = 0
+    const minSkippedCnt = 0
+    const maxSkippedCnt = 0
+    expect(
+      getOpacity(correctCnt, skippedCnt, minSkippedCnt, maxSkippedCnt)
+    ).toBe('100')
+  })
+
   it('should return 50 if correctCnt = 0 and skippedCnt = 0', () => {
     const correctCnt = 0
     const skippedCnt = 0
-    const minCorrectCnt = 1
-    const minSkippedCnt = 1
-    const maxCorrectCnt = 2
-    const maxSkippedCnt = 2
+    const minSkippedCnt = 0
+    const maxSkippedCnt = 0
     expect(
-      getOpacity(
-        correctCnt,
-        skippedCnt,
-        minCorrectCnt,
-        minSkippedCnt,
-        maxCorrectCnt,
-        maxSkippedCnt
-      )
+      getOpacity(correctCnt, skippedCnt, minSkippedCnt, maxSkippedCnt)
     ).toBe('50')
   })
 
-  it('should return opacity based on correctCnt if correctCnt > 0', () => {
-    const correctCnt = 8
-    const skippedCnt = 1
-    const minCorrectCnt = 6
-    const minSkippedCnt = 1
-    const maxCorrectCnt = 10
-    const maxSkippedCnt = 5
-    expect(
-      getOpacity(
-        correctCnt,
-        skippedCnt,
-        minCorrectCnt,
-        minSkippedCnt,
-        maxCorrectCnt,
-        maxSkippedCnt
-      )
-    ).toBe('80')
-  })
-
   it('should return opacity based on skippedCnt if correctCnt = 0', () => {
-    const correctCnt = 8
-    const skippedCnt = 1
-    const minCorrectCnt = 4
+    const correctCnt = 0
+    const skippedCnt = 3
     const minSkippedCnt = 1
-    const maxCorrectCnt = 10
     const maxSkippedCnt = 5
     expect(
-      getOpacity(
-        correctCnt,
-        skippedCnt,
-        minCorrectCnt,
-        minSkippedCnt,
-        maxCorrectCnt,
-        maxSkippedCnt
-      )
+      getOpacity(correctCnt, skippedCnt, minSkippedCnt, maxSkippedCnt)
     ).toBe('80')
   })
 })

@@ -6,15 +6,9 @@ interface DeckProgressProps {
 }
 
 export const DeckProgress = ({ words }: DeckProgressProps): JSX.Element => {
-  const maxCorrectCnt = words.reduce((acc, word) => {
-    return word.correctCnt > acc ? word.correctCnt : acc
-  }, 0)
   const maxSkippedCnt = words.reduce((acc, word) => {
     return word.skippedCnt > acc ? word.skippedCnt : acc
   }, 0)
-  const minCorrectCnt = words.reduce((acc, word) => {
-    return word.correctCnt > 0 && word.correctCnt < acc ? word.correctCnt : acc
-  }, maxCorrectCnt)
   const minSkippedCnt = words.reduce((acc, word) => {
     return word.skippedCnt > 0 && word.skippedCnt < acc ? word.skippedCnt : acc
   }, maxSkippedCnt)
@@ -30,9 +24,7 @@ export const DeckProgress = ({ words }: DeckProgressProps): JSX.Element => {
           const opacity = getOpacity(
             word.correctCnt,
             word.skippedCnt,
-            minCorrectCnt,
             minSkippedCnt,
-            maxCorrectCnt,
             maxSkippedCnt
           )
           return (

@@ -15,9 +15,7 @@ export const getColor = (correctCnt: number, skippedCnt: number): string => {
 export const getOpacity = (
   correctCnt: number,
   skippedCnt: number,
-  minCorrectCnt: number,
   minSkippedCnt: number,
-  maxCorrectCnt: number,
   maxSkippedCnt: number
 ): string => {
   const MIN_OPACITY = 50
@@ -25,15 +23,16 @@ export const getOpacity = (
   const OPACITY_RANGE = MAX_OPACITY - MIN_OPACITY
   const ROUND_TO = 10
 
-  if (correctCnt === 0 && skippedCnt === 0) {
+  if (correctCnt > 0) {
+    return MAX_OPACITY.toString()
+  }
+
+  if (skippedCnt === 0) {
     return MIN_OPACITY.toString()
   }
 
-  const value = correctCnt > 0 ? correctCnt : skippedCnt
-  const minValue = correctCnt > 0 ? minCorrectCnt : minSkippedCnt
-  const maxValue = correctCnt > 0 ? maxCorrectCnt : maxSkippedCnt
-  const valueRange = maxValue - minValue
-  const valueRatio = (value - minValue) / valueRange
+  const valueRange = maxSkippedCnt - minSkippedCnt
+  const valueRatio = (skippedCnt - minSkippedCnt) / valueRange
   const opacity = Math.round(valueRatio * OPACITY_RANGE) + MIN_OPACITY
   const roundedOpacity = Math.round(opacity / ROUND_TO) * ROUND_TO
 
