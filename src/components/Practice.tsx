@@ -20,10 +20,10 @@ import { splitAnswerByMatch } from '../utils/stringUtils'
 import { PracticeResult } from './PracticeResult'
 import { CheckIcon } from './icons/CheckIcon'
 
-const NUM_OF_WORDS = 10
-const CORRECT_DISPLAY_TIME = 1000
-
 export const Practice = (): JSX.Element => {
+  const NUM_OF_WORDS = 10
+  const CORRECT_DISPLAY_TIME = 1000
+
   const inputRef = useRef<HTMLInputElement | null>(null)
   const isDeckSelected = useSelectedDeckStatus()
   const words = useWords(NUM_OF_WORDS)
