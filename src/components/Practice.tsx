@@ -16,7 +16,7 @@ import { useSelectedDeckStatus } from '../hooks/useSelectedDeckStatus'
 import { useWords } from '../hooks/useWords'
 import { type Word } from '../models/Word'
 import { type WordResult } from '../models/WordResult'
-import { splitAnswerByMatch } from '../utils/stringUtils'
+import { normalizeString, splitAnswerByMatch } from '../utils/stringUtils'
 import { PracticeResult } from './PracticeResult'
 import { CheckIcon } from './icons/CheckIcon'
 
@@ -59,6 +59,15 @@ export const Practice = (): JSX.Element => {
     setUserAnswer(userAnswer)
     const shouldUpdate = !isReview && !isRevealed
     const isCorrectAnswer = await checkAnswer(word, userAnswer, shouldUpdate)
+    if (!isCorrectAnswer && isRevealed) {
+      if (
+        !normalizeString(word.answer).startsWith(normalizeString(userAnswer))
+      ) {
+        const { matchedPart } = splitAnswerByMatch(userAnswer, word.answer)
+        setUserAnswer(matchedPart)
+      }
+    }
+
     if (!isCorrectAnswer) return
 
     if (!isRevealed) {
