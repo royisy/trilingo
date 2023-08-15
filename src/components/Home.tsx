@@ -18,6 +18,7 @@ import { AddDeckDialog } from './AddDeckDialog'
 import { DeckProgress } from './DeckProgress'
 import { Logo } from './Logo'
 import { Menu } from './Menu'
+import { GitHubLogo } from './icons/GitHubLogo'
 
 export const Home = (): JSX.Element => {
   const { menuComponent, setMenuComponent, drawerOpen, toggleDrawerOpen } =
@@ -70,7 +71,7 @@ export const Home = (): JSX.Element => {
           className="drawer-overlay"
           onClick={toggleDrawerOpen}
         ></label>
-        <div className="h-full w-80 bg-base-200">
+        <div className="relative h-full w-80 bg-base-200">
           <div className="bg-base-200 pb-5">
             <MenuContext.Provider
               value={{
@@ -86,6 +87,16 @@ export const Home = (): JSX.Element => {
               {menuComponent === 'add-deck' && <AddDeck />}
             </MenuContext.Provider>
           </div>
+          {(menuComponent === 'menu' || menuComponent === 'delete-deck') && (
+            <a
+              href="https://github.com/royisy/trilingo"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute bottom-5 left-5"
+            >
+              <GitHubLogo className="h-10 w-10" />
+            </a>
+          )}
         </div>
       </div>
       <WordTooltip />
