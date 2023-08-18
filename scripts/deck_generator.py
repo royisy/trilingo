@@ -1,7 +1,12 @@
+# flake8: noqa: E402
 import argparse
 import logging
+import os
+import sys
 from logging.config import dictConfig
 from pathlib import Path
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from scripts.conf.logging_config import logging_config
 from scripts.models.deck_csv import (
