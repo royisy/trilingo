@@ -3,9 +3,14 @@
 A word memorizing webapp for language learning.  
 Demo: [https://trilingo.app/](https://trilingo.app/)
 
+<div style="display: inline-block;">
+  <img src="https://user-images.githubusercontent.com/28505196/261851814-9de3a934-208b-4185-bdfb-f020f7b16cd8.png" alt="Home" width="300">
+  <img src="https://user-images.githubusercontent.com/28505196/261851820-e8af65fb-63d1-4f78-ac82-d3694a322f79.png" alt="Practice" width="300">
+</div>
+
 ## Stack
 
-### Frontend app:
+### Frontend App:
 
 - TypeScript
 - [React.js](https://react.dev/) - frontend library
@@ -15,7 +20,7 @@ Demo: [https://trilingo.app/](https://trilingo.app/)
 - [Vite](https://vitejs.dev/) - dev server
 - [Vitest](https://vitest.dev/) - for unit testing
 
-### Generating deck CSV files ([documentation](docs/deck-generator.md)):
+### Generating Deck CSV Files ([Documentation](docs/deck-generator.md)):
 
 - Python
 - [ChatGPT API](https://platform.openai.com/docs/introduction) - for generating deck data
