@@ -69,11 +69,11 @@ describe('Home', () => {
       expect(elements.length).toBeGreaterThan(0)
       expect(screen.getByText('Practice')).toBeInTheDocument()
       const liElement1 = document.querySelector(
-        '[data-definition="definition 1 / answer 1"]'
+        '[data-definition="definition 1"]'
       )
       expect(liElement1).toBeInTheDocument()
       const liElement2 = document.querySelector(
-        '[data-definition="definition 2 / answer 2"]'
+        '[data-definition="definition 2"]'
       )
       expect(liElement2).toBeInTheDocument()
     })

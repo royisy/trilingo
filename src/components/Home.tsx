@@ -204,10 +204,9 @@ const WordTooltip = (): JSX.Element => {
         render={({ activeAnchor }) => (
           <div className="flex flex-col items-center">
             <p>{activeAnchor?.getAttribute('data-definition')}</p>
+            <p>{activeAnchor?.getAttribute('data-answer')}</p>
             <dl className="mt-2 grid grid-cols-[auto_auto] gap-1 text-right">
-              <dt>Correct:</dt>
-              <dd>{activeAnchor?.getAttribute('data-correct-cnt')}</dd>
-              <dt>Skipped:</dt>
+              <dt>Revealed:</dt>
               <dd>{activeAnchor?.getAttribute('data-skipped-cnt')}</dd>
             </dl>
           </div>

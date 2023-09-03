@@ -9,11 +9,11 @@ describe('DeckProgress', () => {
     const words = [word1, word2]
     render(<DeckProgress words={words} />)
     const liElement1 = document.querySelector(
-      '[data-definition="definition 1 / answer 1"]'
+      '[data-definition="definition 1"]'
     )
     expect(liElement1).toBeInTheDocument()
     const liElement2 = document.querySelector(
-      '[data-definition="definition 2 / answer 2"]'
+      '[data-definition="definition 2"]'
     )
     expect(liElement2).toBeInTheDocument()
   })

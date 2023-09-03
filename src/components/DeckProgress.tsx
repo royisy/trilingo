@@ -33,8 +33,8 @@ export const DeckProgress = ({ words }: DeckProgressProps): JSX.Element => {
               className={`tooltip h-3 w-3 rounded-sm sm:h-4 sm:w-4 sm:rounded
               bg-${color}-500 bg-opacity-${opacity}`}
               data-tooltip-id="deck-progress-tooltip"
-              data-definition={`${word.definition} / ${word.answer}`}
-              data-correct-cnt={word.correctCnt}
+              data-definition={`${word.definition}`}
+              data-answer={`${word.answer}`}
               data-skipped-cnt={word.skippedCnt}
             ></li>
           )
