@@ -4,14 +4,19 @@ import { type CsvDeck } from '../models/CsvDeck'
 import { getAllDecks } from '../repositories/deck'
 import { getCsv } from '../utils/csvUtils'
 
-export const useDeckList = (): CsvDeck[] => {
+export const useDeckList = (): {
+  deckListToAdd: CsvDeck[]
+  isLoading: boolean
+} => {
   const [deckList, setDeckList] = useState<CsvDeck[]>([])
   const decks = useLiveQuery(getAllDecks)
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     const getDeckList = async (): Promise<void> => {
-      const deckList = await getCsv<CsvDeck>('deck-list.csv')
-      setDeckList(deckList)
+      const deckListFromCsv = await getCsv<CsvDeck>('deck-list.csv')
+      setIsLoading(false)
+      setDeckList(deckListFromCsv)
     }
     void getDeckList()
   }, [])
@@ -21,5 +26,5 @@ export const useDeckList = (): CsvDeck[] => {
     (csvDeck) => deckIds?.includes(csvDeck.id) === false
   )
 
-  return deckListToAdd
+  return { deckListToAdd, isLoading }
 }

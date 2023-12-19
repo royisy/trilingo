@@ -8,7 +8,6 @@ import { CustomCircleFlag } from './icons/CustomCircleFlag'
 
 export const AddDeck = (): JSX.Element => {
   const { setMenuComponent } = useContext(MenuContext)
-  const deckList = useDeckList()
 
   return (
     <>
@@ -24,14 +23,32 @@ export const AddDeck = (): JSX.Element => {
         </button>
         <h1 className="ml-2 text-2xl font-bold">Add Deck</h1>
       </div>
-      <ul className="menu">
-        <>
-          {deckList.map((csvDeck) => (
-            <DeckItem key={csvDeck.id} csvDeck={csvDeck} />
-          ))}
-        </>
-      </ul>
+      <DeckList />
     </>
+  )
+}
+
+const DeckList = (): JSX.Element => {
+  const { deckListToAdd: deckList, isLoading } = useDeckList()
+
+  if (isLoading) {
+    return (
+      <>
+        <div className="mt-28 flex justify-center">
+          <span className="loading loading-spinner loading-lg"></span>
+        </div>
+      </>
+    )
+  }
+
+  return (
+    <ul className="menu">
+      <>
+        {deckList.map((csvDeck) => (
+          <DeckItem key={csvDeck.id} csvDeck={csvDeck} />
+        ))}
+      </>
+    </ul>
   )
 }
 

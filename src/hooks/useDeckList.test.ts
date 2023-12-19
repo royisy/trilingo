@@ -25,7 +25,7 @@ describe('useDeckList', () => {
     const { result } = renderHook(() => useDeckList())
     await waitFor(() => {
       expect(getCsv).toHaveBeenCalledWith('deck-list.csv')
-      expect(result.current).toEqual(expectedResult)
+      expect(result.current.deckListToAdd).toEqual(expectedResult)
     })
   })
 })

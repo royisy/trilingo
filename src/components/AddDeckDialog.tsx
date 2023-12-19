@@ -12,7 +12,6 @@ interface AddDeckDialogProps {
 export const AddDeckDialog = ({
   dialogRef,
 }: AddDeckDialogProps): JSX.Element => {
-  const deckList = useDeckList()
   usePreventDialogClose(dialogRef)
 
   return (
@@ -24,16 +23,34 @@ export const AddDeckDialog = ({
         <Logo className="my-5" />
         <p className="my-5">Select a deck to get started.</p>
         <div className="flex w-full flex-col items-center overflow-y-auto">
-          <ul className="menu w-fit">
-            <>
-              {deckList.map((csvDeck) => (
-                <DeckItem key={csvDeck.id} csvDeck={csvDeck} />
-              ))}
-            </>
-          </ul>
+          <DeckList />
         </div>
       </form>
     </dialog>
+  )
+}
+
+const DeckList = (): JSX.Element => {
+  const { deckListToAdd: deckList, isLoading } = useDeckList()
+
+  if (isLoading) {
+    return (
+      <>
+        <div className="mt-28">
+          <span className="loading loading-spinner loading-lg"></span>
+        </div>
+      </>
+    )
+  }
+
+  return (
+    <ul className="menu w-fit">
+      <>
+        {deckList.map((csvDeck) => (
+          <DeckItem key={csvDeck.id} csvDeck={csvDeck} />
+        ))}
+      </>
+    </ul>
   )
 }
 
