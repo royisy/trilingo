@@ -1,5 +1,5 @@
 import { XMarkIcon } from '@heroicons/react/24/solid'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { MenuContext } from '../contexts/MenuContext'
 import { useAddDeck } from '../hooks/useAddDeck'
 import { useDeckList } from '../hooks/useDeckList'
@@ -30,8 +30,9 @@ export const AddDeck = (): JSX.Element => {
 
 const DeckList = (): JSX.Element => {
   const { deckListToAdd: deckList, isLoading } = useDeckList()
+  const [isAddingDeck, setIsAddingDeck] = useState(false)
 
-  if (isLoading) {
+  if (isLoading || isAddingDeck) {
     return (
       <>
         <div className="mt-28 flex justify-center">
@@ -45,7 +46,11 @@ const DeckList = (): JSX.Element => {
     <ul className="menu">
       <>
         {deckList.map((csvDeck) => (
-          <DeckItem key={csvDeck.id} csvDeck={csvDeck} />
+          <DeckItem
+            key={csvDeck.id}
+            csvDeck={csvDeck}
+            setIsAddingDeck={setIsAddingDeck}
+          />
         ))}
       </>
     </ul>
@@ -54,14 +59,17 @@ const DeckList = (): JSX.Element => {
 
 interface DeckItemProps {
   csvDeck: CsvDeck
+  setIsAddingDeck: (isAddingDeck: boolean) => void
 }
 
-const DeckItem = ({ csvDeck }: DeckItemProps): JSX.Element => {
+const DeckItem = ({ csvDeck, setIsAddingDeck }: DeckItemProps): JSX.Element => {
   const { addDeck, isLoading } = useAddDeck()
   const { setMenuComponent, toggleDrawerOpen } = useContext(MenuContext)
 
   const handleClick = async (): Promise<void> => {
+    setIsAddingDeck(true)
     const success = await addDeck(csvDeck)
+    setIsAddingDeck(false)
     if (success) {
       toggleDrawerOpen()
       setMenuComponent('menu')

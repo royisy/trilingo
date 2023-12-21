@@ -38,7 +38,16 @@ export const Home = (): JSX.Element => {
   }
 
   if (showAddDeckDialog) {
-    return <AddDeckDialog dialogRef={addDeckDialogRef} />
+    return (
+      <>
+        <div className="flex h-screen items-center justify-center">
+          <span className="loading loading-spinner loading-lg"></span>
+        </div>
+        <div className="">
+          <AddDeckDialog dialogRef={addDeckDialogRef} />
+        </div>
+      </>
+    )
   }
 
   return (
