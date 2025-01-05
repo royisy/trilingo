@@ -1,7 +1,7 @@
 # Trilingo
 
 A word memorizing webapp for language learning.  
-Demo: [https://trilingo.app/](https://trilingo.app/)
+Demo: https://royisy.github.io/trilingo/
 
 <div style="display: inline-block;">
   <img src="https://user-images.githubusercontent.com/28505196/261851814-9de3a934-208b-4185-bdfb-f020f7b16cd8.png" alt="Home" width="300">
